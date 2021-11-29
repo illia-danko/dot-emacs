@@ -1,0 +1,66 @@
+Personal Emacs dotfiles
+
+* Rationale
+
+Even though it's possible to use Emacs as X11 [[https://github.com/ch11ng/exwm][Windows Manager]] or [[https://elpa.gnu.org/packages/slime-volleyball.html][play 2d games]],
+it doesn't mean you should.
+
+Instead, keeping simple but at the same time powerful editing experience is what
+I desire. And as Thomas David and Hunt Andrew say: 'Don’t spend more effort than
+you save...'. So I stuck with a simple Emacs dotfiles configuration, which gives
+the following:
+
+- no mouse interaction
+- char, word, line and paragraph selection and movement
+- move by syntactic units, such as, matching delimiters, functions, mudules
+- code reindentation
+- comment and uncomment block with a single command
+- column, line number navigation
+- sorting
+- buffer and project-wide replacement by string or regexp pattern
+- multiple cursor editing
+- build, test and run a single unit or a whole project from the editor
+- switching between projects
+- interact with version control (blame, commit, logs, search)
+
+Besides the primary editing goals, keeping notes and organizing tasks is another
+valuable thing built-in the text editor. It just reduces the brain cycles
+between a spontaneous idea in the mind and this idea documented for the future
+judgment.
+
+Those above are crucial and indeed save time, and everything beyond is probably
+a fad and should be avoided (or replaced by dedicated tool). Thus, you're
+keeping focusing on a task and avoid distraction.
+
+Also, if I found a repetitive pattern during editing, I create a command and
+assign a keymap (eg. open url at point) without too much hassle (thanks to
+Elisp - the Emacs built-in language similar to Common Lisp). I always try to
+remember: 'Don’t spend more effort than you save'!
+
+* Packages
+
+- ~straight.el~ to download Emacs packages from many sources
+- ~use-package~ to load packages properly
+- ~multiple-cursors~ self-explanatory
+- ~expand-region~ makes text selection easier
+- ~key-chords~ moves modeless text editing experience to the same level as Vim
+  does.
+- ~projectile~ for organizing projects
+- ~ivy & swiper & counsel~ as a generic completion frontend and search facility
+- ~eglot~ gives Language Service Protocol experience
+- ~yasnippet~ for snippets
+- ~abbrev (built-in)~  for abbreviations (typically to correct typos)
+- ~flyspell (built-in)~ to check spelling
+- ~flycheck~ is a code linter
+- ~company~ for text completion
+- ~magit~ as a git frontend
+- ~org (built-in)~ is a task scheduler and notes taker in plain text
+
+* References
+
+- https://github.com/bbatsov/prelude
+- https://github.com/jwiegley/dot-emacs
+
+* License
+
+MIT

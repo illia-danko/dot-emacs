@@ -1,0 +1,25 @@
+# -*- snippet -*-
+# contributor : Illia Danko <illia@idanko.net>
+# name: main
+# key: main
+# --
+package main
+
+import (
+    "context"
+	"fmt"
+	"os"
+)
+
+func main() {
+    ctx := context.Background()
+	if err := doMain(ctx); err != nil {
+		fmt.Fprintf(os.Stderr, "main: %v", err)
+		os.Exit(1)
+	}
+}
+
+func doMain(ctx context.Context) error {
+	$0
+    return nil
+}
