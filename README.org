@@ -6,7 +6,7 @@ Even though it's possible to use Emacs as X11 [[https://github.com/ch11ng/exwm][
 it doesn't mean you should.
 
 Instead, keeping simple but at the same time powerful editing experience is what
-I desire. And as Thomas David and Hunt Andrew say: 'Don’t spend more effort than
+I desire. And as David Thomas and Andrew Hunt say: 'Don’t spend more effort than
 you save...'. So I stuck with a simple Emacs dotfiles configuration, which gives
 the following:
 
