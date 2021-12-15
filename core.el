@@ -190,6 +190,7 @@
 
 (use-package projectile
   :straight t
+  :diminish
   :ensure t
   :config (projectile-mode 1)
   :bind (("C-c p" . projectile-command-map)
