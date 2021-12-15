@@ -285,7 +285,10 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (defun isearch:region (&rest _)
     "If a region is active, set a selected pattern as an isearch input."
     (interactive "P\np")
-    (region:apply 'isearch-yank-string))
+    (if mark-active
+	  (let ((content (region:content)))
+		(deactivate-mark)
+		(isearch-yank-string content))))
 
   :config
   (advice-add 'isearch-forward :after #'isearch:region)
