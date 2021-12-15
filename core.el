@@ -148,7 +148,8 @@
   :hook (git-commit-setup . flyspell-mode)
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
-         ("C-c g d" . magit-diff-buffer-file)))
+         ("C-c g d" . magit-diff-buffer-file)
+         ("C-c g l" . magit-log)))
 
 (use-package git-link
   :straight t
