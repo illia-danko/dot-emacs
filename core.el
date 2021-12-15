@@ -294,4 +294,10 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
 
+(use-package xclip
+  :straight t
+  :config
+  (unless (display-graphic-p)
+    (xclip-mode +1)))
+
 ;;; core.el ends here
