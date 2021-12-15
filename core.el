@@ -167,12 +167,7 @@
          ("C-c f r" . counsel-recentf)
 	     ("C-c c !" . counsel-compile)
          ("C-c c r" . recompile) ; not a part of counsel, but used as a supplement to `counsel-compile'
-         ("C-s" . (lambda ()
-                    (interactive)
-                    (region:apply 'swiper-isearch)))
-         ("C-r" . (lambda ()
-                    (interactive)
-                    (region:apply 'swiper-isearch-backward))))
+         )
   :chords (("RR" . ivy-resume)
            ("FF" . (lambda ()
                      (interactive)
@@ -284,5 +279,16 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :bind (("C-c o T" . vterm))
   :hook (vterm-mode . (lambda ()
                         (setq-local global-hl-line-mode nil))))
+
+(use-package isearch
+  :init
+  (defun isearch:region (&rest _)
+    "If a region is active, set a selected pattern as an isearch input."
+    (interactive "P\np")
+    (region:apply 'isearch-yank-string))
+
+  :config
+  (advice-add 'isearch-forward :after #'isearch:region)
+  (advice-add 'isearch-backward :after #'isearch:region))
 
 ;;; core.el ends here
