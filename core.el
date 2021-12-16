@@ -294,6 +294,12 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
 
+(use-package anzu
+  :straight t
+  :diminish
+  :bind (("M-%" . anzu-query-replace))
+  :config (global-anzu-mode +1))
+
 (use-package xclip
   :straight t
   :config
