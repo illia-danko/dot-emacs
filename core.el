@@ -306,4 +306,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (unless (display-graphic-p)
     (xclip-mode +1)))
 
+(use-package display-line-numbers
+  :bind (("C-c t l" . global-display-line-numbers-mode)))
+
 ;;; core.el ends here

@@ -51,7 +51,7 @@
  '(dashboard-items '((recents . 5) (projects . 5) (agenda . 10) (registers . 5)))
  '(dashboard-set-footer nil)
  '(dired-dwim-target t)
- '(display-line-numbers-type t)
+ '(display-line-numbers-type 'relative)
  '(ediff-keep-variants nil)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
