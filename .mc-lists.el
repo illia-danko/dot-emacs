@@ -7,8 +7,9 @@
         c-electric-slash
         counsel-yank-pop
         downcase-region
-        mc:hydra-keymap/body
+        kill-visual-line
         mark-word
+        mc:hydra-keymap/body
         org-delete-char
         org-end-of-line
         org-force-self-insert
