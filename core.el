@@ -216,6 +216,12 @@
                             '(:with company-yasnippet))))
                 company-backends)))
 
+(use-package company-posframe
+  :straight t
+  :diminish
+  :config
+  (company-posframe-mode +1))
+
 (use-package expand-region
   :straight t
   :bind (("C-o" . er/expand-region)

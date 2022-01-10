@@ -83,6 +83,10 @@
  '(user-mail-address "illia@idanko.net")
  '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
+ '(company-posframe-quickhelp-show-header nil)
+ '(company-posframe-show-metadata nil)
+ '(company-posframe-show-params nil)
+ '(company-posframe-show-indicator nil)
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
