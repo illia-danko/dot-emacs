@@ -315,4 +315,18 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 (use-package display-line-numbers
   :bind (("C-c t l" . global-display-line-numbers-mode)))
 
+(use-package code-review
+  :straight t)
+
+(use-package counsel-fzf-rg
+  :straight '(counsel-fzf-rg
+              :type git
+              :host github
+              :repo "idanko/counsel-fzf-rg.el")
+  :config
+  (defun counsel-fzf-rg:org ()
+    (interactive)
+    (counsel-fzf-rg "" org-directory))
+  :bind (("C-c n f". counsel-fzf-rg:org)))
+
 ;;; core.el ends here

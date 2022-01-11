@@ -107,6 +107,7 @@
  '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
  '(org-startup-folded t)
  `(org-default-notes-file ,(expand-file-name "todo.org" settings:shared-directory))
+ '(org-directory "~/github.com/idanko/org")
  )
 
 ;; Most of the entries are specifically related to leuven theme.
