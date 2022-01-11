@@ -77,6 +77,7 @@
  '(kill-whole-line t)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
+ '(markdown-hide-markup t) ; hide urls
  '(projectile-completion-system 'ivy)
  '(python-indent-offset 4)
  '(require-final-newline t)
