@@ -46,6 +46,10 @@
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(c-basic-offset 4)
  '(comment-fill-column 80)
+ '(company-posframe-quickhelp-show-header nil)
+ '(company-posframe-show-indicator nil)
+ '(company-posframe-show-metadata nil)
+ '(company-posframe-show-params nil)
  '(custom-safe-themes t) ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((recents . 5) (projects . 5) (agenda . 10) (registers . 5)))
@@ -83,10 +87,8 @@
  '(user-mail-address "illia@idanko.net")
  '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
- '(company-posframe-quickhelp-show-header nil)
- '(company-posframe-show-metadata nil)
- '(company-posframe-show-params nil)
- '(company-posframe-show-indicator nil)
+ `(code-review-db-path ,(expand-file-name "code-review-db-file.sqlite" settings:shared-directory))
+ `(forge-database-file ,(expand-file-name "forge-database.sqlite" settings:shared-directory))
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
@@ -94,12 +96,14 @@
  `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
  `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
  `(transient-values-file ,(expand-file-name "transient/values.el" settings:shared-directory))
+ `(url-configuration-directory ,(expand-file-name "url" settings:shared-directory))
  )
 
 (custom-set-variables
  '(org-agenda-block-separator "")
  '(org-agenda-files (list org-default-notes-file))
  '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %? Entered on %U ")))
+ '(org-directory "~/github.com/idanko/org")
  '(org-ellipsis "  " ) ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
@@ -107,7 +111,6 @@
  '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
  '(org-startup-folded t)
  `(org-default-notes-file ,(expand-file-name "todo.org" settings:shared-directory))
- '(org-directory "~/github.com/idanko/org")
  )
 
 ;; Most of the entries are specifically related to leuven theme.
