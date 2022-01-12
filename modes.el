@@ -60,7 +60,6 @@
 
 (use-package paredit ; better Lisp writing
   :straight t
-  :diminish
   :bind (:map paredit-mode-map
               ("C-c >" . paredit-forward-barf-sexp)
               ("C-c <" . paredit-backward-barf-sexp)))
@@ -82,7 +81,6 @@
 
 (use-package prettier-js
   :straight t
-  :diminish
   :hook ((js-mode . prettier-js-mode)))
 
 (use-package js

@@ -31,17 +31,20 @@
 ;;; Code:
 
 (require 'use-package)
-(require 'diminish)
 
 (use-package which-key
   :straight t
-  :diminish
   :config (which-key-mode 1))
 
-(use-package leuven-theme
+(use-package doom-themes
   :straight t
   :config
-  (load-theme 'leuven t))
+  (load-theme 'doom-one-light t))
+
+(use-package doom-modeline
+  :straight t
+  :init
+  (doom-modeline-mode +1))
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

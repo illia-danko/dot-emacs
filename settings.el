@@ -114,7 +114,6 @@
  `(org-default-notes-file ,(expand-file-name "todo.org" settings:shared-directory))
  )
 
-;; Most of the entries are specifically related to leuven theme.
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -122,20 +121,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Iosevka Term" :height 110))))
  '(fixed-pitch ((t (:family "Iosevka Term" :height 110))))
- '(isearch ((t (:underline nil))))
- '(org-block-begin-line ((t (:underline nil))))
- '(org-block-end-line ((t (:overline nil))))
- '(org-level-1 ((t (:overline nil))))
- '(org-level-2 ((t (:overline nil))))
- '(org-level-3 ((t (:overline nil))))
- '(org-level-4 ((t (:overline nil))))
- '(org-level-5 ((t (:overline nil))))
- '(org-level-6 ((t (:overline nil))))
- '(org-level-7 ((t (:overline nil))))
- '(org-level-8 ((t (:overline nil))))
- '(org-link ((t (:underline nil))))
- '(variable-pitch ((t (:family "Iosevka Term" :height 110))))
- '(widget-button ((t (:underline nil))))
- )
+ '(variable-pitch ((t (:family "Iosevka Term" :height 110)))))
 
 ;;; settings.el ends here

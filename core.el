@@ -112,16 +112,13 @@
 
 (require 'use-package)
 
-(use-package diminish :straight t) ; `use-package' internals.
-
 (use-package use-package-chords ; `use-package' internals.
   :straight t
   :ensure t
   :config (key-chord-mode 1))
 
- ; Removed from modeline.
-(use-package abbrev :diminish)
-(use-package eldoc :diminish)
+(use-package abbrev)
+(use-package eldoc)
 
 (use-package simple
   :chords (("JJ" . delete-indentation)))
@@ -175,7 +172,6 @@
 
 (use-package ivy
   :straight t
-  :diminish
   :config (ivy-mode 1))
 
 (use-package ivy-rich
@@ -185,7 +181,6 @@
 
 (use-package projectile
   :straight t
-  :diminish
   :ensure t
   :config (projectile-mode 1)
   :bind (("C-c p" . projectile-command-map)
@@ -194,13 +189,11 @@
 
 (use-package yasnippet
   :straight t
-  :diminish yas-minor-mode
   :config
   (yas-global-mode +1))
 
 (use-package company
   :straight t
-  :diminish
   :after (yasnippet)
   :config
   (global-company-mode +1)
@@ -218,7 +211,6 @@
 
 (use-package company-posframe
   :straight t
-  :diminish
   :config
   (company-posframe-mode +1))
 
@@ -302,7 +294,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 
 (use-package anzu
   :straight t
-  :diminish
   :bind (("M-%" . anzu-query-replace))
   :config (global-anzu-mode +1))
 
