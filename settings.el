@@ -93,6 +93,7 @@
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
+ '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
  `(smex-save-file ,(expand-file-name "smex-items" settings:shared-directory))
  `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
  `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
