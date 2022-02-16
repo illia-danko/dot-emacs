@@ -1,9 +1,9 @@
 ;;; modes.el --- Major Modes packages settings -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Illia A. Danko
+;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Illia A. Danko <illia@idanko.net>
-;; URL: https://github.com/idanko/emacs.d
+;; Author: Elijah Danko <me@eli.net>
+;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.
 

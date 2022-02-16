@@ -1,9 +1,9 @@
 ;;; ui.el --- Emacs User Interface -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Illia A. Danko
+;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Illia A. Danko <illia@idanko.net>
-;; URL: https://github.com/idanko/emacs.d
+;; Author: Elijah Danko < me@eli.net>
+;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.
 
@@ -39,7 +39,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-one t))
 
 (use-package doom-modeline
   :straight t

@@ -1,9 +1,9 @@
 ;;; settings.el --- custom-file for variables and faces -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Illia A. Danko
+;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Illia A. Danko <illia@idanko.net>
-;; URL: https://github.com/idanko/emacs.d
+;; Author: Elijah Danko <me@eli.net>
+;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.
 
@@ -30,8 +30,13 @@
 
 ;;; Code:
 
-(defvar settings:shared-directory "~/Dropbox/emacs"
+(defvar settings:shared-directory "~/.cache/emacs"
   "Cloud file storage location.")
+
+(setq org-directory "~/github.com/elijahdanko/org")
+
+(unless (file-directory-p settings:shared-directory)
+  (make-directory settings:shared-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -84,8 +89,9 @@
  '(ring-bell-function 'ignore) ; turn off ring bell sound
  '(tab-width 4)
  '(use-dialog-box nil)
- '(user-full-name "Illia A. Danko")
- '(user-mail-address "illia@idanko.net")
+ '(user-full-name "Elijah A. Danko")
+ '(user-mail-address "me@eli.net")
+ '(visible-cursor nil) ; dont blink cursor in tty.
  '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
  `(code-review-db-path ,(expand-file-name "code-review-db-file.sqlite" settings:shared-directory))
@@ -105,15 +111,13 @@
  '(org-agenda-block-separator "")
  '(org-agenda-files (list org-default-notes-file))
  '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %? Entered on %U ")))
- '(org-directory "~/github.com/idanko/org")
  '(org-ellipsis "  " ) ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-hide-emphasis-markers t) ; close links, etc.
  '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
  '(org-startup-folded t)
- `(org-default-notes-file ,(expand-file-name "todo.org" settings:shared-directory))
- )
+ `(org-default-notes-file ,(expand-file-name "todo.org" org-directory)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

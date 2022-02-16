@@ -1,9 +1,9 @@
 ;;; core.el --- Core Emacs configuration -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Illia A. Danko
+;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Illia A. Danko <illia@idanko.net>
-;; URL: https://github.com/idanko/emacs.d
+;; Author: Elijah Danko <me@eli.net>
+;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.
 
@@ -33,8 +33,11 @@
 ;;; Code:
 
 (blink-cursor-mode -1) ; the blinking cursor is nothing, but an annoyance
-(tool-bar-mode -1) ; disable top menu buttons
+(if (functionp 'tool-bar-mode)
+    (tool-bar-mode -1)) ; disable top menu buttons
 (menu-bar-mode -1)
+(blink-cursor-mode 0) ; gui mode
+
 
 ;; Mode line settings.
 (line-number-mode t)
@@ -70,7 +73,7 @@
 (let ((path `("/usr/local/go/bin"
            ,(concat (getenv "HOME") "/go/bin")
            ,(concat (getenv "HOME") "/.fzf/bin")
-           ,(concat (getenv "HOME") "/github.com/idanko/scripts"))))
+           ,(concat (getenv "HOME") "/github.com/elijahdanko/scripts"))))
 
   ;; To make $PATH works correctly on Emacs GUI it's needed to set via both:
   ;; `exec-path' and `setenv'.
@@ -142,11 +145,18 @@
 
 (use-package magit
   :straight t
+  :after (project)
   :hook (git-commit-setup . flyspell-mode)
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
          ("C-c g l" . magit-log)))
+
+;; (emacs27.2): fix Symbol's value as variable is void: project-switch-commands
+;; error.
+(use-package project
+  :straight t
+  :ensure t)
 
 (use-package git-link
   :straight t
@@ -313,7 +323,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :straight '(counsel-fzf-rg
               :type git
               :host github
-              :repo "idanko/counsel-fzf-rg.el")
+              :repo "elijahdanko/counsel-fzf-rg.el")
   :config
   (defun counsel-fzf-rg:org ()
     (interactive)
