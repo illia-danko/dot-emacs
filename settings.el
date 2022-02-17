@@ -90,7 +90,7 @@
  '(ring-bell-function 'ignore) ; turn off ring bell sound
  '(tab-width 4)
  '(use-dialog-box nil)
- '(user-full-name "Elijah A. Danko")
+ '(user-full-name "Elijah Danko")
  '(user-mail-address "me@eli.net")
  '(visible-cursor nil) ; dont blink cursor in tty.
  '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
