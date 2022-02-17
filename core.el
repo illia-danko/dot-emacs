@@ -187,7 +187,34 @@
 (use-package ivy-rich
   :after (ivy)
   :straight t
-  :config (ivy-rich-mode 1))
+  :config
+  ;; Fix ivy Switch To Buffer slowness.
+  (defvar ivy-rich:cache
+    (make-hash-table :test 'equal))
+
+  (defun ivy-rich:cache-lookup (delegate candidate)
+    (let ((result (gethash candidate ivy-rich:cache)))
+      (unless result
+        (setq result (funcall delegate candidate))
+        (puthash candidate result ivy-rich:cache))
+      result))
+
+  (defun ivy-rich:cache-reset ()
+    (clrhash ivy-rich:cache))
+
+  (defun ivy-rich:cache-rebuild ()
+    (mapc (lambda (buffer)
+            (ivy-rich--ivy-switch-buffer-transformer (buffer-name buffer)))
+          (buffer-list)))
+
+  (defun ivy-rich:cache-rebuild-trigger ()
+    (ivy-rich:cache-reset)
+    (run-with-idle-timer 1 nil 'ivy-rich:cache-rebuild))
+
+  (advice-add 'ivy-rich--ivy-switch-buffer-transformer :around 'ivy-rich:cache-lookup)
+  (advice-add 'ivy-switch-buffer :after 'ivy-rich:cache-rebuild-trigger)
+
+  (ivy-rich-mode 1))
 
 (use-package projectile
   :straight t
