@@ -76,6 +76,7 @@
  '(ivy-initial-inputs-alist nil)
  '(ivy-rich-path-style 'abbrev) ; shorten style path, eg: /home/user1/Documents -> ~/Documents
  '(ivy-use-virtual-buffers t)
+ '(ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
  '(js-indent-level 4)
  '(key-chord-one-key-delay 0.16)
  '(key-chord-two-keys-delay 0.05)
