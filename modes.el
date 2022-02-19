@@ -178,7 +178,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
                        (setq-local global-hl-line-mode nil)
                        (org-superstar-mode))))
   :bind (("C-c n t" . org:new-todo-entry)
-         ("C-*" . org-todo-list)
+         ("C-c n l" . org-todo-list)
          :map org-mode-map
          ("C-c o p" . org:browser-preview)
          ("C-c o w" . org-open-at-point)
