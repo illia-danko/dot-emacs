@@ -357,4 +357,12 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     (counsel-fzf-rg "" org-directory))
   :bind (("C-c n f". counsel-fzf-rg:org)))
 
+(use-package tmux-vanilla
+  :straight '(tmux-vanilla
+              :type git
+              :host github
+              :repo "elijahdanko/tmux-vanilla.el")
+  :config
+  (tmux-vanilla-mode 1))
+
 ;;; core.el ends here
