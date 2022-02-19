@@ -185,6 +185,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
          ("C-c *" . org:toggle-fontifications)))
 
 (use-package python
-  :hook ((python-mode . eglot-ensure)))
+  :init
+  (defun python-mode:setup-buffer ()
+    (eglot-ensure)
+    (flycheck-mode 1))
+  :hook ((python-mode . python-mode:setup-buffer)))
 
 ;;; modes.el ends here
