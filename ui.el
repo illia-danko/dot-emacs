@@ -69,8 +69,17 @@
 
  ;; Move buffer to the middle of the screen.
 (use-package olivetti
+  :straight t)
+
+(use-package hide-mode-line
   :straight t
-  :bind (("C-c t SPC" . olivetti-mode)))
+  :init
+  (defun destraction-free-toggle (&optional arg)
+    (interactive)
+    (call-interactively 'olivetti-mode arg)
+    (call-interactively 'hide-mode-line-mode arg))
+  :after (olivetti)
+  :bind (("C-c SPC SPC" . destraction-free-toggle)))
 
 ;; Highlight RGB(A) and color names.
 (use-package rainbow-mode
