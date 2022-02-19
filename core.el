@@ -282,8 +282,11 @@
   (save-some-buffers)
   (kill-emacs))
 
+(defun file:revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
+(global-set-key (kbd "C-c b r") #'file:revert-buffer-no-confirm)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
-(global-set-key (kbd "C-c b r") #'revert-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 
 (use-package dired
