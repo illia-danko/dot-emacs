@@ -174,11 +174,10 @@
          ("C-c f r" . counsel-recentf)
 	     ("C-c c !" . counsel-compile)
          ("C-c c r" . recompile) ; not a part of counsel, but used as a supplement to `counsel-compile'
-         )
-  :chords (("RR" . ivy-resume)
-           ("FF" . (lambda ()
+         ("C-c s" . (lambda ()
                      (interactive)
-                     (region:apply 'counsel-rg)))))
+                     (region:apply 'counsel-rg)))
+         ("C-c `" . ivy-resume)))
 
 (use-package ivy
   :straight t
