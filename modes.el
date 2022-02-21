@@ -191,4 +191,11 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
     (flycheck-mode 1))
   :hook ((python-mode . python-mode:setup-buffer)))
 
+(use-package yapfify
+  :straight '(yapfify
+              :type git
+              :host github
+              :repo "JorisE/yapfify")
+  :hook ((python-mode . yapf-mode)))
+
 ;;; modes.el ends here
