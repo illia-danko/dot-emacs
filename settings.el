@@ -110,7 +110,7 @@
 (custom-set-variables
  '(org-agenda-block-separator "")
  '(org-agenda-files (list org-default-notes-file))
- '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U ")))
+ '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")))
  '(org-ellipsis "  " ) ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
