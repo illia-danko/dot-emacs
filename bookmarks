@@ -1,0 +1,35 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("Scratchpad"
+ (filename . "~/.cache/emacs/scratchpad.txt")
+ (front-context-string . "scratchpad")
+ (rear-context-string)
+ (position . 1))
+("Aigent documents folder"
+ (filename . "~/Documents/aigent/")
+ (front-context-string . "  /home/idanko/D")
+ (rear-context-string)
+ (position . 1))
+("Music"
+ (filename . "~/Music/")
+ (front-context-string . "  /home/idanko/M")
+ (rear-context-string)
+ (position . 1))
+("Downloads"
+ (filename . "~/Downloads/")
+ (front-context-string . "  /home/idanko/D")
+ (rear-context-string)
+ (position . 1))
+("Documents"
+ (filename . "~/Documents/")
+ (front-context-string . "  /home/idanko/D")
+ (rear-context-string)
+ (position . 1))
+("My github"
+ (filename . "~/github.com/idanko/")
+ (front-context-string . "  /home/idanko/g")
+ (rear-context-string)
+ (position . 1))
+)
