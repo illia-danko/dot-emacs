@@ -221,6 +221,12 @@
 
   (ivy-rich-mode 1))
 
+(use-package flyspell-correct
+  :straight t
+  :after (flyspell ivy)
+  :bind (:map flyspell-mode-map
+              ("M-$" . flyspell-correct-wrapper)))
+
 (use-package projectile
   :straight t
   :ensure t
