@@ -46,6 +46,7 @@
  '(abbrev-mode t) ; use abbreviations everywhere
  '(auto-revert-check-vc-info t)
  '(auto-revert-use-notify nil)
+ '(auto-revert-verbose nil) ; dont print `Reverting buffer' message
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix nil)
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
@@ -73,9 +74,9 @@
  '(indent-tabs-mode nil)
  '(ivy-height 15)
  '(ivy-initial-inputs-alist nil)
+ '(ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
  '(ivy-rich-path-style 'abbrev) ; shorten style path, eg: /home/user1/Documents -> ~/Documents
  '(ivy-use-virtual-buffers t)
- '(ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
  '(js-indent-level 4)
  '(key-chord-one-key-delay 0.16)
  '(key-chord-two-keys-delay 0.05)
@@ -87,19 +88,19 @@
  '(python-indent-offset 4)
  '(require-final-newline t)
  '(ring-bell-function 'ignore) ; turn off ring bell sound
+ '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Elijah Danko")
  '(user-mail-address "me@eli.net")
- '(visible-cursor nil) ; dont blink cursor in tty.
  '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
+ '(visible-cursor nil) ; dont blink cursor in tty.
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
  `(code-review-db-path ,(expand-file-name "code-review-db-file.sqlite" settings:shared-directory))
  `(forge-database-file ,(expand-file-name "forge-database.sqlite" settings:shared-directory))
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
- '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
  `(smex-save-file ,(expand-file-name "smex-items" settings:shared-directory))
  `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
  `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
