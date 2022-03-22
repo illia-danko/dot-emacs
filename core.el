@@ -147,10 +147,22 @@
   :straight t
   :after (project)
   :hook (git-commit-setup . flyspell-mode)
+  :config
+  (defun magit:auto-notes ()
+    "Stage, commit and push upstream a personal note file."
+    (interactive)
+    (let ((org-dir (expand-file-name org-directory))
+          (fullname (buffer-file-name))
+          (relname (file-name-nondirectory (buffer-file-name))))
+      (when (string-match-p (regexp-quote org-dir) fullname)
+        (magit-stage-file fullname)
+        (magit-commit-create (list "-m" (format "update %s" relname)))
+        (call-interactively 'magit-push-current-to-upstream))))
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
-         ("C-c g l" . magit-log)))
+         ("C-c g l" . magit-log)
+         ("C-c g n" . magit:auto-notes)))
 
 ;; (emacs27.2): fix Symbol's value as variable is void: project-switch-commands
 ;; error.
