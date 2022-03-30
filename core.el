@@ -267,7 +267,8 @@
     	                        backends
                               (list backends))
                             '(:with company-yasnippet))))
-                company-backends)))
+                company-backends))
+  :bind (("C-c TAB" . company-complete)))
 
 (use-package company-posframe
   :straight t
