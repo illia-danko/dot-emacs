@@ -58,6 +58,9 @@
               ("C-c b c" . go-test-current-test)
               ("C-c b t" . go-test-current-file)))
 
+(use-package rainbow-delimiters
+  :straight t)
+
 (use-package paredit ; better Lisp writing
   :straight t
   :bind (:map paredit-mode-map
@@ -65,7 +68,10 @@
               ("C-c <" . paredit-backward-barf-sexp)))
 
 (use-package elisp-mode
-  :hook ((emacs-lisp-mode . paredit-mode))
+  :hook ((emacs-lisp-mode . (lambda ()
+                              (paredit-mode)
+                              (add-hook 'before-save-hook #'paredit-reindent-defun)
+                              (rainbow-delimiters-mode))))
   :bind (:map emacs-lisp-mode-map
               ("C-c C-c" . eval-defun)
               ("C-c C-k" . eval-buffer)))
@@ -75,7 +81,9 @@
   :straight t
   :hook ((clojure-mode . (lambda ()
                            (paredit-mode)
-                           (clj-refactor-mode)))))
+                           (add-hook 'before-save-hook #'paredit-reindent-defun)
+                           (clj-refactor-mode)
+                           (rainbow-delimiters-mode)))))
 
 (use-package typescript-mode :straight t)
 
