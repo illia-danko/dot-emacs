@@ -61,8 +61,13 @@
 (use-package rainbow-delimiters
   :straight t)
 
-(use-package paredit ; better Lisp writing
+(use-package paredit                    ; better Lisp writing
   :straight t
+  :config
+  (defun paredit-reindent:wrap (mode)
+    (lambda (&optional argument)
+      (when (eq major-mode mode)
+        (paredit-reindent-defun argument))))
   :bind (:map paredit-mode-map
               ("C-c >" . paredit-forward-barf-sexp)
               ("C-c <" . paredit-backward-barf-sexp)))
@@ -70,7 +75,8 @@
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()
                               (paredit-mode)
-                              (add-hook 'before-save-hook #'paredit-reindent-defun)
+                              (add-hook 'before-save-hook
+                                        (paredit-reindent:wrap 'emacs-lisp-mode))
                               (rainbow-delimiters-mode))))
   :bind (:map emacs-lisp-mode-map
               ("C-c C-c" . eval-defun)
@@ -81,7 +87,8 @@
   :straight t
   :hook ((clojure-mode . (lambda ()
                            (paredit-mode)
-                           (add-hook 'before-save-hook #'paredit-reindent-defun)
+                           (add-hook 'before-save-hook
+                                     (paredit-reindent:wrap 'clojure-mode))
                            (clj-refactor-mode)
                            (rainbow-delimiters-mode)))))
 
