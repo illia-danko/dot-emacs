@@ -29,7 +29,7 @@ between a spontaneous idea in the mind and this idea documented for the future
 judgment.
 
 Those above are crucial and indeed save time, and everything beyond is probably
-a fad and should be avoided (or replaced by dedicated tool). Thus, you're
+a fad and should be avoided (or replaced by a dedicated tool). Thus, you're
 keeping focusing on a task and avoid distraction.
 
 Also, if I found a repetitive pattern during editing, I create a command and
