@@ -73,6 +73,7 @@
            ("UU" . paredit-splice-sexp-killing-backward)))
 
 (use-package elisp-mode
+  :after (paredit-mode)
   :hook ((emacs-lisp-mode . (lambda ()
                               (paredit-mode)
                               (add-hook 'before-save-hook
@@ -85,6 +86,7 @@
 (use-package clj-refactor :straight t)
 (use-package cider
   :straight t
+  :after (paredit-mode)
   :hook ((clojure-mode . (lambda ()
                            (paredit-mode)
                            (add-hook 'before-save-hook
