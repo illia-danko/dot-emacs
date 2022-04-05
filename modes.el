@@ -68,9 +68,9 @@
     (lambda (&optional argument)
       (when (eq major-mode mode)
         (paredit-reindent-defun argument))))
-  :bind (:map paredit-mode-map
-              ("C-c >" . paredit-forward-barf-sexp)
-              ("C-c <" . paredit-backward-barf-sexp)))
+  :chords ((">>" . paredit-forward-slurp-sexp)
+           ("<<" . paredit-forward-barf-sexp)
+           ("UU" . paredit-splice-sexp-killing-backward)))
 
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()
