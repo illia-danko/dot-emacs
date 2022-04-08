@@ -348,18 +348,20 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     "If a region is active, set a selected pattern as an isearch input."
     (interactive "P\np")
     (if mark-active
-	  (let ((content (region:content)))
-		(deactivate-mark)
-		(isearch-yank-string content))))
-
+	    (let ((content (region:content)))
+		  (deactivate-mark)
+		  (isearch-yank-string content))))
   :config
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
 
 (use-package anzu
   :straight t
-  :bind (("M-%" . anzu-query-replace))
-  :config (global-anzu-mode +1))
+  :config
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+  (anzu-mode +1)
+  (global-anzu-mode +1))
 
 (use-package xclip
   :straight t
