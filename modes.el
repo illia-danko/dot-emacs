@@ -197,7 +197,8 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
          :map org-mode-map
          ("C-c o p" . org:browser-preview)
          ("C-c o w" . org-open-at-point)
-         ("C-c *" . org:toggle-fontifications)))
+         ("C-c *" . org:toggle-fontifications)
+         ("M-RET" . org-table-insert-row)))
 
 (use-package python
   :init
