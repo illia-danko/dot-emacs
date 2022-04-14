@@ -38,6 +38,28 @@
 (use-package prog-mode
   :hook ((prog-mode . show:trailing-whitespace)))
 
+(use-package compile
+  :init
+  (defun compile:delete-window-if-successful (buffer string)
+    "Bury a compilation buffer and close a compliation window. No-op
+on compliation error or warning."
+    (when (and
+           (buffer-live-p buffer)
+           (string-match "compilation" (buffer-name buffer))
+           (string-match "finished" string)
+           (not
+            (with-current-buffer buffer
+              (goto-char (point-min))
+              (search-forward "warning" nil t))))
+      (run-with-timer 1 nil
+                      (lambda (buf)
+                        (bury-buffer buf)
+                        (switch-to-prev-buffer (get-buffer-window buf) 'kill)
+                        (delete-window))
+                      buffer)))
+  :config
+  (add-hook 'compilation-finish-functions 'compile:delete-window-if-successful))
+
 (use-package go-mode
   :straight t
   :init
