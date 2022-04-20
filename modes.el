@@ -86,13 +86,15 @@ on compliation error or warning."
 (use-package paredit                    ; better Lisp writing
   :straight t
   :config
-  (defun paredit-reindent:wrap (mode)
-    (lambda (&optional argument)
-      (when (eq major-mode mode)
-        (paredit-reindent-defun argument))))
-  :chords ((">>" . paredit-forward-slurp-sexp)
-           ("<<" . paredit-forward-barf-sexp)
-           ("UU" . paredit-splice-sexp-killing-backward)))
+  :bind (:map paredit-mode-map
+              ("C-c > >" . paredit-forward-slurp-sexp)
+              ("C-c < <" . paredit-forward-barf-sexp)
+              ("C-c u u" . paredit-splice-sexp-killing-backward)))
+
+(defun paredit-reindent:wrap (mode)
+  (lambda (&optional argument)
+    (when (eq major-mode mode)
+      (paredit-reindent-defun argument))))
 
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()

@@ -43,8 +43,6 @@ remember: 'Don’t spend more effort than you save'!
 - ~use-package~ to load packages properly
 - ~multiple-cursors~ self-explanatory
 - ~expand-region~ makes text selection easier
-- ~key-chords~ moves modeless text editing experience to the same level as Vim
-  does.
 - ~projectile~ for organizing projects
 - ~ivy & swiper & counsel~ as a generic completion frontend and search facility
 - ~eglot~ gives Language Service Protocol experience

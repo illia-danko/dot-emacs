@@ -115,16 +115,8 @@
 
 (require 'use-package)
 
-(use-package use-package-chords ; `use-package' internals.
-  :straight t
-  :ensure t
-  :config (key-chord-mode 1))
-
 (use-package abbrev)
 (use-package eldoc)
-
-(use-package simple
-  :chords (("JJ" . delete-indentation)))
 
 (use-package flyspell
   :init

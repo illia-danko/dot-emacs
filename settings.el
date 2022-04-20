@@ -43,10 +43,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(abbrev-mode t) ; use abbreviations everywhere
+ '(abbrev-mode t)                       ; use abbreviations everywhere
  '(auto-revert-check-vc-info t)
  '(auto-revert-use-notify nil)
- '(auto-revert-verbose nil) ; dont print `Reverting buffer' message
+ '(auto-revert-verbose nil)             ; dont print `Reverting buffer' message
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix nil)
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
@@ -56,7 +56,7 @@
  '(company-posframe-show-indicator nil)
  '(company-posframe-show-metadata nil)
  '(company-posframe-show-params nil)
- '(custom-safe-themes t) ; disable annoying warning while loading a theme
+ '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((recents . 5) (projects . 5) (agenda . 10) (registers . 5)))
  '(dashboard-set-footer nil)
@@ -78,23 +78,21 @@
  '(ivy-rich-path-style 'abbrev) ; shorten style path, eg: /home/user1/Documents -> ~/Documents
  '(ivy-use-virtual-buffers t)
  '(js-indent-level 4)
- '(key-chord-one-key-delay 0.16)
- '(key-chord-two-keys-delay 0.05)
  '(kill-whole-line t)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
- '(markdown-hide-markup t) ; hide urls
+ '(markdown-hide-markup t)                  ; hide urls
  '(projectile-completion-system 'ivy)
  '(python-indent-offset 4)
  '(require-final-newline t)
- '(ring-bell-function 'ignore) ; turn off ring bell sound
+ '(ring-bell-function 'ignore)          ; turn off ring bell sound
  '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Elijah Danko")
  '(user-mail-address "me@eli.net")
- '(vc-follow-symlinks t) ; turn off confirmation when open a symlink
- '(visible-cursor nil) ; dont blink cursor in tty.
+ '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
+ '(visible-cursor nil)               ; dont blink cursor in tty.
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
  `(code-review-db-path ,(expand-file-name "code-review-db-file.sqlite" settings:shared-directory))
  `(forge-database-file ,(expand-file-name "forge-database.sqlite" settings:shared-directory))
