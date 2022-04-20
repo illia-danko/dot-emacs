@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Elijah Danko <me@eli.net>
+;; Author: Elijah Danko <me@elijahdanko.net>
 ;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.

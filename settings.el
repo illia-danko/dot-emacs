@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2021 Elijah Danko
 ;;
-;; Author: Elijah Danko <me@eli.net>
+;; Author: Elijah Danko <me@elijahdanko.net>
 ;; URL: https://github.com/elijahdanko/emacs.d
 
 ;; This file is not part of GNU Emacs.
@@ -90,7 +90,7 @@
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Elijah Danko")
- '(user-mail-address "me@eli.net")
+ '(user-mail-address "me@elijahdanko.net")
  '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
  '(visible-cursor nil)               ; dont blink cursor in tty.
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
