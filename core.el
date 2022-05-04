@@ -260,6 +260,7 @@
                               (list backends))
                             '(:with company-yasnippet))))
                 company-backends))
+  (add-to-list 'completion-styles 'initials t)  ; enabling fuzzy matching
   :bind (("C-c TAB" . company-complete)))
 
 (use-package company-posframe
