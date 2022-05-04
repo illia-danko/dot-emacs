@@ -392,7 +392,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :init
   (defun git-gutter:refresh-hunks (&rest args)
     (interactive)
-    (message "git-gutter:refresh-hunks")
     (git-gutter:update-all-windows))
   (defun git-gutter:mode (&rest args)
     (interactive)
