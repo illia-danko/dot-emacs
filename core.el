@@ -387,29 +387,4 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :config
   (ttymux-mode 1))
 
-(use-package git-gutter
-  :straight t
-  :init
-  (defun git-gutter:refresh-hunks (&rest args)
-    (interactive)
-    (git-gutter:update-all-windows))
-  (defun git-gutter:mode (&rest args)
-    (interactive)
-    (git-gutter-mode 1))
-  (defun git-gutter::popup-hunk-jump (&optional diffinfo)
-    (interactive)
-    (git-gutter:popup-hunk diffinfo)
-    (switch-to-buffer-other-window git-gutter:popup-buffer))
-  :hook ((after-change-major-mode . git-gutter:mode))
-  :bind (("C-c M->" . git-gutter:next-hunk)
-         ("C-c M-<" . git-gutter:previous-hunk)
-         ("C-c g r" . git-gutter:revert-hunk)
-         ("C-c g p" . git-gutter::popup-hunk-jump))
-  :config
-  (global-git-gutter-mode +1)
-  (advice-add 'find-file :after #'git-gutter:refresh-hunks)
-  (advice-add 'pop-to-buffer-same-window :after #'git-gutter:refresh-hunks)
-  (advice-add 'switch-to-buffer :after #'git-gutter:refresh-hunks)
-  (advice-add 'switch-to-buffer-other-window :after #'git-gutter:refresh-hunks))
-
 ;;; core.el ends here
