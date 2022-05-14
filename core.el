@@ -302,7 +302,9 @@
 
 (defun file:revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
-  (interactive) (revert-buffer t t))
+  (interactive)
+  (revert-buffer t t)
+  (message "Reverted %s" (buffer-name)))
 (global-set-key (kbd "C-c b r") #'file:revert-buffer-no-confirm)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
