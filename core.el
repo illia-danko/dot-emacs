@@ -363,7 +363,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     (xclip-mode +1)))
 
 (use-package display-line-numbers
-  :bind (("C-c t l" . global-display-line-numbers-mode)))
+  :bind (("C-c t l" . display-line-numbers-mode)))
 
 (use-package code-review
   :straight t)
