@@ -64,6 +64,12 @@
  '(display-line-numbers-type 'relative)
  '(ediff-keep-variants nil)
  '(ediff-split-window-function 'split-window-horizontally)
+ '(elfeed-search-filter "@6-months-ago +unread")
+ '(elfeed-feeds
+   '("http://nullprogram.com/feed/"
+     ("https://planet.emacslife.com/atom.xml")
+     ("https://blog.golang.org/feed.atom")
+     ("https://www.youtube.com/feeds/videos.xml?playlist_id=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg" youtube emacs))) ; Mike Zamansky (Emacs)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(eglot-stay-out-of '(flymake) t) ; don't auto-build (execute flymake). Let flycheck doing so
  '(eldoc-echo-area-use-multiline-p nil)

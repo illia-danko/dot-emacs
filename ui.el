@@ -67,19 +67,6 @@
     (other-window 1))
   :bind (("C-x 3" . split-window:jump-right)))
 
- ;; Move buffer to the middle of the screen.
-(use-package olivetti :straight t)
-
-(use-package hide-mode-line
-  :straight t
-  :init
-  (defun distraction-free-toggle (&optional arg)
-    (interactive)
-    (call-interactively 'olivetti-mode arg)
-    (call-interactively 'hide-mode-line-mode arg))
-  :after (olivetti)
-  :bind (("C-c SPC SPC" . distraction-free-toggle)))
-
 ;; Highlight RGB(A) and color names.
 (use-package rainbow-mode
   :straight t

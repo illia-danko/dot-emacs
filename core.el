@@ -387,4 +387,24 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :config
   (ttymux-mode 1))
 
+ ;; Move buffer to the middle of the screen.
+(use-package olivetti
+  :straight t
+  :init
+  (defun distraction-free-toggle (&optional arg)
+    (interactive)
+    (call-interactively 'olivetti-mode arg)
+    (call-interactively 'hide-mode-line-mode arg)))
+
+(use-package hide-mode-line
+  :straight t
+  :init
+  :after (olivetti)
+  :bind (("C-c SPC SPC" . distraction-free-toggle)))
+
+(use-package elfeed
+  :straight t
+  :hook ((elfeed-show-mode . distraction-free-toggle))
+  :bind (("C-c o f" . elfeed)))
+
 ;;; core.el ends here
