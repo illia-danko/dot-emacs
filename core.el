@@ -312,7 +312,7 @@
   (revert-buffer t t)
   (message "Reverted %s" (buffer-name)))
 (global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "C-c z") #'file:revert-buffer-no-confirm)
+(global-set-key (kbd "C-c x") #'file:revert-buffer-no-confirm)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 
