@@ -139,6 +139,9 @@
         (flyspell-buffer))))
   :bind (("C-c t s" . flyspell:toggle)))
 
+(use-package simple
+  :bind (("C-c C-z" . toggle-read-only)))
+
 (use-package magit
   :straight t
   :after (project)
@@ -184,14 +187,13 @@
   :ensure t
   :bind (("M-x" . counsel-M-x)
 	     ("M-y" . counsel-yank-pop)
-         ("C-c f f" . counsel-bookmark)
-         ("C-c f r" . counsel-recentf)
-	     ("C-c c !" . counsel-compile)
-         ("C-c c r" . recompile) ; not a part of counsel, but used as a supplement to `counsel-compile'
-         ("C-c s s" . (lambda ()
-                     (interactive)
-                     (region:apply 'counsel-rg)))
-         ("C-c `" . ivy-resume)))
+         ("C-c j" . counsel-bookmark)
+         ("C-c h" . counsel-recentf)
+	     ("C-c c" . counsel-compile)
+         ("C-c r" . ivy-resume)
+         ("C-c f" . (lambda ()
+                      (interactive)
+                      (region:apply 'counsel-rg)))))
 
 (use-package ivy
   :straight t
@@ -309,7 +311,8 @@
   (interactive)
   (revert-buffer t t)
   (message "Reverted %s" (buffer-name)))
-(global-set-key (kbd "C-c b r") #'file:revert-buffer-no-confirm)
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "C-c z") #'file:revert-buffer-no-confirm)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 
@@ -383,7 +386,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (defun counsel-fzf-rg:org ()
     (interactive)
     (counsel-fzf-rg "" org-directory))
-  :bind (("C-c n f". counsel-fzf-rg:org)))
+  :bind (("C-c n". counsel-fzf-rg:org)))
 
 (use-package ttymux
   :straight '(ttymux

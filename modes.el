@@ -124,15 +124,6 @@ on compliation error or warning."
 
 (use-package js
   :init
-  (defun js:run-current-file ()
-    "Invokes `run-file' Makefile target. It passes buffer file name
-as an make argument. Typically it runs javascript file via `node'
-command."
-    (interactive)
-    (let ((default-directory (or (cdr-safe (project-current))
-                                 default-directory)))
-      (compile (format "make -k run-file ARGS=%s" buffer-file-name))))
-
   :hook ((js-mode . (lambda ()
                       ;; Do not enable LSP and linter for *.ts and *.json.
                       (and buffer-file-name
@@ -145,8 +136,7 @@ command."
                            (eglot-ensure)
                            (flycheck-mode)))))
   :bind (:map js-mode-map
-              ("M-." . xref-find-definitions)
-              ("C-c c f" . js:run-current-file)))
+              ("M-." . xref-find-definitions)))
 
 (use-package yaml-mode
   :straight t
@@ -216,10 +206,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :hook ((org-mode . (lambda ()
                        (setq-local global-hl-line-mode nil)
                        (org-superstar-mode))))
-  :bind (("C-c n t" . org:new-todo-entry)
-         ("C-c n l" . org-todo-list)
+  :bind (("C-c e" . org:new-todo-entry)
+         ("C-c l" . org-todo-list)
          :map org-mode-map
-         ("C-c o p" . org:browser-preview)
+         ("C-c v" . org:browser-preview)
          ("C-c o w" . org-open-at-point)
          ("C-c *" . org:toggle-fontifications)
          ("M-RET" . org-table-insert-row)))
