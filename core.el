@@ -50,7 +50,6 @@
 (show-paren-mode 1) ; highlight matched parentheses
 (global-auto-revert-mode 1) ; keep fresh changes even if changed outside
 
-(global-hl-line-mode 1)
 (electric-pair-mode 1)
 (save-place-mode 1) ; save cursor position when leave a buffer
 
@@ -117,6 +116,11 @@
 
 (use-package abbrev)
 (use-package eldoc)
+
+(use-package hl-line
+  :config
+  (global-hl-line-mode 1)
+  :bind (("C-c t h" . hl-line-mode)))
 
 (use-package flyspell
   :init
