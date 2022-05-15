@@ -10,11 +10,13 @@
         kill-visual-line
         mark-word
         mc:hydra-keymap/body
+        org-cycle
         org-delete-char
         org-end-of-line
         org-force-self-insert
         org-kill-line
         org-self-insert-command
+        org-table-eval-formula
         paredit-doublequote
         paredit-forward-delete
         paredit-forward-kill-word
