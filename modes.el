@@ -203,7 +203,14 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
     (interactive)
     (org-capture nil "n"))
 
+  (defun org:fixup-electric-pairs ()
+    ;; Disable electric-pair for `<s' template.
+    (when (featurep 'elec-pair)
+      (setq-local electric-pair-inhibit-predicate
+                  `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+
   :hook ((org-mode . (lambda ()
+                       (org:fixup-electric-pairs)
                        (setq-local global-hl-line-mode nil)
                        (org-superstar-mode))))
   :bind (("C-c e" . org:new-todo-entry)
