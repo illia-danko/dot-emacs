@@ -36,10 +36,9 @@
   :straight t
   :config (which-key-mode 1))
 
-(use-package doom-themes
-  :straight t
+(use-package custom
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'modus-operandi t))
 
 (use-package doom-modeline
   :straight t
