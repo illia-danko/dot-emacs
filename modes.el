@@ -91,16 +91,9 @@ on compliation error or warning."
               ("C-c < <" . paredit-forward-barf-sexp)
               ("C-c u u" . paredit-splice-sexp-killing-backward)))
 
-(defun paredit-reindent:wrap (mode)
-  (lambda (&optional argument)
-    (when (eq major-mode mode)
-      (paredit-reindent-defun argument))))
-
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()
                               (paredit-mode)
-                              (add-hook 'before-save-hook
-                                        (paredit-reindent:wrap 'emacs-lisp-mode))
                               (rainbow-delimiters-mode))))
   :bind (:map emacs-lisp-mode-map
               ("C-c C-c" . eval-defun)
@@ -111,8 +104,6 @@ on compliation error or warning."
   :straight t
   :hook ((clojure-mode . (lambda ()
                            (paredit-mode)
-                           (add-hook 'before-save-hook
-                                     (paredit-reindent:wrap 'clojure-mode))
                            (clj-refactor-mode)
                            (rainbow-delimiters-mode)))))
 
