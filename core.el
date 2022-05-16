@@ -191,7 +191,7 @@
          ("C-c h" . counsel-recentf)
 	     ("C-c c" . counsel-compile)
          ("C-c r" . ivy-resume)
-         ("C-c f" . (lambda ()
+         ("C-c s" . (lambda ()
                       (interactive)
                       (region:apply 'counsel-rg)))))
 
