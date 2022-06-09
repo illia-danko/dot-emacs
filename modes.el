@@ -154,7 +154,7 @@ on compliation error or warning."
     (interactive (list (or current-prefix-arg 'toggle)))
     (markdown-toggle-markup-hiding arg))
   :bind (:map markdown-mode-map
-              ("C-c o p" . markdown-preview)
+              ("C-c v" . markdown-preview)
               ("C-c o w" . markdown-follow-thing-at-point)
               ("C-c *" . markdown:toggle-fontifications)))
 
