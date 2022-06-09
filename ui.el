@@ -71,28 +71,4 @@
   :straight t
   :bind (("C-c t c" . rainbow-mode)))
 
-;; Hooks.
-(defvar after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
-
-(defadvice load-theme (after run-after-load-theme-hook activate)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-
-(defun update-faces:hook (&optional frame)
-  ;; (unless (display-graphic-p)
-  ;;   (when frame
-  ;;     (select-frame frame))
-  ;;   ;; Fix terminal vertical-border glyph.
-  ;;   ;; (https://emacs.stackexchange.com/questions/7228/nice-tty-window-borders-in-24-4).
-  ;;   (let ((display-table (or standard-display-table (make-display-table))))
-  ;;     (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
-  ;;     (setq standard-display-table display-table))
-  ;;   ;; Make vertical border as tmux' one.
-  ;;   (set-face-attribute 'vertical-border frame
-  ;;                       :foreground (face-foreground 'success)
-  ;;                       :background (face-background 'default)))
-  )
-
-(add-hook 'after-load-theme-hook #'update-faces:hook)
-(add-hook 'after-make-frame-functions #'update-faces:hook)
+;;; ui.el ends here
