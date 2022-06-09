@@ -187,7 +187,7 @@
   :ensure t
   :bind (("M-x" . counsel-M-x)
 	     ("M-y" . counsel-yank-pop)
-         ("C-c j" . counsel-bookmark)
+         ("C-c b" . counsel-bookmark)
          ("C-c h" . counsel-recentf)
 	     ("C-c c" . counsel-compile)
          ("C-c r" . ivy-resume)

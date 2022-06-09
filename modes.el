@@ -77,8 +77,8 @@ on compliation error or warning."
   :straight t
   :after (go-mode s f)
   :bind (:map go-mode-map
-              ("C-c b c" . go-test-current-test)
-              ("C-c b t" . go-test-current-file)))
+              ("C-c . c" . go-test-current-test)
+              ("C-c . t" . go-test-current-file)))
 
 (use-package rainbow-delimiters
   :straight t)
