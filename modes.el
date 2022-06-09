@@ -35,8 +35,12 @@
   "Show trailing whitespaces on a buffer."
   (setq-local show-trailing-whitespace t))
 
+(defun on-source-file:hook ()
+  (show:trailing-whitespace)
+  (display-line-numbers-mode 1))
+
 (use-package prog-mode
-  :hook ((prog-mode . show:trailing-whitespace)))
+  :hook ((prog-mode . on-source-file:hook)))
 
 (use-package compile
   :init
@@ -133,17 +137,17 @@ on compliation error or warning."
   :straight t
   :hook ((yaml-mode . (lambda ()
                         (flycheck-mode)
-                        (show:trailing-whitespace)))))
+                        (on-source-file:hook)))))
 
 (use-package protobuf-mode :straight t)
 
 (use-package dockerfile-mode
   :straight t
-  :hook ((docker-mode . show:trailing-whitespace)))
+  :hook ((docker-mode . on-source-file:hook)))
 
 (use-package markdown-mode
   :straight t
-  :hook ((markdown-mode . show:trailing-whitespace))
+  :hook ((markdown-mode . on-source-file:hook))
   :config
   (defun markdown:toggle-fontifications (&optional arg)
     "Toggle fontifications on/off."
@@ -228,5 +232,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 
 (use-package sh-script
   :hook ((sh-mode . flycheck-mode)))
+
+(use-package notmuch
+  :straight t
+  :defer t
+  :bind (("C-c q" . notmuch)))
 
 ;;; modes.el ends here
