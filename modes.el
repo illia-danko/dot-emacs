@@ -139,6 +139,9 @@ on compliation error or warning."
                         (flycheck-mode)
                         (on-source-file:hook)))))
 
+(use-package conf-mode
+  :hook ((conf-space-mode . on-source-file:hook)))
+
 (use-package protobuf-mode :straight t)
 
 (use-package dockerfile-mode
