@@ -328,7 +328,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
                  (_ "xdg-open"))))
       (call-process cmd nil 0 nil file)))
 
-  :hook (dired-mode . dired-hide-details-mode)
+  :hook (dired-mode . (lambda () (dired-hide-details-mode) (dired-omit-mode)))
   :bind (("C-x d" . dired-jump)
          :map dired-mode-map
          ("o" . dired:system-open)))
