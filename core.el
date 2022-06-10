@@ -119,7 +119,6 @@
 
 (use-package hl-line
   :config
-  (global-hl-line-mode 1)
   :bind (("C-c t h" . hl-line-mode)))
 
 (use-package flyspell
@@ -341,9 +340,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :bind (("C-c o t" . eshell)))
 
 (use-package vterm :straight t
-  :bind (("C-c o T" . vterm))
-  :hook (vterm-mode . (lambda ()
-                        (setq-local global-hl-line-mode nil))))
+  :bind (("C-c o T" . vterm)))
 
 (use-package isearch
   :init

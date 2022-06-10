@@ -30,17 +30,17 @@
 
 ;;; Code:
 
-;; Generic functions.
-(defun show:trailing-whitespace ()
+(defun trailing-whitespace:show ()
   "Show trailing whitespaces on a buffer."
   (setq-local show-trailing-whitespace t))
 
-(defun on-source-file:hook ()
-  (show:trailing-whitespace)
-  (display-line-numbers-mode 1))
+(defun source-file:hook ()
+  (trailing-whitespace:show)
+  (display-line-numbers-mode 1)
+  (hl-line-mode 1))
 
 (use-package prog-mode
-  :hook ((prog-mode . on-source-file:hook)))
+  :hook ((prog-mode . source-file:hook)))
 
 (use-package compile
   :init
@@ -137,20 +137,20 @@ on compliation error or warning."
   :straight t
   :hook ((yaml-mode . (lambda ()
                         (flycheck-mode)
-                        (on-source-file:hook)))))
+                        (source-file:hook)))))
 
 (use-package conf-mode
-  :hook ((conf-space-mode . on-source-file:hook)))
+  :hook ((conf-space-mode . source-file:hook)))
 
 (use-package protobuf-mode :straight t)
 
 (use-package dockerfile-mode
   :straight t
-  :hook ((docker-mode . on-source-file:hook)))
+  :hook ((docker-mode . source-file:hook)))
 
 (use-package markdown-mode
   :straight t
-  :hook ((markdown-mode . on-source-file:hook))
+  :hook ((markdown-mode . trailing-whitespace:show))
   :config
   (defun markdown:toggle-fontifications (&optional arg)
     "Toggle fontifications on/off."
@@ -209,7 +209,6 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 
   :hook ((org-mode . (lambda ()
                        (org:fixup-electric-pairs)
-                       (setq-local global-hl-line-mode nil)
                        (org-superstar-mode))))
   :bind (("C-c e" . org:new-todo-entry)
          ("C-c l" . org-todo-list)
