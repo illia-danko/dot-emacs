@@ -163,8 +163,8 @@
          ("C-c g l" . magit-log)
          ("C-c g n" . magit:push-notes)))
 
-;; (emacs27.2): fix Symbol's value as variable is void: project-switch-commands
-;; error.
+;; (Emacs27.2).Fix "Symbol's value as variable is void" error in
+;; `project-switch-commands'
 (use-package project
   :straight t
   :ensure t)
