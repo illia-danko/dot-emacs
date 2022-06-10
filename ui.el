@@ -38,7 +38,7 @@
 
 (use-package custom
   :config
-  (load-theme 'modus-operandi t))
+  (load-theme 'modus-vivendi t))
 
 (use-package doom-modeline
   :straight t
