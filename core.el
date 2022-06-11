@@ -414,4 +414,8 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :hook ((elfeed-show-mode . distraction-free-toggle))
   :bind (("C-c o f" . elfeed)))
 
+(use-package undohist
+  :straight t
+  :config (undohist-initialize))
+
 ;;; core.el ends here

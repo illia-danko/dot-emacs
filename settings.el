@@ -112,6 +112,7 @@
  `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
  `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
  `(transient-values-file ,(expand-file-name "transient/values.el" settings:shared-directory))
+ `(undohist-directory ,(expand-file-name "undohist" settings:shared-directory))
  `(url-configuration-directory ,(expand-file-name "url" settings:shared-directory))
  )
 
