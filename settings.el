@@ -62,6 +62,7 @@
  '(dashboard-set-footer nil)
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$") ; add hiden files to dired-omit-mode
+ '(dired-omit-verbose nil)
  '(display-line-numbers-type 'relative)
  '(ediff-keep-variants nil)
  '(ediff-split-window-function 'split-window-horizontally)
