@@ -40,10 +40,10 @@
   :config
   (load-theme 'modus-vivendi t))
 
-(use-package doom-modeline
+(use-package mood-line
   :straight t
-  :init
-  (doom-modeline-mode +1))
+  :config
+  (mood-line-mode 1))
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
