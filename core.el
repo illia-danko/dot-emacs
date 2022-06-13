@@ -193,7 +193,8 @@
          ("C-c r" . ivy-resume)
          ("C-c s" . (lambda ()
                       (interactive)
-                      (region:apply 'counsel-rg)))))
+                      (region:apply 'counsel-rg)))
+         ("C-c /" . counsel-imenu)))
 
 (use-package ivy
   :straight t
