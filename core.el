@@ -419,4 +419,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :straight t
   :config (undohist-initialize))
 
+(use-package ediff-init
+  :hook ((ediff-quit . delete-frame)))
+
 ;;; core.el ends here
