@@ -77,6 +77,7 @@
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
+ '(inhibit-splash-screen t)
  '(ivy-height 15)
  '(ivy-initial-inputs-alist nil)
  '(ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
