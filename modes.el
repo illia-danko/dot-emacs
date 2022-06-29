@@ -156,9 +156,10 @@ on compliation error or warning."
     (interactive (list (or current-prefix-arg 'toggle)))
     (markdown-toggle-markup-hiding arg))
   :bind (:map markdown-mode-map
-              ("C-c v" . markdown-preview)
-              ("C-c o w" . markdown-follow-thing-at-point)
-              ("C-c *" . markdown:toggle-fontifications)))
+              ("C-c p" . markdown-preview)
+              ("C-c o" . markdown-follow-thing-at-point)
+              ("C-c *" . markdown:toggle-fontifications)
+              ("M-p" . nil)))
 
 ;; Pretty headings.
 (use-package org-superstar :straight t)
@@ -206,14 +207,19 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
       (setq-local electric-pair-inhibit-predicate
                   `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
+  (defun org:todo-list ()
+    (interactive)
+    (org-todo-list)
+    (delete-other-windows))
+
   :hook ((org-mode . (lambda ()
                        (org:fixup-electric-pairs)
                        (org-superstar-mode))))
-  :bind (("C-c e" . org:new-todo-entry)
-         ("C-c l" . org-todo-list)
+  :bind (("C-c i" . org:new-todo-entry)
+         ("C-c a" . org:todo-list)
          :map org-mode-map
-         ("C-c v" . org:browser-preview)
-         ("C-c o w" . org-open-at-point)
+         ("C-c p" . org:browser-preview)
+         ("C-c o" . org-open-at-point)
          ("C-c *" . org:toggle-fontifications)
          ("M-RET" . org-table-insert-row)))
 

@@ -187,10 +187,10 @@
   :ensure t
   :bind (("M-x" . counsel-M-x)
 	     ("M-y" . counsel-yank-pop)
-         ("C-c b" . counsel-bookmark)
-         ("C-c h" . counsel-recentf)
+         ("C-c j" . counsel-bookmark) ; mnemonic of counsel-jump.
+         ("C-c r" . counsel-recentf)
 	     ("C-c c" . counsel-compile)
-         ("C-c r" . ivy-resume)
+         ("C-c x" . ivy-resume)
          ("C-c s" . (lambda ()
                       (interactive)
                       (region:apply 'counsel-rg)))
@@ -242,9 +242,9 @@
   :straight t
   :ensure t
   :config (projectile-mode 1)
-  :bind (("C-c p" . projectile-command-map)
-	     :map projectile-command-map
-	     ("#" . projectile-remove-known-project)))
+  :bind (("M-p" . projectile-switch-project)
+         ("M-l" . projectile-find-file)
+         ("M-#" . projectile-kill-buffers)))
 
 (use-package yasnippet
   :straight t
@@ -280,7 +280,6 @@
   :bind (("C-o" . er/expand-region)
          ("M-o" . er/contract-region)))
 
-
 (use-package eglot :straight t)
 (use-package flycheck :straight t)
 (use-package rg :straight t)
@@ -307,16 +306,6 @@
   (save-some-buffers)
   (kill-emacs))
 
-(defun file:revert-buffer-no-confirm ()
-  "Revert buffer without confirmation."
-  (interactive)
-  (revert-buffer t t)
-  (message "Reverted %s" (buffer-name)))
-(global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "C-c x") #'file:revert-buffer-no-confirm)
-(global-set-key (kbd "C-x k") #'kill-this-buffer)
-(global-set-key (kbd "C-x !") #'emacs:shutdown-server)
-
 (use-package dired
   :init
   (defun dired:system-open ()
@@ -335,13 +324,9 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
          ("o" . dired:system-open)))
 
 (use-package browse-url
-  :bind (("C-c o w" . browse-url-at-point)))
+  :bind (("C-c o" . browse-url-at-point)))
 
-(use-package eshell
-  :bind (("C-c o t" . eshell)))
-
-(use-package vterm :straight t
-  :bind (("C-c o T" . vterm)))
+(use-package vterm :straight t)
 
 (use-package isearch
   :init
@@ -408,18 +393,25 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :straight t
   :init
   :after (olivetti)
-  :bind (("C-c SPC SPC" . distraction-free-toggle)))
+  :bind (("C-c SPC" . distraction-free-toggle)))
 
 (use-package elfeed
   :straight t
   :hook ((elfeed-show-mode . distraction-free-toggle))
-  :bind (("C-c o f" . elfeed)))
+  ;; Update elfeed database each 4 hours.
+  :config (run-with-timer 0 (* 60 60 4) 'elfeed-update)
+  :bind (("C-x f" . elfeed)))
 
 (use-package undohist
   :straight t
   :config (undohist-initialize))
 
 (use-package ediff-init
-  :hook ((ediff-quit . delete-frame)))
+  :hook ((ediff-quit . delete-frame)))g
+
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "C-x k") #'kill-this-buffer)
+(global-set-key (kbd "C-x !") #'emacs:shutdown-server)
+(global-set-key (kbd "C-w") #'backward-kill-word)
 
 ;;; core.el ends here
