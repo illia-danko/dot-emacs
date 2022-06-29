@@ -36,7 +36,6 @@
 
 (defun source-file:hook ()
   (trailing-whitespace:show)
-  (display-line-numbers-mode 1)
   (hl-line-mode 1))
 
 (use-package prog-mode

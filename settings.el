@@ -63,7 +63,7 @@
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$") ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
- '(display-line-numbers-type 'relative)
+ '(display-line-numbers-type t)
  '(ediff-split-window-function 'split-window-horizontally)
  '(elfeed-search-filter "@6-months-ago +unread")
  '(elfeed-feeds
