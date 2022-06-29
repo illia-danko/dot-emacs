@@ -407,7 +407,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :config (undohist-initialize))
 
 (use-package ediff-init
-  :hook ((ediff-quit . delete-frame)))g
+  :hook ((ediff-quit . delete-frame)))
 
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
