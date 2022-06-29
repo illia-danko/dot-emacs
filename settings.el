@@ -57,9 +57,6 @@
  '(company-posframe-show-metadata nil)
  '(company-posframe-show-params nil)
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
- '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
- '(dashboard-items '((recents . 5) (projects . 5) (agenda . 10) (registers . 5)))
- '(dashboard-set-footer nil)
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$") ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)

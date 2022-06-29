@@ -48,15 +48,6 @@
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(use-package dashboard
-  :straight t
-  :config
-  (dashboard-setup-startup-hook))
-
-(add-hook 'after-make-frame-functions
-	      (lambda (&optional frame)
-	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
-
 (use-package window
   :init
   (defun split-window:jump-right ()
