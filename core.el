@@ -160,7 +160,7 @@
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
-         ("C-c g l" . magit-log)
+         ("C-c g l" . magit-log-current)
          ("C-c g n" . magit:push-notes)))
 
 ;; (Emacs27.2).Fix "Symbol's value as variable is void" error in
@@ -187,7 +187,7 @@
   :ensure t
   :bind (("M-x" . counsel-M-x)
 	     ("M-y" . counsel-yank-pop)
-         ("C-c j" . counsel-bookmark) ; mnemonic of counsel-jump.
+         ("C-c b" . counsel-bookmark)
          ("C-c r" . counsel-recentf)
 	     ("C-c c" . counsel-compile)
          ("C-c x" . ivy-resume)
@@ -242,9 +242,9 @@
   :straight t
   :ensure t
   :config (projectile-mode 1)
-  :bind (("M-p" . projectile-switch-project)
-         ("M-l" . projectile-find-file)
-         ("M-#" . projectile-kill-buffers)))
+  :bind (("C-c p" . projectile-switch-project)
+         ("C-c f" . projectile-find-file)
+         ("C-c #" . projectile-kill-buffers)))
 
 (use-package yasnippet
   :straight t

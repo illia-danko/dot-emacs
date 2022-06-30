@@ -162,10 +162,9 @@ on compliation error or warning."
     (interactive (list (or current-prefix-arg 'toggle)))
     (markdown-toggle-markup-hiding arg))
   :bind (:map markdown-mode-map
-              ("C-c p" . markdown-preview)
+              ("C-c w" . markdown-preview)
               ("C-c o" . markdown-follow-thing-at-point)
-              ("C-c *" . markdown:toggle-fontifications)
-              ("M-p" . nil)))
+              ("C-c *" . markdown:toggle-fontifications)))
 
 ;; Pretty headings.
 (use-package org-superstar :straight t)
@@ -224,7 +223,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :bind (("C-c i" . org:new-todo-entry)
          ("C-c a" . org:todo-list)
          :map org-mode-map
-         ("C-c p" . org:browser-preview)
+         ("C-c w" . org:browser-preview)
          ("C-c o" . org-open-at-point)
          ("C-c *" . org:toggle-fontifications)
          ("M-RET" . org-table-insert-row)))
