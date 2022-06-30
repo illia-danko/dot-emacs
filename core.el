@@ -408,7 +408,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (save-some-buffers)
   (kill-emacs))
 
-(defun navigation:mark-line (&optional arg)
+(defun edit:mark-line (&optional arg)
   "Mark current line. Shortcut of [C-a] [C-Space] [C-n]."
   (interactive)
   (move-beginning-of-line arg)
@@ -416,10 +416,18 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
       (set-mark-command arg))
   (next-logical-line 1 nil))
 
+(defun edit:kill (&optional arg)
+  "If mark active acts as `C-w' otherwise as `C-k'."
+  (interactive)
+  (if mark-active
+      (call-interactively 'kill-region)
+    (kill-line arg)))
+
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 (global-set-key (kbd "C-w") #'backward-kill-word)
-(global-set-key (kbd "C-l") #'navigation:mark-line)
+(global-set-key (kbd "C-l") #'edit:mark-line)
+(global-set-key [remap kill-line] #'edit:kill)
 
 ;;; core.el ends here
