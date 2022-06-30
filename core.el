@@ -299,13 +299,6 @@
     ("q" nil "cancel"))
   :bind (("C-c m" . mc:hydra-keymap/body)))
 
-;; Other settings.
-(defun emacs:shutdown-server ()
-  "Quit Emacs globally. Shutdown server."
-  (interactive)
-  (save-some-buffers)
-  (kill-emacs))
-
 (use-package dired
   :init
   (defun dired:system-open ()
@@ -409,9 +402,24 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 (use-package ediff-init
   :hook ((ediff-quit . delete-frame)))
 
+(defun emacs:shutdown-server ()
+  "Quit Emacs globally. Shutdown server."
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs))
+
+(defun navigation:mark-line (&optional arg)
+  "Mark current line. Shortcut of [C-a] [C-Space] [C-n]."
+  (interactive)
+  (move-beginning-of-line arg)
+  (if (not mark-active)
+      (set-mark-command arg))
+  (next-logical-line 1 nil))
+
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 (global-set-key (kbd "C-w") #'backward-kill-word)
+(global-set-key (kbd "C-l") #'navigation:mark-line)
 
 ;;; core.el ends here
