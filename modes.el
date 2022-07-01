@@ -89,13 +89,16 @@ on compliation error or warning."
 (use-package paredit                    ; better Lisp writing
   :straight t
   :config
-  (defun paredit:kill (&optional arg)
+
+  (defun paredit:backward-kill-word-or-region (&optional arg)
+    "If mark active acts as `C-w' otherwise as `paredit-backward-kill-word'."
     (interactive)
     (if mark-active
         (call-interactively 'paredit-kill-region)
-      (paredit-kill arg)))
+      (call-interactively 'paredit-backward-kill-word arg)))
+
   :bind (:map paredit-mode-map
-              ("C-k" . paredit:kill)
+              ("C-w" . paredit:backward-kill-word-or-region)
               ("C-c >" . paredit-forward-slurp-sexp)
               ("C-c <" . paredit-forward-barf-sexp)
               ("C-c u" . paredit-splice-sexp-killing-backward)))

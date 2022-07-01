@@ -416,18 +416,17 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
       (set-mark-command arg))
   (next-logical-line 1 nil))
 
-(defun edit:kill (&optional arg)
-  "If mark active acts as `C-w' otherwise as `C-k'."
+(defun edit:backward-kill-word-or-region (&optional arg)
+  "If mark active acts as `C-w' otherwise as `backward-kill-word'."
   (interactive)
   (if mark-active
       (call-interactively 'kill-region)
-    (kill-line arg)))
+    (call-interactively 'backward-kill-word arg)))
 
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
-(global-set-key (kbd "C-w") #'backward-kill-word)
+(global-set-key (kbd "C-w") #'edit:backward-kill-word-or-region)
 (global-set-key (kbd "C-l") #'edit:mark-line)
-(global-set-key [remap kill-line] #'edit:kill)
 
 ;;; core.el ends here
