@@ -146,22 +146,22 @@
   :after (project)
   :hook (git-commit-setup . flyspell-mode)
   :config
-  (defun magit:push-notes ()
+  (defun vc:push ()
     "Stage, commit and push upstream a personal note file."
     (interactive)
     (let ((org-dir (expand-file-name org-directory))
           (fullname (buffer-file-name))
           (relname (file-name-nondirectory (buffer-file-name))))
       (when (string-match-p (regexp-quote org-dir) fullname)
-        (magit-stage-file fullname)
-        (magit-commit-create (list "-m" (format "Update %s" relname)))
-        (call-interactively 'magit-push-current-to-upstream))))
-
+        (call-process "git" nil nil nil "add" fullname)
+        (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
+        (call-process "git" nil nil nil "push")
+        (message "Push %s" relname))))
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
-         ("C-c g l" . magit-log-current)
-         ("C-c g n" . magit:push-notes)))
+         ("C-c g l" . magit-log-buffer-file)
+         ("C-c g n" . vc:push)))
 
 ;; (Emacs27.2).Fix "Symbol's value as variable is void" error in
 ;; `project-switch-commands'
@@ -176,8 +176,7 @@
     (interactive)
     (let ((git-link-open-in-browser t))
       (call-interactively 'git-link-homepage)))
-  :bind (("C-c g u" . git-link)
-         ("C-c g o" . git-link:open-homepage)))
+  :bind (("C-c g u" . git-link)))
 
  ; To sort M-x output.
 (use-package smex :straight t)
