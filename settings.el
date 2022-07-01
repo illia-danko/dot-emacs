@@ -123,7 +123,8 @@
  '(org-fontify-quote-and-verse-blocks t)
  '(org-hide-emphasis-markers t) ; close links, etc.
  '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
- '(org-startup-folded t)
+ '(org-startup-indented t)
+ '(org-superstar-leading-bullet ?\s)
  `(org-default-notes-file ,(expand-file-name "todo.org" org-directory)))
 
 (custom-set-faces
