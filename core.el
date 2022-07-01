@@ -176,7 +176,8 @@
     (interactive)
     (let ((git-link-open-in-browser t))
       (call-interactively 'git-link-homepage)))
-  :bind (("C-c g u" . git-link)))
+  :bind (("C-c g u" . git-link)
+         ("C-c g o" . git-link:open-homepage)))
 
  ; To sort M-x output.
 (use-package smex :straight t)
