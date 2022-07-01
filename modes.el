@@ -222,7 +222,8 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 
   :hook ((org-mode . (lambda ()
                        (org:fixup-electric-pairs)
-                       (org-superstar-mode))))
+                       (org-superstar-mode)
+                       (trailing-whitespace:show))))
   :bind (("C-c i" . org:new-todo-entry)
          ("C-c a" . org:todo-list)
          :map org-mode-map
