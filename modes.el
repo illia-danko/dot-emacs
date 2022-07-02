@@ -111,13 +111,15 @@ on compliation error or warning."
               ("C-c C-c" . eval-defun)
               ("C-c C-k" . eval-buffer)))
 
+(use-package flycheck-clj-kondo :straight t)
 (use-package clj-refactor :straight t)
 (use-package cider
   :straight t
   :hook ((clojure-mode . (lambda ()
                            (paredit-mode)
                            (clj-refactor-mode)
-                           (rainbow-delimiters-mode)))))
+                           (rainbow-delimiters-mode)
+                           (flycheck-mode 1)))))
 
 (use-package typescript-mode :straight t)
 
