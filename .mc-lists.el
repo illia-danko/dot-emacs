@@ -10,6 +10,7 @@
         kill-visual-line
         mark-word
         mc:hydra-keymap/body
+        org-beginning-of-line
         org-cycle
         org-delete-char
         org-end-of-line
