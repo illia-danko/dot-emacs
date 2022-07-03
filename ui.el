@@ -32,13 +32,51 @@
 
 (require 'use-package)
 
-(use-package which-key
-  :straight t
-  :config (which-key-mode 1))
+(defvar theme:file-path "~/.emacs.d/theme"
+  "Emacs theme filepath.")
+
+(defvar theme:default-name "modus-operandi"
+  "Current Emacs theme.")
+
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+
+(defadvice load-theme (after run-after-load-theme-hook activate)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+
+(defun theme:save-to-file (path name)
+  (with-temp-buffer
+    (insert name)
+    (write-region (point-min) (point-max) path)))
+
+(defun theme:save-current-to-flie ()
+  (theme:save-to-file theme:file-path
+                      (symbol-name (car custom-enabled-themes))))
+
+(defun theme:ensure-exists ()
+  (unless (file-exists-p theme:file-path)
+    (theme:save-to-file theme:file-path theme:default-name)))
+
+(defun theme:load-from-file ()
+  (theme:ensure-exists)
+  (load-theme
+   (intern
+    (string-trim
+     (with-temp-buffer
+       (insert-file-contents theme:file-path)
+       (buffer-string))))
+   t))
+
+(add-hook 'after-load-theme-hook #'theme:save-current-to-flie)
 
 (use-package custom
   :config
-  (load-theme 'modus-vivendi t))
+  (theme:load-from-file))
+
+(use-package which-key
+  :straight t
+  :config (which-key-mode 1))
 
 (use-package mood-line
   :straight t
