@@ -58,15 +58,15 @@
 ;; Load custom file (settings.el) before packages.
 (setq custom-file (expand-file-name "settings.el" user-emacs-directory))
 (load custom-file)
+(let ((custom-settings (expand-file-name "custom-settings.el" settings:shared-directory)))
+  (and custom-settings
+       (file-exists-p custom-settings)
+       (load custom-settings)))
 
 (load-file (expand-file-name "core.el" user-emacs-directory))
 (load-file (expand-file-name "modes.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
 (load-file (expand-file-name "ui.el" user-emacs-directory))
-(let ((custom-settings (expand-file-name "custom-settings.el" settings:shared-directory)))
-  (and custom-settings
-       (file-exists-p custom-settings)
-       (load-file custom-settings)))
 
 ;; Compute and show Emacs warm time.
 (message "Load time %.06f" (float-time (time-since time-emacs-start)))
