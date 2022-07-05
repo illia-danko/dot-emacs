@@ -95,8 +95,6 @@
  '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
  '(visible-cursor nil)               ; dont blink cursor in tty.
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
- `(code-review-db-path ,(expand-file-name "code-review-db-file.sqlite" settings:shared-directory))
- `(forge-database-file ,(expand-file-name "forge-database.sqlite" settings:shared-directory))
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path

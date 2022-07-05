@@ -161,13 +161,7 @@
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
          ("C-c g l" . magit-log-buffer-file)
-         ("C-c g n" . vc:push)))
-
-;; (Emacs27.2).Fix "Symbol's value as variable is void" error in
-;; `project-switch-commands'
-(use-package project
-  :straight t
-  :ensure t)
+         ("C-c g c" . vc:push)))
 
 (use-package git-link
   :straight t
@@ -244,7 +238,7 @@
   :config (projectile-mode 1)
   :bind (("C-c p" . projectile-switch-project)
          ("C-c f" . projectile-find-file)
-         ("C-c #" . projectile-kill-buffers)))
+         ("C-c ^" . projectile-kill-buffers)))
 
 (use-package yasnippet
   :straight t
@@ -269,11 +263,6 @@
                 company-backends))
   (add-to-list 'completion-styles 'initials t)  ; enabling fuzzy matching
   :bind (("C-c TAB" . company-complete)))
-
-(use-package company-posframe
-  :straight t
-  :config
-  (company-posframe-mode +1))
 
 (use-package expand-region
   :straight t
@@ -314,12 +303,11 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :hook (dired-mode . (lambda () (dired-hide-details-mode) (dired-omit-mode)))
   :bind (("C-x d" . dired-jump)
          :map dired-mode-map
-         ("o" . dired:system-open)))
+         ("o" . dired:system-open)
+         ("C-c c" . nil)))
 
 (use-package browse-url
   :bind (("C-c o" . browse-url-at-point)))
-
-(use-package vterm :straight t)
 
 (use-package isearch
   :init
@@ -350,9 +338,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 
 (use-package display-line-numbers
   :bind (("C-c t l" . display-line-numbers-mode)))
-
-(use-package code-review
-  :straight t)
 
 (use-package counsel-fzf-rg
   :straight '(counsel-fzf-rg
