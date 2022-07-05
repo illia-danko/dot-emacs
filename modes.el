@@ -34,21 +34,22 @@
   "Show trailing whitespaces on a buffer."
   (setq-local show-trailing-whitespace t))
 
-(defun source-file:hook ()
+(defun prog-mode:hook ()
   (trailing-whitespace:show)
   (hl-line-mode 1))
 
 (use-package prog-mode
-  :hook ((prog-mode . source-file:hook)))
+  :hook ((prog-mode . prog-mode:hook)))
 
 (use-package go-mode
   :straight t
   :init
-  (defun go-mode:setup-buffer ()
-    (eglot-ensure)
-    (flycheck-mode 1)
+  (defun go-mode:hook ()
+    (unless (= (major-mode 'ediff-mode))
+      (eglot-ensure)
+      (flycheck-mode))
 	(add-hook 'before-save-hook #'gofmt-before-save))
-  :hook ((go-mode . go-mode:setup-buffer)))
+  :hook ((go-mode . go-mode:hook)))
 
 ;; It's weird that straight.el doesn't download 's, 'f packages on go-test
 ;; build.
@@ -67,7 +68,6 @@
 (use-package paredit                    ; better Lisp writing
   :straight t
   :config
-
   (defun paredit:backward-kill-word-or-region (&optional arg)
     "If mark active acts as `C-w' otherwise as `paredit-backward-kill-word'."
     (interactive)
@@ -92,12 +92,15 @@
 (use-package flycheck-clj-kondo :straight t)
 (use-package clj-refactor :straight t)
 (use-package cider
+  :init
+  (defun clojure-mode:hook ()
+    (unless (= (major-mode 'ediff-mode))
+      (paredit-mode)
+      (clj-refactor-mode)
+      (rainbow-delimiters-mode)
+      (flycheck-mode)))
   :straight t
-  :hook ((clojure-mode . (lambda ()
-                           (paredit-mode)
-                           (clj-refactor-mode)
-                           (rainbow-delimiters-mode)
-                           (flycheck-mode 1)))))
+  :hook ((clojure-mode . clojure-mode:hook)))
 
 (use-package typescript-mode :straight t)
 
@@ -107,34 +110,40 @@
 
 (use-package js
   :init
-  :hook ((js-mode . (lambda ()
-                      ;; Do not enable LSP and linter for *.ts and *.json.
-                      (and buffer-file-name
-                           (pcase (file-name-extension buffer-file-name)
-                             ("ts" t)
-                             ("js" t)
-                             (_ nil))
-                           ;; Make sure that LSP is installed:
-                           ;; sudo npm install -g typescript-language-server
-                           (eglot-ensure)
-                           (flycheck-mode)))))
+  (defun js-mode:hook ()
+    ;; Do not enable LSP and linter for *.ts and *.json.
+    (and buffer-file-name
+         (pcase (file-name-extension buffer-file-name)
+           ("ts" t)
+           ("js" t)
+           (_ nil))
+         ;; Make sure that LSP is installed:
+         ;; sudo npm install -g typescript-language-server
+         (unless (= (major-mode 'ediff-mode))
+           (eglot-ensure)
+           (flycheck-mode))))
+  :hook ((js-mode . js-mode:hook))
   :bind (:map js-mode-map
               ("M-." . xref-find-definitions)))
 
 (use-package yaml-mode
+  :init
+  (defun yaml-mode:hook ()
+    (prog-mode:hook)
+    (unless (= (major-mode 'ediff-mode))
+      (eglot-ensure)
+      (flycheck-mode)))
   :straight t
-  :hook ((yaml-mode . (lambda ()
-                        (flycheck-mode)
-                        (source-file:hook)))))
+  :hook ((yaml-mode . yaml-mode:hook)))
 
 (use-package conf-mode
-  :hook ((conf-space-mode . source-file:hook)))
+  :hook ((conf-space-mode . prog-mode:hook)))
 
 (use-package protobuf-mode :straight t)
 
 (use-package dockerfile-mode
   :straight t
-  :hook ((docker-mode . source-file:hook)))
+  :hook ((docker-mode . prog-mode:hook)))
 
 (use-package markdown-mode
   :straight t
@@ -209,10 +218,11 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 
 (use-package python
   :init
-  (defun python-mode:setup-buffer ()
-    (eglot-ensure)
-    (flycheck-mode 1))
-  :hook ((python-mode . python-mode:setup-buffer)))
+  (defun python-mode:hook ()
+    (unless (= (major-mode 'ediff-mode))
+      (eglot-ensure)
+      (flycheck-mode)))
+  :hook ((python-mode . python-mode:hook)))
 
 (use-package yapfify
   :straight '(yapfify
@@ -222,6 +232,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :hook ((python-mode . yapf-mode)))
 
 (use-package sh-script
-  :hook ((sh-mode . flycheck-mode)))
+  :init
+  (defun sh-mode:hook ()
+    (unless (= (major-mode 'ediff-mode))
+      (flycheck-mode)))
+  :hook ((sh-mode . sh-mode:hook)))
 
 ;;; modes.el ends here

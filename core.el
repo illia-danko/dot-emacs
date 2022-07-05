@@ -71,8 +71,7 @@
 ;;; Find executables used by packages.
 (let ((path `("/usr/local/go/bin"
            ,(concat (getenv "HOME") "/go/bin")
-           ,(concat (getenv "HOME") "/.fzf/bin")
-           ,(concat (getenv "HOME") "/github.com/elijahdanko/scripts"))))
+           ,(concat (getenv "HOME") "/.fzf/bin"))))
 
   ;; To make $PATH works correctly on Emacs GUI it's needed to set via both:
   ;; `exec-path' and `setenv'.
@@ -156,7 +155,7 @@
         (call-process "git" nil nil nil "add" fullname)
         (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
         (call-process "git" nil nil nil "push")
-        (message "Push %s" relname))))
+        (message "Pushed %s" relname))))
   :bind (("C-c g g" . magit-status)
          ("C-c g b" . magit-blame-addition)
          ("C-c g d" . magit-diff-buffer-file)
@@ -290,7 +289,7 @@
 
 (use-package dired
   :init
-  (defun dired:system-open ()
+  (defun dired:system-xdg-open ()
     "Open in dired.
 https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     (interactive)
@@ -300,10 +299,14 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
                  (_ "xdg-open"))))
       (call-process cmd nil 0 nil file)))
 
-  :hook (dired-mode . (lambda () (dired-hide-details-mode) (dired-omit-mode)))
+  (defun dired-mode:hook ()
+    (dired-hide-details-mode)
+    (dired-omit-mode))
+
+  :hook (dired-mode . dired-mode:hook)
   :bind (("C-x d" . dired-jump)
          :map dired-mode-map
-         ("o" . dired:system-open)
+         ("o" . dired:system-xdg-open)
          ("C-c c" . nil)))
 
 (use-package browse-url
