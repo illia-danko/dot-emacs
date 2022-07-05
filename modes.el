@@ -45,7 +45,7 @@
   :straight t
   :init
   (defun go-mode:hook ()
-    (unless (= (major-mode 'ediff-mode))
+    (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)
       (flycheck-mode))
 	(add-hook 'before-save-hook #'gofmt-before-save))
@@ -94,7 +94,7 @@
 (use-package cider
   :init
   (defun clojure-mode:hook ()
-    (unless (= (major-mode 'ediff-mode))
+    (unless (eq major-mode 'ediff-mode)
       (paredit-mode)
       (clj-refactor-mode)
       (rainbow-delimiters-mode)
@@ -119,7 +119,7 @@
            (_ nil))
          ;; Make sure that LSP is installed:
          ;; sudo npm install -g typescript-language-server
-         (unless (= (major-mode 'ediff-mode))
+         (unless (eq major-mode 'ediff-mode)
            (eglot-ensure)
            (flycheck-mode))))
   :hook ((js-mode . js-mode:hook))
@@ -130,7 +130,7 @@
   :init
   (defun yaml-mode:hook ()
     (prog-mode:hook)
-    (unless (= (major-mode 'ediff-mode))
+    (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)
       (flycheck-mode)))
   :straight t
@@ -219,7 +219,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 (use-package python
   :init
   (defun python-mode:hook ()
-    (unless (= (major-mode 'ediff-mode))
+    (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)
       (flycheck-mode)))
   :hook ((python-mode . python-mode:hook)))
@@ -234,7 +234,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 (use-package sh-script
   :init
   (defun sh-mode:hook ()
-    (unless (= (major-mode 'ediff-mode))
+    (unless (eq major-mode 'ediff-mode)
       (flycheck-mode)))
   :hook ((sh-mode . sh-mode:hook)))
 
