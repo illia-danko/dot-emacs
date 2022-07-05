@@ -271,7 +271,10 @@
 
 (use-package eglot :straight t)
 (use-package flycheck :straight t)
-(use-package rg :straight t)
+(use-package rg
+  :straight t
+  :bind (:map rg-mode-map
+              ("C-c C-s" . wgrep-save-all-buffers)))
 (use-package hydra :straight t)
 
 (use-package multiple-cursors
