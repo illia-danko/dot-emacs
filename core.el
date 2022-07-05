@@ -237,7 +237,8 @@
   :config (projectile-mode 1)
   :bind (("C-c p" . projectile-switch-project)
          ("C-c f" . projectile-find-file)
-         ("C-c ^" . projectile-kill-buffers)))
+         ("C-c ^" . projectile-kill-buffers)
+         ("C-c ~" . projectile-remove-known-project)))
 
 (use-package yasnippet
   :straight t
