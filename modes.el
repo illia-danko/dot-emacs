@@ -131,7 +131,6 @@
   (defun yaml-mode:hook ()
     (prog-mode:hook)
     (unless (eq major-mode 'ediff-mode)
-      (eglot-ensure)
       (flycheck-mode)))
   :straight t
   :hook ((yaml-mode . yaml-mode:hook)))
