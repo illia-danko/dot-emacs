@@ -7,6 +7,7 @@
         c-electric-slash
         counsel-yank-pop
         downcase-region
+        indent-for-tab-command
         kill-visual-line
         mark-word
         mc:hydra-keymap/body
