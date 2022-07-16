@@ -115,4 +115,13 @@ Use a default vertical border face."
   :straight t
   :bind (("C-c t c" . rainbow-mode)))
 
+(use-package dashboard
+  :straight t
+  :config
+  (dashboard-setup-startup-hook))
+
+(add-hook 'after-make-frame-functions
+	      (lambda (&optional frame)
+	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
+
 ;;; ui.el ends here
