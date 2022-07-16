@@ -94,6 +94,9 @@ Use a default vertical border face."
   :straight t
   :config (which-key-mode 1))
 
+;; Doom-modline requires to run (all-the-icons-install-fonts) once.
+(use-package all-the-icons :straight t)
+
 (use-package doom-modeline
   :straight t
   :config
