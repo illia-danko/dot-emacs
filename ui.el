@@ -32,10 +32,13 @@
 
 (require 'use-package)
 
+(use-package doom-themes
+  :straight t)
+
 (defvar theme:file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")
 
-(defvar theme:default-name "modus-operandi"
+(defvar theme:default-name "doom-dark+"
   "Current Emacs theme.")
 
 (defvar after-load-theme-hook nil
@@ -70,6 +73,18 @@
 
 (add-hook 'after-load-theme-hook #'theme:save-current-to-flie)
 
+(defun theme:update-faces (&optional frame)
+  "Adjust faces on theme loading.
+Use a default vertical border face."
+  (unless (display-graphic-p)
+    (when frame
+      (select-frame frame))
+    (set-face-attribute 'vertical-border frame
+                        :foreground (face-foreground 'success)
+                        :background (face-background 'default))))
+
+(add-hook 'after-load-theme-hook #'theme:update-faces)
+
 (use-package custom
   :config
   (theme:load-from-file))
@@ -78,10 +93,10 @@
   :straight t
   :config (which-key-mode 1))
 
-(use-package mood-line
+(use-package doom-modeline
   :straight t
   :config
-  (mood-line-mode 1))
+  (doom-modeline-mode 1))
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
