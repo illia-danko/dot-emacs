@@ -84,6 +84,7 @@ Use a default vertical border face."
                         :background (face-background 'default))))
 
 (add-hook 'after-load-theme-hook #'theme:update-faces)
+(add-hook 'after-make-frame-functions #'theme:update-faces)
 
 (use-package custom
   :config
