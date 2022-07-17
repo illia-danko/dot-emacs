@@ -398,6 +398,9 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 (use-package ediff-init
   :hook ((ediff-quit . delete-frame)))
 
+(use-package vterm :straight t
+  :hook ((vterm-mode . hide-mode-line-mode)))
+
 (defun emacs:shutdown-server ()
   "Quit Emacs globally. Shutdown server."
   (interactive)
