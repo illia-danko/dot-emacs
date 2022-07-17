@@ -95,8 +95,6 @@ Use a default vertical border face."
   :config (which-key-mode 1))
 
 ;; Doom-modline requires to run (all-the-icons-install-fonts) once.
-(use-package all-the-icons :straight t)
-
 (use-package doom-modeline
   :straight t
   :config
@@ -125,7 +123,7 @@ Use a default vertical border face."
   (dashboard-setup-startup-hook))
 
 (add-hook 'after-make-frame-functions
-	      (lambda (&optional frame)
+          (lambda (&optional frame)
 	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
 
 ;;; ui.el ends here

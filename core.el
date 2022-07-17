@@ -193,8 +193,12 @@
   :straight t
   :config (ivy-mode 1))
 
+(use-package all-the-icons-ivy-rich
+  :straight t
+  :config (all-the-icons-ivy-rich-mode 1))
+
 (use-package ivy-rich
-  :after (ivy)
+  :after (ivy all-the-icons-ivy-rich)
   :straight t
   :config
   ;; Fix ivy Switch To Buffer slowness.
