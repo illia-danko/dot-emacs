@@ -32,12 +32,16 @@
 
 ;;; Code:
 
-(blink-cursor-mode -1) ; the blinking cursor is nothing, but an annoyance
 (if (functionp 'tool-bar-mode)
     (tool-bar-mode -1)) ; disable top menu buttons
-(menu-bar-mode -1)
-(blink-cursor-mode 0) ; gui mode
-
+(if (functionp 'menu-bar-mode)
+    (menu-bar-mode -1))
+(if (functionp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+(if (functionp 'blink-cursor-mode)
+    (blink-cursor-mode -1))
+(if (functionp 'fringe-mode)
+    (fringe-mode 0))
 
 ;; Mode line settings.
 (line-number-mode t)
