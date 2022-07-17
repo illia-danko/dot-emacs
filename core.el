@@ -255,6 +255,11 @@
   :config
   (global-company-mode +1)
 
+(use-package company-posframe
+  :straight t
+  :config
+  (company-posframe-mode +1))
+
   ;; Use yasnippet in company.
   (setq company-backends
         (mapcar (lambda (backends)
