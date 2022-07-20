@@ -36,7 +36,8 @@
 
 (defun prog-mode:hook ()
   (trailing-whitespace:show)
-  (hl-line-mode 1))
+  (hl-line-mode 1)
+  (display-line-numbers-mode 1))
 
 (use-package prog-mode
   :hook ((prog-mode . prog-mode:hook)))
