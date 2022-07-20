@@ -410,8 +410,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 (use-package vterm :straight t
   :hook ((vterm-mode . hide-mode-line-mode)))
 
-(use-package restclient :straight t)
-
 (defun emacs:shutdown-server ()
   "Quit Emacs globally. Shutdown server."
   (interactive)

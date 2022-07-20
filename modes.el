@@ -238,4 +238,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
       (flycheck-mode)))
   :hook ((sh-mode . sh-mode:hook)))
 
+(use-package restclient :straight t
+  :mode ("\\.http\\'" . restclient-mode))
+
 ;;; modes.el ends here
