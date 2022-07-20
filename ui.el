@@ -95,10 +95,10 @@ Use a default vertical border face."
   :config (which-key-mode 1))
 
 ;; Doom-modline requires to run (all-the-icons-install-fonts) once.
-(use-package doom-modeline
+(use-package mood-line
   :straight t
   :config
-  (doom-modeline-mode 1))
+  (mood-line-mode 1))
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
