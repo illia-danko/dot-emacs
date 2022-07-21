@@ -32,10 +32,14 @@
 
 (require 'use-package)
 
+(use-package spacemacs-theme
+  :straight t
+  :defer t)
+
 (defvar theme:file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")
 
-(defvar theme:default-name "modus-vivendi"
+(defvar theme:default-name "spacemacs-light"
   "Current Emacs theme.")
 
 (defvar after-load-theme-hook nil

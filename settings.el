@@ -92,6 +92,8 @@
  '(require-final-newline t)
  '(ring-bell-function 'ignore)          ; turn off ring bell sound
  '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
+ '(spacemacs-theme-comment-bg nil)
+ '(spacemacs-theme-org-height nil)
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Elijah Danko")
