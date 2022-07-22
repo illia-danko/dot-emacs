@@ -74,15 +74,19 @@
 
 (add-hook 'after-load-theme-hook #'theme:save-current-to-flie)
 
-(use-package custom
-  :config
+(defun theme:update-faces (&optional frame)
+  "Adjust faces."
+  (when frame
+    (select-frame frame))
   (theme:load-from-file))
+
+(add-hook 'after-init-hook #'theme:update-faces)
+(add-hook 'after-make-frame-functions #'theme:update-faces)
 
 (use-package which-key
   :straight t
   :config (which-key-mode 1))
 
-;; Doom-modline requires to run (all-the-icons-install-fonts) once.
 (use-package mood-line
   :straight t
   :config
