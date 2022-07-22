@@ -253,16 +253,16 @@
   :config
   (yas-global-mode +1))
 
-(use-package company
-  :straight t
-  :after (yasnippet)
-  :config
-  (global-company-mode +1)
-
 (use-package company-posframe
   :straight t
   :config
   (company-posframe-mode +1))
+
+(use-package company
+  :straight t
+  :after (yasnippet company-posframe)
+  :config
+  (global-company-mode +1)
 
   ;; Use yasnippet in company.
   (setq company-backends
