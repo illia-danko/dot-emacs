@@ -398,7 +398,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   :hook ((elfeed-show-mode . distraction-free-toggle))
   ;; Update elfeed database each 4 hours.
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update)
-  :bind (("C-x f" . elfeed)))
+  :bind (("C-c ~" . elfeed)))
 
 (use-package undohist
   :straight t
@@ -436,5 +436,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
 (global-set-key (kbd "C-w") #'edit:backward-kill-word-or-region)
 (global-set-key (kbd "C-l") #'edit:mark-line)
+(global-set-key (kbd "M-l") #'recenter-top-bottom)
 
 ;;; core.el ends here
