@@ -181,6 +181,7 @@
   :config (vertico-mode 1))
 
 (use-package orderless :straight t)
+(use-package savehist :init (savehist-mode))  ;; save minibuffer history
 
 (use-package marginalia
   :straight t
