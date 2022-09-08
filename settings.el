@@ -33,10 +33,12 @@
 (defvar settings:shared-directory "~/.cache/emacs"
   "Cloud file storage location.")
 
-(setq org-directory "~/github.com/elijahdanko/org")
-(setq my:config-path-prettier (concat
+(defvar my:config-path-prettier (concat
                                "--config="
-                               (expand-file-name "~/.config/prettier/prettier.config.js")))
+                               (expand-file-name "~/.config/prettier/prettier.config.js"))
+  "Path to prettier config.")
+
+(setq org-directory "~/github.com/elijahdanko/org")
 
 (unless (file-directory-p settings:shared-directory)
   (make-directory settings:shared-directory))
