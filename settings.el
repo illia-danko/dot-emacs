@@ -34,6 +34,9 @@
   "Cloud file storage location.")
 
 (setq org-directory "~/github.com/elijahdanko/org")
+(setq my:config-path-prettier (concat
+                               "--config="
+                               (expand-file-name "~/.config/prettier/prettier.config.js")))
 
 (unless (file-directory-p settings:shared-directory)
   (make-directory settings:shared-directory))
@@ -62,7 +65,7 @@
  '(dashboard-set-footer nil)
  '(dashboard-center-content t)
  '(dired-dwim-target t)
- '(dired-omit-files "^\\...+$") ; add hiden files to dired-omit-mode
+ '(dired-omit-files "^\\...+$")         ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
  '(display-line-numbers-type t)
  '(ediff-split-window-function 'split-window-horizontally)
@@ -73,6 +76,10 @@
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
  '(fill-column 80)
+ '(format-all-default-formatters `(("YAML"
+                                    (prettier ,my:config-path-prettier))
+                                   ("JavaScript"
+                                    (prettier ,my:config-path-prettier))))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)

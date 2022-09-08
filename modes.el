@@ -82,6 +82,10 @@
               ("C-c <" . paredit-forward-barf-sexp)
               ("C-c u" . paredit-splice-sexp-killing-backward)))
 
+(use-package format-all
+  :straight t
+  :hook ((format-all-mode . format-all-ensure-formatter)))
+
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()
                               (paredit-mode)
@@ -105,10 +109,6 @@
 
 (use-package typescript-mode :straight t)
 
-(use-package prettier-js
-  :straight t
-  :hook ((js-mode . prettier-js-mode)))
-
 (use-package js
   :init
   (defun js-mode:hook ()
@@ -122,7 +122,8 @@
          ;; sudo npm install -g typescript-language-server
          (unless (eq major-mode 'ediff-mode)
            (eglot-ensure)
-           (flycheck-mode))))
+           (flycheck-mode)
+           (format-all-mode))))
   :hook ((js-mode . js-mode:hook))
   :bind (:map js-mode-map
               ("M-." . xref-find-definitions)))
@@ -132,7 +133,8 @@
   (defun yaml-mode:hook ()
     (prog-mode:hook)
     (unless (eq major-mode 'ediff-mode)
-      (flycheck-mode)))
+      (flycheck-mode)
+      (format-all-mode)))
   :straight t
   :hook ((yaml-mode . yaml-mode:hook)))
 
@@ -223,13 +225,6 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
       (eglot-ensure)
       (flycheck-mode)))
   :hook ((python-mode . python-mode:hook)))
-
-(use-package yapfify
-  :straight '(yapfify
-              :type git
-              :host github
-              :repo "JorisE/yapfify")
-  :hook ((python-mode . yapf-mode)))
 
 (use-package sh-script
   :init
