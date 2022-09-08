@@ -103,6 +103,8 @@
  '(user-mail-address "me@elijahdanko.net")
  '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
  '(visible-cursor nil)               ; dont blink cursor in tty.
+ '(xref-show-xrefs-function 'consult-xref)
+ '(xref-show-definitions-function 'consult-xref)
  `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
