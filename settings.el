@@ -61,6 +61,9 @@
  '(company-posframe-show-indicator nil)
  '(company-posframe-show-metadata nil)
  '(company-posframe-show-params nil)
+ '(completion-styles '(orderless basic))
+ '(completion-category-defaults nil)
+ '(completion-category-overrides '((file (styles partial-completion))))
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
@@ -78,31 +81,22 @@
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
  '(fill-column 80)
- '(format-all-default-formatters `(("YAML"
-                                    (prettier ,my:config-path-prettier))
-                                   ("JavaScript"
-                                    (prettier ,my:config-path-prettier))))
+ '(format-all-default-formatters `(("YAML" (prettier ,my:config-path-prettier))
+                                   ("JavaScript" (prettier ,my:config-path-prettier))))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
  '(inhibit-splash-screen t)
- '(ivy-height 15)
- '(ivy-initial-inputs-alist nil)
- '(ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
- '(ivy-rich-path-style 'abbrev) ; shorten style path, eg: /home/user1/Documents -> ~/Documents
- '(ivy-use-virtual-buffers t)
  '(js-indent-level 4)
  '(kill-whole-line t)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
  '(markdown-hide-markup t)                  ; hide urls
- '(projectile-completion-system 'ivy)
+ '(prefix-help-command #'embark-prefix-help-command)
  '(python-indent-offset 4)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)          ; turn off ring bell sound
  '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
- '(spacemacs-theme-comment-bg nil)
- '(spacemacs-theme-org-height nil)
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Elijah Danko")
@@ -113,7 +107,6 @@
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
  `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
- `(smex-save-file ,(expand-file-name "smex-items" settings:shared-directory))
  `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
  `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
  `(transient-values-file ,(expand-file-name "transient/values.el" settings:shared-directory))

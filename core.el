@@ -112,7 +112,7 @@
   (if mark-active
 	  (let ((content (region:content)))
 		(deactivate-mark)
-		(funcall fn content))
+		(funcall fn nil content))
 	(funcall fn)))
 
 (require 'use-package)
@@ -176,68 +176,38 @@
   :bind (("C-c g u" . git-link)
          ("C-c g o" . git-link:open-homepage)))
 
- ; To sort M-x output.
-(use-package smex :straight t)
+(use-package vertico
+  :straight t
+  :config (vertico-mode 1))
 
-(use-package counsel
+(use-package orderless :straight t)
+
+(use-package marginalia
+  :straight t
+  :config (marginalia-mode))
+
+(use-package all-the-icons-completion
+  :straight t
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
+
+(use-package consult
+  :straight t
+  :bind (("M-y" . consult-yank-from-kill-ring)
+         ("C-x b" . consult-buffer)
+         ("C-c h" . consult-recent-file)
+         ;; ("C-c c" . counsult-compile)
+         ("C-c /" . consult-imenu)
+         ("C-c s" . (lambda () (interactive) (region:apply 'consult-ripgrep)))
+         ("C-c n" . (lambda () (interactive) (consult-ripgrep org-directory)))))
+
+(use-package embark
   :straight t
   :ensure t
-  :bind (("M-x" . counsel-M-x)
-	     ("M-y" . counsel-yank-pop)
-         ("C-c b" . counsel-bookmark)
-         ("C-c h" . counsel-recentf)
-	     ("C-c c" . counsel-compile)
-         ("C-c r" . ivy-resume)
-         ("C-c s" . (lambda ()
-                      (interactive)
-                      (region:apply 'counsel-rg)))
-         ("C-c /" . counsel-imenu)))
-
-(use-package ivy
-  :straight t
-  :config (ivy-mode 1))
-
-(use-package all-the-icons-ivy-rich
-  :straight t
-  :config (all-the-icons-ivy-rich-mode 1))
-
-(use-package ivy-rich
-  :after (ivy all-the-icons-ivy-rich)
-  :straight t
-  :config
-  ;; Fix ivy Switch To Buffer slowness.
-  (defvar ivy-rich:cache
-    (make-hash-table :test 'equal))
-
-  (defun ivy-rich:cache-lookup (delegate candidate)
-    (let ((result (gethash candidate ivy-rich:cache)))
-      (unless result
-        (setq result (funcall delegate candidate))
-        (puthash candidate result ivy-rich:cache))
-      result))
-
-  (defun ivy-rich:cache-reset ()
-    (clrhash ivy-rich:cache))
-
-  (defun ivy-rich:cache-rebuild ()
-    (mapc (lambda (buffer)
-            (ivy-rich--ivy-switch-buffer-transformer (buffer-name buffer)))
-          (buffer-list)))
-
-  (defun ivy-rich:cache-rebuild-trigger ()
-    (ivy-rich:cache-reset)
-    (run-with-idle-timer 1 nil 'ivy-rich:cache-rebuild))
-
-  (advice-add 'ivy-rich--ivy-switch-buffer-transformer :around 'ivy-rich:cache-lookup)
-  (advice-add 'ivy-switch-buffer :after 'ivy-rich:cache-rebuild-trigger)
-
-  (ivy-rich-mode 1))
-
-(use-package flyspell-correct
-  :straight t
-  :after (flyspell ivy)
-  :bind (:map flyspell-mode-map
-              ("M-$" . flyspell-correct-wrapper)))
+  :bind
+  (("C-<return>" . embark-dwim)
+   ("C-h b" . embark-bindings)))
 
 (use-package projectile
   :straight t
@@ -326,9 +296,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
          ("o" . dired:system-xdg-open)
          ("C-c c" . nil)))
 
-(use-package browse-url
-  :bind (("C-c o" . browse-url-at-point)))
-
 (use-package isearch
   :init
   (defun isearch:region (&rest _)
@@ -358,17 +325,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 
 (use-package display-line-numbers
   :bind (("C-c t l" . display-line-numbers-mode)))
-
-(use-package counsel-fzf-rg
-  :straight '(counsel-fzf-rg
-              :type git
-              :host github
-              :repo "elijahdanko/counsel-fzf-rg.el")
-  :config
-  (defun counsel-fzf-rg:org ()
-    (interactive)
-    (counsel-fzf-rg "" org-directory))
-  :bind (("C-c n". counsel-fzf-rg:org)))
 
 (use-package ttymux
   :straight '(ttymux
