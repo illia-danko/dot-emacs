@@ -207,7 +207,8 @@
   :straight t
   :ensure t
   :bind
-  (("C-<return>" . embark-dwim)
+  (("C-\\" . embark-dwim)
+   ("M-|" . embark-act)
    ("C-h b" . embark-bindings)))
 
 (use-package projectile
