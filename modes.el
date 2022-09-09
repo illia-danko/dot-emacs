@@ -113,17 +113,20 @@
   :init
   (defun js-mode:hook ()
     ;; Do not enable LSP and linter for *.ts and *.json.
-    (and buffer-file-name
-         (pcase (file-name-extension buffer-file-name)
-           ("ts" t)
-           ("js" t)
-           (_ nil))
-         ;; Make sure that LSP is installed:
-         ;; sudo npm install -g typescript-language-server
-         (unless (eq major-mode 'ediff-mode)
-           (eglot-ensure)
-           (flycheck-mode)
-           (format-all-mode))))
+    (let ((ext (file-name-extension buffer-file-name)))
+      (and ext
+           (pcase ext
+             ("ts" t)
+             ("js" t)
+             ("json" t)
+             (_ nil))
+           ;; Make sure that LSP is installed:
+           ;; sudo npm install -g typescript-language-server
+           (unless (eq major-mode 'ediff-mode)
+             (unless (string-equal ext "json")
+               (eglot-ensure)
+               (flycheck-mode))
+             (format-all-mode)))))
   :hook ((js-mode . js-mode:hook))
   :bind (:map js-mode-map
               ("M-." . xref-find-definitions)))
