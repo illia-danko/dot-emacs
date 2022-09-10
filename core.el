@@ -257,7 +257,8 @@
 (use-package eglot
   :straight t
   :bind (:map eglot-mode-map
-              ("C-c e r" . eglot-rename)))
+              ("C-c e r" . eglot-rename)
+              ("C-c e i" . eglot-find-implementation)))
 
 (use-package flycheck :straight t)
 (use-package rg
