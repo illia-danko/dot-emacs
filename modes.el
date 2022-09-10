@@ -46,6 +46,8 @@
   :straight t
   :init
   (defun go-mode:hook ()
+    (setq-local comment-fill-column 100
+                fill-column 100)
     (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)
       (flycheck-mode))
