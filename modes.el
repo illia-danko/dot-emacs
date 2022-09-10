@@ -218,6 +218,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
          ("C-c a" . org-todo-list)
          :map org-mode-map
          ("C-c w" . org:browser-preview)
+         ("C-c #" . projectile-kill-buffers)
          ("C-c *" . org:toggle-fontifications)
          ("M-RET" . org-table-insert-row)))
 
