@@ -254,7 +254,11 @@
   :bind (("C-o" . er/expand-region)
          ("M-o" . er/contract-region)))
 
-(use-package eglot :straight t)
+(use-package eglot
+  :straight t
+  :bind (:map eglot-mode-map
+              ("C-c e r" . eglot-rename)))
+
 (use-package flycheck :straight t)
 (use-package rg
   :straight t
