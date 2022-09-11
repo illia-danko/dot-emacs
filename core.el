@@ -201,7 +201,8 @@
          ;; ("C-c c" . counsult-compile)
          ("C-c /" . consult-imenu)
          ("C-c s" . (lambda () (interactive) (region:apply 'consult-ripgrep)))
-         ("C-c n" . (lambda () (interactive) (consult-ripgrep org-directory)))))
+         ("C-c n" . (lambda () (interactive) (consult-ripgrep org-directory)))
+         ("C-c f" . consult-ripgrep)))
 
 (use-package embark
   :straight t
@@ -216,7 +217,6 @@
   :ensure t
   :config (projectile-mode 1)
   :bind (("C-c p" . projectile-switch-project)
-         ("C-c f" . projectile-find-file)
          ("C-c #" . projectile-kill-buffers)
          ("C-c ~" . projectile-remove-known-project)))
 
