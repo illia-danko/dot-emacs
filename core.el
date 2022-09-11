@@ -202,7 +202,7 @@
          ("C-c /" . consult-imenu)
          ("C-c s" . (lambda () (interactive) (region:apply 'consult-ripgrep)))
          ("C-c n" . (lambda () (interactive) (consult-ripgrep org-directory)))
-         ("C-c f" . consult-ripgrep)))
+         ("C-c f" . consult-find)))
 
 (use-package embark
   :straight t
