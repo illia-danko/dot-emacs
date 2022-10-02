@@ -68,7 +68,6 @@
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
  '(dashboard-set-footer nil)
- '(dashboard-center-content t)
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$")         ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
