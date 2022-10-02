@@ -32,13 +32,13 @@
 
 (require 'use-package)
 
-(use-package ef-themes
+(use-package doom-themes
   :straight t)
 
 (defvar theme:file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")
 
-(defvar theme:default-name "ef-day"
+(defvar theme:default-name "doom-one"
   "Current Emacs theme.")
 
 (defvar after-load-theme-hook nil
@@ -86,10 +86,10 @@
   :straight t
   :config (which-key-mode 1))
 
-(use-package mood-line
+(use-package doom-modeline
   :straight t
   :config
-  (mood-line-mode 1))
+  (doom-modeline-mode 1))
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
