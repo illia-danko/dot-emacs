@@ -187,11 +187,6 @@
   :straight t
   :config (marginalia-mode))
 
-(use-package all-the-icons-completion
-  :straight t
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :init
-  (all-the-icons-completion-mode))
 
 (use-package consult
   :straight t
