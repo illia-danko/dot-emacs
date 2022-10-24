@@ -38,7 +38,7 @@
                                (expand-file-name "~/.config/prettier/prettier.config.js"))
   "Path to prettier config.")
 
-(setq org-directory "~/github.com/elijahdanko/org")
+(setq org-directory "~/github.com/illia-danko/org")
 
 (unless (file-directory-p settings:shared-directory)
   (make-directory settings:shared-directory))
