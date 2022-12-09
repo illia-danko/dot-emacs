@@ -117,13 +117,6 @@
 
 (require 'use-package)
 
-(use-package abbrev)
-(use-package eldoc)
-
-(use-package hl-line
-  :config
-  :bind (("C-c t h" . hl-line-mode)))
-
 (use-package flyspell
   :init
   (defun flyspell:toggle ()
@@ -138,11 +131,7 @@
         (if (derived-mode-p 'prog-mode)
             (flyspell-prog-mode)
           (flyspell-mode +1))
-        (flyspell-buffer))))
-  :bind (("C-c t s" . flyspell:toggle)))
-
-(use-package simple
-  :bind (("C-c C-z" . toggle-read-only)))
+        (flyspell-buffer)))))
 
 (use-package magit
   :straight t
@@ -159,12 +148,7 @@
         (call-process "git" nil nil nil "add" fullname)
         (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
         (call-process "git" nil nil nil "push")
-        (message "Pushed %s" relname))))
-  :bind (("C-c g g" . magit-status)
-         ("C-c g b" . magit-blame-addition)
-         ("C-c g d" . magit-diff-buffer-file)
-         ("C-c g l" . magit-log-buffer-file)
-         ("C-c g c" . vc:push)))
+        (message "Pushed %s" relname)))))
 
 (use-package git-link
   :straight t
@@ -172,64 +156,19 @@
   (defun git-link:open-homepage ()
     (interactive)
     (let ((git-link-open-in-browser t))
-      (call-interactively 'git-link-homepage)))
-  :bind (("C-c g u" . git-link)
-         ("C-c g o" . git-link:open-homepage)))
+      (call-interactively 'git-link-homepage))))
 
-(use-package vertico
-  :straight t
-  :config (vertico-mode 1))
-
+(use-package vertico :straight t :config (vertico-mode 1))
 (use-package orderless :straight t)
 (use-package savehist :init (savehist-mode))  ;; save minibuffer history
+(use-package marginalia :straight t :config (marginalia-mode))
+(use-package consult :straight t)
+(use-package embark-consult :straight t)
+(use-package projectile :straight t :ensure t :config (projectile-mode 1))
+(use-package yasnippet :straight t :config (yas-global-mode +1))
+(use-package company-posframe :straight t :config (company-posframe-mode +1))
 
-(use-package marginalia
-  :straight t
-  :config (marginalia-mode))
-
-
-(use-package consult
-  :straight t
-  :bind (("M-y" . consult-yank-from-kill-ring)
-         ("C-x b" . consult-buffer)
-         ("C-c h" . consult-recent-file)
-         ;; ("C-c c" . counsult-compile)
-         ("C-c /" . consult-imenu)
-         ("C-c s" . (lambda () (interactive) (region:apply 'consult-ripgrep)))
-         ("C-c n" . (lambda () (interactive) (consult-ripgrep org-directory)))
-         ("C-c f" . consult-find)))
-
-(use-package embark
-  :straight t
-  :ensure t
-  :bind
-  (("C-\\" . embark-dwim)
-   ("M-|" . embark-act)
-   ("C-h b" . embark-bindings)))
-
-(use-package projectile
-  :straight t
-  :ensure t
-  :config (projectile-mode 1)
-  :bind (("C-c p" . projectile-switch-project)
-         ("C-c #" . projectile-kill-buffers)
-         ("C-c ~" . projectile-remove-known-project)))
-
-(use-package yasnippet
-  :straight t
-  :config
-  (yas-global-mode +1))
-
-(use-package company-posframe
-  :straight t
-  :config
-  (company-posframe-mode +1))
-
-(use-package company
-  :straight t
-  :after (yasnippet company-posframe)
-  :config
-  (global-company-mode +1)
+(use-package company :straight t :after (yasnippet company-posframe) :config (global-company-mode +1) 
 
   ;; Use yasnippet in company.
   (setq company-backends
@@ -241,40 +180,14 @@
                               (list backends))
                             '(:with company-yasnippet))))
                 company-backends))
-  (add-to-list 'completion-styles 'initials t)  ; enabling fuzzy matching
-  :bind (("C-c TAB" . company-complete)))
+  (add-to-list 'completion-styles 'initials t))  ; enabling fuzzy matching)
 
-(use-package expand-region
-  :straight t
-  :bind (("C-o" . er/expand-region)
-         ("M-o" . er/contract-region)))
-
-(use-package eglot
-  :straight t
-  :bind (:map eglot-mode-map
-              ("C-c e r" . eglot-rename)
-              ("C-c e i" . eglot-find-implementation)))
-
+(use-package expand-region :straight t)
+(use-package eglot :straight t)
 (use-package flycheck :straight t)
-(use-package rg
-  :straight t
-  :bind (:map rg-mode-map
-              ("C-c C-s" . wgrep-save-all-buffers)))
+(use-package rg :straight t)
 (use-package hydra :straight t)
-
-(use-package multiple-cursors
-  :straight t
-  :after (hydra)
-  :init
-  (defhydra mc:hydra-keymap (:color blue)
-    "Multiple Cursors"
-    (">" mc/mark-next-like-this "mark next" :exit nil)
-    ("n" mc/skip-to-next-like-this "skip to next" :exit nil)
-    ("<" mc/unmark-next-like-this "unmark" :exit nil)
-    ("m" mc/edit-lines "edit selection" :exit t)
-    ("a" mc/mark-all-like-this "mark all" :exit t)
-    ("q" nil "cancel"))
-  :bind (("C-c m" . mc:hydra-keymap/body)))
+(use-package multiple-cursors :straight t :after (hydra))
 
 (use-package dired
   :init
@@ -292,11 +205,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     (dired-hide-details-mode)
     (dired-omit-mode))
 
-  :hook (dired-mode . dired-mode:hook)
-  :bind (("C-x d" . dired-jump)
-         :map dired-mode-map
-         ("o" . dired:system-xdg-open)
-         ("C-c c" . nil)))
+  :hook (dired-mode . dired-mode:hook))
 
 (use-package isearch
   :init
@@ -311,22 +220,8 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
 
-(use-package anzu
-  :straight t
-  :config
-  (global-set-key [remap query-replace] 'anzu-query-replace)
-  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-  (anzu-mode +1)
-  (global-anzu-mode +1))
-
-(use-package xclip
-  :straight t
-  :config
-  (unless (display-graphic-p)
-    (xclip-mode +1)))
-
-(use-package display-line-numbers
-  :bind (("C-c t l" . display-line-numbers-mode)))
+(use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
+(use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
 
 (use-package ttymux
   :straight '(ttymux
@@ -345,28 +240,18 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
     (call-interactively 'olivetti-mode arg)
     (call-interactively 'hide-mode-line-mode arg)))
 
-(use-package hide-mode-line
-  :straight t
-  :init
-  :after (olivetti)
-  :bind (("C-c SPC" . distraction-free-toggle)))
+(use-package hide-mode-line :straight t :init :after (olivetti))
 
 (use-package elfeed
   :straight t
   :hook ((elfeed-show-mode . distraction-free-toggle))
   ;; Update elfeed database each 4 hours.
-  :config (run-with-timer 0 (* 60 60 4) 'elfeed-update)
-  :bind (("C-c ~" . elfeed)))
+  :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 
-(use-package undohist
-  :straight t
-  :config (undohist-initialize))
+(use-package undohist :straight t :config (undohist-initialize))
 
-(use-package ediff-init
-  :hook ((ediff-quit . delete-frame)))
-
-(use-package vterm :straight t
-  :hook ((vterm-mode . hide-mode-line-mode)))
+(use-package ediff-init :hook ((ediff-quit . delete-frame)))
+(use-package vterm :straight t :hook ((vterm-mode . hide-mode-line-mode)))
 
 (defun emacs:shutdown-server ()
   "Quit Emacs globally. Shutdown server."
@@ -388,12 +273,5 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (if mark-active
       (call-interactively 'kill-region)
     (call-interactively 'backward-kill-word arg)))
-
-(global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "C-x k") #'kill-this-buffer)
-(global-set-key (kbd "C-x !") #'emacs:shutdown-server)
-(global-set-key (kbd "C-w") #'edit:backward-kill-word-or-region)
-(global-set-key (kbd "C-l") #'edit:mark-line)
-(global-set-key (kbd "M-l") #'recenter-top-bottom)
 
 ;;; core.el ends here

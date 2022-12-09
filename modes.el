@@ -60,10 +60,7 @@
 (use-package f :straight t)
 (use-package go-test
   :straight t
-  :after (go-mode s f)
-  :bind (:map go-mode-map
-              ("C-c . c" . go-test-current-test)
-              ("C-c . t" . go-test-current-file)))
+  :after (go-mode s f))
 
 (use-package rainbow-delimiters
   :straight t)
@@ -76,13 +73,7 @@
     (interactive)
     (if mark-active
         (call-interactively 'paredit-kill-region)
-      (call-interactively 'paredit-backward-kill-word arg)))
-
-  :bind (:map paredit-mode-map
-              ("C-w" . paredit:backward-kill-word-or-region)
-              ("C-c >" . paredit-forward-slurp-sexp)
-              ("C-c <" . paredit-forward-barf-sexp)
-              ("C-c u" . paredit-splice-sexp-killing-backward)))
+      (call-interactively 'paredit-backward-kill-word arg))))
 
 (use-package format-all
   :straight t
@@ -91,10 +82,7 @@
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . (lambda ()
                               (paredit-mode)
-                              (rainbow-delimiters-mode))))
-  :bind (:map emacs-lisp-mode-map
-              ("C-c C-c" . eval-defun)
-              ("C-c C-k" . eval-buffer)))
+                              (rainbow-delimiters-mode)))))
 
 (use-package flycheck-clj-kondo :straight t)
 (use-package clj-refactor :straight t)
@@ -129,9 +117,7 @@
                (eglot-ensure)
                (flycheck-mode))
              (format-all-mode)))))
-  :hook ((js-mode . js-mode:hook))
-  :bind (:map js-mode-map
-              ("M-." . xref-find-definitions)))
+  :hook ((js-mode . js-mode:hook)))
 
 (use-package yaml-mode
   :init
@@ -159,10 +145,7 @@
   (defun markdown:toggle-fontifications (&optional arg)
     "Toggle fontifications on/off."
     (interactive (list (or current-prefix-arg 'toggle)))
-    (markdown-toggle-markup-hiding arg))
-  :bind (:map markdown-mode-map
-              ("C-c w" . markdown-preview)
-              ("C-c *" . markdown:toggle-fontifications)))
+    (markdown-toggle-markup-hiding arg)))
 
 ;; Pretty headings.
 (use-package org-superstar :straight t)
@@ -213,14 +196,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :hook ((org-mode . (lambda ()
                        (org:fixup-electric-pairs)
                        (org-superstar-mode)
-                       (trailing-whitespace:show))))
-  :bind (("C-c i" . org:new-todo-entry)
-         ("C-c a" . org-todo-list)
-         :map org-mode-map
-         ("C-c w" . org:browser-preview)
-         ("C-c #" . projectile-kill-buffers)
-         ("C-c *" . org:toggle-fontifications)
-         ("M-RET" . org-table-insert-row)))
+                       (trailing-whitespace:show)))))
 
 (use-package python
   :init

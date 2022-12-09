@@ -67,6 +67,7 @@
 (load-file (expand-file-name "modes.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
 (load-file (expand-file-name "ui.el" user-emacs-directory))
+(load-file (expand-file-name "keymap.el" user-emacs-directory))
 
 ;; Compute and show Emacs warm time.
 (message "Load time %.06f" (float-time (time-since time-emacs-start)))

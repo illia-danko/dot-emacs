@@ -100,13 +100,10 @@
     "Acts as `split-window-right' but also preforms jump to the window."
     (interactive)
     (split-window-right)
-    (other-window 1))
-  :bind (("C-x 3" . split-window:jump-right)))
+    (other-window 1)))
 
 ;; Highlight RGB(A) and color names.
-(use-package rainbow-mode
-  :straight t
-  :bind (("C-c t c" . rainbow-mode)))
+(use-package rainbow-mode :straight t)
 
 (use-package dashboard
   :straight t
