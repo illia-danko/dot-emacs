@@ -23,6 +23,7 @@
         paredit-forward-delete
         paredit-forward-kill-word
         paredit-semicolon
+        paredit:backward-kill-word-or-region
         upcase-region
         wdired-finish-edit
         wgrep-finish-edit
