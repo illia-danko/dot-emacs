@@ -19,6 +19,7 @@
         org-kill-line
         org-self-insert-command
         org-table-eval-formula
+        paredit-delete-char
         paredit-doublequote
         paredit-forward-delete
         paredit-forward-kill-word
