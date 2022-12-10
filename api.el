@@ -273,4 +273,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
           (lambda (&optional frame)
 	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
 
+(defun evil-keyboard-quit ()
+  "Keyboard quit and force normal state."
+  (interactive)
+  (and evil-mode (evil-force-normal-state))
+  (keyboard-quit))
+
 ;;; api.el ends here

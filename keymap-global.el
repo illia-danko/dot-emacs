@@ -1,4 +1,4 @@
-;;; keymap.el --- Emacs User Interface -*- lexical-binding: t -*-
+;;; keymap-global.el --- Emacs User Interface -*- lexical-binding: t -*-
 
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 (global-set-key (kbd "C-x !") #'emacs:shutdown-server)
@@ -67,45 +67,8 @@
 (global-set-key (kbd "C-x 3") #'split-window:jump-right)
 (global-set-key (kbd "C-c t c") #'rainbow-mode)
 
-(add-hook
- 'rg-mode
- (lambda nil
-   (define-key rg-mode-map (kbd "C-c C-s") #'wgrep-save-all-buffers)))
-
-(add-hook
- 'go-test
- (lambda nil
-   (define-key go-mode-map (kbd "C-c . c") #'go-test-current-test)
-   (define-key go-mode-map (kbd "C-c . t") #'go-test-current-file)))
-
-(add-hook
- 'paredit-mode
- (lambda nil
-   (define-key paredit-mode-map (kbd "C-w") #'paredit:backward-kill-word-or-region)
-   (define-key paredit-mode-map (kbd "C-c >") #'paredit-forward-slurp-sexp)
-   (define-key paredit-mode-map (kbd "C-c <") #'paredit-forward-barf-sexp)
-   (define-key paredit-mode-map (kbd "C-c u") #'paredit-splice-sexp-killing-backward)))
-
-(add-hook
- 'js-mode
- (lambda nil
-   (define-key js-mode-map (kbd "M-.") #'xref-find-definitions)))
-
-(add-hook
- 'markdown-mode
- (lambda nil
-   (define-key markdown-mode-map (kbd "C-c w") #'markdown-preview)
-   (define-key markdown-mode-map (kbd "C-c *") #'markdown:toggle-fontifications)))
 
 (global-set-key (kbd "C-c i") #'org:new-todo-entry)
 (global-set-key (kbd "C-c a") #'org-todo-list)
 
-(add-hook
- 'org-mode
- (lambda nil
-   (define-key org-mode-map (kbd "C-c w") #'org:browser-preview)
-   (define-key org-mode-map (kbd "C-c w") #'projectile-kill-buffers)
-   (define-key org-mode-map (kbd "C-c w") #'org:toggle-fontifications)
-   (define-key org-mode-map (kbd "M-RET") #'org-table-insert-row)))
-
-;;; keymap.el ends here
+;;; keymap-global.el ends here

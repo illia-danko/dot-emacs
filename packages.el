@@ -18,6 +18,21 @@
 
 (require 'use-package)
 
+(use-package undo-fu :straight t)
+
+(use-package evil
+  :straight t
+  :demand t
+  :init
+  (setq evil-want-keybinding nil
+        evil-undo-system 'undo-fu)
+  :config (evil-mode 1))
+
+(use-package evil-collection
+  :straight t
+  :after evil
+  :config
+  (evil-collection-init))
 (use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
 (use-package git-link :straight t)
 (use-package vertico :straight t :config (vertico-mode 1))
