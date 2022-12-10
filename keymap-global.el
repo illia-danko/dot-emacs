@@ -1,74 +1,102 @@
-;;; keymap-global.el --- Emacs User Interface -*- lexical-binding: t -*-
+;;; keymap-global.el --- Global Shortcuts -*- lexical-binding: t -*-
 
-(global-set-key (kbd "C-x k") #'kill-this-buffer)
-(global-set-key (kbd "C-x !") #'emacs:shutdown-server)
-(global-set-key (kbd "C-w") #'edit:backward-kill-word-or-region)
-(global-set-key (kbd "C-l") #'edit:mark-line)
-(global-set-key (kbd "M-l") #'recenter-top-bottom)
-(global-set-key (kbd "C-z") nil)
+;; Copyright (c) 2022 Illia Danko
+;;
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
 
-(global-set-key (kbd "C-c t h") #'hl-line-mode)
-(global-set-key (kbd "C-c t s") #'flyspell:toggle)
-(global-set-key (kbd "C-c C-z") #'toggle-read-only)
+;; This file is not part of GNU Emacs.
 
-(global-set-key (kbd "C-c g g") #'magit-status)
-(global-set-key (kbd "C-c g b") #'magit-blame-addition)
-(global-set-key (kbd "C-c g l") #'magit-log-buffer-file)
-(global-set-key (kbd "C-c g c") #'vc:push)
-(global-set-key (kbd "C-c g u") #'git-link)
+;;; License:
 
-(global-set-key (kbd "C-c g o") #'git-link:open-homepage)
-(global-set-key (kbd "M-y") #'consult-yank-from-kill-ring)
-(global-set-key (kbd "C-x b") #'consult-buffer)
-(global-set-key (kbd "C-c h") #'consult-recent-file)
-(global-set-key (kbd "C-c /") #'consult-imenu)
-(global-set-key (kbd "C-c s") #'(lambda () (interactive) (region:apply 'consult-ripgrep)))
-(global-set-key (kbd "C-c n") #'(lambda () (interactive) (consult-ripgrep org-directory)))
-(global-set-key (kbd "C-c f") #'consult-find)
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
 
-(global-set-key (kbd "C-\\") #'embark-dwim)
-(global-set-key (kbd "M-|") #'embark-act)
-(global-set-key (kbd "C-h b") #'embark-bindings)
-
-(global-set-key (kbd "C-c p") #'projectile-switch-project)
-(global-set-key (kbd "C-c #") #'projectile-kill-buffers)
-(global-set-key (kbd "C-c ~") #'projectile-remove-known-project)
-
-(global-set-key (kbd "C-c TAB") #'company-complete)
-
-(global-set-key (kbd "C-o") #'er/expand-region)
-(global-set-key (kbd "M-o") #'er/contract-region)
-
-(define-key eglot-mode-map (kbd "C-c e r") #'eglot-rename)
-(define-key eglot-mode-map (kbd "C-c e r") #'eglot-find-implementation)
-
-(defhydra mc:hydra-keymap (:color blue)
-  "Multiple Cursors"
-  (">" mc/mark-next-like-this "mark next" :exit nil)
-  ("n" mc/skip-to-next-like-this "skip to next" :exit nil)
-  ("<" mc/unmark-next-like-this "unmark" :exit nil)
-  ("m" mc/edit-lines "edit selection" :exit t)
-  ("a" mc/mark-all-like-this "mark all" :exit t)
-  ("q" nil "cancel"))
-(global-set-key (kbd "C-c m") #'mc:hydra-keymap/body)
-
-(global-set-key (kbd "C-x d") #'dired-jump)
-
-(define-key dired-mode-map "o" #'dired:system-xdg-open)
-(define-key dired-mode-map (kbd "C-c c") nil)
+;;; Code:
 
 (global-set-key [remap query-replace] 'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
 
-(global-set-key (kbd "C-c t l") #'display-line-numbers-mode)
-(global-set-key (kbd "C-c SPC") #'distraction-free-toggle)
-(global-set-key (kbd "C-c ~") #'elfeed)
+;; Define high precedence map (See evil-collection/README.md).
+(defvar user:intercept-mode-map (make-sparse-keymap)
+  "High precedence keymap.")
 
-(global-set-key (kbd "C-x 3") #'split-window:jump-right)
-(global-set-key (kbd "C-c t c") #'rainbow-mode)
+(define-minor-mode user:intercept-mode
+  "Global minor mode for higher precedence evil keybindings."
+  :global t)
 
+(user:intercept-mode +1)
 
-(global-set-key (kbd "C-c i") #'org:new-todo-entry)
-(global-set-key (kbd "C-c a") #'org-todo-list)
+(dolist (state '(normal visual insert))
+  (evil-make-intercept-map
+   (evil-get-auxiliary-keymap user:intercept-mode-map state t t)
+   state))
+
+;;;; Mapping.
+
+;; Navigation & Search.
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",b") #'consult-buffer)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ;") #'eval-expression)
+(evil-define-key '(normal visual) user:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (region:apply 'consult-ripgrep)))
+(evil-define-key 'normal user:intercept-mode-map "-" #'dired-jump)
+
+;; Help.
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hk") #'describe-key)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hw") #'where-is)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hv") #'describe-variable)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hf") #'describe-function)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hm") #'describe-mode)
+
+;; Exit & Enter Emacs.
+(evil-define-key 'normal user:intercept-mode-map (kbd ",qq") #'emacs:shutdown-server)
+
+;; Toggle.
+(evil-define-key 'normal user:intercept-mode-map (kbd ",th") #'hl-line-mode)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",ts") #'flyspell:toggle)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",tr") #'read-only-mode)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",tc") #'rainbow-mode)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",tz") #'user:zen-toggle)
+
+;; Git & version control.
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gg") #'magit-status)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gb") #'magit-log-buffer-file)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-all)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'vc:push)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gu") #'git-link)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gU") #'git-link:open-homepage)
+
+;; Edit.
+(evil-define-key '(normal insert) user:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
+(evil-define-key 'normal user:intercept-mode-map (kbd "C-t") #'er/expand-region)
+(evil-define-key 'normal user:intercept-mode-map (kbd "C-q") #'er/contract-region)
+
+;; Files & Buffers.
+(evil-define-key 'normal user:intercept-mode-map (kbd ",fr") #'consult-recent-file)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC mm") #'consult-imenu)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
+
+;; Open.
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC of") #'elfeed)
+
+;; Notes.
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nt") #'org:new-todo-entry)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nl") #'org-todo-list)
 
 ;;; keymap-global.el ends here

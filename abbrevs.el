@@ -1,16 +1,11 @@
 ;;; abbrevs.el --- Auto-correct typos and abbreviation insertion -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Elijah Danko
+;; Copyright (c) 2022 Illia Danko
 ;;
-;; Author: Elijah Danko <me@elijahdanko.net>
-;; URL: https://github.com/elijahdanko/emacs.d
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
 
 ;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; It uses for auto-correction and basic abbreviation rather than text
-;; snippets insertion.
 
 ;;; License:
 

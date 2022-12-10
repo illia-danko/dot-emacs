@@ -1,22 +1,11 @@
-;;; init.el --- Elijah Danko (me@elijahdanko.net) Emacs dotfiles -*- lexical-binding: t -*-
+;;; init.el --- Illia Danko (illia@danko.ws) Emacs dotfiles -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Elijah Danko
+;; Copyright (c) 2022 Illia Danko
 ;;
-;; Author: Elijah Danko <me@elijahdanko.net>
-;; URL: https://github.com/elijahdanko/emacs.d
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
 
 ;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; Personal Emacs Configuration.  Besides providing full-fledged editing
-;; experience with minimal configuration, non main goals are:
-;; 1) Booting Emacs fast;
-;; 2) Modulate components by split into:
-;; `core' for global settings,
-;; `modes' for major modes,
-;; `abbrevs' for abbreviations and
-;; `ui' for better User Interface experience.
 
 ;;; License:
 
@@ -58,13 +47,13 @@
 ;; Load custom file (settings.el) before packages.
 (setq custom-file (expand-file-name "settings.el" user-emacs-directory))
 (load custom-file)
-(let ((custom-settings (expand-file-name "custom-settings.el" settings:shared-directory)))
-  (and custom-settings
-       (file-exists-p custom-settings)
-       (load custom-settings)))
+(let ((private-settings.el (expand-file-name "private-settings.el" settings:shared-directory)))
+  (and private-settings.el
+       (file-exists-p private-settings.el)
+       (load private-settings.el)))
 
 (load-file (expand-file-name "core.el" user-emacs-directory))
-(load-file (expand-file-name "keymap-mode.el" user-emacs-directory))
+(load-file (expand-file-name "keymap-local.el" user-emacs-directory))
 (load-file (expand-file-name "api.el" user-emacs-directory))
 (load-file (expand-file-name "packages.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))

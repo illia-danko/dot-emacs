@@ -1,17 +1,11 @@
 ;;; core.el --- Core Emacs configuration -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Elijah Danko
+;; Copyright (c) 2022 Illia Danko
 ;;
-;; Author: Elijah Danko <me@elijahdanko.net>
-;; URL: https://github.com/elijahdanko/emacs.d
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
 
 ;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; Enables basic configuration. It uses `straight.el' for loading packages from
-;; the Internet. `use-package' in turns, for setup, configuring and memory
-;; loading packages.
 
 ;;; License:
 

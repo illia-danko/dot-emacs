@@ -1,17 +1,43 @@
 ;;; api.el --- User Defined Commands and Functions  -*- lexical-binding: t -*-
 
+;; Copyright (c) 2022 Illia Danko
+;;
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
+
+;; This file is not part of GNU Emacs.
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code:
+
 (with-eval-after-load
- 'company-mode
- (lambda nil
-   (setq company-backends
-         (mapcar (lambda (backends)
-                   (if (and (listp backends) (memq 'company-yasnippet backends))
-                       backends
-                     (append (if (consp backends)
-    	                         backends
-                               (list backends))
-                             '(:with company-yasnippet))))
-                 company-backends))))
+    'company-mode
+  (lambda nil
+    (setq company-backends
+          (mapcar (lambda (backends)
+                    (if (and (listp backends) (memq 'company-yasnippet backends))
+                        backends
+                      (append (if (consp backends)
+    	                          backends
+                                (list backends))
+                              '(:with company-yasnippet))))
+                  company-backends))))
 
 (defun region:content ()
   "Takes region content if any."
@@ -79,7 +105,7 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
 		(deactivate-mark)
 		(isearch-yank-string content))))
 
-(defun distraction-free-toggle (&optional arg)
+(defun user:zen-toggle (&optional arg)
     (interactive)
     (call-interactively 'olivetti-mode arg)
     (call-interactively 'hide-mode-line-mode arg))
@@ -90,21 +116,6 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (save-some-buffers)
   (kill-emacs))
 
-(defun edit:mark-line (&optional arg)
-  "Mark current line. Shortcut of [C-a] [C-Space] [C-n]."
-  (interactive)
-  (move-beginning-of-line arg)
-  (if (not mark-active)
-      (set-mark-command arg))
-  (next-logical-line 1 nil))
-
-(defun edit:backward-kill-word-or-region (&optional arg)
-  "If mark active acts as `C-w' otherwise as `backward-kill-word'."
-  (interactive)
-  (if mark-active
-      (call-interactively 'kill-region)
-    (call-interactively 'backward-kill-word arg)))
-
 (defun trailing-whitespace:show ()
   "Show trailing whitespaces on a buffer."
   (setq-local show-trailing-whitespace t))
@@ -114,27 +125,13 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
   (hl-line-mode 1)
   (display-line-numbers-mode 1))
 
-  (defun go-mode:hook ()
-    (setq-local comment-fill-column 100
-                fill-column 100)
-    (unless (eq major-mode 'ediff-mode)
-      (eglot-ensure)
-      (flycheck-mode))
-	(add-hook 'before-save-hook #'gofmt-before-save))
-
-(defun paredit:backward-kill-word-or-region (&optional arg)
-  "If mark active acts as `C-w' otherwise as `paredit-backward-kill-word'."
-  (interactive)
-  (if mark-active
-      (call-interactively 'paredit-kill-region)
-    (call-interactively 'paredit-backward-kill-word arg)))
-
-  (defun clojure-mode:hook ()
-    (unless (eq major-mode 'ediff-mode)
-      (paredit-mode)
-      (clj-refactor-mode)
-      (rainbow-delimiters-mode)
-      (flycheck-mode)))
+(defun go-mode:hook ()
+  (setq-local comment-fill-column 150
+              fill-column 150)
+  (unless (eq major-mode 'ediff-mode)
+    (eglot-ensure)
+    (flycheck-mode))
+  (add-hook 'before-save-hook #'gofmt-before-save))
 
 (defun js-mode:hook ()
     ;; Do not enable LSP and linter for *.ts and *.json.
@@ -153,27 +150,27 @@ https://www.emacswiki.org/emacs/OperatingOnFilesInDired"
                (flycheck-mode))
              (format-all-mode)))))
 
-  (defun yaml-mode:hook ()
-    (prog-mode:hook)
-    (unless (eq major-mode 'ediff-mode)
-      (flycheck-mode)
-      (format-all-mode)))
+(defun yaml-mode:hook ()
+  (prog-mode:hook)
+  (unless (eq major-mode 'ediff-mode)
+    (flycheck-mode)
+    (format-all-mode)))
 
-  (defun markdown:toggle-fontifications (&optional arg)
-    "Toggle fontifications on/off."
-    (interactive (list (or current-prefix-arg 'toggle)))
-    (markdown-toggle-markup-hiding arg))
+(defun markdown:toggle-fontifications (&optional arg)
+  "Toggle fontifications on/off."
+  (interactive (list (or current-prefix-arg 'toggle)))
+  (markdown-toggle-markup-hiding arg))
 
-  (defun org:browser-preview (&optional async subtreep visible-only body-only ext-plist)
-    "Preview org file on a browser."
-    (interactive)
-    (unless (featurep 'ox-html) (require 'ox-html))
-    (let* ((dir temporary-file-directory)
-           (name (concat (make-temp-name "") ".html"))
-           (file (concat (file-name-as-directory dir) name))
-           (org-export-coding-system org-html-coding-system))
-      (org-open-file (org-export-to-file 'html file
-                       async subtreep visible-only body-only ext-plist))))
+(defun org:browser-preview (&optional async subtreep visible-only body-only ext-plist)
+  "Preview org file on a browser."
+  (interactive)
+  (unless (featurep 'ox-html) (require 'ox-html))
+  (let* ((dir temporary-file-directory)
+         (name (concat (make-temp-name "") ".html"))
+         (file (concat (file-name-as-directory dir) name))
+         (org-export-coding-system org-html-coding-system))
+    (org-open-file (org-export-to-file 'html file
+                     async subtreep visible-only body-only ext-plist))))
 
 
 (defun org:toggle-fontifications ()
@@ -193,31 +190,31 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
     ;; Apply changes.
     (font-lock-fontify-buffer))
 
-  (defun org:new-todo-entry ()
-    "Adds new `TODO' entry."
-    (interactive)
-    (org-capture nil "n"))
+(defun org:new-todo-entry ()
+  "Adds new `TODO' entry."
+  (interactive)
+  (org-capture nil "n"))
 
-  (defun org:fixup-electric-pairs ()
-    ;; Disable electric-pair for `<s' template.
-    (when (featurep 'elec-pair)
-      (setq-local electric-pair-inhibit-predicate
-                  `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+(defun org:fixup-electric-pairs ()
+  ;; Disable electric-pair for `<s' template.
+  (when (featurep 'elec-pair)
+    (setq-local electric-pair-inhibit-predicate
+                `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
-  (defun python-mode:hook ()
-    (unless (eq major-mode 'ediff-mode)
-      (eglot-ensure)
-      (flycheck-mode)))
+(defun python-mode:hook ()
+  (unless (eq major-mode 'ediff-mode)
+    (eglot-ensure)
+    (flycheck-mode)))
 
-  (defun sh-mode:hook ()
-    (unless (eq major-mode 'ediff-mode)
-      (flycheck-mode)))
+(defun sh-mode:hook ()
+  (unless (eq major-mode 'ediff-mode)
+    (flycheck-mode)))
 
 (defun split-window:jump-right ()
-    "Acts as `split-window-right' but also preforms jump to the window."
-    (interactive)
-    (split-window-right)
-    (other-window 1))
+  "Acts as `split-window-right' but also preforms jump to the window."
+  (interactive)
+  (split-window-right)
+  (other-window 1))
 
 (defvar theme:file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")

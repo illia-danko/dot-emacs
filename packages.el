@@ -1,5 +1,31 @@
 ;;; packages.el --- 3-rd party packages  -*- lexical-binding: t -*-
 
+;; Copyright (c) 2022 Illia Danko
+;;
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
+
+;; This file is not part of GNU Emacs.
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code:
+
 ;; Bootstrap package manager.
 (setq package-enable-at-startup nil)
 (defvar bootstrap-version)
@@ -49,8 +75,6 @@
 (use-package eglot :straight t)
 (use-package flycheck :straight t)
 (use-package rg :straight t)
-(use-package hydra :straight t)
-(use-package multiple-cursors :straight t :after (hydra))
 (use-package olivetti :straight t)
 (use-package hide-mode-line :straight t :init :after (olivetti))
 (use-package dired :hook (dired-mode . dired-mode:hook))
@@ -66,8 +90,6 @@
 (use-package paredit :straight t)
 (use-package format-all :straight t :hook ((format-all-mode . format-all-ensure-formatter)))
 (use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () (paredit-mode) (rainbow-delimiters-mode)))))
-(use-package flycheck-clj-kondo :straight t)
-(use-package clj-refactor :straight t)
 (use-package cider :straight t :hook ((clojure-mode . clojure-mode:hook)))
 (use-package typescript-mode :straight t)
 (use-package js :hook ((js-mode . js-mode:hook)))
@@ -103,7 +125,7 @@
   :straight '(ttymux
               :type git
               :host github
-              :repo "elijahdanko/ttymux.el")
+              :repo "illia-danko/ttymux.el")
   :config
   (ttymux-mode 1))
 

@@ -1,15 +1,11 @@
 ;;; settings.el --- custom-file for variables and faces -*- lexical-binding: t -*-
 ;;
-;; Copyright (c) 2021 Elijah Danko
+;; Copyright (c) 2022 Illia Danko
 ;;
-;; Author: Elijah Danko <me@elijahdanko.net>
-;; URL: https://github.com/elijahdanko/emacs.d
+;; Author: Illia Danko <illia@danko.ws>
+;; URL: https://github.com/illia-danko/dot-emacs
 
 ;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; Customizes Emacs variables and faces.
 
 ;;; License:
 
@@ -48,92 +44,87 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(abbrev-mode t t)
+ '(abbrev-mode t)                       ; use abbreviations everywhere
  '(auto-revert-check-vc-info t)
  '(auto-revert-use-notify nil)
- '(auto-revert-verbose nil)
+ '(auto-revert-verbose nil)             ; dont print `Reverting buffer' message
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix nil)
- '(backup-directory-alist `((".*" \, temporary-file-directory)))
- '(bookmark-default-file "/Users/idanko/.cache/emacs/bookmarks")
+ '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(c-basic-offset 4)
  '(comment-fill-column 80)
  '(company-posframe-quickhelp-show-header nil)
  '(company-posframe-show-indicator nil)
  '(company-posframe-show-metadata nil)
- '(company-posframe-show-params nil t)
- '(completion-category-defaults nil t)
+ '(company-posframe-show-params nil)
+ '(completion-category-defaults nil)
  '(completion-category-overrides '((file (styles partial-completion))))
  '(completion-styles '(orderless basic))
- '(custom-safe-themes t)
- '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
+ '(custom-safe-themes t)        ; disable annoying warning while loading a theme
+ '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
  '(dashboard-set-footer nil)
  '(dired-dwim-target t)
- '(dired-omit-files "^\\...+$")
+ '(dired-omit-files "^\\...+$")         ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
  '(display-line-numbers-type t)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(eglot-stay-out-of '(flymake) t)
+ '(eglot-stay-out-of '(flymake) t) ; don't auto-build (execute flymake). Let flycheck doing so
  '(eldoc-echo-area-use-multiline-p nil)
  '(elfeed-search-filter "@6-months-ago +unread")
- '(enable-local-variables :all)
+ '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
  '(fill-column 80)
- '(format-all-default-formatters
-   `(("YAML"
-      (prettier ,my:config-path-prettier))
-     ("JavaScript"
-      (prettier ,my:config-path-prettier))))
+ '(format-all-default-formatters `(("YAML" (prettier ,my:config-path-prettier)) ("JavaScript" (prettier ,my:config-path-prettier))))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
+ '(inhibit-splash-screen t)
  '(js-indent-level 4)
  '(kill-whole-line t)
- '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
- '(mac-option-modifier 'control)
  '(mac-command-modifier 'meta)
- '(markdown-fontify-code-blocks-natively t)
- '(markdown-hide-markup t)
+ '(mac-option-modifier 'control)
+ '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+ '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
+ '(markdown-hide-markup t)                  ; hide urls
+ '(prefix-help-command #'embark-prefix-help-command)
+ '(python-indent-offset 4)
+ '(require-final-newline t)
+ '(ring-bell-function 'ignore)          ; turn off ring bell sound
+ '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
+ '(tab-width 4)
+ '(use-dialog-box nil)
+ '(user-full-name "Illia Danko")
+ '(user-mail-address "illia@danko.ws")
+ '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
+ '(visible-cursor nil)               ; dont blink cursor in tty.
+ '(xref-show-definitions-function 'consult-xref)
+ '(xref-show-xrefs-function 'consult-xref)
+ `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
+ `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
+ `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
+ `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
+ `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
+ `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
+ `(transient-values-file ,(expand-file-name "transient/values.el" settings:shared-directory))
+ `(undohist-directory ,(expand-file-name "undohist" settings:shared-directory))
+ `(url-configuration-directory ,(expand-file-name "url" settings:shared-directory))
+ )
+
+(custom-set-variables
  '(org-agenda-block-separator "")
- '(org-agenda-files nil)
- '(org-capture-bookmark nil)
- '(org-capture-templates
-   `(("n" "[n]ew TODO item" entry
-      (file org-default-notes-file)
-      "* TODO %?
-Entered on %U")))
- '(org-default-notes-file "/Users/idanko/github.com/illia-danko/org/todo.org")
- '(org-ellipsis "  ")
+ '(org-agenda-files (list org-default-notes-file))
+ '(org-capture-bookmark nil) ; prevent storing bookmarks
+ '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")))
+ '(org-ellipsis "  " ) ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
- '(org-hide-emphasis-markers t)
- '(org-pretty-entities t)
+ '(org-hide-emphasis-markers t) ; close links, etc.
+ '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
  '(org-startup-indented t)
- '(org-superstar-leading-bullet 32)
- '(prefix-help-command #'embark-prefix-help-command t)
- '(projectile-known-projects-file "/Users/idanko/.cache/emacs/projectile-bookmarks.eld")
- '(python-indent-offset 4)
- '(recentf-save-file "/Users/idanko/.cache/emacs/recentf")
- '(require-final-newline t)
- '(ring-bell-function 'ignore)
- '(save-place-file "/Users/idanko/.cache/emacs/places")
- '(set-mark-command-repeat-pop t)
- '(tab-width 4)
- '(transient-history-file "/Users/idanko/.cache/emacs/transient/history.el")
- '(transient-levels-file "/Users/idanko/.cache/emacs/transient/levels.el")
- '(transient-values-file "/Users/idanko/.cache/emacs/transient/values.el")
- '(undohist-directory "/Users/idanko/.cache/emacs/undohist")
- '(url-configuration-directory "/Users/idanko/.cache/emacs/url")
- '(use-dialog-box nil)
- '(user-full-name "Elijah Danko")
- '(user-mail-address "me@elijahdanko.net")
- '(vc-follow-symlinks t)
- '(visible-cursor nil)
- '(xref-show-definitions-function 'consult-xref)
- '(xref-show-xrefs-function 'consult-xref))
+ '(org-superstar-leading-bullet ?\s)
+ `(org-default-notes-file ,(expand-file-name "todo.org" org-directory)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
