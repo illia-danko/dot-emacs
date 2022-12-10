@@ -73,7 +73,7 @@
    (define-key rg-mode-map (kbd "C-c C-s") #'wgrep-save-all-buffers)))
 
 (add-hook
- 'go-mode-map
+ 'go-test
  (lambda nil
    (define-key go-mode-map (kbd "C-c . c") #'go-test-current-test)
    (define-key go-mode-map (kbd "C-c . t") #'go-test-current-file)))

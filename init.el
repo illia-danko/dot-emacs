@@ -64,9 +64,9 @@
        (load custom-settings)))
 
 (load-file (expand-file-name "core.el" user-emacs-directory))
-(load-file (expand-file-name "modes.el" user-emacs-directory))
+(load-file (expand-file-name "api.el" user-emacs-directory))
+(load-file (expand-file-name "packages.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
-(load-file (expand-file-name "ui.el" user-emacs-directory))
 (load-file (expand-file-name "keymap.el" user-emacs-directory))
 
 ;; Compute and show Emacs warm time.
