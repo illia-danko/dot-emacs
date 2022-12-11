@@ -53,13 +53,6 @@
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(c-basic-offset 4)
  '(comment-fill-column 80)
- '(company-posframe-quickhelp-show-header nil)
- '(company-posframe-show-indicator nil)
- '(company-posframe-show-metadata nil)
- '(company-posframe-show-params nil)
- '(completion-category-defaults nil)
- '(completion-category-overrides '((file (styles partial-completion))))
- '(completion-styles '(orderless basic))
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))

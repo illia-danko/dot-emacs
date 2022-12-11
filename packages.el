@@ -44,33 +44,55 @@
 
 (require 'use-package)
 
+(use-package emacs
+  :custom
+  (completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (tab-always-indent 'complete))
+
 (use-package undo-fu :straight t)
 
-(use-package evil
-  :straight t
+(use-package evil :straight t
   :demand t
   :init
   (setq evil-want-keybinding nil
         evil-undo-system 'undo-fu)
   :config (evil-mode 1))
 
-(use-package evil-collection
-  :straight t
+(use-package evil-collection :straight t
   :after evil
   :config
   (evil-collection-init))
+
+(use-package corfu :straight t
+  :custom
+  (corfu-auto t)
+  (corfu-quit-no-match 'separator)
+  :config
+  (global-corfu-mode 1))
+
+(use-package corfu-terminal :straight t
+  :config
+  (unless (display-graphic-p)
+    (corfu-terminal-mode 1)))
+
+(use-package orderless :straight t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles . (partial-completion))))))
+
 (use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
 (use-package git-link :straight t)
 (use-package vertico :straight t :config (vertico-mode 1))
-(use-package orderless :straight t)
 (use-package savehist :init (savehist-mode))  ;; save minibuffer history
 (use-package marginalia :straight t :config (marginalia-mode))
 (use-package consult :straight t)
 (use-package embark-consult :straight t)
 (use-package projectile :straight t :ensure t :config (projectile-mode 1))
 (use-package yasnippet :straight t :config (yas-global-mode +1))
-(use-package company-posframe :straight t :config (company-posframe-mode +1))
-(use-package company :straight t :after (yasnippet company-posframe) :config (global-company-mode +1))
 (use-package expand-region :straight t)
 (use-package eglot :straight t)
 (use-package flycheck :straight t)
@@ -116,7 +138,6 @@
                        (trailing-whitespace:show)))))
 
 (use-package isearch
-  :init
   :config
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
@@ -129,8 +150,7 @@
   :config
   (ttymux-mode 1))
 
-(use-package elfeed
-  :straight t
+(use-package elfeed :straight t
   :hook ((elfeed-show-mode . user:zen-toggle))
   ;; Update elfeed database each 4 hours.
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
