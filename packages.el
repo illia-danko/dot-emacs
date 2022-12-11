@@ -92,6 +92,12 @@
   (unless (display-graphic-p)
     (corfu-terminal-mode 1)))
 
+(use-package cape :straight t           ; complection backend for corfu
+  :after corfu
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file))
+
 (use-package orderless :straight t
   :custom
   (completion-styles '(orderless basic))
