@@ -156,13 +156,12 @@
   (advice-add 'isearch-forward :after #'isearch:region)
   (advice-add 'isearch-backward :after #'isearch:region))
 
-(use-package ttymux
-  :straight '(ttymux
+(use-package navigate
+  :after evil
+  :straight '(navigate
               :type git
               :host github
-              :repo "illia-danko/ttymux.el")
-  :config
-  (ttymux-mode 1))
+              :repo "keith/evil-tmux-navigator"))
 
 (use-package elfeed :straight t
   :hook ((elfeed-show-mode . user:zen-toggle))
