@@ -75,8 +75,8 @@
 ;; Git & version control.
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gg") #'magit-status)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gb") #'magit-log-buffer-file)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-all)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gL") #'magit-log-all)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'vc:push)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gu") #'git-link)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gU") #'git-link:open-homepage)
