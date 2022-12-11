@@ -131,7 +131,7 @@
 
 (use-package elfeed
   :straight t
-  :hook ((elfeed-show-mode . distraction-free-toggle))
+  :hook ((elfeed-show-mode . user:zen-toggle))
   ;; Update elfeed database each 4 hours.
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 
