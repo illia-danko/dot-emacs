@@ -66,6 +66,20 @@
   :config
   (evil-collection-init))
 
+(use-package evil-surround :straight t
+  :config
+  (global-evil-surround-mode 1))
+
+(use-package evil-commentary :straight t
+  :config
+  (evil-commentary-mode 1))
+
+(use-package evil-terminal-cursor-changer :straight t
+  :ensure t
+  :config
+  (unless (display-graphic-p)
+    (etcc-on)))
+
 (use-package corfu :straight t
   :custom
   (corfu-auto t)
