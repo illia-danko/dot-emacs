@@ -51,7 +51,7 @@
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC <") #'consult-buffer)
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC ;") #'eval-expression)
-(evil-define-key '(normal visual) user:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (region:apply 'consult-ripgrep)))
+(evil-define-key '(normal visual) user:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (u:region-apply 'consult-ripgrep)))
 (evil-define-key 'normal user:intercept-mode-map "-" #'dired-jump)
 
 ;; Help.
@@ -62,24 +62,25 @@
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC hm") #'describe-mode)
 
 ;; Exit & Enter Emacs.
-(evil-define-key 'normal user:intercept-mode-map (kbd ",qq") #'emacs:shutdown-server)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",qq") #'u:shutdown-emacs-server)
 
 ;; Toggle.
 (evil-define-key 'normal user:intercept-mode-map (kbd ",th") #'hl-line-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",ts") #'flyspell:toggle)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",ts") #'u:flyspell-toggle)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",tr") #'read-only-mode)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",tc") #'rainbow-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",tz") #'user:zen-toggle)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",tz") #'u:zen-toggle)
 
 ;; Git & version control.
+
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gg") #'magit-status)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gL") #'magit-log-all)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'vc:push)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'u:git-push-update)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gu") #'git-link)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gU") #'git-link:open-homepage)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gU") #'u:git-link-open-homepage)
 
 ;; Edit.
 (evil-define-key '(normal insert) user:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
@@ -96,7 +97,7 @@
 
 ;; Notes.
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nt") #'org:new-todo-entry)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nt") #'u:org-new-todo-entry)
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC nl") #'org-todo-list)
 
 ;;; keymap-global.el ends here

@@ -93,7 +93,6 @@
     (corfu-terminal-mode 1)))
 
 (use-package cape :straight t           ; complection backend for corfu
-  :after corfu
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
@@ -119,31 +118,29 @@
 (use-package rg :straight t)
 (use-package olivetti :straight t)
 (use-package hide-mode-line :straight t :init :after (olivetti))
-(use-package dired :hook (dired-mode . dired-mode:hook))
+(use-package dired :hook (dired-mode . u:dired-mode-hook))
 (use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
 (use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
 (use-package undohist :straight t :config (undohist-initialize))
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))
 (use-package vterm :straight t :hook ((vterm-mode . hide-mode-line-mode)))
-(use-package prog-mode :hook ((prog-mode . prog-mode:hook)))
-(use-package go-mode :straight t :init :hook ((go-mode . go-mode:hook)))
+(use-package prog-mode :hook ((prog-mode . u:prog-mode-hook)))
+(use-package go-mode :straight t :init :hook ((go-mode . u:go-mode-hook)))
 (use-package go-test :straight t :defer t)
 (use-package rainbow-delimiters :straight t)
 (use-package paredit :straight t)
 (use-package format-all :straight t :hook ((format-all-mode . format-all-ensure-formatter)))
 (use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () (paredit-mode) (rainbow-delimiters-mode)))))
-(use-package cider :straight t :hook ((clojure-mode . clojure-mode:hook)))
 (use-package typescript-mode :straight t)
 (use-package js :hook ((js-mode . js-mode:hook)))
-(use-package yaml-mode :straight t :hook ((yaml-mode . yaml-mode:hook)))
-(use-package conf-mode :hook ((conf-space-mode . prog-mode:hook)))
+(use-package yaml-mode :straight t :hook ((yaml-mode . u:yaml-mode-hook)))
+(use-package conf-mode :hook ((conf-space-mode . u:prog-mode-hook)))
 (use-package protobuf-mode :straight t)
-(use-package dockerfile-mode :straight t :hook ((docker-mode . prog-mode:hook)))
-(use-package markdown-mode :straight t :hook ((markdown-mode . trailing-whitespace:show)))
+(use-package dockerfile-mode :straight t :hook ((docker-mode . u:prog-mode-hook)))
+(use-package markdown-mode :straight t :hook ((markdown-mode . u:show-trailing-whitespace)))
 (use-package org-superstar :straight t)
-(use-package htmlize :straight t)
-(use-package python :init :hook ((python-mode . python-mode:hook)))
-(use-package sh-script :hook ((sh-mode . sh-mode:hook)))
+(use-package python :init :hook ((python-mode . u:python-mode-hook)))
+(use-package sh-script :hook ((sh-mode . u:sh-mode-hook)))
 (use-package restclient :straight t :mode ("\\.http\\'" . restclient-mode))
 (use-package doom-themes :straight t)
 (use-package which-key :straight t :config (which-key-mode 1))
@@ -153,14 +150,13 @@
 
 (use-package org
   :hook ((org-mode . (lambda ()
-                       (org:fixup-electric-pairs)
                        (org-superstar-mode)
-                       (trailing-whitespace:show)))))
+                       (u:show-trailing-whitespace)))))
 
 (use-package isearch
   :config
-  (advice-add 'isearch-forward :after #'isearch:region)
-  (advice-add 'isearch-backward :after #'isearch:region))
+  (advice-add 'isearch-forward :after #'u:isearch-region)
+  (advice-add 'isearch-backward :after #'u:isearch-region))
 
 (use-package navigate
   :after evil
@@ -170,7 +166,7 @@
               :repo "keith/evil-tmux-navigator"))
 
 (use-package elfeed :straight t
-  :hook ((elfeed-show-mode . user:zen-toggle))
+  :hook ((elfeed-show-mode . u:zen-toggle))
   ;; Update elfeed database each 4 hours.
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 

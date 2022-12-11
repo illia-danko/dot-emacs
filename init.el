@@ -54,7 +54,7 @@
 
 (load-file (expand-file-name "core.el" user-emacs-directory))
 (load-file (expand-file-name "keymap-local.el" user-emacs-directory))
-(load-file (expand-file-name "api.el" user-emacs-directory))
+(load-file (expand-file-name "u.el" user-emacs-directory))
 (load-file (expand-file-name "packages.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
 (load-file (expand-file-name "keymap-global.el" user-emacs-directory))

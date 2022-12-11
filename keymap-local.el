@@ -50,7 +50,7 @@
  'dired-mode-hook
  (lambda nil
    (evil-collection-define-key 'normal 'dired-mode-map
-     "o" '#'dired:system-xdg-open)))
+     "o" '#'u:system-open)))
 
 (add-hook
  'go-mode-hook
@@ -68,22 +68,20 @@
 (add-hook
  'markdown-mode-hook
  (lambda nil
-   (evil-define-key 'normal markdown-mode-map (kbd "SPC m w") #'markdown-preview)
-   (evil-define-key 'normal markdown-mode-map (kbd "SPC m *") #'markdown:toggle-fontifications)))
+   (evil-define-key 'normal markdown-mode-map (kbd "SPC m *") #'u:markdown-toggle-fontifications)))
 
 (add-hook
  'org-mode-hook
  (lambda nil
-   (evil-define-key 'normal org-mode-map (kbd "SPC m w") #'org:browser-preview)
-   (evil-define-key 'normal org-mode-map (kbd "SPC m *") #'org:toggle-fontifications)))
+   (evil-define-key 'normal org-mode-map (kbd "SPC m *") #'u:org-toggle-fontifications)))
 
 (add-hook
  'evil-mode-hook
  (lambda nil
-   (define-key evil-normal-state-map   (kbd "C-g") #'evil-keyboard-quit)
-   (define-key evil-motion-state-map   (kbd "C-g") #'evil-keyboard-quit)
-   (define-key evil-insert-state-map   (kbd "C-g") #'evil-keyboard-quit)
-   (define-key evil-window-map         (kbd "C-g") #'evil-keyboard-quit)
-   (define-key evil-operator-state-map (kbd "C-g") #'evil-keyboard-quit)))
+   (define-key evil-normal-state-map   (kbd "C-g") #'u:evil-keyboard-quit)
+   (define-key evil-motion-state-map   (kbd "C-g") #'u:evil-keyboard-quit)
+   (define-key evil-insert-state-map   (kbd "C-g") #'u:evil-keyboard-quit)
+   (define-key evil-window-map         (kbd "C-g") #'u:evil-keyboard-quit)
+   (define-key evil-operator-state-map (kbd "C-g") #'u:evil-keyboard-quit)))
 
 ;;; keymap-local.el ends here
