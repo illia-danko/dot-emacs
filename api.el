@@ -258,7 +258,18 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   "Adjust faces."
   (when frame
     (select-frame frame))
-  (theme:load-from-file))
+  (theme:load-from-file)
+
+  (unless (display-graphic-p)
+    ;; Fix terminal vertical-border glyph.
+    ;; (https://emacs.stackexchange.com/questions/7228/nice-tty-window-borders-in-24-4).
+    (let ((display-table (or standard-display-table (make-display-table))))
+      (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
+      (setq standard-display-table display-table))
+    ;; Make vertical border as tmux' one.
+    (set-face-attribute 'vertical-border frame
+                        :foreground (face-foreground 'default)
+                        :background (face-background 'default))))
 
 (add-hook 'after-init-hook #'theme:update-faces)
 (add-hook 'after-make-frame-functions #'theme:update-faces)
