@@ -48,7 +48,7 @@
 
 ;; Navigation & Search.
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",b") #'consult-buffer)
+(evil-define-key 'normal user:intercept-mode-map (kbd "SPC <") #'consult-buffer)
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
 (evil-define-key 'normal user:intercept-mode-map (kbd "SPC ;") #'eval-expression)
 (evil-define-key '(normal visual) user:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (region:apply 'consult-ripgrep)))
