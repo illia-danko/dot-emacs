@@ -69,6 +69,7 @@
 ;; $PATH.
 ;;; Find executables used by packages.
 (let ((path `("/usr/local/go/bin"
+              "/opt/homebrew/bin"
               ,(concat (getenv "HOME") "/go/bin")
               ,(concat (getenv "HOME") "/.fzf/bin"))))
 
