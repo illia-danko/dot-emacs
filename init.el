@@ -47,14 +47,14 @@
 ;; Load custom file (settings.el) before packages.
 (setq custom-file (expand-file-name "settings.el" user-emacs-directory))
 (load custom-file)
-(let ((private-settings.el (expand-file-name "private-settings.el" u:shared-directory)))
+(let ((private-settings.el (expand-file-name "private-settings.el" i:shared-directory)))
   (and private-settings.el
        (file-exists-p private-settings.el)
        (load private-settings.el)))
 
 (load-file (expand-file-name "core.el" user-emacs-directory))
 (load-file (expand-file-name "keymap-local.el" user-emacs-directory))
-(load-file (expand-file-name "user.el" user-emacs-directory))
+(load-file (expand-file-name "internal.el" user-emacs-directory))
 (load-file (expand-file-name "packages.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
 (load-file (expand-file-name "keymap-global.el" user-emacs-directory))
