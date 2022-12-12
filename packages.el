@@ -151,4 +151,7 @@
   ;; Update elfeed database each 4 hours.
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 
+(use-package elisp-mode
+  :hook (emacs-lisp-mode . format-all-mode))
+
 ;;; packages.el ends here
