@@ -132,7 +132,7 @@
 (use-package format-all :straight t :hook ((format-all-mode . format-all-ensure-formatter)))
 (use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () (paredit-mode) (rainbow-delimiters-mode)))))
 (use-package typescript-mode :straight t)
-(use-package js :hook ((js-mode . js-mode:hook)))
+(use-package js :hook ((js-mode . u:js-mode-hook)))
 (use-package yaml-mode :straight t :hook ((yaml-mode . u:yaml-mode-hook)))
 (use-package conf-mode :hook ((conf-space-mode . u:prog-mode-hook)))
 (use-package protobuf-mode :straight t)
