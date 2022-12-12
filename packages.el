@@ -121,11 +121,7 @@
 (use-package dired :hook (dired-mode . u:dired-mode-hook))
 (use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
 (use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
-(use-package undohist :straight t
-  :custom
-  (undohist-directory ,(expand-file-name "undohist" u:shared-directory))
-  (undohist-ignored-files '("magit"))
-  :config (undohist-initialize))
+(use-package undohist :straight t :config (undohist-initialize))
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))
 (use-package vterm :straight t :hook ((vterm-mode . hide-mode-line-mode)))
 (use-package prog-mode :hook ((prog-mode . u:prog-mode-hook)))
