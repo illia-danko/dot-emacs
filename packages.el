@@ -44,10 +44,21 @@
 
 (require 'use-package)
 
+(use-package emacs
+  :custom
+  (completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (tab-always-indent 'complete))
+
 (use-package undo-fu :straight t)
 
 (use-package evil :straight t
   :demand t
+  :init
+  (setq evil-want-keybinding nil
+        evil-undo-system 'undo-fu)
   :config (evil-mode 1))
 
 (use-package evil-collection :straight t
@@ -70,6 +81,9 @@
     (etcc-on)))
 
 (use-package corfu :straight t
+  :custom
+  (corfu-auto t)
+  (corfu-quit-no-match 'separator)
   :config
   (global-corfu-mode 1))
 
@@ -82,6 +96,12 @@
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
+
+(use-package orderless :straight t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
 (use-package git-link :straight t)
@@ -99,11 +119,7 @@
 (use-package olivetti :straight t)
 (use-package hide-mode-line :straight t :init :after (olivetti))
 (use-package dired :hook (dired-mode . u:dired-mode-hook))
-(use-package anzu :straight t
-  :config
-  (global-set-key [remap query-replace] 'anzu-query-replace)
-  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-  (global-anzu-mode 1))
+(use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
 (use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
 (use-package undohist :straight t :config (undohist-initialize))
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))

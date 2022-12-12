@@ -53,12 +53,6 @@
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(c-basic-offset 4)
  '(comment-fill-column 80)
- '(completion-category-defaults nil)
- '(completion-category-overrides '((file (styles . (partial-completion)))))
- '(completion-cycle-threshold 3)    ; TAB cycle if there are only few candidates
- '(completion-styles '(orderless basic))
- '(corfu-auto t)
- '(corfu-quit-no-match 'separator)
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
@@ -74,8 +68,6 @@
  '(elfeed-search-filter "@6-months-ago +unread")
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
- '(evil-undo-system 'undo-fu)
- '(evil-want-keybinding nil)
  '(fill-column 80)
  '(format-all-default-formatters `(("YAML" (prettier ,u:prettier-config-path)) ("JavaScript" (prettier ,u:prettier-config-path))))
  '(global-auto-revert-non-file-buffers t)
@@ -91,11 +83,9 @@
  '(markdown-hide-markup t)                  ; hide urls
  '(prefix-help-command #'embark-prefix-help-command)
  '(python-indent-offset 4)
- '(read-extended-command-predicate #'command-completion-default-include-p)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)          ; turn off ring bell sound
  '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
- '(tab-always-indent 'complete)
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Illia Danko")

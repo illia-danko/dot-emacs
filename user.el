@@ -26,22 +26,6 @@
 
 ;;; Code:
 
-(with-eval-after-load 'evil
-  ;; Define high precedence map (See evil-collection/README.md).
-
-  (defvar u:pre-mode-map (make-sparse-keymap)
-    "High precedence keymap.")
-
-  (define-minor-mode u:pre-mode
-    :global t)
-
-  (u:pre-mode +1)
-
-  (dolist (state '(normal visual insert))
-    (evil-make-intercept-map
-     (evil-get-auxiliary-keymap u:pre-mode-map state t t)
-     state)))
-
 (defun u:region-content ()
   "Takes region content if any."
   (buffer-substring-no-properties (mark) (point)))
