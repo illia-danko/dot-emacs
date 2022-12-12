@@ -1,4 +1,4 @@
-;;; u.el --- User Defined Commands and Functions  -*- lexical-binding: t -*-
+;;; user.el --- User Defined Commands and Functions  -*- lexical-binding: t -*-
 
 ;; Copyright (c) 2022 Illia Danko
 ;;
@@ -249,4 +249,4 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (and evil-mode (evil-force-normal-state))
   (keyboard-quit))
 
-;;; u.el ends here
+;;; user.el ends here
