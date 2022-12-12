@@ -47,6 +47,16 @@
  '(abbrev-mode t)                       ; use abbreviations everywhere
  '(auto-revert-check-vc-info t)
  '(auto-revert-use-notify nil)
+ '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
+ '(corfu-auto t)
+ '(evil-want-keybinding nil)
+ '(evil-undo-system 'undo-fu)
+ '(corfu-quit-no-match 'separator)
+ '(completion-styles '(orderless basic))
+ '(completion-category-defaults nil)
+ '(completion-category-overrides '((file (styles . (partial-completion)))))
+ '(read-extended-command-predicate #'command-completion-default-include-p)
+ '(tab-always-indent 'complete)
  '(auto-revert-verbose nil)             ; dont print `Reverting buffer' message
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix nil)
