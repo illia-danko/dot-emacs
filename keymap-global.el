@@ -26,79 +26,61 @@
 
 ;;; Code:
 
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-
-;; Define high precedence map (See evil-collection/README.md).
-(defvar u:intercept-mode-map (make-sparse-keymap)
-  "High precedence keymap.")
-
-(define-minor-mode u:intercept-mode
-  "Global minor mode for higher precedence evil keybindings."
-  :global t)
-
-(u:intercept-mode +1)
-
-(dolist (state '(normal visual insert))
-  (evil-make-intercept-map
-   (evil-get-auxiliary-keymap u:intercept-mode-map state t t)
-   state))
-
 ;;;; Mapping.
 
 ;; Navigation & Search.
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC <") #'consult-buffer)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC ;") #'eval-expression)
-(evil-define-key '(normal visual) u:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (u:region-apply 'consult-ripgrep)))
-(evil-define-key 'normal u:intercept-mode-map "-" #'dired-jump)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC p") #'projectile-command-map)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC <") #'consult-buffer)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC :") #'execute-extended-command)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC ;") #'eval-expression)
+(evil-define-key '(normal visual) u:pre-mode-map (kbd "SPC /") #'(lambda () (interactive) (u:region-apply 'consult-ripgrep)))
+(evil-define-key 'normal u:pre-mode-map "-" #'dired-jump)
 
 ;; Help.
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC hk") #'describe-key)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC hw") #'where-is)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC hv") #'describe-variable)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC hf") #'describe-function)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC hm") #'describe-mode)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC hk") #'describe-key)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC hw") #'where-is)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC hv") #'describe-variable)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC hf") #'describe-function)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC hm") #'describe-mode)
 
 ;; Exit & Enter Emacs.
-(evil-define-key 'normal u:intercept-mode-map (kbd ",qq") #'u:shutdown-emacs-server)
+(evil-define-key 'normal u:pre-mode-map (kbd ",qq") #'u:shutdown-emacs-server)
 
 ;; Toggle.
-(evil-define-key 'normal u:intercept-mode-map (kbd ",th") #'hl-line-mode)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",ts") #'u:flyspell-toggle)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",tr") #'read-only-mode)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",tc") #'rainbow-mode)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",tz") #'u:zen-toggle)
+(evil-define-key 'normal u:pre-mode-map (kbd ",th") #'hl-line-mode)
+(evil-define-key 'normal u:pre-mode-map (kbd ",ts") #'u:flyspell-toggle)
+(evil-define-key 'normal u:pre-mode-map (kbd ",tr") #'read-only-mode)
+(evil-define-key 'normal u:pre-mode-map (kbd ",tn") #'display-line-numbers-mode)
+(evil-define-key 'normal u:pre-mode-map (kbd ",tc") #'rainbow-mode)
+(evil-define-key 'normal u:pre-mode-map (kbd ",tz") #'u:zen-toggle)
 
 ;; Git & version control.
 
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gg") #'magit-status)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gd") #'magit-diff-buffer-file)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gL") #'magit-log-all)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gc") #'u:git-push-update)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gu") #'git-link)
-(evil-define-key 'normal u:intercept-mode-map (kbd ",gU") #'u:git-link-open-homepage)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gg") #'magit-status)
+(evil-define-key 'normal u:pre-mode-map (kbd ",g?") #'magit-blame-addition)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gd") #'magit-diff-buffer-file)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gL") #'magit-log-all)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gl") #'magit-log-buffer-file)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gc") #'u:git-push-update)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gu") #'git-link)
+(evil-define-key 'normal u:pre-mode-map (kbd ",gU") #'u:git-link-open-homepage)
 
 ;; Edit.
-(evil-define-key '(normal insert) u:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
-(evil-define-key 'normal u:intercept-mode-map (kbd "C-t") #'er/expand-region)
-(evil-define-key 'normal u:intercept-mode-map (kbd "C-q") #'er/contract-region)
+(evil-define-key '(normal insert) u:pre-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
+(evil-define-key 'normal u:pre-mode-map (kbd "C-t") #'er/expand-region)
+(evil-define-key 'normal u:pre-mode-map (kbd "C-q") #'er/contract-region)
 
 ;; Files & Buffers.
-(evil-define-key 'normal u:intercept-mode-map (kbd ",fr") #'consult-recent-file)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC mm") #'consult-imenu)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
+(evil-define-key 'normal u:pre-mode-map (kbd ",fr") #'consult-recent-file)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC mm") #'consult-imenu)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
 
 ;; Open.
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC of") #'elfeed)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC of") #'elfeed)
 
 ;; Notes.
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC nt") #'u:org-new-todo-entry)
-(evil-define-key 'normal u:intercept-mode-map (kbd "SPC nl") #'org-todo-list)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC nt") #'u:org-new-todo-entry)
+(evil-define-key 'normal u:pre-mode-map (kbd "SPC nl") #'org-todo-list)
 
 ;;; keymap-global.el ends here
