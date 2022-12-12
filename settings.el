@@ -26,18 +26,18 @@
 
 ;;; Code:
 
-(defvar settings:shared-directory "~/.cache/emacs"
+(defvar u:shared-directory "~/.cache/emacs"
   "Cloud file storage location.")
 
-(defvar my:config-path-prettier (concat
-                               "--config="
-                               (expand-file-name "~/.config/prettier/prettier.config.js"))
+(defvar u:prettier-config-path (concat
+                                "--config="
+                                (expand-file-name "~/.config/prettier/prettier.config.js"))
   "Path to prettier config.")
 
 (setq org-directory "~/github.com/illia-danko/org")
 
-(unless (file-directory-p settings:shared-directory)
-  (make-directory settings:shared-directory))
+(unless (file-directory-p u:shared-directory)
+  (make-directory u:shared-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -69,7 +69,7 @@
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
  '(fill-column 80)
- '(format-all-default-formatters `(("YAML" (prettier ,my:config-path-prettier)) ("JavaScript" (prettier ,my:config-path-prettier))))
+ '(format-all-default-formatters `(("YAML" (prettier ,u:prettier-config-path)) ("JavaScript" (prettier ,u:prettier-config-path))))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
@@ -94,15 +94,15 @@
  '(visible-cursor nil)               ; dont blink cursor in tty.
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref)
- `(bookmark-default-file ,(expand-file-name "bookmarks" settings:shared-directory)) ; bookmarks path
- `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" settings:shared-directory)) ; saved projects path
- `(recentf-save-file ,(expand-file-name "recentf" settings:shared-directory)) ; recent files path
- `(save-place-file ,(expand-file-name "places" settings:shared-directory)) ; saved file positions file path
- `(transient-history-file ,(expand-file-name "transient/history.el" settings:shared-directory))
- `(transient-levels-file ,(expand-file-name "transient/levels.el" settings:shared-directory)) ; transient-mode cache files
- `(transient-values-file ,(expand-file-name "transient/values.el" settings:shared-directory))
- `(undohist-directory ,(expand-file-name "undohist" settings:shared-directory))
- `(url-configuration-directory ,(expand-file-name "url" settings:shared-directory))
+ `(bookmark-default-file ,(expand-file-name "bookmarks" u:shared-directory)) ; bookmarks path
+ `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" u:shared-directory)) ; saved projects path
+ `(recentf-save-file ,(expand-file-name "recentf" u:shared-directory)) ; recent files path
+ `(save-place-file ,(expand-file-name "places" u:shared-directory)) ; saved file positions file path
+ `(transient-history-file ,(expand-file-name "transient/history.el" u:shared-directory))
+ `(transient-levels-file ,(expand-file-name "transient/levels.el" u:shared-directory)) ; transient-mode cache files
+ `(transient-values-file ,(expand-file-name "transient/values.el" u:shared-directory))
+ `(undohist-directory ,(expand-file-name "undohist" u:shared-directory))
+ `(url-configuration-directory ,(expand-file-name "url" u:shared-directory))
  )
 
 (custom-set-variables

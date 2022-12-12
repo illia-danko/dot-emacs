@@ -47,7 +47,7 @@
 ;; Load custom file (settings.el) before packages.
 (setq custom-file (expand-file-name "settings.el" user-emacs-directory))
 (load custom-file)
-(let ((private-settings.el (expand-file-name "private-settings.el" settings:shared-directory)))
+(let ((private-settings.el (expand-file-name "private-settings.el" u:shared-directory)))
   (and private-settings.el
        (file-exists-p private-settings.el)
        (load private-settings.el)))
