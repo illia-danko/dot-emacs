@@ -85,7 +85,8 @@
 
 ;; Edit.
 (evil-define-key '(normal insert) intern:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "C-t") #'er/expand-region)
+(define-key evil-motion-state-map (kbd "C-e") nil) ; disable annoying move on expand-region
+(evil-define-key 'normal intern:intercept-mode-map (kbd "C-e") #'er/expand-region)
 (evil-define-key 'normal intern:intercept-mode-map (kbd "C-q") #'er/contract-region)
 
 ;; Files & Buffers.
@@ -95,6 +96,8 @@
 
 ;; Open.
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC of") #'elfeed)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "RET") #'embark-dwim)
+(evil-define-key nil intern:intercept-mode-map (kbd "C-t") #'embark-act)
 
 ;; Notes.
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))

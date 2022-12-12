@@ -48,7 +48,8 @@
 
 (use-package evil :straight t
   :demand t
-  :config (evil-mode 1))
+  :config
+  (evil-mode 1))
 
 (use-package evil-collection :straight t
   :after evil
