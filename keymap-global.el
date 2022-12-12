@@ -30,75 +30,75 @@
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
 
 ;; Define high precedence map (See evil-collection/README.md).
-(defvar user:intercept-mode-map (make-sparse-keymap)
+(defvar intern:intercept-mode-map (make-sparse-keymap)
   "High precedence keymap.")
 
-(define-minor-mode user:intercept-mode
+(define-minor-mode intern:intercept-mode
   "Global minor mode for higher precedence evil keybindings."
   :global t)
 
-(user:intercept-mode +1)
+(intern:intercept-mode +1)
 
 (dolist (state '(normal visual insert))
   (evil-make-intercept-map
-   (evil-get-auxiliary-keymap user:intercept-mode-map state t t)
+   (evil-get-auxiliary-keymap intern:intercept-mode-map state t t)
    state))
 
 ;;;; Mapping.
 
 ;; Navigation & Search.
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC <") #'consult-buffer)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ;") #'eval-expression)
-(evil-define-key '(normal visual) user:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (i:region-apply 'consult-ripgrep)))
-(evil-define-key 'normal user:intercept-mode-map "-" #'dired-jump)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC <") #'consult-buffer)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ;") #'eval-expression)
+(evil-define-key '(normal visual) intern:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (intern:region-apply 'consult-ripgrep)))
+(evil-define-key 'normal intern:intercept-mode-map "-" #'dired-jump)
 
 ;; Help.
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hk") #'describe-key)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hw") #'where-is)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hv") #'describe-variable)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hf") #'describe-function)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC hm") #'describe-mode)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hk") #'describe-key)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hw") #'where-is)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hv") #'describe-variable)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hf") #'describe-function)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hm") #'describe-mode)
 
 ;; Exit & Enter Emacs.
-(evil-define-key 'normal user:intercept-mode-map (kbd ",qq") #'i:shutdown-emacs-server)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",qq") #'intern:shutdown-emacs-server)
 
 ;; Toggle.
-(evil-define-key 'normal user:intercept-mode-map (kbd ",th") #'hl-line-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",ts") #'i:flyspell-toggle)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",tr") #'read-only-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",tc") #'rainbow-mode)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",tz") #'i:zen-toggle)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",th") #'hl-line-mode)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",ts") #'intern:flyspell-toggle)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",tr") #'read-only-mode)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",tc") #'rainbow-mode)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",tz") #'intern:zen-toggle)
 
 ;; Git & version control.
 
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gg") #'magit-status)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gd") #'magit-diff-buffer-file)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gL") #'magit-log-all)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'i:git-push-update)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gu") #'git-link)
-(evil-define-key 'normal user:intercept-mode-map (kbd ",gU") #'i:git-link-open-homepage)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gg") #'magit-status)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gd") #'magit-diff-buffer-file)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gL") #'magit-log-all)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gc") #'intern:git-push-update)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gu") #'git-link)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",gU") #'intern:git-link-open-homepage)
 
 ;; Edit.
-(evil-define-key '(normal insert) user:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
-(evil-define-key 'normal user:intercept-mode-map (kbd "C-t") #'er/expand-region)
-(evil-define-key 'normal user:intercept-mode-map (kbd "C-q") #'er/contract-region)
+(evil-define-key '(normal insert) intern:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "C-t") #'er/expand-region)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "C-q") #'er/contract-region)
 
 ;; Files & Buffers.
-(evil-define-key 'normal user:intercept-mode-map (kbd ",fr") #'consult-recent-file)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC mm") #'consult-imenu)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
+(evil-define-key 'normal intern:intercept-mode-map (kbd ",fr") #'consult-recent-file)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC mm") #'consult-imenu)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
 
 ;; Open.
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC of") #'elfeed)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC of") #'elfeed)
 
 ;; Notes.
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nt") #'i:org-new-todo-entry)
-(evil-define-key 'normal user:intercept-mode-map (kbd "SPC nl") #'org-todo-list)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC nt") #'intern:org-new-todo-entry)
+(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC nl") #'org-todo-list)
 
 ;;; keymap-global.el ends here

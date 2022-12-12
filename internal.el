@@ -26,20 +26,20 @@
 
 ;;; Code:
 
-(defun i:region-content ()
+(defun intern:region-content ()
   "Takes region content if any."
   (buffer-substring-no-properties (mark) (point)))
 
-(defun i:region-apply (fn)
+(defun intern:region-apply (fn)
   "Apply fn to the marked region text."
   (interactive)
   (if mark-active
-	  (let ((content (i:region-content)))
+	  (let ((content (intern:region-content)))
 		(deactivate-mark)
 		(funcall fn nil content))
 	(funcall fn)))
 
-(defun i:flyspell-toggle ()
+(defun intern:flyspell-toggle ()
   "Toggle spell checking."
   (interactive)
   (if flyspell-mode
@@ -53,12 +53,12 @@
         (flyspell-mode +1))
       (flyspell-buffer))))
 
-(defun i:git-link-open-homepage ()
+(defun intern:git-link-open-homepage ()
   (interactive)
   (let ((git-link-open-in-browser t))
     (call-interactively 'git-link-homepage)))
 
-(defun i:git-push-update ()
+(defun intern:git-push-update ()
   "Stage, commit and push upstream a personal note file."
   (interactive)
   (let ((org-dir (expand-file-name org-directory))
@@ -70,7 +70,7 @@
       (call-process "git" nil nil nil "push")
       (message "Pushed %s" relname))))
 
-(defun i:system-open ()
+(defun intern:system-open ()
   (interactive)
   (let ((file (dired-get-filename nil t))
         (cmd (pcase system-type
@@ -78,40 +78,40 @@
                (_ "xdg-open"))))
     (call-process cmd nil 0 nil file)))
 
-(defun i:dired-mode-hook ()
+(defun intern:dired-mode-hook ()
   (dired-hide-details-mode)
   (dired-omit-mode))
 
-(defun i:isearch-region (&rest _)
+(defun intern:isearch-region (&rest _)
   "If a region is active, set a selected pattern as an isearch input."
   (interactive "P\np")
   (if mark-active
-	  (let ((content (i:region-content)))
+	  (let ((content (intern:region-content)))
 		(deactivate-mark)
 		(isearch-yank-string content))))
 
-(defun i:zen-toggle (&optional arg)
+(defun intern:zen-toggle (&optional arg)
     (interactive)
     (call-interactively 'olivetti-mode arg)
     (call-interactively 'hide-mode-line-mode arg))
 
-(defun i:shutdown-emacs-server ()
+(defun intern:shutdown-emacs-server ()
   "Quit Emacs globally. Shutdown server."
   (interactive)
   (when (y-or-n-p "Quit emacs and stop the service?")
     (kill-emacs)
     (save-some-buffers)))
 
-(defun i:show-trailing-whitespace ()
+(defun intern:show-trailing-whitespace ()
   "Show trailing whitespaces on a buffer."
   (setq-local show-trailing-whitespace t))
 
-(defun i:prog-mode-hook ()
-  (i:show-trailing-whitespace)
+(defun intern:prog-mode-hook ()
+  (intern:show-trailing-whitespace)
   (hl-line-mode 1)
   (display-line-numbers-mode 1))
 
-(defun i:go-mode-hook ()
+(defun intern:go-mode-hook ()
   (setq-local comment-fill-column 150
               fill-column 150)
   (unless (eq major-mode 'ediff-mode)
@@ -119,7 +119,7 @@
     (flycheck-mode))
   (add-hook 'before-save-hook #'gofmt-before-save))
 
-(defun i:js-mode-hook ()
+(defun intern:js-mode-hook ()
     ;; Do not enable LSP and linter for *.ts and *.json.
     (let ((ext (file-name-extension buffer-file-name)))
       (and ext
@@ -136,18 +136,18 @@
                (flycheck-mode))
              (format-all-mode)))))
 
-(defun i:yaml-mode-hook ()
-  (i:prog-mode-hook)
+(defun intern:yaml-mode-hook ()
+  (intern:prog-mode-hook)
   (unless (eq major-mode 'ediff-mode)
     (flycheck-mode)
     (format-all-mode)))
 
-(defun i:markdown-toggle-fontifications (&optional arg)
+(defun intern:markdown-toggle-fontifications (&optional arg)
   "Toggle fontifications on/off."
   (interactive (list (or current-prefix-arg 'toggle)))
   (markdown-toggle-markup-hiding arg))
 
-(defun i:org-toggle-fontifications ()
+(defun intern:org-toggle-fontifications ()
     "Toggle fontifications on/off.
 The solution taken from
 https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/init.el#L3037-L3069"
@@ -164,24 +164,24 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
     ;; Apply changes.
     (font-lock-fontify-buffer))
 
-(defun i:org-new-todo-entry ()
+(defun intern:org-new-todo-entry ()
   "Adds new `TODO' entry."
   (interactive)
   (org-capture nil "n"))
 
-(defun i:python-mode-hook ()
+(defun intern:python-mode-hook ()
   (unless (eq major-mode 'ediff-mode)
     (eglot-ensure)
     (flycheck-mode)))
 
-(defun i:sh-mode-hook ()
+(defun intern:sh-mode-hook ()
   (unless (eq major-mode 'ediff-mode)
     (flycheck-mode)))
 
-(defvar i:theme-file-path "~/.emacs.d/theme"
+(defvar intern:theme-file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")
 
-(defvar i:theme-default-name "doom-one-light"
+(defvar intern:theme-default-name "doom-one-light"
   "Current Emacs theme.")
 
 (defvar after-load-theme-hook nil
@@ -191,36 +191,36 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   "Run `after-load-theme-hook'."
   (run-hooks 'after-load-theme-hook))
 
-(defun i:save-theme-to-file (path name)
+(defun intern:save-theme-to-file (path name)
   (with-temp-buffer
     (insert name)
     (write-region (point-min) (point-max) path)))
 
-(defun i:save-current-theme-to-file ()
-  (i:save-theme-to-file i:theme-file-path
+(defun intern:save-current-theme-to-file ()
+  (intern:save-theme-to-file intern:theme-file-path
                       (symbol-name (car custom-enabled-themes))))
 
-(defun i:theme-ensure-exists ()
-  (unless (file-exists-p i:theme-file-path)
-    (i:save-theme-to-file i:theme-file-path i:theme-default-name)))
+(defun intern:theme-ensure-exists ()
+  (unless (file-exists-p intern:theme-file-path)
+    (intern:save-theme-to-file intern:theme-file-path intern:theme-default-name)))
 
-(defun i:load-theme-from-file ()
-  (i:theme-ensure-exists)
+(defun intern:load-theme-from-file ()
+  (intern:theme-ensure-exists)
   (load-theme
    (intern
     (string-trim
      (with-temp-buffer
-       (insert-file-contents i:theme-file-path)
+       (insert-file-contents intern:theme-file-path)
        (buffer-string))))
    t))
 
-(add-hook 'after-load-theme-hook #'i:save-current-theme-to-file)
+(add-hook 'after-load-theme-hook #'intern:save-current-theme-to-file)
 
-(defun i:load-theme-faces (&optional frame)
+(defun intern:load-theme-faces (&optional frame)
   "Adjust faces."
   (when frame
     (select-frame frame))
-  (i:load-theme-from-file)
+  (intern:load-theme-from-file)
 
   (unless (display-graphic-p)
     ;; Fix terminal vertical-border glyph.
@@ -233,8 +233,8 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
                         :foreground (face-foreground 'default)
                         :background (face-background 'success))))
 
-(add-hook 'after-init-hook #'i:load-theme-faces)
-(add-hook 'after-make-frame-functions #'i:load-theme-faces)
+(add-hook 'after-init-hook #'intern:load-theme-faces)
+(add-hook 'after-make-frame-functions #'intern:load-theme-faces)
 
 ;; Maximize window on startup.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -243,7 +243,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
           (lambda (&optional frame)
 	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
 
-(defun i:evil-keyboard-quit ()
+(defun intern:evil-keyboard-quit ()
   "Keyboard quit and force normal state."
   (interactive)
   (and evil-mode (evil-force-normal-state))
