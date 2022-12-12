@@ -76,6 +76,7 @@
 
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gg") #'magit-status)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
+(evil-define-key 'normal user:intercept-mode-map (kbd ",gd") #'magit-diff-buffer-file)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gL") #'magit-log-all)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
 (evil-define-key 'normal user:intercept-mode-map (kbd ",gc") #'u:git-push-update)
