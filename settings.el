@@ -135,8 +135,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka Nerd Font Mono" :height 160))))
- '(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :height 160))))
- '(variable-pitch ((t (:family "Iosevka Nerd Font Mono" :height 160)))))
+ '(default ((t (:family "Iosevka Nerd Font Mono" :height 120 :weight demibold))))
+ '(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :height 120 :weight demibold))))
+ '(variable-pitch ((t (:family "Iosevka Nerd Font Mono" :height 120 demibold)))))
 
 ;;; settings.el ends here
