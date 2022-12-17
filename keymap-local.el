@@ -30,8 +30,7 @@
  'projectile-mode-hook
  (lambda nil
    (define-key projectile-command-map "#" #'projectile-kill-buffers)
-   (define-key projectile-command-map "!" #'projectile-remove-known-project)
-   (define-key projectile-command-map "f" #'consult-find)))
+   (define-key projectile-command-map "!" #'projectile-remove-known-project)))
 
 (add-hook
  'eglot-managed-mode-hook

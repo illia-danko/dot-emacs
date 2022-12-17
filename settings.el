@@ -90,6 +90,12 @@
  '(mac-option-modifier 'control)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
+ '(marginalia-command-categories '((flycheck-error-list-set-filter . builtin)
+                                   (persp-switch-to-buffer . buffer)
+                                   (projectile-find-file . project-file)
+                                   (projectile-recentf . project-file)
+                                   (projectile-switch-to-buffer . buffer)
+                                   (projectile-switch-project . project-file)))
  '(markdown-hide-markup t)                  ; hide urls
  '(prefix-help-command #'embark-prefix-help-command)
  '(python-indent-offset 4)
