@@ -93,7 +93,6 @@
 
 ;; Open.
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC of") #'elfeed)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "RET") #'embark-dwim)
 (evil-define-key nil intern:intercept-mode-map (kbd "C-t") #'embark-act)
 
 ;; Notes.

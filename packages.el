@@ -44,8 +44,6 @@
 
 (require 'use-package)
 
-(use-package undo-fu :straight t)
-
 (use-package evil :straight t
   :demand t
   :config
@@ -110,9 +108,8 @@
 (use-package go-mode :straight t :init :hook ((go-mode . intern:go-mode-hook)))
 (use-package go-test :straight t :defer t)
 (use-package rainbow-delimiters :straight t)
-(use-package paredit :straight t)
 (use-package format-all :straight t :hook ((format-all-mode . format-all-ensure-formatter)))
-(use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () (paredit-mode) (rainbow-delimiters-mode)))))
+(use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () () (rainbow-delimiters-mode)))))
 (use-package typescript-mode :straight t)
 (use-package js :hook ((js-mode . intern:js-mode-hook)))
 (use-package yaml-mode :straight t :hook ((yaml-mode . intern:yaml-mode-hook)))
@@ -154,5 +151,14 @@
 
 (use-package elisp-mode
   :hook (emacs-lisp-mode . format-all-mode))
+
+(use-package cider :straight t)
+
+(use-package clj-refactor :straight t
+  :hook ((clojure-mode . clj-refactor-mode)))
+
+;; (use-package lispy :straight t
+;;   :hook ((clojure-mode . lispy-mode)
+;;          (emacs-lisp-mode . lispy.mode)))
 
 ;;; packages.el ends here

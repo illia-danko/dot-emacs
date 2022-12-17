@@ -58,13 +58,6 @@
    (evil-define-key 'normal go-mode-map (kbd "SPC mb") #'go-test-current-file)))
 
 (add-hook
- 'paredit-mode-hook
- (lambda nil
-   (evil-define-key 'normal paredit-mode-map (kbd ",ed") #'paredit-splice-sexp-killing-backward)
-   (evil-define-key 'normal paredit-mode-map (kbd ",e>") #'paredit-forward-slurp-sexp)
-   (evil-define-key 'normal paredit-mode-map (kbd ",e<") #'paredit-forward-barf-sexp)))
-
-(add-hook
  'markdown-mode-hook
  (lambda nil
    (evil-define-key 'normal markdown-mode-map (kbd "SPC m *") #'intern:markdown-toggle-fontifications)))

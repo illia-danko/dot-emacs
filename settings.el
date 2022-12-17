@@ -50,7 +50,8 @@
  '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
  '(corfu-auto t)
  '(evil-want-keybinding nil)
- '(evil-undo-system 'undo-fu)
+ '(evil-undo-system 'undo-redo)
+ '(evil-want-fine-undo t)
  '(corfu-quit-no-match 'separator)
  '(completion-styles '(orderless basic))
  '(completion-category-defaults nil)
@@ -141,8 +142,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka Nerd Font Mono" :height 120 :weight medium))))
- '(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :height 120 :weight medium))))
- '(variable-pitch ((t (:family "Iosevka Nerd Font Mono" :height 120 :weight medium)))))
+ '(default ((t (:family "Iosevka Nerd Font Mono" :height 160 :weight medium))))
+ '(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :height 160 :weight medium))))
+ '(variable-pitch ((t (:family "Iosevka Nerd Font Mono" :height 160 :weight medium)))))
 
 ;;; settings.el ends here
