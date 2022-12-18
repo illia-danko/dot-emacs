@@ -108,11 +108,11 @@
 
 (use-package eglot :straight t
   :init
-  (defun my:eglot-ensure ()
+  (defun my-eglot-ensure ()
     (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)))
 
-  :hook ((go-mode . my:eglot-ensure))
+  :hook ((go-mode . my-eglot-ensure))
 
   :config
   (evil-define-key* 'normal eglot-mode-map
@@ -121,11 +121,11 @@
 
 (use-package flycheck :straight t
   :init
-  (defun my:flycheck-mode ()
+  (defun my-flycheck-mode ()
     (unless (eq major-mode 'ediff-mode)
       (flycheck-mode)))
 
-  :hook ((go-mode . my:flycheck-mode)))
+  :hook ((go-mode . my-flycheck-mode)))
 
 (use-package rg :straight t)
 (use-package olivetti :straight t)
