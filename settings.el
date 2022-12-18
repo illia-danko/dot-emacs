@@ -81,7 +81,7 @@
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
  '(fill-column 80)
- '(format-all-default-formatters `(("YAML" (prettier ,intern:prettier-config-path)) ("JavaScript" (prettier ,intern:prettier-config-path)) ("Go" goimports)))
+ '(format-all-default-formatters `(("YAML" (prettier ,intern:prettier-config-path)) ("JavaScript" (prettier ,intern:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
