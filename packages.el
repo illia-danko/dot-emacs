@@ -97,8 +97,28 @@
 (use-package projectile :straight t :ensure t :config (projectile-mode 1))
 (use-package yasnippet :straight t :config (yas-global-mode +1))
 (use-package expand-region :straight t)
-(use-package eglot :straight t)
-(use-package flycheck :straight t)
+
+(use-package eglot :straight t
+  :init
+  (defun my:eglot-ensure ()
+    (unless (eq major-mode 'ediff-mode)
+      (eglot-ensure)))
+
+  :hook ((go-mode . my:eglot-ensure))
+
+  :config
+  (evil-define-key* 'normal eglot-mode-map
+    ",cr" #'eglot-rename
+    ",ci" #'eglot-find-implementation))
+
+(use-package flycheck :straight t
+  :init
+  (defun my:flycheck-mode ()
+    (unless (eq major-mode 'ediff-mode)
+      (flycheck-mode)))
+
+  :hook ((go-mode . my:flycheck-mode)))
+
 (use-package rg :straight t)
 (use-package olivetti :straight t)
 (use-package hide-mode-line :straight t :init :after (olivetti))
@@ -109,11 +129,25 @@
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))
 (use-package vterm :straight t :hook ((vterm-mode . hide-mode-line-mode)))
 (use-package prog-mode :hook ((prog-mode . intern:prog-mode-hook)))
-(use-package go-mode :straight t :init :hook ((go-mode . intern:go-mode-hook)))
+
+(use-package go-mode :straight t
+  :hook ((go-mode . (lambda nil
+                      (setq-local comment-fill-column 150
+                                  fill-column 150))))
+  :config
+  (evil-define-key* 'normal go-mode-map
+    "gd" nil ; do not override lsp `go-to-definition'.
+    ))
+
 (use-package go-test :straight t :defer t)
-(use-package rainbow-delimiters :straight t)
-(use-package format-all :straight t :hook ((format-all-mode . format-all-ensure-formatter)))
-(use-package elisp-mode :hook ((emacs-lisp-mode . (lambda () () (rainbow-delimiters-mode)))))
+
+(use-package rainbow-delimiters :straight t
+  :hook ((emacs-lisp-mode clojure-mode) . rainbow-delimiters-mode))
+
+(use-package format-all :straight t
+  :hook ((emacs-lisp-mode clojure-mode go-mode) . format-all-mode)
+  :hook ((format-all-mode . format-all-ensure-formatter)))
+
 (use-package typescript-mode :straight t)
 (use-package js :hook ((js-mode . intern:js-mode-hook)))
 (use-package yaml-mode :straight t :hook ((yaml-mode . intern:yaml-mode-hook)))
@@ -154,7 +188,6 @@
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . format-all-mode)
   :config
   (evil-define-key* 'normal emacs-lisp-mode-map
     ",ee" #'eval-last-sexp
@@ -182,7 +215,6 @@
     "K" #'cider-clojuredocs))
 
 (use-package clojure-mode
-  :hook (clojure-mode . format-all-mode)
   :config
   (evil-define-key* 'normal clojure-mode-map
     ",cc" #'cider-jack-in))
@@ -190,8 +222,8 @@
 (use-package clj-refactor :straight t
   :hook ((clojure-mode . clj-refactor-mode)))
 
-(use-package lispy :straight t
-  :hook ((clojure-mode . lispy-mode)
-         (emacs-lisp-mode . lispy-mode)))
+(use-package paredit :straight t
+  :hook ((clojure-mode . paredit-mode)
+         (emacs-lisp-mode . paredit-mode)))
 
 ;;; packages.el ends here
