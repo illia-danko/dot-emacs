@@ -93,8 +93,16 @@
 (use-package savehist :init (savehist-mode))  ;; save minibuffer history
 (use-package marginalia :straight t :config (marginalia-mode))
 (use-package consult :straight t)
+
 (use-package embark-consult :straight t)
-(use-package projectile :straight t :ensure t :config (projectile-mode 1))
+
+(use-package projectile :straight t
+  :ensure t
+  :config
+  (define-key projectile-command-map "#" #'projectile-kill-buffers)
+  (define-key projectile-command-map "!" #'projectile-remove-known-project)
+  (projectile-mode 1))
+
 (use-package yasnippet :straight t :config (yas-global-mode +1))
 (use-package expand-region :straight t)
 

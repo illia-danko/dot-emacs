@@ -26,11 +26,11 @@
 
 ;;; Code:
 
-(add-hook
- 'projectile-mode-hook
- (lambda nil
-   (define-key projectile-command-map "#" #'projectile-kill-buffers)
-   (define-key projectile-command-map "!" #'projectile-remove-known-project)))
+;; (add-hook
+;;  'projectile-mode-hook
+;;  (lambda nil
+;;    (define-key projectile-command-map "#" #'projectile-kill-buffers)
+;;    (define-key projectile-command-map "!" #'projectile-remove-known-project)))
 
 (add-hook
  'dired-mode-hook
