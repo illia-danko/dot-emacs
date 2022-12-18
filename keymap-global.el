@@ -56,21 +56,12 @@
 
 ;; Git & version control.
 
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gg") #'magit-status)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",g?") #'magit-blame-addition)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gd") #'magit-diff-buffer-file)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gL") #'magit-log-all)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gl") #'magit-log-buffer-file)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gc") #'intern:git-push-update)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gu") #'git-link)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",gU") #'intern:git-link-open-homepage)
-
 ;; Edit.
 (evil-define-key '(normal insert) intern:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
 
 ;; Files & Buffers.
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",fr") #'consult-recent-file)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC mm") #'consult-imenu)
+(evil-define-key 'normal my-intercept-mode-map (kbd "SPC mm") #'consult-imenu)
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
 
 ;; Open.

@@ -53,23 +53,6 @@
         (flyspell-mode +1))
       (flyspell-buffer))))
 
-(defun intern:git-link-open-homepage ()
-  (interactive)
-  (let ((git-link-open-in-browser t))
-    (call-interactively 'git-link-homepage)))
-
-(defun intern:git-push-update ()
-  "Stage, commit and push upstream a personal note file."
-  (interactive)
-  (let ((org-dir (expand-file-name org-directory))
-        (fullname (buffer-file-name))
-        (relname (file-name-nondirectory (buffer-file-name))))
-    (when (string-match-p (regexp-quote org-dir) fullname)
-      (call-process "git" nil nil nil "add" fullname)
-      (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
-      (call-process "git" nil nil nil "push")
-      (message "Pushed %s" relname))))
-
 (defun intern:isearch-region (&rest _)
   "If a region is active, set a selected pattern as an isearch input."
   (interactive "P\np")

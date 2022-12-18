@@ -116,20 +116,6 @@
 
 (use-package orderless :straight t)
 
-(use-package help
-  :config
-  (evil-define-key* 'normal my-intercept-mode-map
-    (kbd "SPC hk") #'describe-key
-    (kbd "SPC hw") #'where-is
-    (kbd "SPC hv") #'describe-variable
-    (kbd "SPC hv") #'describe-variable
-    (kbd "SPC hf") #'describe-function
-    "g?" #'describe-mode))
-
-(use-package magit :straight t
-  :after (project))
-
-(use-package git-link :straight t)
 (use-package vertico :straight t
   ;; :hook (minibuffer-setup . vertico-repeat-save)
   :config (vertico-mode 1))
@@ -173,6 +159,50 @@
     (kbd "SPC /") #'my-consult-ripgrep-region))
 
 (use-package embark-consult :straight t)
+
+(use-package help
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC hk") #'describe-key
+    (kbd "SPC hw") #'where-is
+    (kbd "SPC hv") #'describe-variable
+    (kbd "SPC hv") #'describe-variable
+    (kbd "SPC hf") #'describe-function
+    "g?" #'describe-mode))
+
+(use-package magit :straight t
+  :after (project)
+  :init
+  (defun my-git-push-buffer-update ()
+    "Stage, commit and push upstream a personal note file."
+    (interactive)
+    (let ((fullname (buffer-file-name))
+          (relname (file-name-nondirectory (buffer-file-name))))
+        (call-process "git" nil nil nil "add" fullname)
+        (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
+        (call-process "git" nil nil nil "push")
+        (message "Pushed %s" relname)))
+
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",gg" #'magit-status
+    ",g?" #'magit-blame-addition
+    ",gd" #'magit-diff-buffer-file
+    ",gL" #'magit-log-all
+    ",gl" #'magit-log-buffer-file
+    ",gc" #'my-git-push-buffer-update))
+
+(use-package git-link :straight t
+  :init
+  (defun my-git-link-open-page ()
+    (interactive)
+    (let ((git-link-open-in-browser t))
+      (call-interactively 'git-link-homepage)))
+
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",gu" #'git-link
+    ",gU" #'my-git-link-open-page))
 
 (use-package savehist
   :init (savehist-mode))  ;; save minibuffer history
