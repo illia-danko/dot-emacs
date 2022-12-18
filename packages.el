@@ -86,6 +86,10 @@
 (use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
 (use-package git-link :straight t)
 (use-package vertico :straight t :config (vertico-mode 1))
+;; (use-package vertico-posframe :straight t
+;;   :config (vertico-posframe-mode 1)
+;;   (when (display-graphic-p)
+;;     (vertico-posframe-mode 1)))
 (use-package savehist :init (savehist-mode))  ;; save minibuffer history
 (use-package marginalia :straight t :config (marginalia-mode))
 (use-package consult :straight t)
@@ -150,15 +154,44 @@
   :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
 
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . format-all-mode))
+  :hook (emacs-lisp-mode . format-all-mode)
+  :config
+  (evil-define-key* 'normal emacs-lisp-mode-map
+    ",ee" #'eval-last-sexp
+    ",ew" #'eval-defun
+    ",eb" #'eval-buffer))
 
-(use-package cider :straight t)
+(use-package cider :straight t
+  :config
+  (evil-define-key* '(normal visual) cider-mode-map
+    "K" #'cider-clojuredocs)
+  (evil-define-key* 'normal cider-mode-map
+    ",ee" #'cider-eval-sexp-at-point
+    ",ew" #'cider-eval-defun-at-point
+    ",eb" #'cider-eval-buffer
+    ",cn" #'cider-repl-set-ns))
+
+(use-package cider-repl
+  :config
+  (evil-define-key* '(normal visual) cider-repl-mode-map
+    "K" #'cider-clojuredocs))
+
+(use-package cider-macroexpansion
+  :config
+  (evil-define-key* '(normal) cider-macroexpansion-mode-map
+    "K" #'cider-clojuredocs))
+
+(use-package clojure-mode
+  :hook (clojure-mode . format-all-mode)
+  :config
+  (evil-define-key* 'normal clojure-mode-map
+    ",cc" #'cider-jack-in))
 
 (use-package clj-refactor :straight t
   :hook ((clojure-mode . clj-refactor-mode)))
 
-;; (use-package lispy :straight t
-;;   :hook ((clojure-mode . lispy-mode)
-;;          (emacs-lisp-mode . lispy.mode)))
+(use-package lispy :straight t
+  :hook ((clojure-mode . lispy-mode)
+         (emacs-lisp-mode . lispy-mode)))
 
 ;;; packages.el ends here
