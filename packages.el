@@ -139,8 +139,6 @@
     "gd" nil ; do not override lsp `go-to-definition'.
     ))
 
-(use-package go-test :straight t :defer t)
-
 (use-package rainbow-delimiters :straight t
   :hook ((emacs-lisp-mode clojure-mode) . rainbow-delimiters-mode))
 
@@ -225,5 +223,9 @@
 (use-package paredit :straight t
   :hook ((clojure-mode . paredit-mode)
          (emacs-lisp-mode . paredit-mode)))
+
+(use-package eldoc
+  :config
+  (global-eldoc-mode -1))
 
 ;;; packages.el ends here

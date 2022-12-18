@@ -33,29 +33,10 @@
    (define-key projectile-command-map "!" #'projectile-remove-known-project)))
 
 (add-hook
- 'eglot-managed-mode-hook
- (lambda nil
-   (evil-define-key 'normal eglot-mode-map (kbd "SPC mr") #'eglot-rename)
-   (evil-define-key 'normal eglot-mode-map (kbd "SPC mi") #'eglot-find-implementation)))
-
-(add-hook
- 'emacs-lisp-mode-hook
- (lambda nil
-   (evil-define-key 'normal emacs-lisp-mode-map (kbd ",ee") #'eval-last-sexp)
-   (evil-define-key 'normal emacs-lisp-mode-map (kbd ",ew") #'eval-defun)
-   (evil-define-key 'normal emacs-lisp-mode-map (kbd ",eb") #'eval-buffer)))
-
-(add-hook
  'dired-mode-hook
  (lambda nil
    (evil-collection-define-key 'normal 'dired-mode-map
      "o" '#'intern:system-open)))
-
-(add-hook
- 'go-mode-hook
- (lambda nil
-   (evil-define-key 'normal go-mode-map (kbd "SPC mt") #'go-test-current-test)
-   (evil-define-key 'normal go-mode-map (kbd "SPC mb") #'go-test-current-file)))
 
 (add-hook
  'markdown-mode-hook
