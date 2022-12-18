@@ -51,6 +51,7 @@
  '(corfu-auto t)
  '(evil-want-keybinding nil)
  '(evil-undo-system 'undo-redo)
+ '(debug-on-error t)
  '(evil-want-fine-undo t)
  '(corfu-quit-no-match 'separator)
  '(completion-styles '(orderless basic))
