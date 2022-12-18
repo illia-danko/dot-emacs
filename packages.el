@@ -63,6 +63,13 @@
     (and evil-mode (evil-force-normal-state))
     (keyboard-quit))
 
+  (defun my-shutdown-emacs-server ()
+    "Quit Emacs globally. Shutdown server."
+    (interactive)
+    (when (y-or-n-p "Quit emacs and stop the service?")
+      (kill-emacs)
+      (save-some-buffers)))
+
   :config
   (dolist (state '(normal visual insert))
     (evil-make-intercept-map
@@ -77,7 +84,8 @@
 
   (evil-define-key* 'normal my-intercept-mode-map
     (kbd "SPC :") #'execute-extended-command
-    (kbd "SPC ;") #'eval-expression)
+    (kbd "SPC ;") #'eval-expression
+    ",qq" #'my-shutdown-emacs-server)
 
   (evil-mode 1))
 
@@ -112,7 +120,10 @@
 (use-package cape :straight t           ; complection backend for corfu
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file))
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-history)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-symbol))
 
 (use-package orderless :straight t)
 
@@ -126,6 +137,10 @@
 
 (use-package marginalia :straight t
   :config (marginalia-mode))
+
+(use-package recentf
+  :config
+  (recentf-mode))
 
 (use-package consult :straight t
   :config
@@ -153,12 +168,19 @@
   (global-set-key [remap switch-to-buffer-other-frame]  #'consult-buffer-other-frame)
   (global-set-key [remap yank-pop]                      #'consult-yank-pop)
 
-  (evil-define-key* 'normal my-intercept-mode-map
-    (kbd "SPC <") #'consult-buffer)
   (evil-define-key* '(normal visual) my-intercept-mode-map
-    (kbd "SPC /") #'my-consult-ripgrep-region))
+    (kbd "SPC /") #'my-consult-ripgrep-region
+    (kbd "C-y") #'consult-yank-from-kill-ring)
 
-(use-package embark-consult :straight t)
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC <") #'consult-buffer
+    ",fr" #'consult-recent-file
+    (kbd "gm")  #'consult-imenu))
+
+(use-package embark-consult :straight t
+  :config
+  (evil-define-key* nil my-intercept-mode-map
+    (kbd "C-t") #'embark-act-all))
 
 (use-package help
   :config
@@ -178,10 +200,10 @@
     (interactive)
     (let ((fullname (buffer-file-name))
           (relname (file-name-nondirectory (buffer-file-name))))
-        (call-process "git" nil nil nil "add" fullname)
-        (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
-        (call-process "git" nil nil nil "push")
-        (message "Pushed %s" relname)))
+      (call-process "git" nil nil nil "add" fullname)
+      (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
+      (call-process "git" nil nil nil "push")
+      (message "Pushed %s" relname)))
 
   :config
   (evil-define-key* 'normal my-intercept-mode-map
@@ -245,8 +267,7 @@
   :hook ((go-mode . my-flycheck-mode)))
 
 (use-package rg :straight t)
-(use-package olivetti :straight t)
-(use-package hide-mode-line :straight t :init :after (olivetti))
+(use-package wgrep :straight t)
 
 (use-package dired
   :init
@@ -362,10 +383,23 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
               :host github
               :repo "keith/evil-tmux-navigator"))
 
+
 (use-package elfeed :straight t
-  :hook ((elfeed-show-mode . intern:zen-toggle))
   ;; Update elfeed database each 4 hours.
-  :config (run-with-timer 0 (* 60 60 4) 'elfeed-update))
+  :config
+  (run-with-timer 0 (* 60 60 4) 'elfeed-update)
+
+  (global-set-key(kbd "C-x f") #'elfeed))
+
+(use-package olivetti :straight t :ensure t)
+(use-package hide-mode-line :straight t :ensure t)
+
+(use-package zentoggle
+  :after (evil olivetti hide-mode-line)
+  :hook (elfeed-show-mode . zen-toggle)
+  :init
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd ",tz") #'zen-toggle))
 
 (use-package elisp-mode
   :config

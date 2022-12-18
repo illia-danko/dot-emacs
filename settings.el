@@ -30,8 +30,8 @@
   "Cloud file storage location.")
 
 (defvar intern:prettier-config-path (concat
-                                "--config="
-                                (expand-file-name "~/.config/prettier/prettier.config.js"))
+                                     "--config="
+                                     (expand-file-name "~/.config/prettier/prettier.config.js"))
   "Path to prettier config.")
 
 (setq org-directory "~/github.com/illia-danko/org")
@@ -80,6 +80,7 @@
  '(elfeed-search-filter "@6-months-ago +unread")
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
+ '(wgrep-auto-save-buffer t)
  '(fill-column 80)
  '(format-all-default-formatters `(("YAML" (prettier ,intern:prettier-config-path)) ("JavaScript" (prettier ,intern:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
  '(global-auto-revert-non-file-buffers t)

@@ -1,5 +1,3 @@
-;;; init.el --- Illia Danko (illia@danko.ws) Emacs dotfiles -*- lexical-binding: t -*-
-;;
 ;; Copyright (c) 2022 Illia Danko
 ;;
 ;; Author: Illia Danko <illia@danko.ws>
@@ -26,39 +24,53 @@
 
 ;;; Code:
 
-(defvar time-emacs-start (current-time)
-  "Time Emacs has started.")
+(defconst emacs-start-time (current-time))
 
-(setq gc-cons-threshold 402653184
+(defvar file-name-handler-alist-old file-name-handler-alist)
+
+(setq package-enable-at-startup nil
+      file-name-handler-alist nil
+      message-log-max 16384
+      gc-cons-threshold 402653184
       gc-cons-percentage 0.6
-      load-prefer-newer t
-      font-lock-verbose nil
-      byte-compile-verbose nil)
+      byte-compile-verbose nil
+      auto-window-vscroll nil)
 
-(add-hook 'emacs-startup-hook
-	      (lambda ()
-	        ;; After startup, it is important you reset this to some
-            ;; reasonable default. A large gc-cons-threshold will
-            ;; cause freezing and stuttering during long-term
-            ;; interactive use."
-            (setq gc-cons-threshold 16777216
-		          gc-cons-percentage 0.1)))
+(add-hook 'after-init-hook
+          `(lambda ()
+             (setq file-name-handler-alist file-name-handler-alist-old
+                   gc-cons-threshold 16777216
+                   gc-cons-percentage 0.1)
+             (garbage-collect)) t)
 
+(eval-and-compile
+  (setq load-path
+        (append (delete-dups load-path)
+                `(,(expand-file-name "lisp" user-emacs-directory))))
+
+  (defvar my-shared-directory "~/.cache/emacs"
+    "Cloud file storage location.")
+
+  (setq custom-file (expand-file-name "settings.el" user-emacs-directory))
+  (load custom-file)
+  (let ((private-settings (expand-file-name "private-settings.el" my-shared-directory)))
+    (and private-settings
+         (file-exists-p private-settings)
+         (load private-settings)))
+
+  (load-file (expand-file-name "core.el" user-emacs-directory))
+  (load-file (expand-file-name "internal.el" user-emacs-directory))
+  (load-file (expand-file-name "packages.el" user-emacs-directory))
+  (load-file (expand-file-name "abbrevs.el" user-emacs-directory)))
 ;; Load custom file (settings.el) before packages.
-(setq custom-file (expand-file-name "settings.el" user-emacs-directory))
-(load custom-file)
-(let ((private-settings.el (expand-file-name "private-settings.el" intern:shared-directory)))
-  (and private-settings.el
-       (file-exists-p private-settings.el)
-       (load private-settings.el)))
-
-(load-file (expand-file-name "core.el" user-emacs-directory))
-(load-file (expand-file-name "internal.el" user-emacs-directory))
-(load-file (expand-file-name "packages.el" user-emacs-directory))
-(load-file (expand-file-name "abbrevs.el" user-emacs-directory))
 ;; (load-file (expand-file-name "keymap-global.el" user-emacs-directory))
 
 ;; Compute and show Emacs warm time.
-(message "Load time %.06f" (float-time (time-since time-emacs-start)))
-
+(add-hook 'after-init-hook
+          `(lambda ()
+             (let ((elapsed
+                    (float-time
+                     (time-subtract (current-time) emacs-start-time))))
+               (message "Loading %s...done (%.3fs) [after-init]"
+                        ,load-file-name elapsed))) t)
 ;;; init.el ends here

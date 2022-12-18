@@ -62,9 +62,9 @@
 		(isearch-yank-string content))))
 
 (defun intern:zen-toggle (&optional arg)
-    (interactive)
-    (call-interactively 'olivetti-mode arg)
-    (call-interactively 'hide-mode-line-mode arg))
+  (interactive)
+  (call-interactively 'olivetti-mode arg)
+  (call-interactively 'hide-mode-line-mode arg))
 
 (defun intern:shutdown-emacs-server ()
   "Quit Emacs globally. Shutdown server."
@@ -91,21 +91,21 @@
   (add-hook 'before-save-hook #'gofmt-before-save))
 
 (defun intern:js-mode-hook ()
-    ;; Do not enable LSP and linter for *.ts and *.json.
-    (let ((ext (file-name-extension buffer-file-name)))
-      (and ext
-           (pcase ext
-             ("ts" t)
-             ("js" t)
-             ("json" t)
-             (_ nil))
-           ;; Make sure that LSP is installed:
-           ;; sudo npm install -g typescript-language-server
-           (unless (eq major-mode 'ediff-mode)
-             (unless (string-equal ext "json")
-               (eglot-ensure)
-               (flycheck-mode))
-             (format-all-mode)))))
+  ;; Do not enable LSP and linter for *.ts and *.json.
+  (let ((ext (file-name-extension buffer-file-name)))
+    (and ext
+         (pcase ext
+           ("ts" t)
+           ("js" t)
+           ("json" t)
+           (_ nil))
+         ;; Make sure that LSP is installed:
+         ;; sudo npm install -g typescript-language-server
+         (unless (eq major-mode 'ediff-mode)
+           (unless (string-equal ext "json")
+             (eglot-ensure)
+             (flycheck-mode))
+           (format-all-mode)))))
 
 (defun intern:yaml-mode-hook ()
   (intern:prog-mode-hook)
@@ -169,7 +169,7 @@
 
 (defun intern:save-current-theme-to-file ()
   (intern:save-theme-to-file intern:theme-file-path
-                      (symbol-name (car custom-enabled-themes))))
+                             (symbol-name (car custom-enabled-themes))))
 
 (defun intern:theme-ensure-exists ()
   (unless (file-exists-p intern:theme-file-path)

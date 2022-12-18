@@ -44,7 +44,6 @@
 ;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hm") #'describe-mode)
 
 ;; Exit & Enter Emacs.
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",qq") #'intern:shutdown-emacs-server)
 
 ;; Toggle.
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",th") #'hl-line-mode)
@@ -52,22 +51,10 @@
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",tr") #'read-only-mode)
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",tn") #'display-line-numbers-mode)
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",tc") #'rainbow-mode)
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",tz") #'intern:zen-toggle)
 
 ;; Git & version control.
 
-;; Edit.
-(evil-define-key '(normal insert) intern:intercept-mode-map (kbd "C-y") #'consult-yank-from-kill-ring)
-
-;; Files & Buffers.
-(evil-define-key 'normal intern:intercept-mode-map (kbd ",fr") #'consult-recent-file)
-(evil-define-key 'normal my-intercept-mode-map (kbd "SPC mm") #'consult-imenu)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ms") #'wgrep-save-all-buffers)
-
 ;; Open.
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC of") #'elfeed)
-(evil-define-key nil intern:intercept-mode-map (kbd "C-t") #'embark-act)
-
 ;; Notes.
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ns") #'(lambda () (interactive) (consult-ripgrep org-directory)))
 (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC nt") #'intern:org-new-todo-entry)
