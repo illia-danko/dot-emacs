@@ -38,15 +38,15 @@
 ;;    (evil-collection-define-key 'normal 'dired-mode-map
 ;;      "o" '#'intern:system-open)))
 
-(add-hook
- 'markdown-mode-hook
- (lambda nil
-   (evil-define-key 'normal markdown-mode-map (kbd "SPC m *") #'intern:markdown-toggle-fontifications)))
+;; (add-hook
+;;  'markdown-mode-hook
+;;  (lambda nil
+;;    (evil-define-key 'normal markdown-mode-map (kbd "SPC m *") #'intern:markdown-toggle-fontifications)))
 
-(add-hook
- 'org-mode-hook
- (lambda nil
-   (evil-define-key 'normal org-mode-map (kbd "SPC m *") #'intern:org-toggle-fontifications)))
+;; (add-hook
+;;  'org-mode-hook
+;;  (lambda nil
+;;    (evil-define-key 'normal org-mode-map (kbd "SPC m *") #'intern:org-toggle-fontifications)))
 
 (add-hook
  'evil-mode-hook

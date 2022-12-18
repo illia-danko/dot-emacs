@@ -178,8 +178,18 @@
 (use-package conf-mode :hook ((conf-space-mode . intern:prog-mode-hook)))
 (use-package protobuf-mode :straight t)
 (use-package dockerfile-mode :straight t :hook ((docker-mode . intern:prog-mode-hook)))
-(use-package markdown-mode :straight t :hook ((markdown-mode . intern:show-trailing-whitespace)))
-(use-package org-superstar :straight t)
+
+(use-package markdown-mode :straight t
+  :init
+  (defun my-markdown-toggle-fontifications (&optional arg)
+    "Toggle fontifications on/off."
+    (interactive (list (or current-prefix-arg 'toggle)))
+    (markdown-toggle-markup-hiding arg))
+
+  :hook (markdown-mode  . my-markdown-toggle-fontifications)
+  :config
+  (define-key markdown-mode-map (kbd "C-c *") #'my-markdown-toggle-fontifications))
+
 (use-package python :init :hook ((python-mode . intern:python-mode-hook)))
 (use-package sh-script :hook ((sh-mode . intern:sh-mode-hook)))
 (use-package restclient :straight t :mode ("\\.http\\'" . restclient-mode))
@@ -190,9 +200,31 @@
 (use-package dashboard :straight t :config (dashboard-setup-startup-hook))
 
 (use-package org
+  :init
+  (defun my-org-toggle-fontifications ()
+    "Toggle fontifications on/off.
+The solution taken from
+https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/init.el#L3037-L3069"
+    (interactive)
+    ;; Toggle markers.
+    (setq-local org-hide-emphasis-markers
+                (not org-hide-emphasis-markers))
+    ;; Toggle links.
+    (if org-link-descriptive
+        (remove-from-invisibility-spec '(org-link))
+      (add-to-invisibility-spec '(org-link)))
+    (setq-local org-link-descriptive
+                (not org-link-descriptive))
+    ;; Apply changes.
+    (font-lock-fontify-buffer))
+
   :hook ((org-mode . (lambda ()
                        (org-superstar-mode)
-                       (intern:show-trailing-whitespace)))))
+                       (setq-local show-trailing-whitespace t))))
+  :config
+  (define-key org-mode-map (kbd "C-c *") #'my-org-toggle-fontifications))
+
+(use-package org-superstar :straight t)
 
 (use-package isearch
   :config

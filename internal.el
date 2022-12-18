@@ -130,27 +130,27 @@
     (flycheck-mode)
     (format-all-mode)))
 
-(defun intern:markdown-toggle-fontifications (&optional arg)
-  "Toggle fontifications on/off."
-  (interactive (list (or current-prefix-arg 'toggle)))
-  (markdown-toggle-markup-hiding arg))
+;; (defun intern:markdown-toggle-fontifications (&optional arg)
+;;   "Toggle fontifications on/off."
+;;   (interactive (list (or current-prefix-arg 'toggle)))
+;;   (markdown-toggle-markup-hiding arg))
 
-(defun intern:org-toggle-fontifications ()
-    "Toggle fontifications on/off.
-The solution taken from
-https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/init.el#L3037-L3069"
-    (interactive)
-    ;; Toggle markers.
-    (setq-local org-hide-emphasis-markers
-                (not org-hide-emphasis-markers))
-    ;; Toggle links.
-    (if org-link-descriptive
-        (remove-from-invisibility-spec '(org-link))
-      (add-to-invisibility-spec '(org-link)))
-    (setq-local org-link-descriptive
-                (not org-link-descriptive))
-    ;; Apply changes.
-    (font-lock-fontify-buffer))
+;; (defun intern:org-toggle-fontifications ()
+;;     "Toggle fontifications on/off.
+;; The solution taken from
+;; https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/init.el#L3037-L3069"
+;;     (interactive)
+;;     ;; Toggle markers.
+;;     (setq-local org-hide-emphasis-markers
+;;                 (not org-hide-emphasis-markers))
+;;     ;; Toggle links.
+;;     (if org-link-descriptive
+;;         (remove-from-invisibility-spec '(org-link))
+;;       (add-to-invisibility-spec '(org-link)))
+;;     (setq-local org-link-descriptive
+;;                 (not org-link-descriptive))
+;;     ;; Apply changes.
+;;     (font-lock-fontify-buffer))
 
 (defun intern:org-new-todo-entry ()
   "Adds new `TODO' entry."
