@@ -96,6 +96,7 @@
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package orderless :straight t)
+
 (use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
 (use-package git-link :straight t)
 (use-package vertico :straight t :config (vertico-mode 1))
@@ -103,11 +104,16 @@
 ;;   :config (vertico-posframe-mode 1)
 ;;   (when (display-graphic-p)
 ;;     (vertico-posframe-mode 1)))
-(use-package savehist :init (savehist-mode))  ;; save minibuffer history
-(use-package marginalia :straight t :config (marginalia-mode))
+
+(use-package marginalia :straight t
+  :config (marginalia-mode))
+
 (use-package consult :straight t)
 
 (use-package embark-consult :straight t)
+
+(use-package savehist
+  :init (savehist-mode))  ;; save minibuffer history
 
 (use-package projectile :straight t
   :ensure t
