@@ -32,11 +32,11 @@
 ;;    (define-key projectile-command-map "#" #'projectile-kill-buffers)
 ;;    (define-key projectile-command-map "!" #'projectile-remove-known-project)))
 
-(add-hook
- 'dired-mode-hook
- (lambda nil
-   (evil-collection-define-key 'normal 'dired-mode-map
-     "o" '#'intern:system-open)))
+;; (add-hook
+;;  'dired-mode-hook
+;;  (lambda nil
+;;    (evil-collection-define-key 'normal 'dired-mode-map
+;;      "o" '#'intern:system-open)))
 
 (add-hook
  'markdown-mode-hook

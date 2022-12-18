@@ -130,7 +130,25 @@
 (use-package rg :straight t)
 (use-package olivetti :straight t)
 (use-package hide-mode-line :straight t :init :after (olivetti))
-(use-package dired :hook (dired-mode . intern:dired-mode-hook))
+
+(use-package dired
+  :init
+  (defun my-system-open ()
+    (interactive)
+    (let ((file (dired-get-filename nil t))
+          (cmd (pcase system-type
+                 ('darwin "open")
+                 (_ "xdg-open"))))
+      (call-process cmd nil 0 nil file)))
+
+  :hook
+  (dired-mode . dired-hide-details-mode)
+  (dired-mode . dired-omit-mode)
+
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "o" #'my-system-open))
+
 (use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
 (use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
 (use-package undohist :straight t :config (undohist-initialize))

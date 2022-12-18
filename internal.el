@@ -70,18 +70,6 @@
       (call-process "git" nil nil nil "push")
       (message "Pushed %s" relname))))
 
-(defun intern:system-open ()
-  (interactive)
-  (let ((file (dired-get-filename nil t))
-        (cmd (pcase system-type
-               ('darwin "open")
-               (_ "xdg-open"))))
-    (call-process cmd nil 0 nil file)))
-
-(defun intern:dired-mode-hook ()
-  (dired-hide-details-mode)
-  (dired-omit-mode))
-
 (defun intern:isearch-region (&rest _)
   "If a region is active, set a selected pattern as an isearch input."
   (interactive "P\np")
