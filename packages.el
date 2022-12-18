@@ -46,7 +46,20 @@
 
 (use-package evil :straight t
   :demand t
+  :init
+
+  (defun my-evil-keyboard-quit ()
+    "Keyboard quit and force normal state."
+    (interactive)
+    (and evil-mode (evil-force-normal-state))
+    (keyboard-quit))
+
   :config
+  (define-key evil-normal-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
+  (define-key evil-motion-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
+  (define-key evil-insert-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
+  (define-key evil-window-map         (kbd "C-g") #'my-evil-keyboard-quit)
+  (define-key evil-operator-state-map (kbd "C-g") #'my-evil-keyboard-quit)
   (evil-mode 1))
 
 (use-package evil-collection :straight t
