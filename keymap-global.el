@@ -26,40 +26,22 @@
 
 ;;; Code:
 
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-
-;; Define high precedence map (See evil-collection/README.md).
-(defvar intern:intercept-mode-map (make-sparse-keymap)
-  "High precedence keymap.")
-
-(define-minor-mode intern:intercept-mode
-  "Global minor mode for higher precedence evil keybindings."
-  :global t)
-
-(intern:intercept-mode +1)
-
-(dolist (state '(normal visual insert))
-  (evil-make-intercept-map
-   (evil-get-auxiliary-keymap intern:intercept-mode-map state t t)
-   state))
-
 ;;;; Mapping.
 
 ;; Navigation & Search.
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC <") #'consult-buffer)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ;") #'eval-expression)
-(evil-define-key '(normal visual) intern:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (intern:region-apply 'consult-ripgrep)))
-(evil-define-key 'normal intern:intercept-mode-map "-" #'dired-jump)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC p") #'projectile-command-map)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC <") #'consult-buffer)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC :") #'execute-extended-command)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC ;") #'eval-expression)
+;; (evil-define-key '(normal visual) intern:intercept-mode-map (kbd "SPC /") #'(lambda () (interactive) (intern:region-apply 'consult-ripgrep)))
+;; (evil-define-key 'normal intern:intercept-mode-map "-" #'dired-jump)
 
 ;; Help.
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hk") #'describe-key)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hw") #'where-is)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hv") #'describe-variable)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hf") #'describe-function)
-(evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hm") #'describe-mode)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hk") #'describe-key)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hw") #'where-is)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hv") #'describe-variable)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hf") #'describe-function)
+;; (evil-define-key 'normal intern:intercept-mode-map (kbd "SPC hm") #'describe-mode)
 
 ;; Exit & Enter Emacs.
 (evil-define-key 'normal intern:intercept-mode-map (kbd ",qq") #'intern:shutdown-emacs-server)

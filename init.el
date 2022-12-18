@@ -56,7 +56,7 @@
 (load-file (expand-file-name "internal.el" user-emacs-directory))
 (load-file (expand-file-name "packages.el" user-emacs-directory))
 (load-file (expand-file-name "abbrevs.el" user-emacs-directory))
-(load-file (expand-file-name "keymap-global.el" user-emacs-directory))
+;; (load-file (expand-file-name "keymap-global.el" user-emacs-directory))
 
 ;; Compute and show Emacs warm time.
 (message "Load time %.06f" (float-time (time-since time-emacs-start)))

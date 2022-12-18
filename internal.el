@@ -26,18 +26,18 @@
 
 ;;; Code:
 
-(defun intern:region-content ()
-  "Takes region content if any."
-  (buffer-substring-no-properties (mark) (point)))
+;; (defun intern:region-content ()
+;;   "Takes region content if any."
+;;   (buffer-substring-no-properties (mark) (point)))
 
-(defun intern:region-apply (fn)
-  "Apply fn to the marked region text."
-  (interactive)
-  (if mark-active
-	  (let ((content (intern:region-content)))
-		(deactivate-mark)
-		(funcall fn nil content))
-	(funcall fn)))
+;; (defun intern:region-apply (fn)
+;;   "Apply fn to the marked region text."
+;;   (interactive)
+;;   (if mark-active
+;; 	  (let ((content (intern:region-content)))
+;; 		(deactivate-mark)
+;; 		(funcall fn nil content))
+;; 	(funcall fn)))
 
 (defun intern:flyspell-toggle ()
   "Toggle spell checking."
@@ -231,10 +231,10 @@
           (lambda (&optional frame)
 	        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))))
 
-(defun intern:evil-keyboard-quit ()
-  "Keyboard quit and force normal state."
-  (interactive)
-  (and evil-mode (evil-force-normal-state))
-  (keyboard-quit))
+;; (defun intern:evil-keyboard-quit ()
+;;   "Keyboard quit and force normal state."
+;;   (interactive)
+;;   (and evil-mode (evil-force-normal-state))
+;;   (keyboard-quit))
 
 ;;; internal.el ends here

@@ -47,6 +47,15 @@
 (use-package evil :straight t
   :demand t
   :init
+  ;; Define high precedence map (See evil-collection/README.md).
+  (defvar my-intercept-mode-map (make-sparse-keymap)
+    "High precedence keymap.")
+
+  (define-minor-mode my-intercept-mode
+    "Global minor mode for higher precedence evil keybindings."
+    :global t)
+
+  (my-intercept-mode 1)
 
   (defun my-evil-keyboard-quit ()
     "Keyboard quit and force normal state."
@@ -55,11 +64,21 @@
     (keyboard-quit))
 
   :config
+  (dolist (state '(normal visual insert))
+    (evil-make-intercept-map
+     (evil-get-auxiliary-keymap my-intercept-mode-map state t t)
+     state))
+
   (define-key evil-normal-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
   (define-key evil-motion-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
   (define-key evil-insert-state-map   (kbd "C-g") #'my-evil-keyboard-quit)
   (define-key evil-window-map         (kbd "C-g") #'my-evil-keyboard-quit)
   (define-key evil-operator-state-map (kbd "C-g") #'my-evil-keyboard-quit)
+
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC :") #'execute-extended-command
+    (kbd "SPC ;") #'eval-expression)
+
   (evil-mode 1))
 
 (use-package evil-collection :straight t
@@ -97,9 +116,23 @@
 
 (use-package orderless :straight t)
 
-(use-package magit :straight t :after (project) :hook (git-commit-setup . flyspell-mode))
+(use-package help
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC hk") #'describe-key
+    (kbd "SPC hw") #'where-is
+    (kbd "SPC hv") #'describe-variable
+    (kbd "SPC hv") #'describe-variable
+    (kbd "SPC hf") #'describe-function
+    "g?" #'describe-mode))
+
+(use-package magit :straight t
+  :after (project))
+
 (use-package git-link :straight t)
-(use-package vertico :straight t :config (vertico-mode 1))
+(use-package vertico :straight t
+  ;; :hook (minibuffer-setup . vertico-repeat-save)
+  :config (vertico-mode 1))
 ;; (use-package vertico-posframe :straight t
 ;;   :config (vertico-posframe-mode 1)
 ;;   (when (display-graphic-p)
@@ -108,7 +141,36 @@
 (use-package marginalia :straight t
   :config (marginalia-mode))
 
-(use-package consult :straight t)
+(use-package consult :straight t
+  :config
+  (defun my-consult-ripgrep-region ()
+    "Apply fn to the marked region text."
+    (interactive)
+    (if mark-active
+        (let ((content (buffer-substring-no-properties (mark) (point))))
+          (deactivate-mark)
+          (consult-ripgrep nil content))
+      (consult-ripgrep)))
+
+  (global-set-key [remap apropos]                       #'consult-apropos)
+  (global-set-key [remap bookmark-jump]                 #'consult-bookmark)
+  (global-set-key [remap evil-show-marks]               #'consult-mark)
+  (global-set-key [remap evil-show-registers]           #'consult-register)
+  (global-set-key [remap goto-line]                     #'consult-goto-line)
+  (global-set-key [remap imenu]                         #'consult-imenu)
+  (global-set-key [remap locate]                        #'consult-locate)
+  (global-set-key [remap load-theme]                    #'consult-theme)
+  (global-set-key [remap man]                           #'consult-man)
+  (global-set-key [remap recentf-open-files]            #'consult-recent-file)
+  (global-set-key [remap switch-to-buffer]              #'consult-buffer)
+  (global-set-key [remap switch-to-buffer-other-window] #'consult-buffer-other-window)
+  (global-set-key [remap switch-to-buffer-other-frame]  #'consult-buffer-other-frame)
+  (global-set-key [remap yank-pop]                      #'consult-yank-pop)
+
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC <") #'consult-buffer)
+  (evil-define-key* '(normal visual) my-intercept-mode-map
+    (kbd "SPC /") #'my-consult-ripgrep-region))
 
 (use-package embark-consult :straight t)
 
@@ -120,6 +182,9 @@
   :config
   (define-key projectile-command-map "#" #'projectile-kill-buffers)
   (define-key projectile-command-map "!" #'projectile-remove-known-project)
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC p") #'projectile-command-map)
+
   (projectile-mode 1))
 
 (use-package yasnippet :straight t :config (yas-global-mode +1))
@@ -137,6 +202,9 @@
   (evil-define-key* 'normal eglot-mode-map
     ",cr" #'eglot-rename
     ",ci" #'eglot-find-implementation))
+
+(use-package flyspell
+  :hook (git-commit-setup . flyspell-mode))
 
 (use-package flycheck :straight t
   :init
@@ -166,9 +234,16 @@
 
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
-    "o" #'my-system-open))
+    "o" #'my-system-open)
+  (evil-define-key* 'normal my-intercept-mode-map
+    "-" #'dired-jump))
 
-(use-package anzu :straight t :config (anzu-mode +1) (global-anzu-mode +1))
+(use-package anzu :straight t
+  :config
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+  (global-anzu-mode 1))
+
 (use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
 (use-package undohist :straight t :config (undohist-initialize))
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))

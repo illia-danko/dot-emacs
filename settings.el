@@ -113,6 +113,8 @@
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref)
  '(vertico-count 16)
+ '(vertico-resize nil)
+ '(vertico-cycle t)
  `(bookmark-default-file ,(expand-file-name "bookmarks" intern:shared-directory)) ; bookmarks path
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" intern:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" intern:shared-directory)) ; recent files path
