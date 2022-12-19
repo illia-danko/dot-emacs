@@ -62,8 +62,6 @@
   (load-file (expand-file-name "internal.el" user-emacs-directory))
   (load-file (expand-file-name "packages.el" user-emacs-directory))
   (load-file (expand-file-name "abbrevs.el" user-emacs-directory)))
-;; Load custom file (settings.el) before packages.
-;; (load-file (expand-file-name "keymap-global.el" user-emacs-directory))
 
 ;; Compute and show Emacs warm time.
 (add-hook 'after-init-hook

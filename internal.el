@@ -39,20 +39,6 @@
 ;; 		(funcall fn nil content))
 ;; 	(funcall fn)))
 
-(defun intern:flyspell-toggle ()
-  "Toggle spell checking."
-  (interactive)
-  (if flyspell-mode
-      (progn
-        (message "Spell checking off")
-        (flyspell-mode -1))
-    (progn
-      (message "Spell checking on")
-      (if (derived-mode-p 'prog-mode)
-          (flyspell-prog-mode)
-        (flyspell-mode +1))
-      (flyspell-buffer))))
-
 (defun intern:isearch-region (&rest _)
   "If a region is active, set a selected pattern as an isearch input."
   (interactive "P\np")
@@ -134,11 +120,6 @@
 ;;                 (not org-link-descriptive))
 ;;     ;; Apply changes.
 ;;     (font-lock-fontify-buffer))
-
-(defun intern:org-new-todo-entry ()
-  "Adds new `TODO' entry."
-  (interactive)
-  (org-capture nil "n"))
 
 (defun intern:python-mode-hook ()
   (unless (eq major-mode 'ediff-mode)

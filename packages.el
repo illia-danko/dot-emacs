@@ -63,13 +63,6 @@
     (and evil-mode (evil-force-normal-state))
     (keyboard-quit))
 
-  (defun my-shutdown-emacs-server ()
-    "Quit Emacs globally. Shutdown server."
-    (interactive)
-    (when (y-or-n-p "Quit emacs and stop the service?")
-      (kill-emacs)
-      (save-some-buffers)))
-
   :config
   (dolist (state '(normal visual insert))
     (evil-make-intercept-map
@@ -82,12 +75,24 @@
   (define-key evil-window-map         (kbd "C-g") #'my-evil-keyboard-quit)
   (define-key evil-operator-state-map (kbd "C-g") #'my-evil-keyboard-quit)
 
+  (evil-mode 1))
+
+(use-package simple
+  :init
+  (defun my-shutdown-emacs-server ()
+    "Quit Emacs globally. Shutdown server."
+    (interactive)
+    (when (y-or-n-p "Quit emacs and stop the service?")
+      (kill-emacs)
+      (save-some-buffers)))
+
+  :config
   (evil-define-key* 'normal my-intercept-mode-map
+    ",qq" #'my-shutdown-emacs-server
     (kbd "SPC :") #'execute-extended-command
     (kbd "SPC ;") #'eval-expression
-    ",qq" #'my-shutdown-emacs-server)
-
-  (evil-mode 1))
+    ",to" #'read-only-mode
+    ",tn" #'display-line-numbers-mode))
 
 (use-package evil-collection :straight t
   :after evil
@@ -172,10 +177,14 @@
     (kbd "SPC /") #'my-consult-ripgrep-region
     (kbd "C-y") #'consult-yank-from-kill-ring)
 
+
   (evil-define-key* 'normal my-intercept-mode-map
     (kbd "SPC <") #'consult-buffer
     ",fr" #'consult-recent-file
-    (kbd "gm")  #'consult-imenu))
+    (kbd "gm") #'consult-imenu
+    (kbd "SPC os") #'(lambda nil
+                       (interactive)
+                       (consult-ripgrep org-directory))))
 
 (use-package embark-consult :straight t
   :config
@@ -341,7 +350,12 @@
 (use-package doom-themes :straight t)
 (use-package which-key :straight t :config (which-key-mode 1))
 (use-package doom-modeline :straight t :config (doom-modeline-mode 1))
-(use-package rainbow-mode :straight t)
+
+(use-package rainbow-mode :straight t
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",tc" #'rainbow-mode))
+
 (use-package dashboard :straight t :config (dashboard-setup-startup-hook))
 
 (use-package org
@@ -367,7 +381,13 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
                        (org-superstar-mode)
                        (setq-local show-trailing-whitespace t))))
   :config
-  (define-key org-mode-map (kbd "C-c *") #'my-org-toggle-fontifications))
+  (define-key org-mode-map (kbd "C-c *") #'my-org-toggle-fontifications)
+
+  (evil-define-key* 'normal my-intercept-mode-map
+    (kbd "SPC ol") #'org-todo-list
+    (kbd "SPC ot") #'(lambda nil
+                       (interactive)
+                       (org-capture nil "n"))))
 
 (use-package org-superstar :straight t)
 
@@ -443,5 +463,30 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 (use-package eldoc
   :config
   (global-eldoc-mode -1))
+
+(use-package hl-line
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",th" #'hl-line-mode))
+
+(use-package flyspell
+  :init
+  (defun my-flyspell-toggle ()
+    "Toggle spell checking."
+    (interactive)
+    (if flyspell-mode
+        (progn
+          (message "Spell checking off")
+          (flyspell-mode -1))
+      (progn
+        (message "Spell checking on")
+        (if (derived-mode-p 'prog-mode)
+            (flyspell-prog-mode)
+          (flyspell-mode +1))
+        (flyspell-buffer))))
+
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",ts" #'my-flyspell-toggle))
 
 ;;; packages.el ends here
