@@ -39,65 +39,57 @@
 ;; 		(funcall fn nil content))
 ;; 	(funcall fn)))
 
-(defun intern:isearch-region (&rest _)
-  "If a region is active, set a selected pattern as an isearch input."
-  (interactive "P\np")
-  (if mark-active
-	  (let ((content (intern:region-content)))
-		(deactivate-mark)
-		(isearch-yank-string content))))
+;; (defun intern:isearch-region (&rest _)
+;;   "If a region is active, set a selected pattern as an isearch input."
+;;   (interactive "P\np")
+;;   (if mark-active
+;; 	  (let ((content (intern:region-content)))
+;; 		(deactivate-mark)
+;; 		(isearch-yank-string content))))
 
-(defun intern:zen-toggle (&optional arg)
-  (interactive)
-  (call-interactively 'olivetti-mode arg)
-  (call-interactively 'hide-mode-line-mode arg))
+;; (defun intern:zen-toggle (&optional arg)
+;;   (interactive)
+;;   (call-interactively 'olivetti-mode arg)
+;;   (call-interactively 'hide-mode-line-mode arg))
 
-(defun intern:shutdown-emacs-server ()
-  "Quit Emacs globally. Shutdown server."
-  (interactive)
-  (when (y-or-n-p "Quit emacs and stop the service?")
-    (kill-emacs)
-    (save-some-buffers)))
+;; (defun intern:shutdown-emacs-server ()
+;;   "Quit Emacs globally. Shutdown server."
+;;   (interactive)
+;;   (when (y-or-n-p "Quit emacs and stop the service?")
+;;     (kill-emacs)
+;;     (save-some-buffers)))
 
-(defun intern:show-trailing-whitespace ()
-  "Show trailing whitespaces on a buffer."
-  (setq-local show-trailing-whitespace t))
+;; (defun intern:show-trailing-whitespace ()
+;;   "Show trailing whitespaces on a buffer."
+;;   (setq-local show-trailing-whitespace t))
 
-(defun intern:prog-mode-hook ()
-  (intern:show-trailing-whitespace)
-  (hl-line-mode 1)
-  (display-line-numbers-mode 1))
+;; (defun intern:prog-mode-hook ()
+;;   (intern:show-trailing-whitespace)
+;;   (hl-line-mode 1)
+;;   (display-line-numbers-mode 1))
 
-(defun intern:go-mode-hook ()
-  (setq-local comment-fill-column 150
-              fill-column 150)
-  (unless (eq major-mode 'ediff-mode)
-    (eglot-ensure)
-    (flycheck-mode))
-  (add-hook 'before-save-hook #'gofmt-before-save))
+;; (defun intern:js-mode-hook ()
+;;   ;; Do not enable LSP and linter for *.ts and *.json.
+;;   (let ((ext (file-name-extension buffer-file-name)))
+;;     (and ext
+;;          (pcase ext
+;;            ("ts" t)
+;;            ("js" t)
+;;            ("json" t)
+;;            (_ nil))
+;;          ;; Make sure that LSP is installed:
+;;          ;; sudo npm install -g typescript-language-server
+;;          (unless (eq major-mode 'ediff-mode)
+;;            (unless (string-equal ext "json")
+;;              (eglot-ensure)
+;;              (flycheck-mode))
+;;            (format-all-mode)))))
 
-(defun intern:js-mode-hook ()
-  ;; Do not enable LSP and linter for *.ts and *.json.
-  (let ((ext (file-name-extension buffer-file-name)))
-    (and ext
-         (pcase ext
-           ("ts" t)
-           ("js" t)
-           ("json" t)
-           (_ nil))
-         ;; Make sure that LSP is installed:
-         ;; sudo npm install -g typescript-language-server
-         (unless (eq major-mode 'ediff-mode)
-           (unless (string-equal ext "json")
-             (eglot-ensure)
-             (flycheck-mode))
-           (format-all-mode)))))
-
-(defun intern:yaml-mode-hook ()
-  (intern:prog-mode-hook)
-  (unless (eq major-mode 'ediff-mode)
-    (flycheck-mode)
-    (format-all-mode)))
+;; (defun intern:yaml-mode-hook ()
+;;   (intern:prog-mode-hook)
+;;   (unless (eq major-mode 'ediff-mode)
+;;     (flycheck-mode)
+;;     (format-all-mode)))
 
 ;; (defun intern:markdown-toggle-fontifications (&optional arg)
 ;;   "Toggle fontifications on/off."
@@ -121,14 +113,14 @@
 ;;     ;; Apply changes.
 ;;     (font-lock-fontify-buffer))
 
-(defun intern:python-mode-hook ()
-  (unless (eq major-mode 'ediff-mode)
-    (eglot-ensure)
-    (flycheck-mode)))
+;; (defun intern:python-mode-hook ()
+;;   (unless (eq major-mode 'ediff-mode)
+;;     (eglot-ensure)
+;;     (flycheck-mode)))
 
-(defun intern:sh-mode-hook ()
-  (unless (eq major-mode 'ediff-mode)
-    (flycheck-mode)))
+;; (defun intern:sh-mode-hook ()
+;;   (unless (eq major-mode 'ediff-mode)
+;;     (flycheck-mode)))
 
 (defvar intern:theme-file-path "~/.emacs.d/theme"
   "Emacs theme filepath.")

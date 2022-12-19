@@ -77,23 +77,6 @@
 
   (evil-mode 1))
 
-(use-package simple
-  :init
-  (defun my-shutdown-emacs-server ()
-    "Quit Emacs globally. Shutdown server."
-    (interactive)
-    (when (y-or-n-p "Quit emacs and stop the service?")
-      (kill-emacs)
-      (save-some-buffers)))
-
-  :config
-  (evil-define-key* 'normal my-intercept-mode-map
-    ",qq" #'my-shutdown-emacs-server
-    (kbd "SPC :") #'execute-extended-command
-    (kbd "SPC ;") #'eval-expression
-    ",to" #'read-only-mode
-    ",tn" #'display-line-numbers-mode))
-
 (use-package evil-collection :straight t
   :after evil
   :config
@@ -112,6 +95,16 @@
   :config
   (unless (display-graphic-p)
     (etcc-on)))
+
+(use-package evil-anzu :straight t
+  :after (evil)
+  :ensure t)
+
+(use-package anzu :straight t
+  :config
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+  (global-anzu-mode 1))
 
 (use-package corfu :straight t
   :config
@@ -248,7 +241,10 @@
 
   (projectile-mode 1))
 
-(use-package yasnippet :straight t :config (yas-global-mode +1))
+;; TODO(idanko): consider to use https://github.com/xFA25E/skempo
+(use-package yasnippet :straight t
+  :config (yas-global-mode 1))
+
 (use-package expand-region :straight t)
 
 (use-package eglot :straight t
@@ -257,7 +253,7 @@
     (unless (eq major-mode 'ediff-mode)
       (eglot-ensure)))
 
-  :hook ((go-mode . my-eglot-ensure))
+  :hook ((go-mode js-mode python-mode) . my-eglot-ensure)
 
   :config
   (evil-define-key* 'normal eglot-mode-map
@@ -273,7 +269,7 @@
     (unless (eq major-mode 'ediff-mode)
       (flycheck-mode)))
 
-  :hook ((go-mode . my-flycheck-mode)))
+  :hook ((go-mode js-mode yaml-mode sh-mode python-mode) . my-flycheck-mode))
 
 (use-package rg :straight t)
 (use-package wgrep :straight t)
@@ -298,17 +294,16 @@
   (evil-define-key* 'normal my-intercept-mode-map
     "-" #'dired-jump))
 
-(use-package anzu :straight t
+(use-package xclip :straight t
   :config
-  (global-set-key [remap query-replace] 'anzu-query-replace)
-  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-  (global-anzu-mode 1))
+  (unless
+      (display-graphic-p) (xclip-mode +1)))
 
-(use-package xclip :straight t :config (unless (display-graphic-p) (xclip-mode +1)))
-(use-package undohist :straight t :config (undohist-initialize))
+(use-package undohist :straight t
+  :config (undohist-initialize))
+
 (use-package ediff-init :hook ((ediff-quit . delete-frame)))
 (use-package vterm :straight t :hook ((vterm-mode . hide-mode-line-mode)))
-(use-package prog-mode :hook ((prog-mode . intern:prog-mode-hook)))
 
 (use-package go-mode :straight t
   :hook ((go-mode . (lambda nil
@@ -323,15 +318,14 @@
   :hook ((emacs-lisp-mode clojure-mode) . rainbow-delimiters-mode))
 
 (use-package format-all :straight t
-  :hook ((emacs-lisp-mode clojure-mode go-mode) . format-all-mode)
-  :hook ((format-all-mode . format-all-ensure-formatter)))
+  :hook
+  ((emacs-lisp-mode clojure-mode go-mode js-mode yaml-mode python-mode) . format-all-mode)
+  (format-all-mode . format-all-ensure-formatter))
 
 (use-package typescript-mode :straight t)
-(use-package js :hook ((js-mode . intern:js-mode-hook)))
-(use-package yaml-mode :straight t :hook ((yaml-mode . intern:yaml-mode-hook)))
-(use-package conf-mode :hook ((conf-space-mode . intern:prog-mode-hook)))
+(use-package yaml-mode :straight t)
 (use-package protobuf-mode :straight t)
-(use-package dockerfile-mode :straight t :hook ((docker-mode . intern:prog-mode-hook)))
+(use-package dockerfile-mode :straight t)
 
 (use-package markdown-mode :straight t
   :init
@@ -344,8 +338,6 @@
   :config
   (define-key markdown-mode-map (kbd "C-c *") #'my-markdown-toggle-fontifications))
 
-(use-package python :init :hook ((python-mode . intern:python-mode-hook)))
-(use-package sh-script :hook ((sh-mode . intern:sh-mode-hook)))
 (use-package restclient :straight t :mode ("\\.http\\'" . restclient-mode))
 (use-package doom-themes :straight t)
 (use-package which-key :straight t :config (which-key-mode 1))
@@ -392,9 +384,18 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 (use-package org-superstar :straight t)
 
 (use-package isearch
+  :init
+  (defun my-isearch-region (&rest _)
+    "If a region is active, set a selected pattern as an isearch input."
+    (interactive "P\np")
+    (if mark-active
+	    (let ((content (buffer-substring-no-properties (mark) (point))))
+		  (deactivate-mark)
+		  (isearch-yank-string content))))
+
   :config
-  (advice-add 'isearch-forward :after #'intern:isearch-region)
-  (advice-add 'isearch-backward :after #'intern:isearch-region))
+  (advice-add 'isearch-forward :after #'my-isearch-region)
+  (advice-add 'isearch-backward :after #'my-isearch-region))
 
 (use-package navigate
   :after evil
@@ -465,6 +466,8 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (global-eldoc-mode -1))
 
 (use-package hl-line
+  :hook
+  ((prog-mode org-mode markdown-mode conf-space-mode docker-mode) . hl-line-mode)
   :config
   (evil-define-key* 'normal my-intercept-mode-map
     ",th" #'hl-line-mode))
@@ -488,5 +491,35 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :config
   (evil-define-key* 'normal my-intercept-mode-map
     ",ts" #'my-flyspell-toggle))
+
+(use-package display-line-numbers
+  :hook ((prog-mode org-mode markdown-mode conf-space-mode docker-mode) . display-line-numbers-mode)
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",tn" #'display-line-numbers-mode))
+
+(use-package simple
+  :init
+  (defun my-shutdown-emacs-server ()
+    "Quit Emacs globally. Shutdown server."
+    (interactive)
+    (when (y-or-n-p "Quit emacs and stop the service?")
+      (kill-emacs)
+      (save-some-buffers)))
+
+  :config
+  (evil-define-key* 'normal my-intercept-mode-map
+    ",qq" #'my-shutdown-emacs-server
+    (kbd "SPC :") #'execute-extended-command
+    (kbd "SPC ;") #'eval-expression
+    ",to" #'read-only-mode
+    ",tn" #'display-line-numbers-mode))
+
+(use-package hl-todo :straight t
+  :config (global-hl-todo-mode))
+
+(use-package prog-mode
+  :hook (prog-mode . (lambda ()
+                       (setq-local show-trailing-whitespace t))))
 
 ;;; packages.el ends here
