@@ -26,18 +26,18 @@
 
 ;;; Code:
 
-(defvar intern:shared-directory "~/.cache/emacs"
+(defvar my:shared-directory "~/.cache/emacs"
   "Cloud file storage location.")
 
-(defvar intern:prettier-config-path (concat
-                                     "--config="
-                                     (expand-file-name "~/.config/prettier/prettier.config.js"))
+(defvar my:prettier-config-path (concat
+                                 "--config="
+                                 (expand-file-name "~/.config/prettier/prettier.config.js"))
   "Path to prettier config.")
 
 (setq org-directory "~/github.com/illia-danko/org")
 
-(unless (file-directory-p intern:shared-directory)
-  (make-directory intern:shared-directory))
+(unless (file-directory-p my:shared-directory)
+  (make-directory my:shared-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -53,6 +53,7 @@
  '(evil-undo-system 'undo-redo)
  '(debug-on-error t)
  '(evil-want-fine-undo t)
+ '(abbrev-file-name "~/.emacs.d/abbrevs.el")
  '(evil-kill-on-visual-paste nil) ; paste on selection
  '(corfu-quit-no-match 'separator)
  '(completion-styles '(orderless basic))
@@ -83,7 +84,7 @@
  '(enable-recursive-minibuffers t)
  '(wgrep-auto-save-buffer t)
  '(fill-column 80)
- '(format-all-default-formatters `(("YAML" (prettier ,intern:prettier-config-path)) ("JavaScript" (prettier ,intern:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
+ '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
@@ -117,16 +118,16 @@
  '(vertico-count 16)
  '(vertico-resize nil)
  '(vertico-cycle t)
- `(bookmark-default-file ,(expand-file-name "bookmarks" intern:shared-directory)) ; bookmarks path
- `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" intern:shared-directory)) ; saved projects path
- `(recentf-save-file ,(expand-file-name "recentf" intern:shared-directory)) ; recent files path
- `(save-place-file ,(expand-file-name "places" intern:shared-directory)) ; saved file positions file path
- `(transient-history-file ,(expand-file-name "transient/history.el" intern:shared-directory))
- `(transient-levels-file ,(expand-file-name "transient/levels.el" intern:shared-directory)) ; transient-mode cache files
- `(transient-values-file ,(expand-file-name "transient/values.el" intern:shared-directory))
- `(undohist-directory ,(expand-file-name "undohist" intern:shared-directory))
+ `(bookmark-default-file ,(expand-file-name "bookmarks" my:shared-directory)) ; bookmarks path
+ `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" my:shared-directory)) ; saved projects path
+ `(recentf-save-file ,(expand-file-name "recentf" my:shared-directory)) ; recent files path
+ `(save-place-file ,(expand-file-name "places" my:shared-directory)) ; saved file positions file path
+ `(transient-history-file ,(expand-file-name "transient/history.el" my:shared-directory))
+ `(transient-levels-file ,(expand-file-name "transient/levels.el" my:shared-directory)) ; transient-mode cache files
+ `(transient-values-file ,(expand-file-name "transient/values.el" my:shared-directory))
+ `(undohist-directory ,(expand-file-name "undohist" my:shared-directory))
  `(undohist-ignored-files '("COMMIT_EDITMSG"))
- `(url-configuration-directory ,(expand-file-name "url" intern:shared-directory))
+ `(url-configuration-directory ,(expand-file-name "url" my:shared-directory))
  )
 
 (custom-set-variables
