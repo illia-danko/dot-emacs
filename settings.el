@@ -44,33 +44,27 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(abbrev-file-name "~/.emacs.d/abbrevs.el")
  '(abbrev-mode t)                       ; use abbreviations everywhere
  '(auto-revert-check-vc-info t)
  '(auto-revert-use-notify nil)
- '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
- '(corfu-auto t)
- '(evil-want-keybinding nil)
- '(evil-undo-system 'undo-redo)
- '(debug-on-error t)
- '(evil-want-fine-undo t)
- '(abbrev-file-name "~/.emacs.d/abbrevs.el")
- '(evil-kill-on-visual-paste nil) ; paste on selection
- '(corfu-quit-no-match 'separator)
- '(completion-styles '(orderless basic))
- '(completion-category-defaults nil)
- '(completion-category-overrides '((file (styles . (partial-completion)))))
- '(read-extended-command-predicate #'command-completion-default-include-p)
- '(tab-always-indent 'complete)
  '(auto-revert-verbose nil)             ; dont print `Reverting buffer' message
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix nil)
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(c-basic-offset 4)
  '(comment-fill-column 80)
+ '(completion-category-defaults nil)
+ '(completion-category-overrides '((file (styles . (partial-completion)))))
+ '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
+ '(completion-styles '(orderless basic))
+ '(corfu-auto t)
+ '(corfu-quit-no-match 'separator)
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
  '(dashboard-set-footer nil)
+ '(debug-on-error t)
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$")         ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
@@ -82,7 +76,10 @@
  '(elfeed-search-filter "@6-months-ago +unread")
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
  '(enable-recursive-minibuffers t)
- '(wgrep-auto-save-buffer t)
+ '(evil-kill-on-visual-paste nil) ; paste on selection
+ '(evil-undo-system 'undo-redo)
+ '(evil-want-fine-undo t)
+ '(evil-want-keybinding nil)
  '(fill-column 80)
  '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
  '(global-auto-revert-non-file-buffers t)
@@ -95,6 +92,9 @@
  '(mac-option-modifier 'control)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
+ '(read-extended-command-predicate #'command-completion-default-include-p)
+ '(tab-always-indent 'complete)
+ '(wgrep-auto-save-buffer t)
  '(marginalia-command-categories '((flycheck-error-list-set-filter . builtin)
                                    (persp-switch-to-buffer . buffer)
                                    (projectile-find-file . project-file)
@@ -112,12 +112,12 @@
  '(user-full-name "Illia Danko")
  '(user-mail-address "illia@danko.ws")
  '(vc-follow-symlinks t)             ; turn off confirmation when open a symlink
+ '(vertico-count 16)
+ '(vertico-cycle t)
+ '(vertico-resize nil)
  '(visible-cursor nil)               ; dont blink cursor in tty.
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref)
- '(vertico-count 16)
- '(vertico-resize nil)
- '(vertico-cycle t)
  `(bookmark-default-file ,(expand-file-name "bookmarks" my:shared-directory)) ; bookmarks path
  `(projectile-known-projects-file ,(expand-file-name "projectile-bookmarks.eld" my:shared-directory)) ; saved projects path
  `(recentf-save-file ,(expand-file-name "recentf" my:shared-directory)) ; recent files path
