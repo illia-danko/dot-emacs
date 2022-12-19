@@ -53,6 +53,7 @@
  '(evil-undo-system 'undo-redo)
  '(debug-on-error t)
  '(evil-want-fine-undo t)
+ '(evil-kill-on-visual-paste nil) ; paste on selection
  '(corfu-quit-no-match 'separator)
  '(completion-styles '(orderless basic))
  '(completion-category-defaults nil)
