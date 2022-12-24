@@ -253,8 +253,8 @@
       ",gg" #'magit-status
       ",g?" #'magit-blame-addition
       ",gd" #'magit-diff-buffer-file
-      ",gL" #'magit-log-all
-      ",gl" #'magit-log-buffer-file
+      ",gl" #'magit-log-all
+      ",gb" #'magit-log-buffer-file
       ",gc" #'my:git-push-buffer-update))
 
   (use-package git-link :straight t
