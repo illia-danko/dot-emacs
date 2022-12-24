@@ -55,9 +55,9 @@
  '(c-basic-offset 4)
  '(comment-fill-column 80)
  '(completion-category-defaults nil)
- '(completion-category-overrides '((file (styles . (partial-completion)))))
+ '(completion-category-overrides '((file (styles . (orderless flex)))))
  '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
- '(completion-styles '(orderless basic))
+ '(completion-styles '(orderless flex))
  '(corfu-auto t)
  '(corfu-quit-no-match 'separator)
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
