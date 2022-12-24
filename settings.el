@@ -71,7 +71,6 @@
  '(display-line-numbers-type t)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(eglot-stay-out-of '(flymake) t) ; don't auto-build (execute flymake). Let flycheck doing so
  '(eldoc-echo-area-use-multiline-p nil)
  '(elfeed-search-filter "@6-months-ago +unread")
  '(enable-local-variables :all) ; always trust .dir.locals.el (risk is accepted)
@@ -81,8 +80,6 @@
  '(evil-want-fine-undo t)
  '(evil-want-keybinding nil)
  '(fill-column 80)
- '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
- '(format-all-show-errors 'never)
  '(git-gutter:added-sign "")
  '(git-gutter:ask-p nil)
  '(git-gutter:deleted-sign "")
@@ -90,28 +87,36 @@
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
+ '(inhibit-message t)
  '(inhibit-splash-screen t)
  '(js-indent-level 4)
  '(kill-whole-line t)
+ '(lsp-completion-provider :none)
+ '(lsp-completion-show-detail nil)
+ '(lsp-completion-show-kind t)
+ '(lsp-diagnostic-package :none)
+ '(lsp-diagnostics-modeline-scope nil) ;; Disable mode-line integration.
+ '(lsp-eldoc-enable-hover nil)
+ '(lsp-enable-links nil)
+ '(lsp-enable-symbol-highlighting nil)
+ '(lsp-headerline-breadcrumb-enable nil) ; Disable LSP headerline.
+ '(lsp-lens-enable nil)
+ '(lsp-modeline-diagnostics-enable nil)
+ '(lsp-restart 'ignore) ; Suppress restart process confirmation.
+ '(lsp-signature-auto-activate nil)
+ '(lsp-signature-render-documentation nil)
  '(mac-command-modifier 'meta)
  '(mac-option-modifier 'control)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
- '(read-extended-command-predicate #'command-completion-default-include-p)
- '(tab-always-indent 'complete)
- '(wgrep-auto-save-buffer t)
- '(marginalia-command-categories '((flycheck-error-list-set-filter . builtin)
-                                   (persp-switch-to-buffer . buffer)
-                                   (projectile-find-file . project-file)
-                                   (projectile-recentf . project-file)
-                                   (projectile-switch-to-buffer . buffer)
-                                   (projectile-switch-project . project-file)))
  '(markdown-hide-markup t)                  ; hide urls
  '(prefix-help-command #'embark-prefix-help-command)
  '(python-indent-offset 4)
+ '(read-extended-command-predicate #'command-completion-default-include-p)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)          ; turn off ring bell sound
  '(set-mark-command-repeat-pop t) ; pop up mark in transitive way: don't repeat C-u C-SPC
+ '(tab-always-indent 'complete)
  '(tab-width 4)
  '(use-dialog-box nil)
  '(user-full-name "Illia Danko")
@@ -121,6 +126,7 @@
  '(vertico-cycle t)
  '(vertico-resize nil)
  '(visible-cursor nil)               ; dont blink cursor in tty.
+ '(wgrep-auto-save-buffer t)
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref)
  `(bookmark-default-file ,(expand-file-name "bookmarks" my:shared-directory)) ; bookmarks path
@@ -136,15 +142,26 @@
  )
 
 (custom-set-variables
+ '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
+ '(format-all-show-errors 'never)
+ '(marginalia-command-categories '((flycheck-error-list-set-filter . builtin)
+                                   (persp-switch-to-buffer . buffer)
+                                   (projectile-find-file . project-file)
+                                   (projectile-recentf . project-file)
+                                   (projectile-switch-to-buffer . buffer)
+                                   (projectile-switch-project . project-file)))
+ )
+
+(custom-set-variables
  '(org-agenda-block-separator "")
  '(org-agenda-files (list org-default-notes-file))
- '(org-capture-bookmark nil) ; prevent storing bookmarks
+ '(org-capture-bookmark nil)            ; prevent storing bookmarks
  '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")))
- '(org-ellipsis "  " ) ; folding symbol
+ '(org-ellipsis "  " )                 ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
- '(org-hide-emphasis-markers t) ; close links, etc.
- '(org-pretty-entities t) ; show LaTeX-like symbols as UTF-8 characters
+ '(org-hide-emphasis-markers t)    ; close links, etc.
+ '(org-pretty-entities t)          ; show LaTeX-like symbols as UTF-8 characters
  '(org-startup-indented t)
  '(org-superstar-leading-bullet ?\s)
  `(org-default-notes-file ,(expand-file-name "todo.org" org-directory)))

@@ -235,8 +235,8 @@
   (defun my:git-push-buffer-update ()
     "Stage, commit and push upstream a personal note file."
     (interactive)
-    (let ((fullname (buffer-file-name))
-          (relname (file-name-nondirectory (buffer-file-name))))
+    (let* ((fullname (buffer-file-name))
+           (relname (file-name-nondirectory fullname)))
       (call-process "git" nil nil nil "add" fullname)
       (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
       (call-process "git" nil nil nil "push")
@@ -300,8 +300,8 @@
 (use-package projectile :straight t
   :ensure t
   :config
-  (define-key projectile-command-map "#" #'projectile-kill-buffers)
-  (define-key projectile-command-map "!" #'projectile-remove-known-project)
+  (define-key projectile-command-map "d" #'projectile-kill-buffers)
+  (define-key projectile-command-map "#" #'projectile-remove-known-project)
   (evil-define-key* 'normal my:intercept-mode-map
     (kbd "SPC p") #'projectile-command-map)
 
@@ -313,18 +313,22 @@
 
 (use-package expand-region :straight t)
 
-(use-package eglot :straight t
+(use-package lsp-mode :straight t
   :init
-  (defun my:eglot-ensure ()
+  (defun my:lsp-deferred ()
     (unless (eq major-mode 'ediff-mode)
-      (eglot-ensure)))
+      (lsp-deferred)))
 
-  :hook ((go-mode js-mode python-mode) . my:eglot-ensure)
+  :hook
+  (lsp-mode . lsp-enable-which-key-integration)
+  ((go-mode js-mode python-mode) . my:lsp-deferred)
 
   :config
-  (evil-define-key* 'normal eglot-mode-map
-    ",cr" #'eglot-rename
-    ",ci" #'eglot-find-implementation))
+  (evil-define-key* 'normal lsp-mode-map
+    ",cr" #'lsp-rename
+    ",cu" #'lsp-find-references
+    ",cd" #'lsp-restart-workspace
+    ",ci" #'lsp-find-implementation))
 
 (use-package flyspell
   :hook (git-commit-setup . flyspell-mode))
