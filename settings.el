@@ -82,6 +82,7 @@
  '(evil-want-keybinding nil)
  '(fill-column 80)
  '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
+ '(format-all-show-errors 'never)
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
