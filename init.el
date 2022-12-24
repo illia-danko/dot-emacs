@@ -310,7 +310,11 @@
       (unless (eq major-mode 'ediff-mode)
         (flycheck-mode)))
 
-    :hook ((go-mode js-mode yaml-mode sh-mode python-mode) . my:flycheck-mode))
+    :hook ((go-mode js-mode yaml-mode sh-mode python-mode) . my:flycheck-mode)
+    :config
+    (evil-define-key* 'normal flycheck-mode-map
+      (kbd "]c") #'flycheck-next-error
+      (kbd "[c") #'flycheck-previous-error))
 
   (use-package rg :straight t)
   (use-package wgrep :straight t)
