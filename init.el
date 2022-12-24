@@ -244,6 +244,7 @@
       (call-process "git" nil nil nil "push")
       (message "Pushed %s" relname)))
 
+  :hook (git-commit-setup . evil-insert-state)
   :config
   (evil-define-key* 'normal my:intercept-mode-map
     ",gg" #'magit-status
