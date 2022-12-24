@@ -232,7 +232,6 @@
     "g?" #'describe-mode))
 
 (use-package magit :straight t
-  :after (project)
   :init
   (defun my:git-push-buffer-update ()
     "Stage, commit and push upstream a personal note file."
@@ -244,7 +243,6 @@
       (call-process "git" nil nil nil "push")
       (message "Pushed %s" relname)))
 
-  :hook (git-commit-setup . evil-insert-state)
   :config
   (evil-define-key* 'normal my:intercept-mode-map
     ",gg" #'magit-status
@@ -253,6 +251,10 @@
     ",gl" #'magit-log-all
     ",gb" #'magit-log-buffer-file
     ",gc" #'my:git-push-buffer-update))
+
+(use-package git-commit
+  :after (magit)
+  :hook (git-commit-setup . evil-insert-state))
 
 (use-package git-link :straight t
   :init
@@ -266,8 +268,7 @@
     ",gu" #'git-link
     ",gU" #'my:git-link-open-page))
 
-(use-package git-gutter
-  :straight t
+(use-package git-gutter :straight t
   :init
   (defun my:git-gutter-refresh-hunks (&rest args)
     (interactive)
