@@ -114,6 +114,8 @@
   (define-key evil-window-map         (kbd "C-g") #'my:evil-keyboard-quit)
   (define-key evil-operator-state-map (kbd "C-g") #'my:evil-keyboard-quit)
 
+  (modify-syntax-entry ?_ "w") ; used along with (setq evil-symbol-word-search t)
+
   (evil-mode 1))
 
 (use-package evil-collection :straight t
@@ -224,7 +226,7 @@
   :config
   (evil-define-key* 'normal my:intercept-mode-map
     (kbd ",dk") #'describe-key
-    (kbd ",d?") #'where-is
+    (kbd ",dw") #'where-is
     (kbd ",dv") #'describe-variable
     (kbd ",df") #'describe-function
     "g?" #'describe-mode))

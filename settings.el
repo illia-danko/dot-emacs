@@ -79,6 +79,8 @@
  '(evil-undo-system 'undo-redo)
  '(evil-want-fine-undo t)
  '(evil-want-keybinding nil)
+ '(evil-echo-state nil)
+ '(evil-symbol-word-search t)
  '(fill-column 80)
  '(git-gutter:added-sign "")
  '(git-gutter:ask-p nil)
