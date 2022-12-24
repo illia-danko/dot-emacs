@@ -392,6 +392,9 @@
 
 (use-package lua-mode :straight t)
 
+(use-package sh-mode
+  :mode "\\.env\\'")
+
 (use-package rainbow-delimiters :straight t
   :hook ((emacs-lisp-mode clojure-mode) . rainbow-delimiters-mode))
 
