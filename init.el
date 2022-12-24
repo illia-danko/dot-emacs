@@ -263,6 +263,37 @@
     ",gu" #'git-link
     ",gU" #'my:git-link-open-page))
 
+(use-package git-gutter
+  :straight t
+  :init
+  (defun my:git-gutter-refresh-hunks (&rest args)
+    (interactive)
+    (git-gutter:update-all-windows))
+
+  (defun my:git-gutter-enable (&rest args)
+    (interactive)
+    (git-gutter-mode 1))
+
+  (defun my:git-gutter-popup-hunk-jump (&optional diffinfo)
+    (interactive)
+    (git-gutter:popup-hunk diffinfo)
+    (switch-to-buffer-other-window git-gutter:popup-buffer))
+
+  :hook ((after-change-major-mode . my:git-gutter-enable))
+  :config
+  (advice-add 'find-file :after #'my:git-gutter-refresh-hunks)
+  (advice-add 'pop-to-buffer-same-window :after #'my:git-gutter-refresh-hunks)
+  (advice-add 'switch-to-buffer :after #'my:git-gutter-refresh-hunks)
+  (advice-add 'switch-to-buffer-other-window :after #'my:git-gutter-refresh-hunks)
+
+  (evil-define-key* 'normal my:intercept-mode-map
+    (kbd "]c") #'git-gutter:next-hunk
+    (kbd "[c") #'git-gutter:previous-hunk
+    (kbd "SPC hu") #'git-gutter:revert-hunk
+    (kbd "SPC hp") #'my:git-gutter-popup-hunk-jump)
+
+  (global-git-gutter-mode 1))
+
 (use-package savehist
   :init (savehist-mode))  ;; save minibuffer history
 
@@ -307,8 +338,8 @@
   :hook ((go-mode js-mode yaml-mode sh-mode python-mode) . my:flycheck-mode)
   :config
   (evil-define-key* 'normal flycheck-mode-map
-    (kbd "]c") #'flycheck-next-error
-    (kbd "[c") #'flycheck-previous-error))
+    (kbd "]d") #'flycheck-next-error
+    (kbd "[d") #'flycheck-previous-error))
 
 (use-package rg :straight t)
 (use-package wgrep :straight t)
@@ -352,6 +383,8 @@
   (evil-define-key* 'normal go-mode-map
     "gd" nil ; do not override lsp `go-to-definition'.
     ))
+
+(use-package lua-mode :straight t)
 
 (use-package rainbow-delimiters :straight t
   :hook ((emacs-lisp-mode clojure-mode) . rainbow-delimiters-mode))
