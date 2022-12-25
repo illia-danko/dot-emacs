@@ -89,7 +89,6 @@
  '(global-auto-revert-non-file-buffers t)
  '(gofmt-command "goimports")
  '(indent-tabs-mode nil)
- '(inhibit-message t)
  '(inhibit-splash-screen t)
  '(js-indent-level 4)
  '(kill-whole-line t)
