@@ -114,6 +114,11 @@
   (define-key evil-window-map         (kbd "C-g") #'my:evil-keyboard-quit)
   (define-key evil-operator-state-map (kbd "C-g") #'my:evil-keyboard-quit)
 
+  ;; Vim command line (echo area).
+  (define-key evil-ex-completion-map (kbd "C-b") #'backward-char)
+  (define-key evil-ex-completion-map (kbd "C-f") #'forward-char)
+  (define-key evil-ex-completion-map (kbd "C-a") #'beginning-of-line)
+
   (modify-syntax-entry ?_ "w") ; used along with (setq evil-symbol-word-search t)
 
   ;; Do not jump but highlight only.
