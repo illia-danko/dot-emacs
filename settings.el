@@ -59,7 +59,8 @@
  '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
  '(completion-styles '(orderless flex))
  '(corfu-auto t)
- '(corfu-quit-no-match 'separator)
+ '(corfu-preselect 'prompt)
+ '(corfu-preview-current nil)
  '(custom-safe-themes t)        ; disable annoying warning while loading a theme
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
