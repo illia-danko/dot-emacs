@@ -121,9 +121,6 @@
 
   (modify-syntax-entry ?_ "w") ; used along with (setq evil-symbol-word-search t)
 
-  ;; Do not jump but highlight only.
-  (advice-add 'evil-search-word-forward :after #'evil-search-word-backward)
-
   (evil-mode 1))
 
 (use-package evil-collection :straight t
