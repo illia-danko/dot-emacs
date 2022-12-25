@@ -374,7 +374,8 @@
 
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
-    "o" #'my:system-open)
+    "o" #'my:system-open
+    "Z" nil)
   (evil-define-key* 'normal my:intercept-mode-map
     "-" #'dired-jump))
 
@@ -516,7 +517,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :hook (elfeed-show-mode . zen-toggle)
   :init
   (evil-define-key* 'normal my:intercept-mode-map
-    (kbd ",tz") #'zen-toggle))
+    (kbd ",z") #'zen-toggle))
 
 (use-package elisp-mode
   :config
