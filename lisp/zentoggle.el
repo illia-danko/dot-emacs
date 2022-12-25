@@ -1,10 +1,14 @@
 ;;; zentoggle.el --- Destruction Free Functions -*- lexical-binding: t; -*-
 
 ;;;###autoload
+
 (defun zen-toggle (&optional arg)
   (interactive)
-  (call-interactively 'olivetti-mode arg)
-  (call-interactively 'hide-mode-line-mode arg))
+  (let* ((toggle-l (if olivetti-mode 1 -1))
+         (toggle-z (if olivetti-mode -1 1)))
+    (display-line-numbers-mode toggle-l)
+    (olivetti-mode toggle-z)
+    (hide-mode-line-mode toggle-z)))
 
 (provide 'zentoggle)
 
