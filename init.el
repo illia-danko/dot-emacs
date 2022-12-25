@@ -161,13 +161,20 @@
   (unless (display-graphic-p)
     (corfu-terminal-mode 1)))
 
+(use-package yasnippet :straight t
+  :ensure t
+  :config (yas-global-mode 1))
+
+(use-package company :straight t)
+
 (use-package cape :straight t           ; complection backend for corfu
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-history)
   (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-symbol))
+  (add-to-list 'completion-at-point-functions #'cape-symbol)
+  (add-to-list 'completion-at-point-functions (cape-company-to-capf 'company-yasnippet)))
 
 (use-package orderless :straight t)
 
@@ -316,12 +323,6 @@
     (kbd "SPC p") #'projectile-command-map)
 
   (projectile-mode 1))
-
-;; TODO(idanko): consider to use https://github.com/xFA25E/skempo
-(use-package yasnippet :straight t
-  :config (yas-global-mode 1))
-
-(use-package expand-region :straight t)
 
 (use-package lsp-mode :straight t
   :init
