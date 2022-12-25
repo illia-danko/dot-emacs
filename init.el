@@ -165,7 +165,7 @@
   :ensure t
   :config (yas-global-mode 1))
 
-(use-package company :straight t)
+(use-package company :straight t) ; used by my:snippet-capf
 
 (use-package cape :straight t           ; complection backend for corfu
   :init
@@ -174,7 +174,12 @@
   (add-to-list 'completion-at-point-functions #'cape-history)
   (add-to-list 'completion-at-point-functions #'cape-keyword)
   (add-to-list 'completion-at-point-functions #'cape-symbol)
-  (add-to-list 'completion-at-point-functions (cape-company-to-capf 'company-yasnippet)))
+
+  (defun my:snippet-capf ()
+    (setq-local completion-at-point-functions
+                (cons (cape-company-to-capf 'company-yasnippet) completion-at-point-functions)))
+
+  :hook ((lsp-configure text-mode emacs-lisp-mode) . my:snippet-capf))
 
 (use-package orderless :straight t)
 
