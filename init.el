@@ -211,9 +211,10 @@
   (global-set-key [remap yank-pop]                      #'consult-yank-pop)
 
   (evil-define-key* '(normal visual) my:intercept-mode-map
-    (kbd "SPC /") #'my:consult-ripgrep-region
-    (kbd "C-y") #'consult-yank-from-kill-ring)
+    (kbd "SPC /") #'my:consult-ripgrep-region)
 
+  (evil-define-key* '(normal insert) my:intercept-mode-map
+    (kbd "C-y") #'consult-yank-from-kill-ring)
 
   (evil-define-key* 'normal my:intercept-mode-map
     (kbd "SPC <") #'consult-buffer
