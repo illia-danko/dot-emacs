@@ -55,9 +55,9 @@
  '(c-basic-offset 4)
  '(comment-fill-column 80)
  '(completion-category-defaults nil)
- '(completion-category-overrides '((file (styles . (orderless flex)))))
+ '(completion-category-overrides '((file (styles . (partial-completion))) (cider (styles . (flex basic)))))
  '(completion-cycle-threshold 3) ; TAB cycle if there are only few candidates
- '(completion-styles '(orderless flex))
+ '(completion-styles '(orderless flex)) ; cape-company-to-capf works properly
  '(corfu-auto t)
  '(corfu-preselect 'prompt)
  '(corfu-preview-current nil)
@@ -65,7 +65,8 @@
  '(dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
  '(dashboard-items '((agenda . 8) (projects . 4) (recents . 4)))
  '(dashboard-set-footer nil)
- '(debug-on-error t)
+ '(dashboard-projects-backend 'project-el)
+ ;; '(debug-on-error t)
  '(dired-dwim-target t)
  '(dired-omit-files "^\\...+$")         ; add hiden files to dired-omit-mode
  '(dired-omit-verbose nil)
@@ -110,6 +111,7 @@
  '(mac-command-modifier 'meta)
  '(mac-option-modifier 'control)
  '(magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+ '(magit-diff-refine-hunk t)
  '(markdown-fontify-code-blocks-natively t) ; highlight code block syntax
  '(markdown-hide-markup t)                  ; hide urls
  '(prefix-help-command #'embark-prefix-help-command)
@@ -129,6 +131,7 @@
  '(vertico-resize nil)
  '(visible-cursor nil)               ; dont blink cursor in tty.
  '(wgrep-auto-save-buffer t)
+ '(warning-minimum-level :error)
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref)
  `(bookmark-default-file ,(expand-file-name "bookmarks" my:shared-directory)) ; bookmarks path
@@ -140,8 +143,8 @@
  `(transient-values-file ,(expand-file-name "transient/values.el" my:shared-directory))
  `(undohist-directory ,(expand-file-name "undohist" my:shared-directory))
  `(undohist-ignored-files '("COMMIT_EDITMSG"))
- `(url-configuration-directory ,(expand-file-name "url" my:shared-directory))
- )
+ `(url-configuration-directory ,(expand-file-name "url" my:shared-directory)))
+ 
 
 (custom-set-variables
  '(format-all-default-formatters `(("YAML" (prettier ,my:prettier-config-path)) ("JavaScript" (prettier ,my:prettier-config-path)) ("Go" goimports) ("Emacs Lisp" emacs-lisp)))
@@ -151,15 +154,15 @@
                                    (projectile-find-file . project-file)
                                    (projectile-recentf . project-file)
                                    (projectile-switch-to-buffer . buffer)
-                                   (projectile-switch-project . project-file)))
- )
+                                   (projectile-switch-project . project-file))))
+ 
 
 (custom-set-variables
  '(org-agenda-block-separator "")
  '(org-agenda-files (list org-default-notes-file))
  '(org-capture-bookmark nil)            ; prevent storing bookmarks
  '(org-capture-templates `(("n" "[n]ew TODO item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")))
- '(org-ellipsis "  " )                 ; folding symbol
+ '(org-ellipsis "  ")                 ; folding symbol
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-hide-emphasis-markers t)    ; close links, etc.

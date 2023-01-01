@@ -152,6 +152,9 @@
   (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
   (global-anzu-mode 1))
 
+(use-package ace-jump-mode :straight t
+  :bind (("M-e" . #'ace-jump-mode)))
+
 (use-package corfu :straight t
   :config
   (global-corfu-mode 1))
@@ -243,11 +246,11 @@
 (use-package help
   :config
   (evil-define-key* 'normal my:intercept-mode-map
-    (kbd ",dk") #'describe-key
-    (kbd ",dw") #'where-is
-    (kbd ",dv") #'describe-variable
-    (kbd ",df") #'describe-function
-    "g?" #'describe-mode))
+    (kbd "SPC hk") #'describe-key
+    (kbd "SPC hw") #'where-is
+    (kbd "SPC hv") #'describe-variable
+    (kbd "SPC hf") #'describe-function
+    (kbd "SPC hm") #'#'describe-mode))
 
 (use-package magit :straight t
   :init
@@ -303,7 +306,6 @@
 
   :hook ((after-change-major-mode . my:git-gutter-enable))
   :config
-  (advice-add 'find-file :after #'my:git-gutter-refresh-hunks)
   (advice-add 'pop-to-buffer-same-window :after #'my:git-gutter-refresh-hunks)
   (advice-add 'switch-to-buffer :after #'my:git-gutter-refresh-hunks)
   (advice-add 'switch-to-buffer-other-window :after #'my:git-gutter-refresh-hunks)
@@ -319,15 +321,8 @@
 (use-package savehist
   :init (savehist-mode))  ;; save minibuffer history
 
-(use-package projectile :straight t
-  :ensure t
-  :config
-  (define-key projectile-command-map "d" #'projectile-kill-buffers)
-  (define-key projectile-command-map "#" #'projectile-remove-known-project)
-  (evil-define-key* 'normal my:intercept-mode-map
-    (kbd "SPC p") #'projectile-command-map)
-
-  (projectile-mode 1))
+(use-package project
+  :bind (("C-x p #" . #'project-forget-project)))
 
 (use-package lsp-mode :straight t
   :init
@@ -735,7 +730,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
       (setq standard-display-table display-table))
     ;; Make a vertical border as a tmux' one.
     (set-face-attribute 'vertical-border frame
-                        :foreground (face-foreground 'success)
+                        :foreground (face-foreground 'default)
                         :background (face-background 'default))))
 
 (add-hook 'after-init-hook #'my:load-theme-faces)
