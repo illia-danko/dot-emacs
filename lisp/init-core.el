@@ -104,7 +104,8 @@
 		  (flyspell-mode))
 		(flyspell-buffer))))
 
-  :hook (git-commit-setup . flyspell-mode)
+  :hook
+  (git-commit-setup . flyspell-mode)
 
   :bind
   ("C-c ts" . my-flyspell-toggle))
