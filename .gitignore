@@ -1,5 +1,7 @@
 auto-save-list
-eshell
+/eshell
 projects
-straight
-transient
+/straight
+/transient
+/games
+/url
