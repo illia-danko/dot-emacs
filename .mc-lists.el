@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+		mc/hydra-keymap/mc/mark-next-like-this
 		))
 
 (setq mc/cmds-to-run-once
