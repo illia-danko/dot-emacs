@@ -48,16 +48,6 @@
   (mac-command-modifier 'meta)
   (mac-option-modifier 'control))
 
-;; Strart Emacs maximized, use custom font.
-(use-package frame
-  :init
-  (defun my-adjust-created-frame ()
-    (set-frame-font
-     "-*-Iosevka Nerd Font Mono-semibold-normal-normal-*-16-*-*-*-m-0-iso10646-1" nil t)
-    (toggle-frame-maximized))
-  :hook
-  (window-setup . my-adjust-created-frame))
-
 ;; Command hints.
 (use-package which-key :straight t
   :config
