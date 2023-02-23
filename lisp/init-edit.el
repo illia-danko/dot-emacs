@@ -17,11 +17,40 @@
     ("m" mc/edit-lines "edit selection" :exit t)
     ("a" mc/mark-all-like-this "mark all" :exit t)
     ("q" nil "cancel"))
-  :bind (("C-c m" . mc/hydra-keymap/body)))
+  :bind
+  (("C-c m" . mc/hydra-keymap/body)))
+
+;; Move the cursor quickly to a word.
+(use-package ace-jump-mode :straight t
+  :bind
+  ("C-c SPC" . ace-jump-mode))
 
 ;; Smart parentheses.
 (use-package elec-pair
   :config
   (electric-pair-mode 1))
+
+;; Show search results number.
+(use-package anzu :straight t
+  :bind
+  ([remap query-replace] . anzu-query-replace)
+  ([remap query-replace-regexp] . anzu-query-replace-regexp)
+  :config
+  (global-anzu-mode 1))
+
+;; Convert the region to isearch prompt.
+(use-package isearch
+  :init
+  (defun my-isearch-region (&rest _)
+    "If a region is active, set the selected pattern to isearch input."
+    (interactive "P\np")
+    (if mark-active
+	    (let ((content (buffer-substring-no-properties (mark) (point))))
+		  (deactivate-mark)
+		  (isearch-yank-string content))))
+
+  :config
+  (advice-add 'isearch-forward :after #'my-isearch-region)
+  (advice-add 'isearch-backward :after #'my-isearch-region))
 
 (provide 'init-edit)

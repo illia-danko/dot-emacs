@@ -15,6 +15,11 @@
   :bind
   ([remap dired] . dired-jump)
   (:map dired-mode-map
-        ("O" . my-dired-system-open)))
+        ("O" . my-dired-system-open))
+
+  :custom
+  (dired-dwim-target t) ; Act as two panes midnight commander file manager.
+  (dired-omit-files "^\\...+$") ; add hiden files (started with dot) to `dired-omit-mode'
+  )
 
 (provide 'init-dired)

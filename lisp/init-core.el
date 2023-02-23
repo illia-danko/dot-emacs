@@ -1,14 +1,21 @@
 ;; Generic configuration.
 (use-package emacs
+  :hook
+  ((prog-mode org-mode markdown-mode yaml-mode) . (lambda ()
+													(setq-local show-trailing-whitespace t)))
   :custom
   (tab-width 4)  ; number spaces per a tab
   (ring-bell-function 'ignore) ; stop ring bell alarms
-  (fill-column 100) ; nowadays on large screens 100 characters per a line sounds reasonable
+  (fill-column 100) ; nowadays 100 characters wide sounds reasonable on large screens
+  :config
+  (fset 'yes-or-no-p 'y-or-n-p) ; type less on yes/no questions
+  (put 'upcase-region 'disabled nil) ; don't confirm on upcase
+  (put 'downcase-region 'disabled nil) ; con't confirm on downcase
   )
 
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
-  :hook ((prog-mode conf-mode yaml-mode) . display-line-numbers-mode)
+  :hook ((prog-mode conf-mode yaml-mode markdown-mode org-mode) . display-line-numbers-mode)
   :custom
   (display-line-numbers-type t))
 
@@ -69,5 +76,9 @@
 ;; Override selection on yank.
 (use-package delsel
   :config (delete-selection-mode))
+
+;; Highlight TODO,BUG,FIXME,NOTE,etc. comment keywords.
+(use-package hl-todo :straight t
+  :config (global-hl-todo-mode))
 
 (provide 'init-core)

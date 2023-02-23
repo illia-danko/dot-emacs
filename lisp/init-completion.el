@@ -59,8 +59,17 @@
   (unless (display-graphic-p)
     (corfu-terminal-mode 1)))
 
-;; Based completing-read search/navigation commands.
+;; Based on completing-read search/navigation commands.
 (use-package consult :straight t
+  :init
+  (defun my-consult-ripgrep ()
+    (interactive)
+    (if mark-active
+        (let ((content (buffer-substring-no-properties (mark) (point))))
+          (deactivate-mark)
+          (consult-ripgrep nil content))
+      (consult-ripgrep)))
+
   :bind
   ([remap apropos]                       . consult-apropos)
   ([remap bookmark-jump]                 . consult-bookmark)
@@ -75,8 +84,17 @@
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
+  ("C-c s"                               . my-consult-ripgrep)
   :custom
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref))
+
+;; Helper commands on top of consult buffers and more.
+(use-package embark-consult :straight t
+  :bind
+  (("C-." . embark-act)  ; pick some comfortable binding
+   ("C-;" . embark-dwim)) ; good alternative to `embark-act'
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 (provide 'init-completion)
