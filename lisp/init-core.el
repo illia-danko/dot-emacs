@@ -10,7 +10,8 @@
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type less on yes/no questions
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase
-  (put 'downcase-region 'disabled nil) ; con't confirm on downcase
+  (put 'downcase-region 'disabled nil) ; don't confirm on downcase
+  (column-number-mode) ; show column number on modeline
   )
 
 ;; Line-numbers on the fringe side.
@@ -67,7 +68,7 @@
   :custom
   (make-backup-files nil))
 
-;; Copy to clipboard on teminal.
+;; Copy to clipboard on terminal.
 (use-package xclip :straight t
   :unless (display-graphic-p)
   :config
@@ -85,5 +86,17 @@
 (use-package saveplace
   :config
   (save-place-mode 1))
+
+;; Store last edit file names.
+(use-package recentf
+  :config
+  (recentf-mode 1))
+
+;; Keep yank history after closing emacs.
+(use-package undohist :straight t
+  :custom
+  (undohist-ignored-files '("COMMIT_EDITMSG") ; disable warning of temp files
+  :config
+  (undohist-initialize)))
 
 (provide 'init-core)

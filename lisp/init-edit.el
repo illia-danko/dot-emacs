@@ -32,11 +32,14 @@
 
 ;; Show search results number.
 (use-package anzu :straight t
+  :hook
+  ((prog-mode text-mode) . anzu-mode)
   :bind
   ([remap query-replace] . anzu-query-replace)
   ([remap query-replace-regexp] . anzu-query-replace-regexp)
-  :config
-  (global-anzu-mode 1))
+  :custom
+  (anzu-mode-lighter "") ; don't show on modeline
+  )
 
 ;; Convert the region to isearch prompt.
 (use-package isearch
