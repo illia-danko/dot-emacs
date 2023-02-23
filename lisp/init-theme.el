@@ -6,8 +6,8 @@
      "-*-Iosevka Nerd Font Mono-semibold-normal-normal-*-16-*-*-*-m-0-iso10646-1" nil t)
     (toggle-frame-maximized))
   :hook
-  (window-setup . my-adjust-created-frame))
-
-(load-theme 'modus-operandi t nil)
+  (window-setup . my-adjust-created-frame)
+  :config
+  (load-theme 'modus-operandi t nil))
 
 (provide 'init-theme)
