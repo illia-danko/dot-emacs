@@ -29,12 +29,12 @@
 ;; Templates.
 (use-package tempel :straight t
   :init
-  (defun tempel-setup-capf ()
+  (defun my-tempel-setup-capf ()
 	;; tampel-complete must be a first item in completion-at-point-functions.
     (add-to-ordered-list 'completion-at-point-functions 'tempel-complete 0))
 
   :hook
-  ((eglot-managed-mode prog-mode text-mode) . tempel-setup-capf)
+  ((eglot-managed-mode prog-mode text-mode) . my-tempel-setup-capf)
 
   :custom
   (tempel-path "~/.emacs.d/snippets/*"))

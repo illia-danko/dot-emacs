@@ -1,4 +1,4 @@
-(defvar time-emacs-start (current-time)
+(defvar my-time-emacs-start (current-time)
   "Time Emacs has started.")
 
 (setq gc-cons-threshold 402653184
@@ -22,14 +22,20 @@
               `(,(expand-file-name "lisp" user-emacs-directory))))
 
 (require 'init-bootstrap)
+(require 'init-vars)
 (require 'init-core)
 (require 'init-completion)
 (require 'init-formatting)
 (require 'init-lsp)
 (require 'init-treesitter)
+(require 'init-edit)
 (require 'init-vc)
+(require 'init-dired)
 (require 'init-go)
+(require 'init-yaml)
+(require 'init-dockermode)
+(require 'init-restclient)
 (require 'init-personal)
 (require 'init-theme)
 
-(message "Load time %.06f" (float-time (time-since time-emacs-start)))
+(message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

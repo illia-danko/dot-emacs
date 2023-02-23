@@ -3,7 +3,14 @@
   :custom
   (tab-width 4)  ; number spaces per a tab
   (ring-bell-function 'ignore) ; stop ring bell alarms
+  (fill-column 100) ; nowadays on large screens 100 characters per a line sounds reasonable
   )
+
+;; Line-numbers on the fringe side.
+(use-package display-line-numbers
+  :hook ((prog-mode conf-mode yaml-mode) . display-line-numbers-mode)
+  :custom
+  (display-line-numbers-type t))
 
 ;; Disable tool bar.
 (use-package tool-bar
@@ -33,12 +40,6 @@
   (mac-command-modifier 'meta)
   (mac-option-modifier 'control))
 
-;; Line-numbers on the fringe side.
-(use-package display-line-numbers
-  :hook ((prog-mode) . display-line-numbers-mode)
-  :custom
-  (display-line-numbers-type t))
-
 ;; Strart Emacs maximized, use custom font.
 (use-package frame
   :init
@@ -64,5 +65,9 @@
   :unless (display-graphic-p)
   :config
   (xclip-mode 1))
+
+;; Override selection on yank.
+(use-package delsel
+  :config (delete-selection-mode))
 
 (provide 'init-core)
