@@ -38,8 +38,11 @@
 
 ;; Stop the cursor blinking.
 (use-package frame
+  :custom
+  (visible-cursor nil) ; for terminal
   :config
-  (blink-cursor-mode -1))
+  (blink-cursor-mode -1) ; for gui
+  )
 
 ;; Use command as meta and use ctrl as alt on MACOS.
 (use-package ns-win
