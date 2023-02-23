@@ -19,7 +19,8 @@
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
-              `(,(expand-file-name "lisp" user-emacs-directory))))
+              `(,(expand-file-name "lisp" user-emacs-directory))
+			  `(,(expand-file-name "lisp/lang" user-emacs-directory))))
 
 (require 'init-bootstrap)
 (require 'init-vars)
@@ -32,15 +33,17 @@
 (require 'init-rg)
 (require 'init-vc)
 (require 'init-dired)
-(require 'init-org)
-(require 'init-markdown)
-(require 'init-conf)
-(require 'init-emacs-lisp)
-(require 'init-go)
-(require 'init-yaml)
-(require 'init-dockermode)
 (require 'init-restclient)
 (require 'init-personal)
 (require 'init-theme)
+
+;; Load languages modes.
+(require 'init-conf)
+(require 'init-dockermode)
+(require 'init-emacs-lisp)
+(require 'init-org)
+(require 'init-markdown)
+(require 'init-yaml)
+(require 'init-go)
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))
