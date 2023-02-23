@@ -89,4 +89,24 @@
   :config
   (undohist-initialize)))
 
+(use-package flyspell
+  :init
+  (defun my-flyspell-toggle ()
+    (interactive)
+    (if (symbol-value flyspell-mode)
+		(progn
+		  (message "Flyspell off")
+		  (flyspell-mode -1))
+	  (progn
+		(message "Flyspell on")
+		(if (derived-mode-p 'prog-mode)
+			(flyspell-prog-mode)
+		  (flyspell-mode))
+		(flyspell-buffer))))
+
+  :hook (git-commit-setup . flyspell-mode)
+
+  :bind
+  ("C-c ts" . my-flyspell-toggle))
+
 (provide 'init-core)

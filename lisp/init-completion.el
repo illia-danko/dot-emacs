@@ -36,6 +36,9 @@
   :hook
   ((eglot-managed-mode prog-mode text-mode) . my-tempel-setup-capf)
 
+  :bind (("M-+" . tempel-complete)
+         ("M-*" . tempel-insert))
+
   :custom
   (tempel-path "~/.emacs.d/snippets/*"))
 
@@ -47,17 +50,17 @@
   (add-to-list 'completion-at-point-functions #'cape-file) ; path completion
   )
 
-;; At the cursor completion engline.
+;; At the cursor completion engine.
 (use-package corfu :straight t
   :custom
-  (corfu-auto t)
+  (corfu-auto t) ; automatically trigger popups
   :config
   (global-corfu-mode))
 
 (use-package corfu-terminal :straight t
+  :unless (display-graphic-p)
   :config
-  (unless (display-graphic-p)
-    (corfu-terminal-mode 1)))
+  (corfu-terminal-mode 1))
 
 ;; Based on completing-read search/navigation commands.
 (use-package consult :straight t
