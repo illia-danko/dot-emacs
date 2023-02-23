@@ -8,6 +8,7 @@
       (backward-kill-word arg)))
 
   :bind
-  ("C-w" . my-backward-kill-word-or-region))
+  ("C-w" . my-backward-kill-word-or-region)
+  ([remap kill-buffer] . kill-this-buffer))
 
 (provide 'init-personal)
