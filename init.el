@@ -34,6 +34,7 @@
 (require 'init-dired)
 (require 'init-org)
 (require 'init-markdown)
+(require 'init-conf)
 (require 'init-emacs-lisp)
 (require 'init-go)
 (require 'init-yaml)
