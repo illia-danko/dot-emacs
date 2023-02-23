@@ -29,6 +29,7 @@
 (require 'init-lsp)
 (require 'init-treesitter)
 (require 'init-edit)
+(require 'init-rg)
 (require 'init-vc)
 (require 'init-dired)
 (require 'init-org)
