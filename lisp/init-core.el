@@ -81,4 +81,9 @@
 (use-package hl-todo :straight t
   :config (global-hl-todo-mode))
 
+;; Store and restore last edit position of a file.
+(use-package saveplace
+  :config
+  (save-place-mode 1))
+
 (provide 'init-core)
