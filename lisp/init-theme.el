@@ -1,3 +1,3 @@
-(load-theme 'tsdh-dark t nil)
+(load-theme 'misterioso t nil)
 
 (provide 'init-theme)
