@@ -90,7 +90,12 @@
   ("C-c s"                               . my-consult-ripgrep)
   :custom
   (xref-show-definitions-function 'consult-xref)
-  (xref-show-xrefs-function 'consult-xref))
+  (xref-show-xrefs-function 'consult-xref)
+  ;; Ripgrep searches in hidden directories except pattern.
+  (consult-ripgrep-args "rg --null --hidden -g \
+!{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
+--line-buffered --color=never --max-columns=1000 --path-separator \
+/ --smart-case --no-heading --line-number --search-zip ."))
 
 ;; Helper commands on top of consult buffers and more.
 (use-package embark-consult :straight t
