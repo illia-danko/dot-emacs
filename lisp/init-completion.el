@@ -89,6 +89,9 @@
   ([remap yank-pop]                      . consult-yank-pop)
   ("C-x B"                               . consult-project-buffer)
   ("C-c s"                               . my-consult-ripgrep)
+  ("C-c os"                              . (lambda nil
+                                             (interactive)
+                                             (consult-ripgrep org-directory)))
   :custom
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
