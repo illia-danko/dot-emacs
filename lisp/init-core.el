@@ -7,6 +7,7 @@
   (tab-width 4)  ; number spaces per a tab
   (ring-bell-function 'ignore) ; stop ring bell alarms
   (fill-column 100) ; nowadays 100 characters wide sounds reasonable on large screens
+  (set-mark-command-repeat-pop t) ; don't repeat C-u previx on mark commands (i.e. C-u C-SPC)
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type less on yes/no questions
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase
