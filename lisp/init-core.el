@@ -62,12 +62,6 @@
   :custom
   (make-backup-files nil))
 
-;; Copy to clipboard on terminal.
-(use-package xclip :straight t
-  :unless (display-graphic-p)
-  :config
-  (xclip-mode 1))
-
 ;; Override selection on yank.
 (use-package delsel
   :config (delete-selection-mode))
@@ -113,16 +107,6 @@
 
   :bind
   ("C-c ts" . my-flyspell-toggle))
-
-;; Tmux integration.
-(use-package ttymux
-  :straight '(ttymux
-              :type git
-              :host github
-              :repo "illia-danko/ttymux.el")
-  :unless (display-graphic-p)
-  :config
-  (ttymux-mode 1))
 
 ;; Echo area documentation hints.
 (use-package eldoc
