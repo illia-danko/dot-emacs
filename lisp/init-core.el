@@ -9,9 +9,9 @@
   (fill-column 100) ; nowadays 100 characters wide sounds reasonable on large screens
   (set-mark-command-repeat-pop t) ; don't repeat C-u previx on mark commands (i.e. C-u C-SPC)
   :config
-  (fset 'yes-or-no-p 'y-or-n-p) ; type less on yes/no questions
-  (put 'upcase-region 'disabled nil) ; don't confirm on upcase
-  (put 'downcase-region 'disabled nil) ; don't confirm on downcase
+  (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
+  (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
+  (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
   (column-number-mode) ; show column number on modeline
   )
 
@@ -142,6 +142,7 @@
   (dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
   (dashboard-items '((agenda . 8) (projects . 4) (recents . 4))) ; layout
   (dashboard-projects-backend 'project-el) ; use project-el as project backend
+
   :config
   (dashboard-setup-startup-hook))
 
