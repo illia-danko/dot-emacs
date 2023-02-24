@@ -113,4 +113,26 @@
   :bind
   ("C-c ts" . my-flyspell-toggle))
 
+;; Center the screen (part of distructon free).
+(use-package olivetti :straight t)
+
+;; Hide modeline (part of distructon free).
+(use-package hide-mode-line :straight t)
+
+;; Tmux integration.
+(use-package ttymux
+  :straight '(ttymux
+              :type git
+              :host github
+              :repo "illia-danko/ttymux.el")
+  :unless (display-graphic-p)
+  :config
+  (ttymux-mode 1))
+
+;; Echo area documentation hints.
+(use-package eldoc
+  :custom
+  (eldoc-echo-area-use-multiline-p nil) ; do not enlarge echo area.
+  )
+
 (provide 'init-core)

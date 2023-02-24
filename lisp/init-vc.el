@@ -20,4 +20,10 @@
   :bind (("C-c gu" . git-link)
          ("C-c gU" . #'my-git-link-open-page)))
 
+;; Emacs diff tool.
+(use-package ediff
+  :custom
+  (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
+  )
+
 (provide 'init-vc)
