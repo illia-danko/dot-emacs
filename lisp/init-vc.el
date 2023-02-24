@@ -7,7 +7,13 @@
 (use-package magit :straight t
   :custom
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ; magit uses the whole frame space
-  (magit-diff-refine-hunk 'all)) ; word-wise diff highlight
+  (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
+
+  :bind
+  ("C-c g?" . #'magit-blame-addition)
+  ("C-c gd" . #'magit-diff-buffer-file)
+  ("C-c gl" . #'magit-log-all)
+  ("C-c gb" . #'magit-log-buffer-file))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
