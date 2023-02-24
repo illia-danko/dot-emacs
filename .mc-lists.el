@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+		indent-for-tab-command
 		mc/hydra-keymap/mc/mark-next-like-this
 		))
 
