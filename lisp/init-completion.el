@@ -45,6 +45,8 @@
 ;; Completion backends for corfu.
 (use-package cape :straight t
   :after (tempel)
+  :hook
+  ((eshell-mode comint-mode) . (lambda () (add-to-list 'completion-at-point-functions #'cape-history)))
   :config
   (add-to-list 'completion-at-point-functions #'cape-dabbrev) ; current buffer symbols completion
   (add-to-list 'completion-at-point-functions #'cape-file) ; path completion
