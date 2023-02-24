@@ -67,13 +67,28 @@
 ;; Based on completing-read search/navigation commands.
 (use-package consult :straight t
   :init
+  (defun my-apply-region (func &rest args)
+	"Apply the given `func' to its `args' and the marked region.
+If is no region, calls `func' without any `args'."
+	(if mark-active
+        (let* ((content (buffer-substring-no-properties (mark) (point)))
+			   (args (append args `(,content))))
+          (deactivate-mark)
+          (apply 'funcall func args))
+      (funcall func)))
+
   (defun my-consult-ripgrep ()
     (interactive)
-    (if mark-active
-        (let ((content (buffer-substring-no-properties (mark) (point))))
-          (deactivate-mark)
-          (consult-ripgrep nil content))
-      (consult-ripgrep)))
+	(my-apply-region 'consult-ripgrep
+					 (project-root (project-current))))
+
+  (defun my-consult-line ()
+    (interactive)
+	(my-apply-region 'consult-line))
+
+  (defun my-consult-ripgrep-org ()
+	(interactive)
+	(consult-ripgrep org-directory))
 
   :bind
   ([remap apropos]                       . consult-apropos)
@@ -89,11 +104,11 @@
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
+  ([remap isearch-forward]               . my-consult-line)
+  ([remap isearch-backward]              . my-consult-line)
   ("C-x B"                               . consult-project-buffer)
   ("C-c s"                               . my-consult-ripgrep)
-  ("C-c os"                              . (lambda nil
-                                             (interactive)
-                                             (consult-ripgrep org-directory)))
+  ("C-c os"                              . my-consult-ripgrep-org)
   :custom
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
