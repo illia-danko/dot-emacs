@@ -10,4 +10,5 @@
 (setq mc/cmds-to-run-once
       '(
 		mc/hydra-keymap/mc/edit-lines-and-exit
+		mc/hydra-keymap/mc/mark-all-like-this-and-exit
 		))
