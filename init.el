@@ -31,12 +31,10 @@
 (require 'init-lsp)
 (require 'init-treesitter)
 (require 'init-edit)
-(require 'init-rg)
 (require 'init-vc)
 (require 'init-dired)
-(require 'init-restclient)
-(require 'init-elfeed)
 (require 'init-personal)
+(require 'init-tools)
 (require 'init-theme)
 
 ;; Load languages modes.
