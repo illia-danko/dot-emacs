@@ -52,6 +52,10 @@
   (mac-command-modifier 'meta)
   (mac-option-modifier 'control))
 
+(use-package bookmark
+  :custom
+  (bookmark-default-file (expand-file-name "bookmarks" my-emacs-config-directory)))
+
 ;; Command hints.
 (use-package which-key :straight t
   :config

@@ -35,6 +35,7 @@
 (require 'init-vc)
 (require 'init-dired)
 (require 'init-restclient)
+(require 'init-elfeed)
 (require 'init-personal)
 (require 'init-theme)
 
