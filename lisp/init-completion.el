@@ -1,11 +1,11 @@
-;; Annotations of minibuffer.
+;; Annotations for minibuffer.
 (use-package marginalia :straight t
   :custom
-  (marginalia-align 'right)
+  (marginalia-align 'right) ; take all available space
   :config
   (marginalia-mode))
 
-;; Make minibuffer prettier.
+;; Make minibuffer looks prettier.
 (use-package vertico :straight t
   :ensure t
   :bind (:map vertico-map
@@ -19,7 +19,7 @@
   :config
   (vertico-mode 1))
 
-;; Orderless completion engine.
+;; General orderless completion engine.
 (use-package orderless :straight t
   :custom
   (completion-styles '(orderless flex))
@@ -47,6 +47,7 @@
   :after (tempel)
   :hook
   ((eshell-mode comint-mode) . (lambda () (add-to-list 'completion-at-point-functions #'cape-history)))
+
   :config
   (add-to-list 'completion-at-point-functions #'cape-dabbrev) ; current buffer symbols completion
   (add-to-list 'completion-at-point-functions #'cape-file) ; path completion
@@ -109,20 +110,21 @@ If is no region, calls `func' without any `args'."
   ("C-x B"                               . consult-project-buffer)
   ("C-c s"                               . my-consult-ripgrep)
   ("C-c os"                              . my-consult-ripgrep-org)
+
   :custom
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
-  ;; Ripgrep searches in hidden directories except pattern.
+  ;; Ripgrep searches in hidden directories except the pattern.
   (consult-ripgrep-args "rg --null --hidden -g \
 !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --line-buffered --color=never --max-columns=1000 --path-separator \
 / --smart-case --no-heading --line-number --search-zip ."))
 
-;; Helper commands on top of consult buffers and more.
+;; Action commands for `consult'.
 (use-package embark-consult :straight t
   :bind
-  (("C-." . embark-act)  ; pick some comfortable binding
-   ("C-;" . embark-dwim)) ; good alternative to `embark-act'
+  (("C-." . embark-act)  ; pick up some comfortable binding
+   ("C-;" . embark-dwim)) ; a good alternative to `embark-act'
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 

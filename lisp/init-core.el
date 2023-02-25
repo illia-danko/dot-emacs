@@ -75,18 +75,19 @@
   :config
   (save-place-mode 1))
 
-;; Store last edit file names.
+;; Store recent edit file names.
 (use-package recentf
   :config
   (recentf-mode 1))
 
-;; Keep yank history after closing emacs.
+;; Keep yank history after exiting Emacs.
 (use-package undohist :straight t
   :custom
-  (undohist-ignored-files '("COMMIT_EDITMSG") ; disable warning of temp files
+  (undohist-ignored-files '("COMMIT_EDITMSG") ; disable warning on temp files
   :config
   (undohist-initialize)))
 
+;; Check spelling using `hunspell'.
 (use-package flyspell
   :init
   (defun my-flyspell-toggle ()
@@ -114,6 +115,7 @@
   (eldoc-echo-area-use-multiline-p nil) ; do not enlarge echo area.
   )
 
+;; Emacs startup greeter.
 (use-package dashboard :straight t
   :init
   ;; Open dashboard when frame created.
