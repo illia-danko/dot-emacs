@@ -119,21 +119,4 @@
   (eldoc-echo-area-use-multiline-p nil) ; do not enlarge echo area.
   )
 
-;; Emacs startup greeter.
-(use-package dashboard :straight t
-  :init
-  ;; Open dashboard when frame created.
-  (add-hook 'after-make-frame-functions
-            (lambda (&optional frame)
-              (setq initial-buffer-choice (lambda nil
-                                            (get-buffer "*dashboard*")))))
-
-  :custom
-  (dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
-  (dashboard-items '((agenda . 8) (projects . 4) (recents . 4))) ; layout
-  (dashboard-projects-backend 'project-el) ; use project-el as project backend
-
-  :config
-  (dashboard-setup-startup-hook))
-
 (provide 'init-core)
