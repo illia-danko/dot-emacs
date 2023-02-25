@@ -119,4 +119,9 @@
   (eldoc-echo-area-use-multiline-p nil) ; do not enlarge echo area.
   )
 
+;; Compile/recompile using Makefile mostly.
+(use-package complile
+  :bind
+  ("C-c cr" . recompile))
+
 (provide 'init-core)

@@ -106,7 +106,7 @@ If is no region, calls `func' without any `args'."
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
   ([remap isearch-forward]               . my-consult-line)
-  ([remap isearch-backward]              . my-consult-line)
+  ([remap isearch-backward]              . consult-recent-file)
   ("C-x B"                               . consult-project-buffer)
   ("C-c s"                               . my-consult-ripgrep)
   ("C-c os"                              . my-consult-ripgrep-org)
