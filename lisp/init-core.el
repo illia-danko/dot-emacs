@@ -104,7 +104,7 @@
 		(flyspell-buffer))))
 
   :hook
-  (git-commit-setup . flyspell-mode)
+  (git-commit-setup . flyspell-mode) ; check COMMIT_EDITMSG buffer for spelling
 
   :bind
   ("C-c ts" . my-flyspell-toggle))
