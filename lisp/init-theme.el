@@ -11,18 +11,12 @@
   :hook
   (window-setup . my-adjust-created-frame))
 
-;; Load theme based on the system theme's variant on MACOS.
-(use-package frame
-  :if (eq system-type 'darwin)
-  :init
-  (defun my-apply-theme (appearance)
-	"Load theme, taking current system APPEARANCE into consideration.
-See https://github.com/d12frosted/homebrew-emacs-plus for details."
-	(mapc #'disable-theme custom-enabled-themes)
-	(pcase appearance
-      ('light (load-theme 'modus-operandi t))
-      ('dark (load-theme 'modus-vivendi t))))
-
-  (add-hook 'ns-system-appearance-change-functions #'my-apply-theme))
+;; Load theme based on the system theme's variant.
+(use-package auto-dark :straight t
+  :custom
+  (auto-dark-light-theme 'modus-operandi)
+  (auto-dark-dark-theme 'modus-vivendi)
+  :config
+  (auto-dark-mode t))
 
 (provide 'init-theme)
