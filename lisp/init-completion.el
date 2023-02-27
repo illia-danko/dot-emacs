@@ -128,7 +128,7 @@ If is no region, calls `func' without any `args'."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; LSP client.
+;; LSP frontend.
 (use-package eglot :straight t
   :init
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
