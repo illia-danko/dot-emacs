@@ -133,6 +133,9 @@ If is no region, calls `func' without any `args'."
   :init
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
   :hook
-  ((go-mode) . eglot-ensure))
+  ((go-mode) . eglot-ensure)
+  :bind
+  (:map eglot-mode-map
+		("C-c cn" . eglot-rename)))
 
 (provide 'init-completion)
