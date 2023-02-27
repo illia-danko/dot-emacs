@@ -130,9 +130,9 @@ If is no region, calls `func' without any `args'."
 
 ;; LSP client.
 (use-package eglot :straight t
+  :init
+  (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
   :hook
-  ((go-mode) . eglot-ensure)
-  :custom
-  (eglot-stay-out-of '(flymake)))
+  ((go-mode) . eglot-ensure))
 
 (provide 'init-completion)
