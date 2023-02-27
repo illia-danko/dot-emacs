@@ -38,4 +38,11 @@
   :config
   (dashboard-setup-startup-hook))
 
+(use-package leetcode :straight t
+  :ensure t
+  :custom
+  (leetcode-prefer-language "golang")
+  (leetcode-directory "~/github.com/illia-danko/emacs-leetcode")
+  (leetcode-save-solutions t))
+
 (provide 'init-tools)
