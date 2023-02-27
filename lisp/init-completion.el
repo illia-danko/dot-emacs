@@ -128,4 +128,11 @@ If is no region, calls `func' without any `args'."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+;; LSP client.
+(use-package eglot :straight t
+  :hook
+  ((go-mode) . eglot-ensure)
+  :custom
+  (eglot-stay-out-of '(flymake)))
+
 (provide 'init-completion)
