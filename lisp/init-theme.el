@@ -2,10 +2,14 @@
 (use-package frame
   :init
   (defun my-adjust-created-frame ()
-	(let ((font-code (if (eq system-type 'darwin)
-						 "-*-Iosevka Nerd Font Mono-semibold-normal-normal-*-16-*-*-*-m-0-iso10646-1"
-					   "-*-Iosevka Nerd Font Mono-semibold-normal-normal-*-32-*-*-*-m-0-iso10646-1")))
-	  (set-frame-font font-code nil t))
+	(let ((font-size (pcase system-type
+					   ('darwin 160)
+					   (_ 125)
+					   )))
+	  (custom-set-faces
+	   `(default ((t (:family "Iosevka Nerd Font Mono" :height ,font-size :weight semibold))))
+	   `(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :height ,font-size :weight semibold))))
+	   `(variable-pitch ((t (:family "Iosevka Nerd Font Mono" :height ,font-size :weight semibold))))))
     (toggle-frame-maximized))
 
   :hook
