@@ -136,6 +136,7 @@ If is no region, calls `func' without any `args'."
   ((go-mode) . eglot-ensure)
   :bind
   (:map eglot-mode-map
-		("C-c cn" . eglot-rename)))
+		("C-c cn" . eglot-rename)
+		("C-c ci" . eglot-find-implementation)))
 
 (provide 'init-completion)
