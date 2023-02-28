@@ -45,4 +45,7 @@
   (leetcode-directory "~/github.com/illia-danko/emacs-leetcode")
   (leetcode-save-solutions t))
 
+;; Kubernetes frontend.
+(use-package kubel :straight t)
+
 (provide 'init-tools)
