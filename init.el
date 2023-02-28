@@ -19,8 +19,8 @@
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
-              `(,(expand-file-name "lisp" user-emacs-directory))
-			  `(,(expand-file-name "lisp/lang" user-emacs-directory))))
+              `(,(expand-file-name "site-lisp" user-emacs-directory))
+			  `(,(expand-file-name "site-lisp/lang" user-emacs-directory))))
 
 (require 'init-bootstrap)
 (require 'init-vars)
