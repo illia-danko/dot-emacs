@@ -1,3 +1,9 @@
+(use-package all-the-icons-completion :straight t
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
+
 ;; Annotations for minibuffer.
 (use-package marginalia :straight t
   :custom
@@ -105,7 +111,7 @@ If is no region, calls `func' without any `args'."
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
   ([remap isearch-forward]               . my-consult-line)
-  ("C-c /"                               . consult-imenu)
+  ("C-q"                                 . consult-imenu)
   ("C-c s"                               . my-consult-ripgrep)
   ("C-c os"                              . my-consult-ripgrep-org)
 
