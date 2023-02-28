@@ -95,7 +95,6 @@ If is no region, calls `func' without any `args'."
   ([remap apropos]                       . consult-apropos)
   ([remap bookmark-jump]                 . consult-bookmark)
   ([remap goto-line]                     . consult-goto-line)
-  ([remap imenu]                         . consult-imenu)
   ([remap locate]                        . consult-locate)
   ([remap load-theme]                    . consult-theme)
   ([remap man]                           . consult-man)
@@ -106,8 +105,7 @@ If is no region, calls `func' without any `args'."
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
   ([remap isearch-forward]               . my-consult-line)
-  ([remap isearch-backward]              . consult-recent-file)
-  ("C-x B"                               . consult-project-buffer)
+  ("C-c /"                               . consult-imenu)
   ("C-c s"                               . my-consult-ripgrep)
   ("C-c os"                              . my-consult-ripgrep-org)
 

@@ -81,6 +81,8 @@
 
 ;; Store recent edit file names.
 (use-package recentf
+  :bind
+  ("C-c br" . consult-recent-file)
   :config
   (recentf-mode 1))
 

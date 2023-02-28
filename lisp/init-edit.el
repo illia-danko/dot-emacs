@@ -23,7 +23,7 @@
 ;; Move the cursor quickly to a word.
 (use-package ace-jump-mode :straight t
   :bind
-  ("C-q" . ace-jump-mode))
+  ([remap isearch-backward] . ace-jump-mode))
 
 ;; Smart parentheses.
 (use-package elec-pair
