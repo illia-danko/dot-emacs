@@ -34,7 +34,7 @@
 (require 'init-dired)
 (require 'init-personal)
 (require 'init-tools)
-(require 'init-theme)
+(require 'init-appearance)
 
 ;; Load languages modes.
 (require 'init-conf)

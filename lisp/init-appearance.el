@@ -23,4 +23,4 @@
   :config
   (auto-dark-mode t))
 
-(provide 'init-theme)
+(provide 'init-appearance)
