@@ -17,6 +17,14 @@
   (org-capture-templates
    `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
      ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?")))
-  (org-default-notes-file (expand-file-name "todos.org" org-directory)))
+  (org-default-notes-file (expand-file-name "todos.org" org-directory))
+
+  :config
+  ;; Preload babel. Make possible to evaluate src code block.
+  (org-babel-do-load-languages 'org-babel-load-languages
+							   '(
+								 (shell . t)
+								 )
+							   ))
 
 (provide 'init-org)
