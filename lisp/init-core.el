@@ -126,4 +126,10 @@
   :bind
   ("C-c cr" . recompile))
 
+;; Open URL at point in the browser. The `C-c C-o' shortcut is compatible with
+;; `markdown-mode' and `org-mode'.
+(use-package browse-url
+  :bind
+  ("C-c C-o" . browse-url-at-point))
+
 (provide 'init-core)
