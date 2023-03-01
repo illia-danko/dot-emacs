@@ -42,9 +42,6 @@
   :hook
   ((eglot-managed-mode prog-mode text-mode) . my-tempel-setup-capf)
 
-  :bind (("M-+" . tempel-complete)
-         ("M-*" . tempel-insert))
-
   :custom
   (tempel-path "~/.emacs.d/snippets/*"))
 

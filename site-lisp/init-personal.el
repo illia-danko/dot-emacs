@@ -7,8 +7,20 @@
 		(kill-region (mark) (point))
       (backward-kill-word arg)))
 
+  (defun my-smart-tab (&optional arg)
+    (interactive "p")
+    (call-interactively
+     (cond ((<= (current-column) (current-indentation))
+            #'indent-for-tab-command)
+		   ((and (fboundp 'tempel-expand)
+				 (tempel--prefix-bounds))
+            #'tempel-expand)
+           (t #'indent-for-tab-command))))
+  (call-interactively #'my-smart-tab)
+
   :bind
   ("C-w" . my-backward-kill-word-or-region)
+  ("TAB" . my-smart-tab)
   ([remap kill-buffer] . kill-this-buffer))
 
 (use-package project
