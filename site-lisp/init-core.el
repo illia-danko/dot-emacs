@@ -159,4 +159,20 @@
   :bind
   ("C-c C-o" . browse-url-at-point))
 
+;; Copy to clipboard on terminal.
+(use-package xclip :straight t
+  :unless (display-graphic-p)
+  :config
+  (xclip-mode 1))
+
+;; Tmux integration.
+(use-package ttymux
+  :straight '(ttymux
+              :type git
+              :host github
+              :repo "illia-danko/ttymux.el")
+  :unless (display-graphic-p)
+  :config
+  (ttymux-mode 1))
+
 (provide 'init-core)
