@@ -1,5 +1,24 @@
 ;; Generic configuration.
 (use-package emacs
+  :init
+  (defun my-backward-kill-word-or-region (&optional arg)
+	"If mark is active acts as `C-w' otherwise as `backward-kill-word'."
+	(interactive "p")
+	(if mark-active
+		(kill-region (mark) (point))
+      (backward-kill-word arg)))
+
+  (defun my-smart-tab (&optional arg)
+    (interactive "p")
+    (call-interactively
+     (cond ((<= (current-column) (current-indentation))
+            #'indent-for-tab-command)
+		   ((and (fboundp 'tempel-expand)
+				 (tempel--prefix-bounds))
+            #'tempel-expand)
+           (t #'indent-for-tab-command))))
+  (call-interactively #'my-smart-tab)
+
   :hook
   ((prog-mode org-mode markdown-mode yaml-mode) . (lambda ()
 													(setq-local show-trailing-whitespace t)))
@@ -8,11 +27,18 @@
   (ring-bell-function 'ignore) ; stop ring bell alarms
   (fill-column 80) ; 80 characters per a line
   (set-mark-command-repeat-pop t) ; don't repeat C-u prefix on mark commands (i.e. C-u C-SPC)
+  (warning-minimum-level :error) ; don't show warnings
+
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
   (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
   (column-number-mode) ; show column number on modeline
+
+  :bind
+  ("C-w" . my-backward-kill-word-or-region)
+  ("TAB" . my-smart-tab)
+  ([remap kill-buffer] . kill-this-buffer)
   )
 
 ;; Line-numbers on the fringe side.

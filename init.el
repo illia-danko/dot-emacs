@@ -32,7 +32,6 @@
 (require 'init-edit)
 (require 'init-vc)
 (require 'init-dired)
-(require 'init-personal)
 (require 'init-tools)
 (require 'init-appearance)
 

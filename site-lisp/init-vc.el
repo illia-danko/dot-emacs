@@ -10,10 +10,11 @@
   (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 
   :bind
-  ("C-c g?" . #'magit-blame-addition)
-  ("C-c gd" . #'magit-diff-buffer-file)
-  ("C-c gl" . #'magit-log-all)
-  ("C-c gb" . #'magit-log-buffer-file))
+  ("C-c gg" . magit-status)
+  ("C-c g?" . magit-blame-addition)
+  ("C-c gd" . magit-diff-buffer-file)
+  ("C-c gl" . magit-log-all)
+  ("C-c gb" . magit-log-buffer-file))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
@@ -31,5 +32,18 @@
   :custom
   (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
   )
+
+(use-package project
+  :config
+  (defun project-switch-project (dir)
+	"Override default `project-switch-project' command.
+Instead of prompt the list with commands, directly execute `project-find-file'.
+Behave as `projectile-switch-project'."
+  (interactive (list (project-prompt-project-dir)))
+  (let ((project-current-directory-override dir))
+    (call-interactively 'project-find-file)))
+
+  :bind
+  ("C-x f" . project-find-file))
 
 (provide 'init-vc)
