@@ -26,6 +26,7 @@
   (tab-width 4)  ; number spaces per a tab
   (ring-bell-function 'ignore) ; stop ring bell alarms
   (fill-column 80) ; 80 characters per a line
+  (comment-fill-column 80)
   (set-mark-command-repeat-pop t) ; don't repeat C-u prefix on mark commands (i.e. C-u C-SPC)
   (warning-minimum-level :error) ; don't show warnings
 
