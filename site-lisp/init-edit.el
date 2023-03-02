@@ -1,7 +1,7 @@
 ;; Seamlessly region selection.
 (use-package expand-region :straight t
   :bind (("C-o" . er/expand-region)
-         ("M-o" . er/contract-region)))
+		 ("M-o" . er/contract-region)))
 
 (use-package hydra :straight t)
 
@@ -23,7 +23,7 @@
 ;; Move the cursor quickly to a word.
 (use-package ace-jump-mode :straight t
   :bind
-  ([remap isearch-backward] . ace-jump-mode))
+  ("C-t" . ace-jump-mode))
 
 ;; Smart parentheses.
 (use-package elec-pair

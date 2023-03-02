@@ -10,8 +10,6 @@
 
 ;; Read rss.
 (use-package elfeed :straight t
-  :bind
-  ("C-x f" . elfeed)
   :custom
   (elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
   :config
@@ -34,6 +32,7 @@
   (dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
   (dashboard-items '((agenda . 8) (projects . 4) (recents . 4))) ; layout
   (dashboard-projects-backend 'project-el) ; use project-el as project backend
+  (dashboard-set-footer nil) ; do not display footer
 
   :config
   (dashboard-setup-startup-hook))
