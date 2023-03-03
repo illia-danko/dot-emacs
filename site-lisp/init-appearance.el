@@ -8,8 +8,15 @@
 (use-package spacemacs-theme :straight t
   :defer t)
 
-(mapc #'disable-theme custom-enabled-themes)
-(load-theme 'spacemacs-light t)
+(defun my-load-theme-faces (&optional frame)
+  "Adjust faces."
+  (when frame
+    (select-frame frame))
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'spacemacs-light t))
+
+(my-load-theme-faces)
+(add-hook 'after-make-frame-functions #'my-load-theme-faces)
 
 ;; Load theme based on the system theme's variant.
 (use-package auto-dark :straight t
