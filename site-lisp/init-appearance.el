@@ -28,4 +28,10 @@
   :config
   (auto-dark-mode t))
 
+(use-package olivetti :straight t
+  :bind
+  ("C-z" . olivetti-mode))
+
+(use-package hide-mode-line :straight t)
+
 (provide 'init-appearance)
