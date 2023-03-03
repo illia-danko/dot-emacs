@@ -6,11 +6,10 @@
   (toggle-frame-maximized))
 
 (use-package spacemacs-theme :straight t
-  :defer t
-  :config
-  (mapc #'disable-theme custom-enabled-themes))
+  :defer t)
 
-(load-theme 'spacemacs-dark t)
+(mapc #'disable-theme custom-enabled-themes)
+(load-theme 'spacemacs-light t)
 
 ;; Load theme based on the system theme's variant.
 (use-package auto-dark :straight t
