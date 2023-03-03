@@ -60,6 +60,10 @@
 (use-package corfu :straight t
   :custom
   (corfu-auto t) ; automatically trigger popups
+
+  :bind
+  (:map corfu-map ("RET" . nil)) ; use tab to complete
+
   :config
   (global-corfu-mode))
 
