@@ -16,6 +16,17 @@
             (setq gc-cons-threshold 16777216
 				  gc-cons-percentage 0.1)))
 
+(let ((path `("/usr/local/go/bin"
+              "/opt/homebrew/bin"
+			  "/usr/local/bin"
+              ,(concat (getenv "HOME") "/go/bin"))))
+  ;; To make $PATH works correctly on Emacs GUI it's needed to set via both:
+  ;; `exec-path' and `setenv'.
+  (setq exec-path (append exec-path path))
+  (mapc (lambda (p)
+          (setenv "PATH" (concat (getenv "PATH") ":" p)))
+        path))
+
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
