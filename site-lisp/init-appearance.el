@@ -5,15 +5,14 @@
   (set-face-attribute 'default nil :font my-default-font)
   (toggle-frame-maximized))
 
-(use-package spacemacs-theme :straight t
-  :defer t)
+(use-package doom-themes :straight t)
 
 (defun my-load-theme-faces (&optional frame)
   "Adjust faces."
   (when frame
     (select-frame frame))
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'spacemacs-light t))
+  (load-theme 'doom-one-light t))
 
 (my-load-theme-faces)
 (add-hook 'after-make-frame-functions #'my-load-theme-faces)
@@ -23,10 +22,14 @@
   :after (spacemacs-theme)
   :if (display-graphic-p)
   :custom
-  (auto-dark-light-theme 'spacemacs-light)
-  (auto-dark-dark-theme 'spacemacs-dark)
+  (auto-dark-light-theme 'doom-one-light)
+  (auto-dark-dark-theme 'doom-one)
   :config
   (auto-dark-mode t))
+
+(use-package doom-modeline :straight t
+  :config
+  (doom-modeline-mode 1))
 
 (use-package olivetti :straight t
   :bind
