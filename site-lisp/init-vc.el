@@ -33,6 +33,7 @@
   (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
   )
 
+;; Navigate and manipulate projects on the machine.
 (use-package project
   :config
   (defun project-switch-project (dir)
