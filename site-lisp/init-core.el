@@ -46,14 +46,14 @@
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
   :hook
-  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode) . display-line-numbers-mode)
+  ((prog-mode text-mode restclient-mode) . display-line-numbers-mode)
   :custom
   (display-line-numbers-type t))
 
 ;; Highlight on the cursor line.
 (use-package hl-line-mode
   :hook
-  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode dashboard-mode) . hl-line-mode))
+  ((prog-mode text-mode dashboard-mode restclient-mode) . hl-line-mode))
 
 ;; Highlight parentheses different colors.
 (use-package rainbow-delimiters :straight t
