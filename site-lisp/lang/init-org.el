@@ -4,11 +4,9 @@
   (defun my-org-capture-diary () (interactive) (org-capture nil "d"))
 
   :bind
-  (("C-c ol" . org-todo-list)
-   ("C-c oa" . org-agenda)
-   ("C-c ot" . my-org-capture-todo)
-   ("C-c od" . my-org-capture-diary)
-   ("C-c oc" . org-capture))
+  (("C-c o" . org-agenda)
+   ("C-c u" . my-org-capture-todo)
+   ("C-c y" . my-org-capture-diary))
 
   :custom
   (org-directory "~/github.com/illia-danko/org")

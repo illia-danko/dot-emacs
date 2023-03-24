@@ -43,7 +43,19 @@ Behave as `projectile-switch-project'."
   (let ((project-current-directory-override dir))
     (call-interactively 'project-find-file)))
 
+  (defun my-project-compile (arg)
+	"If universal argument is provided (C-u) then supplies compile
+command prompt. Otherwise recompile."
+	(interactive "P")
+	(if arg
+		(project-compile)
+	  (recompile)))
+
   :bind
-  ("C-x f" . project-find-file))
+  ("C-x f" . project-find-file)
+  ("C-x p" . project-switch-project)
+  ("C-c #" . project-kill-buffers)
+  ("C-c e" . project-eshell)
+  ("C-c b" . my-project-compile))
 
 (provide 'init-vc)

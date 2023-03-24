@@ -121,7 +121,7 @@
 ;; Store recent edit file names.
 (use-package recentf
   :bind
-  ("C-c br" . consult-recent-file)
+  ("C-c r" . consult-recent-file)
   :config
   (recentf-mode 1))
 
@@ -152,18 +152,13 @@
   (git-commit-setup . flyspell-mode) ; check COMMIT_EDITMSG buffer for spelling
 
   :bind
-  ("C-c ts" . my-flyspell-toggle))
+  ("C-c !" . my-flyspell-toggle))
 
 ;; Echo area documentation hints.
 (use-package eldoc
   :custom
   (eldoc-echo-area-use-multiline-p nil) ; do not enlarge echo area.
   )
-
-;; Compile/recompile using Makefile mostly.
-(use-package complile
-  :bind
-  ("C-c cr" . recompile))
 
 ;; Open URL at point in the browser. The `C-c C-o' shortcut is compatible with
 ;; `markdown-mode' and `org-mode'.
@@ -186,5 +181,9 @@
   :unless (display-graphic-p)
   :config
   (ttymux-mode 1))
+
+;; Real temrinal emulator.
+(use-package vterm :straight t
+  :bind ("C-c t" . vterm))
 
 (provide 'init-core)

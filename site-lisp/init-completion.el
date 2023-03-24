@@ -111,9 +111,9 @@ If is no region, calls `func' without any `args'."
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
   ([remap yank-pop]                      . consult-yank-pop)
-  ("C-q"                                 . consult-imenu)
+  ("C-c v"                               . consult-imenu)
   ("C-c s"                               . my-consult-ripgrep)
-  ("C-c os"                              . my-consult-ripgrep-org)
+  ("C-c \\"                              . my-consult-ripgrep-org)
 
   :custom
   (xref-show-definitions-function 'consult-xref)
