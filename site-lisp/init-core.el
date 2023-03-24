@@ -53,7 +53,7 @@
 ;; Highlight on the cursor line.
 (use-package hl-line-mode
   :hook
-  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode) . hl-line-mode))
+  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode dashboard-mode) . hl-line-mode))
 
 ;; Highlight parentheses different colors.
 (use-package rainbow-delimiters :straight t
