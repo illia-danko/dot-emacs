@@ -23,7 +23,7 @@
 ;; Move the cursor quickly to a word.
 (use-package ace-jump-mode :straight t
   :bind
-  ("C-t" . ace-jump-mode))
+  ("C-c SPC" . ace-jump-mode))
 
 ;; Smart parentheses.
 (use-package elec-pair
