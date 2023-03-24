@@ -45,9 +45,20 @@
 
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
-  :hook ((prog-mode conf-mode yaml-mode markdown-mode org-mode) . display-line-numbers-mode)
+  :hook
+  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode) . display-line-numbers-mode)
   :custom
   (display-line-numbers-type t))
+
+;; Highlight on the cursor line.
+(use-package hl-line-mode
+  :hook
+  ((prog-mode conf-mode yaml-mode markdown-mode org-mode go-dot-mod-mode) . hl-line-mode))
+
+;; Highlight parentheses different colors.
+(use-package rainbow-delimiters :straight t
+  :hook
+  ((emacs-lisp-mode lisp-interaction-mode) . rainbow-delimiters-mode))
 
 ;; Disable tool bar.
 (use-package tool-bar

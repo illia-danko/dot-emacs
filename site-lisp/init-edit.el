@@ -41,15 +41,6 @@
   (anzu-mode-lighter "") ; don't show on modeline
   )
 
-;; Highlight parentheses different colors.
-(use-package rainbow-delimiters :straight t
-  :hook
-  ((emacs-lisp-mode lisp-interaction-mode) . rainbow-delimiters-mode))
-
-(use-package hl-line-mode
-  :hook
-  ((prog-mode yaml-mode org-mode markdown-mode) . hl-line-mode))
-
 ;; Convert the region to isearch prompt.
 (use-package isearch
   :init
