@@ -7,25 +7,25 @@
 
 (use-package doom-themes :straight t)
 
-(defun my-load-theme-faces (&optional frame)
-  "Adjust faces."
-  (when frame
-    (select-frame frame))
+(unless window-system
+  (defun my-apply-theme (&optional frame)
+	"Adjust faces."
+	(when frame
+      (select-frame frame))
+	(mapc #'disable-theme custom-enabled-themes)
+	(load-theme 'doom-one-light t))
+
+  (my-apply-theme)
+  (add-hook 'after-make-frame-functions #'my-apply-theme))
+
+(defun my-apply-theme-ns (appearance)
+  "Load theme based on the system theme's variant."
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'doom-one-light t))
+  (pcase appearance
+    ('light (load-theme 'doom-one-light t))
+    ('dark (load-theme 'doom-one t))))
 
-(my-load-theme-faces)
-(add-hook 'after-make-frame-functions #'my-load-theme-faces)
-
-;; Load theme based on the system theme's variant.
-(use-package auto-dark :straight t
-  :after (spacemacs-theme)
-  :if (display-graphic-p)
-  :custom
-  (auto-dark-light-theme 'doom-one-light)
-  (auto-dark-dark-theme 'doom-one)
-  :config
-  (auto-dark-mode t))
+(add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
 
 (use-package doom-modeline :straight t
   :config
@@ -33,7 +33,7 @@
 
 (use-package olivetti :straight t
   :bind
-  ("C-z" . olivetti-mode))
+  ("C-c z" . olivetti-mode))
 
 (use-package hide-mode-line :straight t)
 
