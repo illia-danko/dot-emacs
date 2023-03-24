@@ -38,7 +38,6 @@
 (require 'init-completion)
 (require 'init-formatting)
 (require 'init-codelinter)
-(require 'init-treesitter)
 (require 'init-edit)
 (require 'init-vc)
 (require 'init-dired)
