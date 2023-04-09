@@ -13,7 +13,9 @@
   :custom
   (elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
   :config
-  (run-with-timer 0 (* 60 60 4) #'elfeed-update)) ; update elfeed database every 4 hours.
+  (run-with-timer 0 (* 60 60 4) #'elfeed-update) ; update elfeed database every 4 hours.
+  :bind
+  ("C-x w" . elfeed))
 
 ;; Test rest api from Emacs.
 (use-package restclient :straight t
@@ -43,6 +45,14 @@
   (leetcode-prefer-language "golang")
   (leetcode-directory "~/github.com/illia-danko/emacs-leetcode")
   (leetcode-save-solutions t))
+
+(use-package olivetti :straight t
+  :bind
+  ("C-c z" . olivetti-mode)
+  :hook
+  (elfeed-show-mode . olivetti-mode))
+
+(use-package hide-mode-line :straight t)
 
 ;; Kubernetes frontend.
 (use-package kubel :straight t)
