@@ -13,7 +13,7 @@
 	(when frame
       (select-frame frame))
 	(mapc #'disable-theme custom-enabled-themes)
-	(load-theme 'doom-day t))
+	(load-theme 'ef-deuteranopia-light t))
 
   (my-apply-theme)
   (add-hook 'after-make-frame-functions #'my-apply-theme))
@@ -22,8 +22,8 @@
   "Load theme based on the system theme's variant."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'ef-day t))
-    ('dark (load-theme 'ef-autumn t))))
+    ('light (load-theme 'ef-deuteranopia-light t))
+    ('dark (load-theme 'ef-night t))))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
 
