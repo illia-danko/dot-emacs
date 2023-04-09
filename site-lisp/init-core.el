@@ -43,13 +43,6 @@
   ([remap kill-buffer] . kill-this-buffer)
   )
 
-;; Line-numbers on the fringe side.
-(use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode restclient-mode) . display-line-numbers-mode)
-  :custom
-  (display-line-numbers-type t))
-
 ;; Highlight on the cursor line.
 (use-package hl-line-mode
   :hook
