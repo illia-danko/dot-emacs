@@ -52,5 +52,6 @@
 (require 'init-markdown)
 (require 'init-yaml)
 (require 'init-go)
+(require 'init-ts-tsx)
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

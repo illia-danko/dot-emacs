@@ -136,11 +136,18 @@ If is no region, calls `func' without any `args'."
 (use-package eglot :straight t
   :init
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
+
   :hook
-  ((go-mode) . eglot-ensure)
+  ((go-mode js-mode typescript-mode typescriptreact-mode) . eglot-ensure)
+
   :bind
   (:map eglot-mode-map
 		("C-c cn" . eglot-rename)
-		("C-c ci" . eglot-find-implementation)))
+		("C-c ci" . eglot-find-implementation))
+
+  :config
+  (cl-pushnew '((js-mode typescriptreact-mode) . ("typescript-language-server" "--stdio"))
+              eglot-server-programs
+              :test #'equal))
 
 (provide 'init-completion)
