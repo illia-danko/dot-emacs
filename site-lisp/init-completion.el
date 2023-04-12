@@ -22,6 +22,7 @@
   :custom
   (vertico-count 17)
   (vertico-cycle nil)
+  (vertico-resize nil)
   :config
   (vertico-mode 1))
 
