@@ -179,4 +179,11 @@
 (use-package vterm :straight t
   :bind ("C-c t" . vterm))
 
+;; Line-numbers on the fringe side.
+(use-package display-line-numbers
+  :hook
+  ((prog-mode text-mode restclient-mode web-mode conf-unix-mode) . display-line-numbers-mode)
+  :custom
+  (display-line-numbers-type t))
+
 (provide 'init-core)
