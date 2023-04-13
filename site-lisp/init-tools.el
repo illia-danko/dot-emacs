@@ -55,6 +55,6 @@
 (use-package hide-mode-line :straight t)
 
 ;; Kubernetes frontend.
-(use-package kubel :straight t)
+;; (use-package kubel :straight t)
 
 (provide 'init-tools)
