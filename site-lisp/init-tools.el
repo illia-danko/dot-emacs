@@ -39,6 +39,7 @@
   :config
   (dashboard-setup-startup-hook))
 
+;; Train your brain with code challenges.
 (use-package leetcode :straight t
   :ensure t
   :custom
@@ -46,14 +47,17 @@
   (leetcode-directory "~/github.com/illia-danko/emacs-leetcode")
   (leetcode-save-solutions t))
 
+;; Center screen content.
 (use-package olivetti :straight t
   :bind
   ("C-c z" . olivetti-mode)
   :hook
   (elfeed-show-mode . olivetti-mode))
 
+;; Do not show modeline.
 (use-package hide-mode-line :straight t)
 
+;; Highlight RGB colors.
 (use-package rainbow-mode :straight t
   :bind (("C-c w" . rainbow-mode)))
 
