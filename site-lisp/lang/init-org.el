@@ -9,7 +9,6 @@
    ("C-c y" . my-org-capture-diary))
 
   :custom
-  (org-directory "~/github.com/illia-danko/org")
   (org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory)))
   (org-capture-bookmark nil) ; do not keep bookmarks
   (org-capture-templates

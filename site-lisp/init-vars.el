@@ -6,6 +6,8 @@
 (defvar my-emacs-config-directory "~/.config/emacs"
   "Emacs configuration files path.")
 
+(setq org-directory "~/github.com/illia-danko/org")
+
 ;; Load private-settings.el.
 (let ((private-settings (expand-file-name "private-settings.el" my-emacs-config-directory)))
   (and private-settings
