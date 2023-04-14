@@ -54,6 +54,9 @@
 
 (use-package hide-mode-line :straight t)
 
+(use-package rainbow-mode :straight t
+  :bind (("C-c w" . rainbow-mode)))
+
 ;; Kubernetes frontend.
 ;; (use-package kubel :straight t)
 
