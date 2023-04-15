@@ -1,3 +1,10 @@
+;; Better look with icons.
+(use-package all-the-icons-completion :straight t
+  :if (display-graphic-p)
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init (all-the-icons-completion-mode))
+
 ;; Annotations for minibuffer.
 (use-package marginalia :straight t
   :custom

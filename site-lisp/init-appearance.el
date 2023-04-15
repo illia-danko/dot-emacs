@@ -1,5 +1,4 @@
 ;; Strart Emacs maximized, use custom font.
-
 (when window-system
   (setq my-default-font "-JB-JetBrainsMono Nerd Font Mono-semibold-normal-normal-*-18-*-*-*-m-0-iso10646-1")
   (set-face-attribute 'default nil :font my-default-font)
@@ -28,9 +27,12 @@
   (my-apply-theme)
   (add-hook 'after-make-frame-functions #'my-apply-theme))
 
-;; Better modeline look and feel.
+;; Fancy modeline theme.
 (use-package doom-modeline :straight t
-  :config (doom-modeline-mode 1))
+  :custom
+  (doom-modeline-height 36)
+  :config
+  (doom-modeline-mode 1))
 
 ;; Macos auto theme hook.
 (defun my-apply-theme-ns (appearance)
