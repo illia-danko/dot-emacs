@@ -21,7 +21,6 @@
 		(setq standard-display-table display-table))
       ;; Make a vertical border as a tmux' one.
       (set-face-attribute 'vertical-border frame
-                          :foreground (face-foreground 'success)
                           :background (face-background 'default))))
 
   (my-apply-theme)
