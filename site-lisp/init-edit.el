@@ -30,6 +30,10 @@
   :config
   (electric-pair-mode 1))
 
+;; Rebind query-replace.
+(use-package replace
+  :bind ("C-q" . query-replace))
+
 ;; Show search results number.
 (use-package anzu :straight t
   :hook
