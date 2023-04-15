@@ -1,19 +1,19 @@
 ;; Strart Emacs maximized, use custom font.
 
 (when window-system
-  (setq my-default-font "-JB-JetBrainsMono Nerd Font Mono-semibold-normal-normal-*-32-*-*-*-m-0-iso10646-1")
+  (setq my-default-font "-JB-JetBrainsMono Nerd Font Mono-semibold-normal-normal-*-18-*-*-*-m-0-iso10646-1")
   (set-face-attribute 'default nil :font my-default-font)
   (toggle-frame-maximized))
 
 (use-package doom-themes :straight t)
 
-(when (or (eq system-type 'gnu/linux) )
+(when (eq system-type 'gnu/linux)
   (defun my-apply-theme (&optional frame)
 	"Adjust faces."
 	(when frame
       (select-frame frame))
 	(mapc #'disable-theme custom-enabled-themes)
-	(load-theme 'doom-one-light t)
+	(load-theme 'doom-one t)
 	(unless (display-graphic-p)
       ;; Fix terminal vertical-border glyph.
       ;; (https://emacs.stackexchange.com/questions/7228/nice-tty-window-borders-in-24-4).
