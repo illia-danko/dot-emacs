@@ -26,6 +26,10 @@
           (setenv "PATH" (concat (getenv "PATH") ":" p)))
         path))
 
+;; Fix magit, gpg auth issue under Sway DE.
+(when (getenv "SWAYSOCK")
+  (setenv "SSH_AUTH_SOCK" "/run/user/1000/keyring/ssh"))
+
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
