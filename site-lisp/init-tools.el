@@ -59,7 +59,7 @@
 
 ;; Highlight RGB colors.
 (use-package rainbow-mode :straight t
-  :bind (("C-c w" . rainbow-mode)))
+  :bind (("C-c h" . rainbow-mode)))
 
 ;; Kubernetes frontend.
 ;; (use-package kubel :straight t)

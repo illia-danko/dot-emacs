@@ -188,4 +188,8 @@
   :custom
   (display-line-numbers-type t))
 
+;; Remap ispell-word.
+(use-package ispell
+  :bind ("C-c w" . ispell-word))
+
 (provide 'init-core)
