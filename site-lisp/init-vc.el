@@ -55,7 +55,7 @@ command prompt. Otherwise recompile."
   :bind
   ("C-x f" . project-find-file)
   ("C-x p" . project-switch-project)
-  ("C-x #" . project-kill-buffers)
+  ("C-c #" . project-kill-buffers)
   ("C-c e" . project-eshell)
   ("C-c b" . my-project-compile))
 
