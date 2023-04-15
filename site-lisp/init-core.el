@@ -30,6 +30,7 @@
   (set-mark-command-repeat-pop t) ; don't repeat C-u prefix on mark commands (i.e. C-u C-SPC)
   (warning-minimum-level :error) ; don't show warnings
   (truncate-lines t)
+  (indent-tabs-mode nil)
 
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
