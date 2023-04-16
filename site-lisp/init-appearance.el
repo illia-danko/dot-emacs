@@ -1,4 +1,4 @@
-;; Strart Emacs maximized, use custom font.
+;; Start Emacs maximized, use custom font.
 (when window-system
   (setq my-default-font "-JB-JetBrainsMono Nerd Font Mono-semibold-normal-normal-*-18-*-*-*-m-0-iso10646-1")
   (set-face-attribute 'default nil :font my-default-font)
