@@ -53,8 +53,8 @@ command prompt. Otherwise recompile."
 	  (recompile)))
 
   :bind
-  ("C-x f" . project-find-file)
-  ("C-x p" . project-switch-project)
+  ("C-c f" . project-find-file)
+  ("C-c p" . project-switch-project)
   ("C-c #" . project-kill-buffers)
   ("C-c e" . project-eshell)
   ("C-c b" . my-project-compile))
