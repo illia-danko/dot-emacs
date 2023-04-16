@@ -126,13 +126,6 @@
   :config
   (recentf-mode 1))
 
-;; Keep yank history after exiting Emacs.
-(use-package undohist :straight t
-  :custom
-  (undohist-ignored-files '("COMMIT_EDITMSG") ; disable warning on temp files
-  :config
-  (undohist-initialize)))
-
 ;; Check spelling using `hunspell'.
 (use-package flyspell
   :init
