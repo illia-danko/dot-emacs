@@ -47,6 +47,7 @@
 (require 'init-dired)
 (require 'init-tools)
 (require 'init-appearance)
+(require 'init-compile)
 
 ;; Load languages modes.
 (require 'init-conf)
