@@ -34,18 +34,22 @@
   (completion-category-defaults nil) ; wish to control everything
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
+;; company-yasnippet is required for corfu + yas setup.
+(use-package company :straight t
+  :init (require 'company-yasnippet))
+
 ;; Templates.
-(use-package tempel :straight t
+(use-package yasnippet :straight t
+  :after (company)
   :init
-  (defun my-tempel-setup-capf ()
+  (defun my-snippets-setup-capf ()
 	;; tampel-complete must be a first item in completion-at-point-functions.
-    (add-to-ordered-list 'completion-at-point-functions 'tempel-complete 0))
+    (add-to-ordered-list 'completion-at-point-functions (cape-company-to-capf #'company-yasnippet) 0))
 
   :hook
-  ((eglot-managed-mode prog-mode text-mode) . my-tempel-setup-capf)
+  ((eglot-managed-mode prog-mode text-mode) . my-snippets-setup-capf)
 
-  :custom
-  (tempel-path "~/.emacs.d/snippets/*"))
+  :config (yas-global-mode 1))
 
 ;; Completion backends for corfu.
 (use-package cape :straight t
