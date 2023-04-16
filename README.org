@@ -51,7 +51,7 @@ judgment in the future.
 - https://github.com/bbatsov/prelude
 - https://github.com/jwiegley/dot-emacs
 - https://github.com/MatthewZMD/.emacs.d/
-- And many others founded on the Internet
+- And many others found on the Internet
 
 * License
 
