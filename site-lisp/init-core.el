@@ -48,6 +48,7 @@
   ("C-w" . my-backward-kill-word-or-region)
   ("TAB" . my-smart-tab)
   ([remap kill-buffer] . kill-this-buffer)
+  ("C-c j" . join-line)
   )
 
 ;; Highlight on the cursor line.
