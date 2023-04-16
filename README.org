@@ -1,0 +1,58 @@
+Personal Emacs dotfiles
+
+* Rationale
+
+Even though it's possible to use Emacs as X11 [[https://github.com/ch11ng/exwm][Windows Manager]] or [[https://elpa.gnu.org/packages/slime-volleyball.html][play 2d games]],
+it doesn't mean you should.
+
+Instead, keeping simple but at the same time powerful editing experience is what
+is desired. And as David Thomas and Andrew Hunt said: 'Don’t spend more effort
+than you save...'. So I stuck with a simple Emacs dotfiles configuration, which
+gives the following:
+
+- no mouse interaction
+- char, word, line and paragraph selection and movement
+- move by syntactic units, such as, matching delimiters, functions, modules
+- code re-indentation
+- comment and uncomment block with a single command
+- column, line number navigation
+- sorting
+- buffer and project-wide replacement by string or regexp pattern
+- multiple cursor editing
+- build, test and run a single unit or a whole project from the editor
+- switching between projects
+- interact with version control (blame, commit, logs, search)
+
+Besides the primary editing goals, keeping notes and organizing tasks is another
+valuable thing are built-in the text editor. It just reduces the brain cycles
+between spontaneous ideas spinning in the head and written notes for the
+judgment in the future.
+
+* Core packages
+
+- ~straight.el~ to download Emacs packages from many sources
+- ~use-package~ to load packages properly
+- ~multiple-cursors~ edit once in different places
+- ~expand-region~ makes text selection easier
+- ~project (built-in: no point to use projectile nowadays)~ for organizing projects
+- ~marginalia & vertico & corfu & consult~ as a generic completion frontend and search facility
+- ~eglot~ Language Service Protocol experience
+- ~yasnippet via cape~ for snippets
+- ~abbrev (built-in)~  for abbreviations (typically to correct typos)
+- ~flyspell (built-in)~ to check spelling
+- ~flycheck~ is a code linter
+- ~format-all~ format buffer on save
+- ~magit~ as a git frontend
+- ~org~ notes and tasks organizer
+- ~rg~ bulk search and replacement in the project
+
+* References
+
+- https://github.com/bbatsov/prelude
+- https://github.com/jwiegley/dot-emacs
+- https://github.com/MatthewZMD/.emacs.d/
+- And many others founded on the Internet
+
+* License
+
+MIT
