@@ -35,23 +35,23 @@ judgment in the future.
 - ~multiple-cursors~ edit once in different places
 - ~expand-region~ makes text selection easier
 - ~project (built-in: no point to use projectile nowadays)~ for organizing projects
-- ~marginalia & vertico & corfu & consult~ as a generic completion frontend and search facility
+- ~marginalia & vertico & corfu & consult & embark~ as a generic completion frontend and search facility
 - ~eglot~ Language Service Protocol experience
 - ~yasnippet via cape~ for snippets
 - ~abbrev (built-in)~  for abbreviations (typically to correct typos)
 - ~flyspell (built-in)~ to check spelling
 - ~flycheck~ is a code linter
-- ~format-all~ format buffer on save
+- ~format-all~ to format buffer on save
 - ~magit~ as a git frontend
-- ~org~ notes and tasks organizer
-- ~rg~ bulk search and replacement in the project
+- ~org~ is notes and tasks organizer
+- ~rg~ to perform bulk search and replacement in the project/folder
 
 * References
 
 - https://github.com/bbatsov/prelude
 - https://github.com/jwiegley/dot-emacs
 - https://github.com/MatthewZMD/.emacs.d/
-- And many others found on the Internet
+- And much more found on the Internet
 
 * License
 
