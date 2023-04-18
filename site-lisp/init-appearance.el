@@ -24,7 +24,8 @@
                           :background (face-background 'default))))
 
   (my-apply-theme)
-  (add-hook 'after-make-frame-functions #'my-apply-theme))
+  (add-hook 'after-make-frame-functions #'my-apply-theme)
+  (add-hook 'after-init-hook #'my-apply-theme))
 
 ;; Fancy modeline theme.
 (use-package doom-modeline :straight t
