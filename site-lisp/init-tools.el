@@ -62,6 +62,6 @@
   :bind (("C-c h" . rainbow-mode)))
 
 ;; Kubernetes frontend.
-;; (use-package kubel :straight t)
+(use-package kubel :straight t)
 
 (provide 'init-tools)
