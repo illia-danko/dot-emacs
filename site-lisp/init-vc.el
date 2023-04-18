@@ -46,7 +46,7 @@ Behave as `projectile-switch-project'."
 
   :bind
   ("C-x f" . project-find-file)
-  ("C-c p" . project-switch-project)
+  ("C-x p" . project-switch-project)
   ("C-c #" . project-kill-buffers)
   ("C-c e" . project-eshell))
 
