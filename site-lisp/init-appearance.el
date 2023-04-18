@@ -21,8 +21,11 @@
 		(setq standard-display-table display-table))
       ;; Make a vertical border as a tmux' one.
       (set-face-attribute 'vertical-border frame
-                          :background (face-background 'default))))
-
+                          :background (face-background 'default))
+      (set-face-attribute 'completions-common-part frame
+                          :inherit 'orderless-match-face-0)
+      (set-face-attribute 'completions-first-difference frame
+                          :inherit 'orderless-match-face-1)))
   (my-apply-theme)
   (add-hook 'after-make-frame-functions #'my-apply-theme)
   (add-hook 'after-init-hook #'my-apply-theme))
