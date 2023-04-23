@@ -23,9 +23,13 @@
       (set-face-attribute 'vertical-border frame
                           :background (face-background 'default))
       (set-face-attribute 'completions-common-part frame
-                          :inherit 'orderless-match-face-0)
+                          :background (face-background 'orderless-match-face-0 frame)
+                          :foreground (face-foreground 'orderless-match-face-0 frame)
+                          :weight (face-attribute 'orderless-match-face-0 :weight frame))
       (set-face-attribute 'completions-first-difference frame
-                          :inherit 'orderless-match-face-1)))
+                          :background (face-background 'orderless-match-face-1 frame)
+                          :foreground (face-foreground 'orderless-match-face-1 frame)
+                          :weight (face-attribute 'orderless-match-face-1 :weight frame))))
   (my-apply-theme)
   (add-hook 'after-make-frame-functions #'my-apply-theme)
   (add-hook 'after-init-hook #'my-apply-theme))
