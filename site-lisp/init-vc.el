@@ -47,7 +47,6 @@ Behave as `projectile-switch-project'."
   :bind
   ("C-x f" . project-find-file)
   ("C-x p" . project-switch-project)
-  ("C-c #" . project-kill-buffers)
-  ("C-c e" . project-eshell))
+  ("C-c #" . project-kill-buffers))
 
 (provide 'init-vc)

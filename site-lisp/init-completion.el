@@ -19,7 +19,7 @@
               ;; BUG(idanko): M-r is the default vertico
               ;; keybind. Rebind to make it work. Investigate the
               ;; issue.
-              ("M-r" . #'vertico-exit-input))
+              ("M-g" . #'vertico-exit-input))
   :custom
   (vertico-count 17)
   (vertico-cycle nil)

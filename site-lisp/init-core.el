@@ -180,6 +180,11 @@
 (use-package vterm :straight t
   :bind ("C-c t" . vterm))
 
+(use-package eshell
+  :bind
+  ("C-c E" . eshell)
+  ("C-c e" . project-eshell))
+
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
   :hook
