@@ -133,8 +133,8 @@ If is no region, calls `func' without any `args'."
 ;; Action commands for `consult'.
 (use-package embark-consult :straight t
   :bind
-  (("C-c ." . embark-act)  ; pick up some comfortable binding
-   ("C-c ;" . embark-dwim)) ; a good alternative to `embark-act'
+  (("C-." . embark-act)  ; pick up some comfortable binding
+   ("C-;" . embark-dwim)) ; a good alternative to `embark-act'
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
