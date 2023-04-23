@@ -134,7 +134,7 @@ If is no region, calls `func' without any `args'."
 (use-package embark-consult :straight t
   :bind
   (("C-." . embark-act)  ; pick up some comfortable binding
-   ("C-;" . embark-dwim)) ; a good alternative to `embark-act'
+   ("C-," . embark-dwim)) ; a good alternative to `embark-act'
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
