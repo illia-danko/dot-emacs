@@ -1,7 +1,11 @@
 ;; Start Emacs maximized, use custom font.
 (when window-system
-  (setq my-default-font "-JB-JetBrainsMono Nerd Font Mono-semibold-normal-normal-*-18-*-*-*-m-0-iso10646-1")
-  (set-face-attribute 'default nil :font my-default-font)
+  (mapc (lambda (face)
+          (set-face-attribute face nil
+                              :family "JetBrainsMono Nerd Font Mono"
+                              :weight 'semibold
+                              :height 125))
+        [default variable-pitch fixed-pitch fixed-pitch-serif])
   (toggle-frame-maximized))
 
 (use-package doom-themes :straight t)
