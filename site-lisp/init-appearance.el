@@ -17,23 +17,22 @@
       (select-frame frame))
 	(mapc #'disable-theme custom-enabled-themes)
 	(load-theme 'doom-one t)
-	(unless (display-graphic-p)
-      ;; Fix terminal vertical-border glyph.
-      ;; (https://emacs.stackexchange.com/questions/7228/nice-tty-window-borders-in-24-4).
-      (let ((display-table (or standard-display-table (make-display-table))))
-		(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
-		(setq standard-display-table display-table))
-      ;; Make a vertical border as a tmux' one.
-      (set-face-attribute 'vertical-border frame
-                          :background (face-background 'default))
-      (set-face-attribute 'completions-common-part frame
-                          :background (face-background 'orderless-match-face-0 frame)
-                          :foreground (face-foreground 'orderless-match-face-0 frame)
-                          :weight (face-attribute 'orderless-match-face-0 :weight frame))
-      (set-face-attribute 'completions-first-difference frame
-                          :background (face-background 'orderless-match-face-1 frame)
-                          :foreground (face-foreground 'orderless-match-face-1 frame)
-                          :weight (face-attribute 'orderless-match-face-1 :weight frame))))
+    ;; Fix terminal vertical-border glyph.
+    ;; (https://emacs.stackexchange.com/questions/7228/nice-tty-window-borders-in-24-4).
+    (let ((display-table (or standard-display-table (make-display-table))))
+	  (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
+	  (setq standard-display-table display-table))
+    ;; Make a vertical border as a tmux' one.
+    (set-face-attribute 'vertical-border frame
+                        :background (face-background 'default))
+    (set-face-attribute 'completions-common-part frame
+                        :background (face-background 'orderless-match-face-0 frame)
+                        :foreground (face-foreground 'orderless-match-face-0 frame)
+                        :weight (face-attribute 'orderless-match-face-0 :weight frame))
+    (set-face-attribute 'completions-first-difference frame
+                        :background (face-background 'orderless-match-face-1 frame)
+                        :foreground (face-foreground 'orderless-match-face-1 frame)
+                        :weight (face-attribute 'orderless-match-face-1 :weight frame)))
   (my-apply-theme)
   (add-hook 'after-make-frame-functions #'my-apply-theme)
   (add-hook 'after-init-hook #'my-apply-theme))
