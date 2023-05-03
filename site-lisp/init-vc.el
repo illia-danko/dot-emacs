@@ -11,10 +11,9 @@
 
   :bind
   ("C-x g" . magit-status)
-  ("C-c g?" . magit-blame-addition)
-  ("C-c gd" . magit-diff-buffer-file)
-  ("C-c gl" . magit-log-all)
-  ("C-c gb" . magit-log-buffer-file))
+  ("C-c g" . magit-diff-buffer-file)
+  ("C-c L" . magit-log-all)
+  ("C-c l" . magit-log-buffer-file))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
@@ -24,8 +23,8 @@
     (let ((git-link-open-in-browser t))
       (call-interactively 'git-link-homepage)))
 
-  :bind (("C-c gu" . git-link)
-         ("C-c gU" . #'my-git-link-open-page)))
+  :bind (("C-c u" . git-link)
+         ("C-c U" . #'my-git-link-open-page)))
 
 ;; Emacs diff tool.
 (use-package ediff

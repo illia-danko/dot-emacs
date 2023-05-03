@@ -6,7 +6,8 @@
     (markdown-toggle-markup-hiding arg))
 
   :bind
-  ("C-c 4" . my-markdown-toggle-fontifications)
+  (:map org-mode-map
+        ("C-c 4" . my-markdown-toggle-fontifications))
 
   :custom
   (markdown-fontify-code-blocks-natively t) ; highlight code block syntax

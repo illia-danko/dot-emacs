@@ -151,7 +151,7 @@
   (git-commit-setup . flyspell-mode) ; check COMMIT_EDITMSG buffer for spelling
 
   :bind
-  ("C-c l" . my-flyspell-toggle))
+  ("C-c p" . my-flyspell-toggle))
 
 ;; Echo area documentation hints.
 (use-package eldoc
