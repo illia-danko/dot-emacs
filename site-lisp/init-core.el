@@ -85,6 +85,11 @@
   (blink-cursor-mode -1) ; for gui
   )
 
+;; Disable fringe.
+(use-package fringe
+  :init
+  (fringe-mode -1))
+
 ;; Use command as meta and use ctrl as alt on MACOS.
 (use-package ns-win
   :if (eq system-type 'darwin)
