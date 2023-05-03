@@ -46,6 +46,7 @@ Behave as `projectile-switch-project'."
   :bind
   ("C-x f" . project-find-file)
   ("C-x p" . project-switch-project)
-  ("C-c #" . project-kill-buffers))
+  ("C-x #" . project-kill-buffers)
+  ([remap server-edit] . project-kill-buffers))
 
 (provide 'init-vc)
