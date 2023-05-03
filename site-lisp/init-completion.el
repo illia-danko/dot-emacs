@@ -125,10 +125,10 @@ If is no region, calls `func' without any `args'."
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
   ;; Ripgrep searches in hidden directories except the pattern.
-  (consult-ripgrep-args "rg --null --hidden -g \
-!{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
---line-buffered --color=never --max-columns=1000 --path-separator \
-/ --smart-case --no-heading --line-number --search-zip ."))
+  (consult-ripgrep-args "rg \
+--hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
+--null --line-buffered --color=never --max-columns=1000 --path-separator / \
+--smart-case --no-heading --with-filename --line-number --search-zip"))
 
 ;; Action commands for `consult'.
 (use-package embark-consult :straight t
