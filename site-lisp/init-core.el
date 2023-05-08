@@ -95,7 +95,8 @@
   :if (eq system-type 'darwin)
   :custom
   (mac-command-modifier 'meta)
-  (mac-option-modifier 'control))
+  ;; (mac-option-modifier 'control) ;; Karabiner-elments already remap opt to ctrl
+  )
 
 (use-package bookmark
   :custom

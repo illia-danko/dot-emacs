@@ -4,7 +4,7 @@
           (set-face-attribute face nil
                               :family "JetBrainsMono Nerd Font Mono"
                               :weight 'semibold
-                              :height 125))
+                              :height (or (and (eq system-type 'darwin) 150) 120)))
         [default variable-pitch fixed-pitch fixed-pitch-serif])
   (toggle-frame-maximized))
 
@@ -27,7 +27,7 @@
 ;; Fancy modeline theme.
 (use-package doom-modeline :straight t
   :custom
-  (doom-modeline-height 36)
+  (doom-modeline-icon nil)
   :config
   (doom-modeline-mode 1))
 
