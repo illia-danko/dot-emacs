@@ -6,7 +6,7 @@
     (markdown-toggle-markup-hiding arg))
 
   :bind
-  (:map org-mode-map
+  (:map markdown-mode-map
         ("C-c 4" . my-markdown-toggle-fontifications))
 
   :custom
