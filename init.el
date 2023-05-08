@@ -57,7 +57,7 @@
 (require 'init-markdown)
 (require 'init-yaml)
 (require 'init-go)
-(require 'init-ts-tsx)
+(require 'init-web)
 (require 'init-sh)
 (require 'init-text)
 

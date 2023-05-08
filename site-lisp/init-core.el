@@ -202,4 +202,9 @@
 (use-package ispell
   :bind ("C-c w" . ispell-word))
 
+;; Code editing rules per a project.
+(use-package editorconfig :straight t
+  :hook
+  (prog-mode . editorconfig-mode))
+
 (provide 'init-core)
