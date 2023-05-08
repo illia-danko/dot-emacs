@@ -40,7 +40,7 @@
 
 ;; Templates.
 (use-package yasnippet :straight t
-  :after (company)
+  :after (cape company)
   :init
   (defun my-snippets-setup-capf ()
 	;; tampel-complete must be a first item in completion-at-point-functions.
@@ -139,7 +139,7 @@ If is no region, calls `func' without any `args'."
   (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; LSP frontend.
-(use-package eglot :straight t
+(use-package eglot
   :init
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
 
