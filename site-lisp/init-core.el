@@ -132,6 +132,14 @@
   :config
   (recentf-mode 1))
 
+;; Disable fringe.
+(use-package fringe
+  :custom
+  (left-fringe-width 0)
+  (right-fringe-width 0)
+  :config
+  (fringe-mode 1))
+
 ;; Check spelling using `hunspell'.
 (use-package flyspell
   :init

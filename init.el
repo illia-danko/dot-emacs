@@ -43,7 +43,7 @@
 (require 'init-formatting)
 (require 'init-codelinter)
 (require 'init-edit)
-(require 'init-vc)
+(require 'init-project)
 (require 'init-dired)
 (require 'init-tools)
 (require 'init-appearance)

@@ -19,7 +19,7 @@
               ;; BUG(idanko): M-r is the default vertico
               ;; keybind. Rebind to make it work. Investigate the
               ;; issue.
-              ("M-g" . #'vertico-exit-input))
+              ("M-r" . #'vertico-exit-input))
   :custom
   (vertico-count 17)
   (vertico-cycle nil)
@@ -53,7 +53,6 @@
 
 ;; Completion backends for corfu.
 (use-package cape :straight t
-  :after (tempel)
   :hook
   ((eshell-mode comint-mode) . (lambda () (add-to-list 'completion-at-point-functions #'cape-history)))
 
@@ -144,7 +143,7 @@ If is no region, calls `func' without any `args'."
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
 
   :hook
-  ((go-mode js-mode typescript-mode typescriptreact-mode) . eglot-ensure)
+  ((go-mode js-mode typescript-mode react-mode) . eglot-ensure)
 
   :bind
   (:map eglot-mode-map
@@ -152,7 +151,7 @@ If is no region, calls `func' without any `args'."
 		("C-c ci" . eglot-find-implementation))
 
   :config
-  (cl-pushnew '((js-mode typescriptreact-mode) . ("typescript-language-server" "--stdio"))
+  (cl-pushnew '((js-mode react-mode) . ("typescript-language-server" "--stdio"))
               eglot-server-programs
               :test #'equal))
 
