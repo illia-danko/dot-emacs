@@ -47,9 +47,7 @@
   :bind
   ("C-w" . my-backward-kill-word-or-region)
   ("TAB" . my-smart-tab)
-  ([remap kill-buffer] . kill-this-buffer)
-  ("C-x j" . join-line)
-  )
+  ([remap kill-buffer] . kill-this-buffer))
 
 ;; Highlight on the cursor line.
 (use-package hl-line-mode
@@ -205,10 +203,6 @@
   ((prog-mode text-mode restclient-mode web-mode conf-unix-mode) . display-line-numbers-mode)
   :custom
   (display-line-numbers-type t))
-
-;; Remap ispell-word.
-(use-package ispell
-  :bind ("C-c w" . ispell-word))
 
 ;; Code editing rules per a project.
 (use-package editorconfig :straight t

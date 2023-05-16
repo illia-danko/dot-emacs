@@ -14,8 +14,7 @@
   (elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
   :config
   (run-with-timer 0 (* 60 60 4) #'elfeed-update) ; update elfeed database every 4 hours.
-  :bind
-  ("C-x w" . elfeed))
+  )
 
 ;; Test rest api from Emacs.
 (use-package restclient :straight t
