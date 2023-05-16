@@ -42,6 +42,7 @@
       (load-theme theme t)))
 
   (my-load-theme)
+  (my-adjust-faces)
 
   (require 'filenotify)
   (file-notify-add-watch
@@ -72,6 +73,6 @@
     ('dark (load-theme 'one-dark t))))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
-(add-hook 'my-after-load-theme-hook #'my-adjust-faces)
+(add-hook 'after-load-theme-hook #'my-adjust-faces)
 
 (provide 'init-appearance)
