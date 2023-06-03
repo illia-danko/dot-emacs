@@ -22,7 +22,7 @@
       (run-with-timer 1 nil
                       ;; Close the compilation window if the frame layout has
                       ;; been changed, otherwise `switch-buffer'.
-                       (lambda (buf)
+                      (lambda (buf)
                         (bury-buffer buf)
                         (if (= my-before-compilation-frame-win-number
                                (my-window-number))

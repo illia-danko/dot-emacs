@@ -36,6 +36,7 @@
   (warning-minimum-level :error) ; don't show warnings
   (truncate-lines t)
   (indent-tabs-mode nil)
+  (tab-always-indent 'complete)
 
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
@@ -82,11 +83,6 @@
   :config
   (blink-cursor-mode -1) ; for gui
   )
-
-;; Disable fringe.
-(use-package fringe
-  :init
-  (fringe-mode -1))
 
 ;; Use command as meta and use ctrl as alt on MACOS.
 (use-package ns-win
@@ -172,25 +168,19 @@
   :bind
   ("C-c C-o" . browse-url-at-point))
 
-;; Copy to clipboard on terminal.
-(use-package xclip :straight t
-  :unless (display-graphic-p)
-  :config
-  (xclip-mode 1))
-
-;; Tmux integration.
-(use-package ttymux
-  :straight '(ttymux
-              :type git
-              :host github
-              :repo "illia-danko/ttymux.el")
-  :unless (display-graphic-p)
-  :config
-  (ttymux-mode 1))
-
 ;; Real temrinal emulator.
 (use-package vterm :straight t
-  :bind ("C-c t" . vterm))
+  :init
+  (defun my-project-vterm (&optional args)
+    (interactive)
+    (let ((default-directory (or (ignore-errors
+                                   (project-root (project-current)))
+                                 default-directory)))
+      (vterm)))
+
+  :bind
+  ("C-c t" . my-project-vterm)
+  ("C-c T" . vterm))
 
 (use-package eshell
   :bind
@@ -199,10 +189,8 @@
 
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode restclient-mode web-mode conf-unix-mode) . display-line-numbers-mode)
-  :custom
-  (display-line-numbers-type t))
+  :bind
+  ("C-c q" . display-line-numbers-mode))
 
 ;; Code editing rules per a project.
 (use-package editorconfig :straight t

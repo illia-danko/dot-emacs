@@ -60,5 +60,6 @@
 (require 'init-web)
 (require 'init-sh)
 (require 'init-text)
+(require 'init-elixir)
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

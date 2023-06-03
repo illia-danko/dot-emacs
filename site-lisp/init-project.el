@@ -10,10 +10,11 @@
   (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 
   :bind
-  ("C-x g" . magit-status)
-  ("C-c g" . magit-diff-buffer-file)
-  ("C-c L" . magit-log-all)
-  ("C-c l" . magit-log-buffer-file))
+  ("C-c gg" . magit-status)
+  ("C-c gd" . magit-diff-buffer-file)
+  ("C-c gl" . magit-log-all)
+  ("C-c gL" . magit-log-buffer-file)
+  ("C-c gb" . magit-blame-addition))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
@@ -37,11 +38,10 @@
   :config
   (defun project-switch-project (dir)
 	"Override default `project-switch-project' command.
-Instead of prompt the list with commands, directly execute `project-find-file'.
-Behave as `projectile-switch-project'."
-  (interactive (list (project-prompt-project-dir)))
-  (let ((project-current-directory-override dir))
-    (call-interactively 'project-find-file)))
+Prohibit command prompt on `project-switch-project', instead directly execute `project-find-file'."
+    (interactive (list (project-prompt-project-dir)))
+    (let ((project-current-directory-override dir))
+      (call-interactively 'project-find-file)))
 
   :bind
   ("C-x f" . project-find-file)
@@ -73,17 +73,17 @@ Behave as `projectile-switch-project'."
       (run-with-timer 1 nil
                       ;; Close the compilation window if the frame layout has
                       ;; been changed, otherwise `switch-buffer'.
-                       (lambda (buf)
+                      (lambda (buf)
                         (bury-buffer buf)
                         (if (= my-before-compilation-frame-win-number
                                (my-window-number))
                             (switch-to-prev-buffer (get-buffer-window buf) 'kill)
-                          (delete-windows-on buf)))
+                          `                          (delete-windows-on buf)))
                       buffer)))
 
   (defun my-project-compile (arg)
     "If universal argument is provided (C-u) then supplies compile
-command prompt. Otherwise recompile."
+    command prompt. Otherwise recompile."
     (interactive "P")
     (if arg
 	    (project-compile)
@@ -95,5 +95,46 @@ command prompt. Otherwise recompile."
 
   :bind
   ("C-c b" . my-project-compile))
+
+(use-package git-gutter :straight t
+  :init
+  (defun my-git-gutter-refresh-hunks (&rest _)
+    (interactive)
+    (git-gutter:update-all-windows))
+
+  (defun my-git-gutter-enable (&rest args)
+    (interactive)
+    (git-gutter-mode 1))
+
+  (defun my-git-gutter-popup-hunk-jump (&optional diffinfo)
+    (interactive)
+    (git-gutter:popup-hunk diffinfo)
+    (switch-to-buffer-other-window git-gutter:popup-buffer))
+
+  (global-git-gutter-mode 1)
+
+  :hook ((after-change-major-mode . my-git-gutter-enable))
+
+  :custom
+  (left-margin-width 1) ; add space for git-gutter
+  (git-gutter:added-sign "")
+  (git-gutter:ask-p nil)
+  (git-gutter:deleted-sign "")
+  (git-gutter:modified-sign "")
+
+  :config
+  (advice-add 'kill-buffer :after #'my-git-gutter-refresh-hunks)
+
+  :custom-face
+  (git-gutter:added ((t (:inherit 'modus-themes-prompt :background "defualt"))))
+  (git-gutter:deleted  ((t (:inherit 'error :background "default"))))
+  (git-gutter:modified ((t (:inherit 'modus-themes-heading-3 :background "default"))))
+
+  :bind
+  ("C-c n" . git-gutter:next-hunk)
+  ("C-c p" . git-gutter:next-hunk)
+  ("C-c hu" . git-gutter:revert-hunk)
+  ("C-c hp" . my-git-gutter-popup-hunk-jump)
+  )
 
 (provide 'init-project)

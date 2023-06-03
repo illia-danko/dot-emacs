@@ -3,8 +3,8 @@
   (mapc (lambda (face)
           (set-face-attribute face nil
                               :family "JetBrainsMono Nerd Font Mono"
-                              :weight 'semibold
-                              :height (or (and (eq system-type 'darwin) 150) 120)))
+                              :weight 'bold
+                              :height (or (and (eq system-type 'darwin) 140) 120)))
         [default variable-pitch fixed-pitch fixed-pitch-serif])
   (toggle-frame-maximized))
 
@@ -14,11 +14,6 @@
 	(setq standard-display-table display-table))
   (set-face-attribute 'vertical-border nil
                       :background (face-background 'default)))
-
-(use-package doom-themes :straight t)
-(use-package spacemacs-theme :straight t :defer t
-  :custom
-  (spacemacs-theme-comment-bg nil))
 
 (unless (display-graphic-p)
   (defconst my-theme-filename "~/.config/appearance/background"
@@ -36,8 +31,8 @@
 
   (defun my-load-theme (&rest args)
     (let ((theme (pcase (my-load-background-theme my-theme-filename)
-                   ("light" 'spacemacs-light)
-                   (_ 'doom-one))))
+                   ("light" 'modus-operandi)
+                   (_ 'modus-vivendi))))
       (mapc #'disable-theme custom-enabled-themes)
       (load-theme theme t)))
 
@@ -57,20 +52,13 @@
   "Run `after-load-theme-hook'."
   (run-hooks 'after-load-theme-hook))
 
-;; Fancy modeline theme.
-(use-package doom-modeline :straight t
-  :custom
-  (doom-modeline-icon nil)
-  :config
-  (doom-modeline-mode 1))
-
 ;; Macos auto theme hook.
 (defun my-apply-theme-ns (appearance)
   "Load theme based on the system theme's variant."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'spacemacs-light t))
-    ('dark (load-theme 'one-dark t))))
+    ('light (load-theme 'modus-operandi t))
+    ('dark (load-theme 'modus-vivendi t))))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
 (add-hook 'after-load-theme-hook #'my-adjust-faces)

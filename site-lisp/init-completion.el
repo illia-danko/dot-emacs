@@ -1,9 +1,8 @@
 ;; Better look with icons.
-;; (use-package all-the-icons-completion :straight t
-;;   :if (display-graphic-p)
-;;   :after (marginalia all-the-icons)
-;;   :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-;;   :init (all-the-icons-completion-mode))
+(use-package all-the-icons-completion :straight t
+  :if (display-graphic-p)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init (all-the-icons-completion-mode))
 
 ;; Annotations for minibuffer.
 (use-package marginalia :straight t
@@ -34,23 +33,6 @@
   (completion-category-defaults nil) ; wish to control everything
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
-;; company-yasnippet is required for corfu + yas setup.
-(use-package company :straight t
-  :init (require 'company-yasnippet))
-
-;; Templates.
-(use-package yasnippet :straight t
-  :after (cape company)
-  :init
-  (defun my-snippets-setup-capf ()
-	;; tampel-complete must be a first item in completion-at-point-functions.
-    (add-to-ordered-list 'completion-at-point-functions (cape-company-to-capf #'company-yasnippet) 0))
-
-  :hook
-  ((eglot-managed-mode prog-mode text-mode) . my-snippets-setup-capf)
-
-  :config (yas-global-mode 1))
-
 ;; Completion backends for corfu.
 (use-package cape :straight t
   :hook
@@ -60,6 +42,24 @@
   (add-to-list 'completion-at-point-functions #'cape-dabbrev) ; current buffer symbols completion
   (add-to-list 'completion-at-point-functions #'cape-file) ; path completion
   )
+
+;; company-yasnippet is required for corfu + yas setup.
+(use-package company :straight t
+  :init (require 'company-yasnippet))
+
+
+;; Templates.
+(use-package yasnippet :straight t
+  :after (cape)
+  :init
+  (defun my-snippets-setup-capf ()
+	;; tampel-complete must be a first item in completion-at-point-functions.
+    (add-to-ordered-list 'completion-at-point-functions (cape-company-to-capf #'company-yasnippet) 0))
+
+  (yas-global-mode 1)
+
+  :hook
+  ((eglot-managed-mode prog-mode text-mode) . my-snippets-setup-capf))
 
 ;; At the cursor completion engine.
 (use-package corfu :straight t
@@ -122,6 +122,7 @@ If is no region, calls `func' without any `args'."
   ("C-c f"                               . my-consult-ripgrep-org)
 
   :custom
+  (consult-preview-key nil)
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
   ;; Ripgrep searches in hidden directories except the pattern.
