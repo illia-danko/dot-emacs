@@ -130,6 +130,9 @@ Prohibit command prompt on `project-switch-project', instead directly execute `p
 
   (global-git-gutter-mode 1)
 
+  :custom
+  (git-gutter:ask-p nil)
+
   :custom-face
   (git-gutter-fr:added ((t (:inherit 'modus-themes-prompt :background "defualt"))))
   (git-gutter-fr:deleted  ((t (:inherit 'error :background "default"))))
