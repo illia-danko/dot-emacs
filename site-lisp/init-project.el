@@ -137,7 +137,7 @@ Prohibit command prompt on `project-switch-project', instead directly execute `p
 
   :bind
   ("C-c n" . git-gutter:next-hunk)
-  ("C-c p" . git-gutter:next-hunk)
+  ("C-c p" . git-gutter:previous-hunk)
   ("C-c hu" . git-gutter:revert-hunk)
   ("C-c hp" . my-git-gutter-popup-hunk-jump)
   )
