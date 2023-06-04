@@ -160,6 +160,10 @@ If is no region, calls `func' without any `args'."
   :config
   (cl-pushnew '((js-mode react-mode) . ("typescript-language-server" "--stdio"))
               eglot-server-programs
-              :test #'equal))
+              :test #'equal)
+  (cl-pushnew '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+              eglot-server-programs
+              :test #'equal)
+  )
 
 (provide 'init-completion)
