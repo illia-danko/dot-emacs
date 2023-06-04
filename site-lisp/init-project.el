@@ -10,6 +10,7 @@
   (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 
   :bind
+  ("C-x g"  . magit-status)
   ("C-c gg" . magit-status)
   ("C-c gd" . magit-diff-buffer-file)
   ("C-c gl" . magit-log-all)
