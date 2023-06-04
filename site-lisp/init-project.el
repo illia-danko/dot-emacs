@@ -96,39 +96,43 @@ Prohibit command prompt on `project-switch-project', instead directly execute `p
   :bind
   ("C-c b" . my-project-compile))
 
-(use-package git-gutter :straight t
+(use-package git-gutter-fringe :straight t
   :init
-  (defun my-git-gutter-refresh-hunks (&rest _)
-    (interactive)
-    (git-gutter:update-all-windows))
-
-  (defun my-git-gutter-enable (&rest args)
-    (interactive)
-    (git-gutter-mode 1))
-
   (defun my-git-gutter-popup-hunk-jump (&optional diffinfo)
     (interactive)
     (git-gutter:popup-hunk diffinfo)
     (switch-to-buffer-other-window git-gutter:popup-buffer))
 
+  (require 'git-gutter-fringe)
+
+  (mapc (lambda (fringe-face)
+          (fringe-helper-define fringe-face nil
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."
+            "........"
+            "X......."))
+        [git-gutter-fr:added git-gutter-fr:deleted git-gutter-fr:modified])
+
   (global-git-gutter-mode 1)
 
-  :hook ((after-change-major-mode . my-git-gutter-enable))
-
-  :custom
-  (left-margin-width 1) ; add space for git-gutter
-  (git-gutter:added-sign "")
-  (git-gutter:ask-p nil)
-  (git-gutter:deleted-sign "")
-  (git-gutter:modified-sign "")
-
-  :config
-  (advice-add 'kill-buffer :after #'my-git-gutter-refresh-hunks)
-
   :custom-face
-  (git-gutter:added ((t (:inherit 'modus-themes-prompt :background "defualt"))))
-  (git-gutter:deleted  ((t (:inherit 'error :background "default"))))
-  (git-gutter:modified ((t (:inherit 'modus-themes-heading-3 :background "default"))))
+  (git-gutter-fr:added ((t (:inherit 'modus-themes-prompt :background "defualt"))))
+  (git-gutter-fr:deleted  ((t (:inherit 'error :background "default"))))
+  (git-gutter-fr:modified ((t (:inherit 'modus-themes-heading-3 :background "default"))))
 
   :bind
   ("C-c n" . git-gutter:next-hunk)

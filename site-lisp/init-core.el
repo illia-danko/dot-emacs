@@ -129,8 +129,12 @@
 ;; Disable fringe.
 (use-package fringe
   :custom
-  (left-fringe-width 0)
-  (right-fringe-width 0)
+  (left-fringe-width 8)
+  (right-fringe-width 8)
+
+  :custom-face
+  (fringe ((t (:inherit 'default :background "defualt"))))
+
   :config
   (fringe-mode 1))
 
