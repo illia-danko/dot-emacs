@@ -193,6 +193,9 @@
 
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
+  :custom-face
+  (line-number ((t (:inherit 'default :background "defualt"))))
+
   :bind
   ("C-c q" . display-line-numbers-mode))
 
