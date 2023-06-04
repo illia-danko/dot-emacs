@@ -145,7 +145,7 @@ If is no region, calls `func' without any `args'."
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
 
   :hook
-  ((go-mode js-mode typescript-mode react-mode) . eglot-ensure)
+  ((go-mode js-mode typescript-mode react-mode elixir-mode) . eglot-ensure)
 
   :bind
   (:map eglot-mode-map
