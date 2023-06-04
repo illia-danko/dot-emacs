@@ -3,13 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-		indent-for-tab-command
-		))
+        indent-for-tab-command
+        ))
 
 (setq mc/cmds-to-run-once
       '(
-		mc/hydra-keymap/mc/edit-lines-and-exit
-		mc/hydra-keymap/mc/mark-all-like-this-and-exit
-		mc/hydra-keymap/mc/mark-next-like-this
-		mc/hydra-keymap/mc/skip-to-next-like-this
-		))
+        eval-buffer
+        mc/hydra-keymap/mc/edit-lines-and-exit
+        mc/hydra-keymap/mc/mark-all-like-this-and-exit
+        mc/hydra-keymap/mc/mark-next-like-this
+        mc/hydra-keymap/mc/skip-to-next-like-this
+        ))
