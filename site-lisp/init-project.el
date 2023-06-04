@@ -25,8 +25,8 @@
     (let ((git-link-open-in-browser t))
       (call-interactively 'git-link-homepage)))
 
-  :bind (("C-c u" . git-link)
-         ("C-c U" . #'my-git-link-open-page)))
+  :bind (("C-c gu" . git-link)
+         ("C-c gU" . #'my-git-link-open-page)))
 
 ;; Emacs diff tool.
 (use-package ediff
