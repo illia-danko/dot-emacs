@@ -62,15 +62,20 @@
   ((eglot-managed-mode prog-mode text-mode) . my-snippets-setup-capf))
 
 ;; At the cursor completion engine.
-(use-package corfu :straight t
+(use-package corfu
+  :straight (corfu :files (:defaults "extensions/*")
+                   :includes (corfu-info))
   :custom
   (corfu-auto t) ; automatically trigger popups
+  (corfu-popupinfo-delay 0)
 
   :bind
   (:map corfu-map ("RET" . nil)) ; use tab to complete
 
   :config
-  (global-corfu-mode))
+  (global-corfu-mode 1)
+  (corfu-popupinfo-mode 1) ; add doc string next to corfu completion popup
+  )
 
 (use-package corfu-terminal :straight t
   :unless (display-graphic-p)
