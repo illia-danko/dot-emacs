@@ -126,7 +126,7 @@
   :config
   (recentf-mode 1))
 
-;; Disable fringe.
+;; Setup fringe. Used by some modes like `git-gutter-fringe'.
 (use-package fringe
   :custom
   (left-fringe-width 8)
