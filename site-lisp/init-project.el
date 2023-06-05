@@ -5,6 +5,22 @@
 
 ;; Workhorse git client.
 (use-package magit :straight t
+  :init
+  (defun my-push-org-to-current-repository ()
+    "Stage, commit and push to upstream a personal org note file."
+    (interactive)
+    (let* ((fullname (buffer-file-name))
+           (relname (file-name-nondirectory fullname))
+           (current-project (project-root (project-current))))
+      (if (string-prefix-p (expand-file-name org-directory) fullname)
+          (progn
+            (call-process "git" nil nil nil "add" fullname)
+            (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
+            (call-process "git" nil nil nil "push")
+            (message "Pushed %s" relname))
+        (message "%S not a personal org note file" fullname)
+        )))
+
   :custom
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ; magit uses the whole frame space
   (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
@@ -15,7 +31,8 @@
   ("C-c gd" . magit-diff-buffer-file)
   ("C-c gl" . magit-log-all)
   ("C-c gL" . magit-log-buffer-file)
-  ("C-c gb" . magit-blame-addition))
+  ("C-c gb" . magit-blame-addition)
+  ("C-c gc" . my-push-org-to-current-repository))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
