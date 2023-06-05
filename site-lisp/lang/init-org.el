@@ -1,4 +1,4 @@
-(use-package org :straight t
+(use-package org
   :init
   (defun my-org-capture-todo () (interactive) (org-capture nil "t"))
   (defun my-org-capture-diary () (interactive) (org-capture nil "d"))
@@ -23,7 +23,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   :bind
   (("C-c a" . org-agenda)
    ("C-c o" . my-org-capture-todo)
-   ("C-c y" . my-org-capture-diary)
+   ("C-c u" . my-org-capture-diary)
    (:map org-mode-map
          ("C-c 4" . my-org-toggle-fontifications)))
 
