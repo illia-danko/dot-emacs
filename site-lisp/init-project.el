@@ -3,6 +3,10 @@
   :custom
   (vc-follow-symlinks t))
 
+(use-package vc
+  :bind
+  ("C-c ge" . vc-ediff))
+
 ;; Workhorse git client.
 (use-package magit :straight t
   :init
