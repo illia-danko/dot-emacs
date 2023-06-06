@@ -35,6 +35,9 @@
   (dashboard-projects-backend 'project-el) ; use project-el as project backend
   (dashboard-set-footer nil) ; do not display footer
 
+  :bind
+  ("C-c 0" . dashboard-open)
+
   :config
   (dashboard-setup-startup-hook))
 
