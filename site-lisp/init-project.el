@@ -144,24 +144,24 @@ Prohibit command prompt on `project-switch-project', instead directly execute `p
 
   (mapc (lambda (fringe-face)
           (fringe-helper-define fringe-face nil
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"
-            "..XXXXXX"))
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"
+            "....XXXX"))
         [git-gutter-fr:added git-gutter-fr:deleted git-gutter-fr:modified])
 
   (global-git-gutter-mode 1)
