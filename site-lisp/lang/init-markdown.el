@@ -5,9 +5,13 @@
     (interactive (list (or current-prefix-arg 'toggle)))
     (markdown-toggle-markup-hiding arg))
 
+  :hook
+  (markdown-mode . outline-hide-other)
+
   :bind
   (:map markdown-mode-map
-        ("C-c 4" . my-markdown-toggle-fontifications))
+        ("C-c 4" . my-markdown-toggle-fontifications)
+        ("TAB" . outline-toggle-children))
 
   :custom
   (markdown-fontify-code-blocks-natively t) ; highlight code block syntax

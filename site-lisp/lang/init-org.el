@@ -1,4 +1,4 @@
-(use-package org
+(use-package org :straight t
   :init
   (defun my-org-capture-todo () (interactive) (org-capture nil "t"))
   (defun my-org-capture-diary () (interactive) (org-capture nil "d"))
@@ -40,6 +40,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (org-hide-emphasis-markers t)    ; close links, etc.
   (org-pretty-entities t)          ; show LaTeX-like symbols as UTF-8 characters
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
+  (org-startup-folded 'fold)
 
   :config
   ;; Preload babel. Make possible to evaluate src code block.
@@ -48,5 +49,9 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 								 (shell . t)
 								 )
 							   ))
+
+(use-package org-superstar :straight t
+  :hook
+  ((org-mode) . org-superstar-mode))
 
 (provide 'init-org)
