@@ -21,6 +21,13 @@
         (message "%S not a personal org note file" fullname)
         )))
 
+  (defun my-push-org-to-current-repository-1 ()
+    (interactive)
+    (my-push-org-to-current-repository)
+    (and (boundp git-gutter-fringe)
+         (boundp git-gutter-mode)
+         (git-gutter:update-all-windows)))
+
   :custom
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ; magit uses the whole frame space
   (magit-diff-refine-hunk 'all)  ; word-wise diff highlight
@@ -32,7 +39,7 @@
   ("C-c gl" . magit-log-all)
   ("C-c gL" . magit-log-buffer-file)
   ("C-c gb" . magit-blame-addition)
-  ("C-c gc" . my-push-org-to-current-repository))
+  ("C-c gc" . my-push-org-to-current-repository-1))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
