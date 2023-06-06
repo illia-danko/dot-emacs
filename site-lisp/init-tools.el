@@ -21,7 +21,7 @@
   :mode ("\\.http\\'" . restclient-mode))
 
 ;; Emacs startup greeter.
-(use-package dashboard :straight t
+(use-package dashboard :straight t :demand t
   :init
   ;; Open dashboard when frame created.
   (add-hook 'after-make-frame-functions
