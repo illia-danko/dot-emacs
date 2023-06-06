@@ -1,4 +1,23 @@
 ;; Always open symlinks without confirmation.
+
+;; Emacs diff tool.
+(use-package ediff
+  :init
+  (defun my-ediff-compare-two-open-windows ()
+    (interactive)
+    (let* ((windows (window-list))
+           (buffer-a (window-buffer (nth 1 windows)))
+           (buffer-b (window-buffer (nth 2 windows))))
+      (ediff-buffers buffer-a buffer-b)))
+
+  :bind
+  ("C-c o e" . my-ediff-compare-two-open-windows)
+
+  :custom
+  (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
+  (ediff-window-setup-function 'ediff-setup-windows-plain) ; use one frame for diff
+  )
+
 (use-package vc-hooks
   :custom
   (vc-follow-symlinks t))
@@ -55,23 +74,6 @@
 
   :bind (("C-c gu" . git-link)
          ("C-c gU" . #'my-git-link-open-page)))
-
-;; Emacs diff tool.
-(use-package ediff
-  :init
-  (defun my-ediff-compare-two-open-windows ()
-    (interactive)
-    (let* ((windows (window-list))
-           (buffer-a (window-buffer (nth 1 windows)))
-           (buffer-b (window-buffer (nth 2 windows))))
-      (ediff-buffers buffer-a buffer-b)))
-
-  :bind
-  ("C-c o d" . my-ediff-compare-two-open-windows)
-
-  :custom
-  (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
-  )
 
 ;; Navigate and manipulate projects on the machine.
 (use-package project
