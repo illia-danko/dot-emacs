@@ -39,6 +39,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (org-fontify-quote-and-verse-blocks t)
   (org-hide-emphasis-markers t)    ; close links, etc.
   (org-pretty-entities t)          ; show LaTeX-like symbols as UTF-8 characters
+  (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
 
   :config
   ;; Preload babel. Make possible to evaluate src code block.
