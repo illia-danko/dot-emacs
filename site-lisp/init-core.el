@@ -37,6 +37,7 @@
   (truncate-lines t)
   (indent-tabs-mode nil)
   (tab-always-indent 'complete)
+  (enable-local-variables :all) ; run .dir-locals.el with no dialog
 
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
