@@ -32,6 +32,7 @@
 
   :bind
   ((:map elixir-mode-map
+         ("C-c M-j" . inf-elixir-project)
          ("C-c C-b" . inf-elixir-send-buffer)
          ("C-c C-c" . my-inf-elixir-eval)
          ("C-c C-z" . my-inf-elixir-switch-repl))
