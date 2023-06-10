@@ -28,7 +28,7 @@
     (switch-to-buffer-other-window (other-buffer (current-buffer) 1)))
 
   :custom
-  (inf-elixir-on-send-switch-to-repl nil) ; do not auto switch to the repl buffer
+  (inf-elixir-switch-to-repl-on-send nil) ; do not auto switch to the repl buffer
 
   :bind
   ((:map elixir-mode-map
