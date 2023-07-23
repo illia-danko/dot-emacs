@@ -68,9 +68,11 @@
   :custom
   (corfu-auto t) ; automatically trigger popups
   (corfu-popupinfo-delay 0)
-
-  :bind
-  (:map corfu-map ("RET" . nil)) ; use tab to complete
+  (corfu-preview-current nil)
+  (corfu-quit-at-boundary nil) ; never quit at completion boundary
+  (corfu-quit-no-match nil) ; never quit, even if there is no match
+  (corfu-preselect 'prompt) ; preselect the prompt
+  (corfu-on-exact-match nil) ; configure handling of exact matches
 
   :config
   (global-corfu-mode 1)
@@ -98,7 +100,7 @@ If is no region, calls `func' without any `args'."
   (defun my-consult-ripgrep ()
     (interactive)
 	(my-apply-region 'consult-ripgrep
-					 (project-root (project-current))))
+					 (my-project-root)))
 
   (defun my-consult-line ()
     (interactive)
@@ -145,12 +147,12 @@ If is no region, calls `func' without any `args'."
   (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; LSP frontend.
-(use-package eglot
+(use-package eglot :straight t
   :init
   (setq eglot-stay-out-of '(flymake)) ; disable flymake feature.
 
   :hook
-  ((go-mode js-mode typescript-mode react-mode elixir-mode) . eglot-ensure)
+  ((go-mode js-mode typescript-mode python-mode react-mode elixir-mode) . eglot-ensure)
 
   :bind
   (:map eglot-mode-map

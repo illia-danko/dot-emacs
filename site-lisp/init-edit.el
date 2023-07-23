@@ -28,6 +28,7 @@
 ;; Smart parentheses.
 (use-package elec-pair
   :config
+  (add-to-list 'electric-pair-pairs '(?` . ?`))
   (electric-pair-mode 1))
 
 ;; Show search results number.

@@ -1,8 +1,7 @@
-(use-package elixir-mode :straight t
-  :hook
-  (elixir-mode . inf-elixir-minor-mode))
+(use-package elixir-mode :straight t)
 
 (use-package inf-elixir :straight t
+  :after (elixir-mode)
   :init
   (defun my-inf-elixir-eval (&optional arg)
     (interactive "p")

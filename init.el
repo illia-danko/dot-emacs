@@ -33,6 +33,7 @@
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
+              `(,(expand-file-name "site-lisp/utils" user-emacs-directory))
               `(,(expand-file-name "site-lisp" user-emacs-directory))
 			  `(,(expand-file-name "site-lisp/lang" user-emacs-directory))))
 
@@ -42,11 +43,11 @@
 (require 'init-completion)
 (require 'init-formatting)
 (require 'init-codelinter)
-(require 'init-edit)
 (require 'init-project)
+(require 'init-edit)
 (require 'init-dired)
 (require 'init-tools)
-(require 'init-appearance)
+(require 'init-theme)
 (require 'init-compile)
 
 ;; Load languages modes.

@@ -14,6 +14,7 @@
                                    ("TypeScript" prettier)
                                    ("JavaScript" prettier)
                                    ("JSX" prettier)
+                                   ("Python" yapf)
                                    ("Elixir" mix-format)
                                    )))
 

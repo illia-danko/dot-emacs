@@ -8,22 +8,6 @@
 		(kill-region (mark) (point))
       (backward-kill-word arg)))
 
-  (defun my-smart-tab ()
-    (interactive)
-    (call-interactively
-     (cond ((<= (current-column)(current-indentation))
-            #'indent-for-tab-command)
-           ((and (bound-and-true-p yas-minor-mode)
-                 (yas--templates-for-key-at-point))
-            #'yas-expand)
-           ((and (bound-and-true-p yas-minor-mode)
-                 (bound-and-true-p emmet-mode))
-            #'emmet-expand-yas)
-           ((bound-and-true-p emmet-mode)
-            #'emmet-expand-line)
-           (t #'indent-for-tab-command))))
-  (call-interactively #'my-smart-tab)
-
   :hook
   ((prog-mode org-mode markdown-mode yaml-mode) . (lambda ()
 													(setq-local show-trailing-whitespace t)))
@@ -38,6 +22,9 @@
   (indent-tabs-mode nil)
   (tab-always-indent 'complete)
   (enable-local-variables :all) ; run .dir-locals.el with no dialog
+  (mac-command-modifier 'meta) ; Use command key as meta
+  ;; Karabiner-elments already remap opt to ctrl
+  ;; (mac-option-modifier 'control)
 
   :config
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
@@ -47,7 +34,6 @@
 
   :bind
   ("C-w" . my-backward-kill-word-or-region)
-  ("TAB" . my-smart-tab)
   ([remap kill-buffer] . kill-this-buffer))
 
 ;; Highlight on the cursor line.
@@ -82,14 +68,6 @@
   (visible-cursor nil) ; for terminal
   :config
   (blink-cursor-mode -1) ; for gui
-  )
-
-;; Use command as meta and use ctrl as alt on MACOS.
-(use-package ns-win
-  :if (eq system-type 'darwin)
-  :custom
-  (mac-command-modifier 'meta)
-  ;; (mac-option-modifier 'control) ;; Karabiner-elments already remap opt to ctrl
   )
 
 (use-package bookmark
@@ -133,7 +111,7 @@
   (right-fringe-width 8)
 
   :custom-face
-  (fringe ((t (:inherit 'default :background "defualt"))))
+  (fringe ((t (:inherit 'default :background "default"))))
 
   :config
   (fringe-mode 1))
@@ -177,9 +155,7 @@
   :init
   (defun my-project-vterm (&optional args)
     (interactive)
-    (let ((default-directory (or (ignore-errors
-                                   (project-root (project-current)))
-                                 default-directory)))
+    (let ((default-directory (my-project-root)))
       (vterm)))
 
   :bind
@@ -203,5 +179,9 @@
 (use-package editorconfig :straight t
   :hook
   (prog-mode . editorconfig-mode))
+
+;; Copy and paste.
+(use-package xclip :straight t
+  :init (xclip-mode))
 
 (provide 'init-core)

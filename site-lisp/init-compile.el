@@ -45,4 +45,15 @@ command prompt. Otherwise recompile."
   :bind
   ("C-c b" . my-project-compile))
 
+
+;; Pretty print term escape codes on compilation buffer.
+(use-package ansi-color
+  :init
+  (defun my-ansi-color-compilation-buffer ()
+    "Apply ANSI color codes to the compilation buffer."
+    (toggle-read-only)  ; Disable read-only mode temporarily
+    (ansi-color-apply-on-region (point-min) (point-max))
+    (toggle-read-only)) ; Re-enable read-only mode
+  :hook (compilation-filter . my-ansi-color-compilation-buffer))
+
 (provide 'init-compile)

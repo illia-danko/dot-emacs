@@ -26,6 +26,10 @@
   :bind
   ("C-c ge" . vc-ediff))
 
+(defun my-project-root ()
+  (or (ignore-errors (project-root (project-current)))
+      default-directory))
+
 ;; Workhorse git client.
 (use-package magit :straight t
   :init
@@ -34,7 +38,7 @@
     (interactive)
     (let* ((fullname (buffer-file-name))
            (relname (file-name-nondirectory fullname))
-           (current-project (project-root (project-current))))
+           (current-project (my-project-root)))
       (if (string-prefix-p (expand-file-name org-directory) fullname)
           (progn
             (call-process "git" nil nil nil "add" fullname)
@@ -59,8 +63,8 @@
   ("C-x g"  . magit-status)
   ("C-c gg" . magit-status)
   ("C-c gd" . magit-diff-buffer-file)
-  ("C-c gl" . magit-log-all)
-  ("C-c gL" . magit-log-buffer-file)
+  ("C-c gl" . magit-log-buffer-file)
+  ("C-c gL" . magit-log-all)
   ("C-c gb" . magit-blame-addition)
   ("C-c gc" . my-push-org-to-current-repository-1))
 
