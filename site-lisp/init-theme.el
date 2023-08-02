@@ -79,8 +79,12 @@
 
 ;; Fancy modeline theme.
 (use-package doom-modeline :straight t
+  :custom
+  (doom-modeline-icon nil)
+
   :config
   (doom-modeline-mode 1))
+
 
 ;; Macos auto theme hook.
 (defun my-apply-theme-ns (appearance)

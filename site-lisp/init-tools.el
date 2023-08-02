@@ -20,27 +20,6 @@
 (use-package restclient :straight t
   :mode ("\\.http\\'" . restclient-mode))
 
-;; Emacs startup greeter.
-(use-package dashboard :straight t :demand t
-  :init
-  ;; Open dashboard when frame created.
-  (add-hook 'after-make-frame-functions
-            (lambda (&optional frame)
-              (setq initial-buffer-choice (lambda nil
-                                            (get-buffer "*dashboard*")))))
-
-  :custom
-  (dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
-  (dashboard-items '((agenda . 8) (projects . 4) (recents . 4))) ; layout
-  (dashboard-projects-backend 'project-el) ; use project-el as project backend
-  (dashboard-set-footer nil) ; do not display footer
-
-  :bind
-  ("C-c 0" . dashboard-open)
-
-  :config
-  (dashboard-setup-startup-hook))
-
 ;; Train your brain with code challenges.
 (use-package leetcode :straight t
   :ensure t

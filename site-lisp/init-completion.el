@@ -70,7 +70,7 @@
   (corfu-popupinfo-delay 0)
   (corfu-preview-current nil)
   (corfu-quit-at-boundary nil) ; never quit at completion boundary
-  (corfu-quit-no-match nil) ; never quit, even if there is no match
+  (corfu-quit-no-match t) ; quit, if there is no match
   (corfu-preselect 'prompt) ; preselect the prompt
   (corfu-on-exact-match nil) ; configure handling of exact matches
 

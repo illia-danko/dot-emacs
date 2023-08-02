@@ -1,7 +1,7 @@
 ;; Seamlessly region selection.
 (use-package expand-region :straight t
-  :bind (("C-=" . er/expand-region)
-         ("C--" . er/contract-region)))
+  :bind (("C-o" . er/expand-region)
+         ("M-o" . er/contract-region)))
 
 (use-package hydra :straight t)
 
