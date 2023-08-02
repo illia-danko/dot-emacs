@@ -50,10 +50,11 @@ command prompt. Otherwise recompile."
 (use-package ansi-color
   :init
   (defun my-ansi-color-compilation-buffer ()
+    (interactive)
     "Apply ANSI color codes to the compilation buffer."
-    (toggle-read-only)  ; Disable read-only mode temporarily
+    (read-only-mode 'toggle)  ; Disable read-only mode temporarily
     (ansi-color-apply-on-region (point-min) (point-max))
-    (toggle-read-only)) ; Re-enable read-only mode
+    (read-only-mode 'toggle)) ; Re-enable read-only mode
   :hook (compilation-filter . my-ansi-color-compilation-buffer))
 
 (provide 'init-compile)
