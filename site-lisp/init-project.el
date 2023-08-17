@@ -71,7 +71,7 @@
   ("C-c gL" . magit-log-all)
   ("C-c gb" . magit-blame-addition)
   ("C-c gc" . my-push-org-to-current-repository-1)
-  ("C-c gd" . magit-diff-range))
+  ("C-c gr" . magit-diff-range))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
