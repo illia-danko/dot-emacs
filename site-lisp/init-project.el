@@ -11,12 +11,16 @@
       (ediff-buffers buffer-a buffer-b)))
 
   :bind
-  ("C-c o e" . my-ediff-compare-two-open-windows)
+  ("C-c oe" . my-ediff-compare-two-open-windows)
 
   :custom
   (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
   (ediff-window-setup-function 'ediff-setup-windows-plain) ; use one frame for diff
   )
+
+(use-package diff
+  :bind
+  ("C-c gf" . diff-buffer-with-file))
 
 (use-package vc-hooks
   :custom
@@ -66,7 +70,8 @@
   ("C-c gl" . magit-log-buffer-file)
   ("C-c gL" . magit-log-all)
   ("C-c gb" . magit-blame-addition)
-  ("C-c gc" . my-push-org-to-current-repository-1))
+  ("C-c gc" . my-push-org-to-current-repository-1)
+  ("C-c gd" . magit-diff-range))
 
 ;; Copy/open git urls.
 (use-package git-link :straight t
