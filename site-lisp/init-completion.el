@@ -156,7 +156,7 @@ If is no region, calls `func' without any `args'."
 
   :bind
   (:map eglot-mode-map
-		("C-c cn" . eglot-rename)
+		("C-c cr" . eglot-rename)
 		("C-c ci" . eglot-find-implementation))
 
   :config
