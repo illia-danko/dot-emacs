@@ -24,6 +24,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (("C-c a" . org-agenda)
    ("C-c d" . my-org-capture-todo)
    ("C-c u" . my-org-capture-diary)
+   ("C-c od" . (lambda () (interactive) (dired org-directory)))
    (:map org-mode-map
          ("C-c 4" . my-org-toggle-fontifications)))
 
