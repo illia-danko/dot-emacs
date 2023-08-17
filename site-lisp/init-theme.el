@@ -26,10 +26,10 @@
                       :background (face-background 'default))
 
   ;; Fix zsh-autosuggestions highlight color problem from One Themes.
-  ;; (if (eq (my-current-theme) 'doom-one-light)
-  ;;     (mapc (lambda (face)
-  ;;             (set-face-attribute face frame :background "#a0a1a7"))
-  ;;           [term-color-black vterm-color-black]))
+  (if (eq (my-current-theme) 'doom-one-light)
+      (mapc (lambda (face)
+              (set-face-attribute face frame :background "#a0a1a7"))
+            [term-color-black vterm-color-black]))
 
   ;; Fix discrepancy between match highlighting.
   (mapc (lambda (face-group)
@@ -92,7 +92,8 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'doom-one-light t))
-    ('dark (load-theme 'doom-one t))))
+    ('dark (load-theme 'doom-one t)))
+  (my-adjust-faces))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
 

@@ -153,6 +153,7 @@
 
 ;; Real temrinal emulator.
 (use-package vterm :straight t
+  :demand t ; fourthly load all faces to fix face issues
   :init
   (defun my-project-vterm (&optional args)
     (interactive)
