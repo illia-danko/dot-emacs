@@ -95,15 +95,16 @@
 
 ;; Store and restore last edit position of a file.
 (use-package saveplace
-  :config
+  :init
   (save-place-mode 1))
 
 ;; Store recent edit file names.
 (use-package recentf
+  :init
+  (recentf-mode 1)
+
   :bind
-  ("C-c r" . consult-recent-file)
-  :config
-  (recentf-mode 1))
+  ("C-c r" . recentf-open-files))
 
 ;; Setup fringe. Used by some modes like `git-gutter-fringe'.
 (use-package fringe
@@ -114,7 +115,7 @@
   :custom-face
   (fringe ((t (:inherit 'default :background "default"))))
 
-  :config
+  :init
   (fringe-mode 1))
 
 ;; Check spelling using `hunspell'.
