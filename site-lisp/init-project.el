@@ -11,7 +11,7 @@
       (ediff-buffers buffer-a buffer-b)))
 
   :bind
-  ("C-c oe" . my-ediff-compare-two-open-windows)
+  ("C-c gw" . my-ediff-compare-two-open-windows)
 
   :custom
   (ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
