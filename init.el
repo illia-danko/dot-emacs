@@ -63,4 +63,7 @@
 (require 'init-text)
 (require 'init-elixir)
 
+;; Utils
+(require 'my-windows)
+
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))
