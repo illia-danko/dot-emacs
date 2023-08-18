@@ -32,15 +32,17 @@
             [term-color-black vterm-color-black]))
 
   ;; Fix discrepancy between match highlighting.
-  (mapc (lambda (face-group)
-          (let ((face (car face-group))
-                (face-ref (cdr face-group)))
-            (set-face-attribute face frame
-                                :background (face-background face-ref frame)
-                                :foreground (face-foreground face-ref frame)
-                                :weight (face-attribute face-ref :weight frame))))
-        [(completions-common-part . orderless-match-face-0)
-         (completions-first-difference . orderless-match-face-1)]))
+  (if (or (eq (my-current-theme) 'doom-one-light)
+          (eq (my-current-theme) 'doom-one))
+      (mapc (lambda  (face-group)
+              (let ((face (car face-group))
+                    (face-ref (cdr face-group)))
+                (set-face-attribute face frame
+                                    :background (face-background face-ref frame)
+                                    :foreground (face-foreground face-ref frame)
+                                    :weight (face-attribute face-ref :weight frame))))
+            [(completions-common-part . orderless-match-face-0)
+             (completions-first-difference . orderless-match-face-1)])))
 
 (add-hook 'after-load-theme-hook #'my-adjust-faces)
 (add-hook 'after-make-frame-functions #'my-adjust-faces)
@@ -92,7 +94,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'doom-one-light t))
-    ('dark (load-theme 'doom-one t)))
+    ('dark (load-theme 'modus-vivendi-tinted t)))
   (my-adjust-faces))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
