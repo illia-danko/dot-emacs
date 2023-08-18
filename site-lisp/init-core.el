@@ -140,6 +140,10 @@
   :bind
   ("C-c l" . my-flyspell-toggle))
 
+(use-package ispell
+  :bind
+  ("C-c i" . ispell-word))
+
 ;; Echo area documentation hints.
 (use-package eldoc
   :custom
