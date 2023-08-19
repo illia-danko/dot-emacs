@@ -23,26 +23,8 @@
 	(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
 	(setq standard-display-table display-table))
   (set-face-attribute 'vertical-border frame
-                      :background (face-background 'default))
+                      :background (face-background 'default)))
 
-  ;; Fix zsh-autosuggestions highlight color problem from One Themes.
-  (if (eq (my-current-theme) 'doom-one-light)
-      (mapc (lambda (face)
-              (set-face-attribute face frame :background "#a0a1a7"))
-            [term-color-black vterm-color-black]))
-
-  ;; Fix discrepancy between match highlighting.
-  (if (or (eq (my-current-theme) 'doom-one-light)
-          (eq (my-current-theme) 'doom-one))
-      (mapc (lambda  (face-group)
-              (let ((face (car face-group))
-                    (face-ref (cdr face-group)))
-                (set-face-attribute face frame
-                                    :background (face-background face-ref frame)
-                                    :foreground (face-foreground face-ref frame)
-                                    :weight (face-attribute face-ref :weight frame))))
-            [(completions-common-part . orderless-match-face-0)
-             (completions-first-difference . orderless-match-face-1)])))
 
 (add-hook 'after-load-theme-hook #'my-adjust-faces)
 (add-hook 'after-make-frame-functions #'my-adjust-faces)
@@ -65,8 +47,8 @@
 
   (defun my-load-theme (&rest args)
     (let ((theme (pcase (my-load-background-theme my-theme-filename)
-                   ("light" 'doom-one-light)
-                   (_ 'doom-one))))
+                   ("light" 'modus-operandi-deuteranopia)
+                   (_ 'modus-vivendi-tinted))))
       (mapc #'disable-theme custom-enabled-themes)
       (load-theme theme t)))
 
@@ -93,7 +75,7 @@
   "Load theme based on the system theme's variant."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'doom-one-light t))
+    ('light (load-theme 'modus-operandi-deuteranopia t))
     ('dark (load-theme 'modus-vivendi-tinted t)))
   (my-adjust-faces))
 
