@@ -1,3 +1,7 @@
+(defvar my-windows-close-buffers-whitelist
+  '("*dashboard*")
+  "Buffer patterns ignored by `my-close-virtual-windows'.")
+
 (defun my-windows-but-this ()
   (let* ((current-window (selected-window))
          (other-windows (seq-filter (lambda (win)
@@ -11,6 +15,7 @@
           (let ((buf-name (buffer-name (window-buffer win))))
             (and (string-prefix-p "*" buf-name)
                  (string-suffix-p "*" buf-name)
+                 (not (member buf-name my-windows-close-buffers-whitelist))
                  (delete-window win))))
         (my-windows-but-this)))
 
