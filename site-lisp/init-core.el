@@ -23,7 +23,6 @@
   (tab-always-indent 'complete)
   (enable-local-variables :all) ; run .dir-locals.el with no dialog
   (mac-command-modifier 'meta) ; Use command key as meta
-  (inhibit-splash-screen t) ; disable default slash screen
   ;; Karabiner-elments already remap opt to ctrl
   ;; (mac-option-modifier 'control)
 
