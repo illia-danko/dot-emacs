@@ -9,7 +9,7 @@
 (when window-system
   (mapc (lambda (face)
           (set-face-attribute face nil
-                              :family "JetBrainsMono Nerd Font Mono"
+                              :family "IosevkaTerm Nerd Font Mono"
                               :weight 'bold
                               :height (or (and (eq system-type 'darwin) 140) 120)))
         [default variable-pitch fixed-pitch fixed-pitch-serif])
@@ -23,8 +23,24 @@
 	(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
 	(setq standard-display-table display-table))
   (set-face-attribute 'vertical-border frame
-                      :background (face-background 'default)))
+                      :background (face-background 'default))
 
+  ;; Fix zsh-autosuggestions highlight color problem from One Themes.
+  (if (eq (my-current-theme) 'doom-one-light)
+      (mapc (lambda (face)
+              (set-face-attribute face frame :background "#a0a1a7"))
+            [term-color-black vterm-color-black]))
+
+  ;; Fix discrepancy between match highlighting.
+  (mapc (lambda (face-group)
+          (let ((face (car face-group))
+                (face-ref (cdr face-group)))
+            (set-face-attribute face frame
+                                :background (face-background face-ref frame)
+                                :foreground (face-foreground face-ref frame)
+                                :weight (face-attribute face-ref :weight frame))))
+        [(completions-common-part . orderless-match-face-0)
+         (completions-first-difference . orderless-match-face-1)]))
 
 (add-hook 'after-load-theme-hook #'my-adjust-faces)
 (add-hook 'after-make-frame-functions #'my-adjust-faces)
@@ -47,8 +63,8 @@
 
   (defun my-load-theme (&rest args)
     (let ((theme (pcase (my-load-background-theme my-theme-filename)
-                   ("light" 'modus-operandi-deuteranopia)
-                   (_ 'modus-vivendi-tinted))))
+                   ("light" 'doom-one-light)
+                   (_ 'doom-one))))
       (mapc #'disable-theme custom-enabled-themes)
       (load-theme theme t)))
 
@@ -64,19 +80,17 @@
 ;; Fancy modeline theme.
 (use-package doom-modeline :straight t
   :custom
-  (doom-modeline-icon nil)
-
+  (doom-modeline-icon t)
   :config
   (doom-modeline-mode 1))
-
 
 ;; Macos auto theme hook.
 (defun my-apply-theme-ns (appearance)
   "Load theme based on the system theme's variant."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'modus-operandi-deuteranopia t))
-    ('dark (load-theme 'modus-vivendi-tinted t)))
+    ('light (load-theme 'doom-one-light t))
+    ('dark (load-theme 'doom-one t)))
   (my-adjust-faces))
 
 (add-hook 'ns-system-appearance-change-functions #'my-apply-theme-ns)
