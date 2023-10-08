@@ -11,7 +11,7 @@
           (set-face-attribute face nil
                               :weight 'bold
                               :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "IosevkaTerm Nerd Font Mono")
-                              :height (or (and (eq system-type 'darwin) 160) 120)))
+                              :height (or (and (eq system-type 'darwin) 150) 120)))
         [default variable-pitch fixed-pitch fixed-pitch-serif])
   (toggle-frame-maximized))
 
