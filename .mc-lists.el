@@ -5,6 +5,7 @@
       '(
         indent-for-tab-command
         org-delete-char
+        org-self-insert-command
         ))
 
 (setq mc/cmds-to-run-once
