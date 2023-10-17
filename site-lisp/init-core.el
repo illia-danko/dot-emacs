@@ -31,6 +31,7 @@
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
   (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
   (column-number-mode) ; show column number on modeline
+  (global-set-key (kbd "C-z") nil) ; do not suspend-frame
 
   :bind
   ("C-w" . my-backward-kill-word-or-region)
