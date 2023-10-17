@@ -190,4 +190,14 @@
 (use-package xclip :straight t
   :init (xclip-mode))
 
+;; Tmux integration.
+(use-package ttymux
+  :straight '(ttymux
+              :type git
+              :host github
+              :repo "illia-danko/ttymux.el")
+  :unless (display-graphic-p)
+  :config
+  (ttymux-mode 1))
+
 (provide 'init-core)
