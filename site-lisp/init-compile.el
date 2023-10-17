@@ -30,20 +30,13 @@
                           (delete-windows-on buf)))
                       buffer)))
 
-  (defun my-project-compile (arg)
-    "If universal argument is provided (C-u) then supplies compile
-command prompt. Otherwise recompile."
-    (interactive "P")
-    (if arg
-	    (project-compile)
-	  (recompile)))
-
   :config
   (advice-add 'compilation-start :before 'my-save-window-number)
   (add-hook 'compilation-finish-functions #'my-bury-compile-buffer-if-successful)
 
   :bind
-  ("C-c b" . my-project-compile))
+  ("C-c b" . recompile)
+  ("C-c B" . project-compile))
 
 
 ;; Pretty print term escape codes on compilation buffer.
