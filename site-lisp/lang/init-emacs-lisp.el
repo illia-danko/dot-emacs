@@ -7,4 +7,6 @@
         ("C-c C-c" . #'eval-defun)
         ("C-c C-b" . #'eval-buffer)))
 
+(advice-add 'eval-buffer :after (lambda (&rest args) (message "Buffer Evaluation - Done")))
+
 (provide 'init-emacs-lisp)

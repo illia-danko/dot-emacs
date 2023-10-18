@@ -1,7 +1,7 @@
 ;; Format on save.
 (use-package format-all :straight t
   :hook
-  ((go-mode js-mode typescript-mode react-mode markdown-mode yaml-mode emacs-lisp-mode elixir-mode) . format-all-mode)
+  ((go-ts-mode js-mode typescript-mode react-mode markdown-mode yaml-ts-mode emacs-lisp-mode elixir-ts-mode heex-ts-mode) . format-all-mode)
   (format-all-mode . format-all-ensure-formatter)
 
   :custom
@@ -16,6 +16,6 @@
                                    ("JSX" prettier)
                                    ("Python" yapf)
                                    ("Elixir" mix-format)
-                                   )))
+                                   ("HTML" mix-format))))
 
 (provide 'init-formatting)
