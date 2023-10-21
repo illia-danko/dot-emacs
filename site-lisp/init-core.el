@@ -42,6 +42,10 @@
   (column-number-mode) ; show column number on modeline
   (global-set-key (kbd "C-z") nil) ; do not suspend-frame
 
+  ;; Fix the issue when saving gpg file freezing emacs.  Using advice is similar
+  ;; to (fset 'epg-wait-for-status 'ignore) but independent of package loading.
+  (advice-add 'epg-wait-for-status :around #'(lambda (orig-fun &rest args)))
+
   :bind
   ("C-w" . my-backward-kill-word-or-region)
   ([remap kill-buffer] . kill-this-buffer))
