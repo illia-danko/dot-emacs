@@ -92,10 +92,11 @@ Prohibit command prompt on `project-switch-project', instead directly execute `p
       (call-interactively 'project-find-file)))
 
   :bind
-  ("C-x f" . project-find-file)
-  ("C-x p" . project-switch-project)
-  ("C-x !" . project-forget-zombie-projects)
-  ("C-x #" . project-kill-buffers)
+  (:map my-intercept-mode-map
+        ("C-x f" . project-find-file)
+        ("C-x p" . project-switch-project)
+        ("C-x !" . project-forget-zombie-projects)
+        ("C-x #" . project-kill-buffers))
   ([remap server-edit] . project-kill-buffers))
 
 (use-package git-gutter-fringe :straight t
