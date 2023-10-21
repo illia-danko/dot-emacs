@@ -115,6 +115,11 @@
   :bind
   ("C-c r" . recentf-open-files))
 
+;; Store minibuffer history.
+(use-package savehist
+  :init
+  (savehist-mode))
+
 ;; Setup fringe. Used by some modes like `git-gutter-fringe'.
 (use-package fringe
   :custom
