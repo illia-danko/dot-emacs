@@ -178,11 +178,6 @@
   ("C-c t" . my-project-vterm)
   ("C-c T" . vterm))
 
-(use-package eshell
-  :bind
-  ("C-c E" . eshell)
-  ("C-c e" . project-eshell))
-
 ;; Line-numbers on the fringe side.
 (use-package display-line-numbers
   :custom-face

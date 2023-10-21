@@ -63,6 +63,7 @@
 (require 'init-text)
 (require 'init-elixir)
 (require 'init-treesit)
+(require 'init-shell)
 
 ;; Utils
 (require 'my-windows)
