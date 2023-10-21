@@ -38,7 +38,6 @@
   ("C-c b" . recompile)
   ("C-c B" . project-compile))
 
-
 ;; Pretty print term escape codes on compilation buffer.
 (use-package ansi-color
   :init

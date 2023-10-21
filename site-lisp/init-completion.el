@@ -125,11 +125,11 @@ If is no region, calls `func' without any `args'."
   ([remap yank-pop]                      . consult-yank-pop)
   ("C-c SPC"                             . consult-mark)
   ("C-c v"                               . consult-imenu)
-  ("C-c s"                               . my-consult-ripgrep)
-  ("C-c f"                               . my-consult-ripgrep-org)
+  ("C-c f"                               . my-consult-ripgrep)
+  ("C-c of"                              . my-consult-ripgrep-org)
 
   :custom
-  (consult-preview-key nil)
+  ;; (consult-preview-key nil) ; disable buffer preview on search
   (xref-show-definitions-function 'consult-xref)
   (xref-show-xrefs-function 'consult-xref)
   ;; Ripgrep searches in hidden directories except the pattern.
@@ -141,8 +141,9 @@ If is no region, calls `func' without any `args'."
 ;; Action commands for `consult'.
 (use-package embark-consult :straight t
   :bind
-  (("C-." . embark-act)  ; pick up some comfortable binding
-   ("C-," . embark-dwim)) ; a good alternative to `embark-act'
+  (:map my-intercept-mode-map
+        ("C-." . embark-act)  ; pick up some comfortable binding
+        ("C-," . embark-dwim)) ; a good alternative to `embark-act'
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 

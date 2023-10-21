@@ -1,7 +1,9 @@
 ;; Seamlessly region selection.
 (use-package expand-region :straight t
-  :bind (("C-o" . er/expand-region)
-         ("M-o" . er/contract-region)))
+  :config
+  :bind (:map my-intercept-mode-map
+              ("C-o" . er/expand-region)
+              ("M-o" . er/contract-region)))
 
 (use-package hydra :straight t)
 

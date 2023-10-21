@@ -1,4 +1,13 @@
 ;; Generic configuration.
+(defvar my-intercept-mode-map (make-sparse-keymap)
+  "High precedence keymap.")
+
+(define-minor-mode my-intercept-mode
+  "Global minor mode for higher precedence evil keybindings."
+  :global t)
+
+(my-intercept-mode)
+
 (use-package emacs
   :init
   (defun my-backward-kill-word-or-region (&optional arg)
