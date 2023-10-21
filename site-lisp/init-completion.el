@@ -111,22 +111,24 @@ If is no region, calls `func' without any `args'."
 	(consult-ripgrep org-directory))
 
   :bind
-  ([remap apropos]                       . consult-apropos)
-  ([remap bookmark-jump]                 . consult-bookmark)
-  ([remap goto-line]                     . consult-goto-line)
-  ([remap locate]                        . consult-locate)
-  ([remap load-theme]                    . consult-theme)
-  ([remap man]                           . consult-man)
-  ([remap recentf-open-files]            . consult-recent-file)
-  ([remap switch-to-buffer]              . consult-buffer)
-  ([remap org-agenda]                    . consult-org-agenda)
-  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
-  ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)
-  ([remap yank-pop]                      . consult-yank-pop)
-  ("C-c SPC"                             . consult-mark)
-  ("C-c v"                               . consult-imenu)
-  ("C-c f"                               . my-consult-ripgrep)
-  ("C-c of"                              . my-consult-ripgrep-org)
+  ([remap next-matching-history-element]     . consult-history) ; M-s in minibuffer-local-map
+  ([remap previous-matching-history-element] . consult-history) ; M-r in minibuffer-local-map
+  ([remap apropos]                           . consult-apropos)
+  ([remap bookmark-jump]                     . consult-bookmark)
+  ([remap goto-line]                         . consult-goto-line)
+  ([remap locate]                            . consult-locate)
+  ([remap load-theme]                        . consult-theme)
+  ([remap man]                               . consult-man)
+  ([remap recentf-open-files]                . consult-recent-file)
+  ([remap switch-to-buffer]                  . consult-buffer)
+  ([remap org-agenda]                        . consult-org-agenda)
+  ([remap switch-to-buffer-other-window]     . consult-buffer-other-window)
+  ([remap switch-to-buffer-other-frame]      . consult-buffer-other-frame)
+  ([remap yank-pop]                          . consult-yank-pop)
+  ("C-c SPC"                                 . consult-mark)
+  ("C-c v"                                   . consult-imenu)
+  ("C-c f"                                   . my-consult-ripgrep)
+  ("C-c of"                                  . my-consult-ripgrep-org)
 
   :custom
   ;; (consult-preview-key nil) ; disable buffer preview on search
