@@ -6,6 +6,7 @@
         indent-for-tab-command
         org-delete-char
         org-self-insert-command
+        wdired--self-insert
         ))
 
 (setq mc/cmds-to-run-once
