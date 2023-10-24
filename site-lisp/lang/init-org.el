@@ -25,10 +25,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
     (dired org-directory))
 
   :bind
-  (("C-c a" . org-agenda)
-   ("C-c d" . my-org-capture-todo)
-   ("C-c u" . my-org-capture-diary)
-   ("C-c od" . my-open-org-directory)
+  (("C-c oa" . org-agenda)
+   ("C-c ot" . my-org-capture-todo)
+   ("C-c od" . my-org-capture-diary)
+   ("C-c oh" . my-open-org-directory)
    (:map org-mode-map
          ("C-c 4" . my-org-toggle-fontifications)
          ("<C-tab>" . org-fold-show-all)))
