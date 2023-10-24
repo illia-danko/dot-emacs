@@ -25,7 +25,7 @@
 ;; Move the cursor quickly to a word.
 (use-package ace-jump-mode :straight t
   :bind
-  ("C-t" . ace-jump-mode)) ; rebind useful `transpose-chars' key.
+  ("M-t" . ace-jump-mode)) ; rebind useful `transpose-chars' key.
 
 ;; Smart parentheses.
 (use-package elec-pair
