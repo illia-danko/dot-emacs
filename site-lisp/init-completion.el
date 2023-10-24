@@ -84,8 +84,17 @@
   :config
   (corfu-terminal-mode 1))
 
+;; Workspace per an emacs frame. See consult package settings.
+(use-package perspective :straight t
+  :init
+  (persp-mode)
+  :custom
+  (persp-mode-prefix-key (kbd "C-x ~")) ; not often used, but required by the package.
+  )
+
 ;; Based on completing-read search/navigation commands.
 (use-package consult :straight t
+  :after (perspective)
   :init
   (defun my-apply-region (func &rest args)
 	"Apply the given `func' to its `args' and the marked region.
@@ -138,7 +147,11 @@ If is no region, calls `func' without any `args'."
   (consult-ripgrep-args "rg \
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
---smart-case --no-heading --with-filename --line-number --search-zip"))
+--smart-case --no-heading --with-filename --line-number --search-zip")
+
+  :config
+  (consult-customize consult--source-buffer :hidden t :default nil)
+  (add-to-list 'consult-buffer-sources persp-consult-source))
 
 ;; Action commands for `consult'.
 (use-package embark-consult :straight t
