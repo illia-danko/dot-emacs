@@ -14,7 +14,12 @@
   (elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
   :config
   (run-with-timer 0 (* 60 60 4) #'elfeed-update) ; update elfeed database every 4 hours.
-  )
+  ;; Autotag.
+  (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "youtube\\.com"
+                                                       :add '(video youtube)))
+  ;; Remove old entries.
+  (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :before "2 weeks ago"
+                                                       :remove 'unread)))
 
 ;; Test rest api from Emacs.
 (use-package restclient :straight t
