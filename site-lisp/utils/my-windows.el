@@ -1,5 +1,5 @@
 (defvar my-windows-close-buffers-whitelist
-  '("*dashboard*")
+  '("*dashboard*" "*compilation*" "*embark export")
   "Buffer patterns ignored by `my-close-virtual-windows'.")
 
 (defun my-windows-but-this ()
@@ -12,10 +12,13 @@
 (defun my-close-virtual-windows ()
   (interactive)
   (mapc (lambda (win)
-          (let ((buf-name (buffer-name (window-buffer win))))
+          (let ((buf-name (downcase (buffer-name (window-buffer win)))))
             (and (string-prefix-p "*" buf-name)
                  (string-suffix-p "*" buf-name)
-                 (not (member buf-name my-windows-close-buffers-whitelist))
+                 (not (cl-remove-if-not
+                       (lambda (str)
+                         (string-prefix-p str buf-name))
+                       my-windows-close-buffers-whitelist))
                  (delete-window win))))
         (my-windows-but-this)))
 
