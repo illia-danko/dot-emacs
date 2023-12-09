@@ -12,7 +12,8 @@
   (marginalia-mode))
 
 ;; Make minibuffer looks prettier.
-(use-package vertico :straight t
+(use-package vertico
+  :straight (:files (:defaults "extensions/*"))
   :ensure t
   :bind (:map vertico-map
               ;; BUG(idanko): M-r is the default vertico
@@ -24,6 +25,7 @@
   (vertico-cycle nil)
   (vertico-resize nil)
   :config
+  (vertico-buffer-mode 1)
   (vertico-mode 1))
 
 ;; General orderless completion engine.
