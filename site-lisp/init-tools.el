@@ -51,7 +51,7 @@
   :ensure t
   :custom
   (leetcode-prefer-language "golang")
-  (leetcode-directory "~/github.com/illia-danko/emacs-leetcode")
+  (leetcode-directory "~/codeberg.org/eli87/emacs-leetcode")
   (leetcode-save-solutions t))
 
 ;; Center screen content.

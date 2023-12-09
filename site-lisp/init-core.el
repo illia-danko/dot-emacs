@@ -208,8 +208,8 @@
 (use-package ttymux
   :straight '(ttymux
               :type git
-              :host github
-              :repo "illia-danko/ttymux.el")
+              :host codeberg
+              :repo "eli87/ttymux.el")
   :unless (display-graphic-p)
   :config
   (ttymux-mode 1))
