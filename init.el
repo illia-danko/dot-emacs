@@ -17,55 +17,78 @@
 
 ;; Adjust Emacs $PATH. To make $PATH works correctly on Emacs GUI it's needed to
 ;; set via both: `exec-path' and `setenv'.
+;; TODO(idanko): check existence before add to $PATH.
 (let ((path `("/usr/local/go/bin"
               "/opt/homebrew/bin"
 			  "/usr/local/bin"
-              ,(concat (getenv "HOME") "/go/bin"))))
+              ,(concat (getenv "HOME") "/go/bin")
+              ,(concat (getenv "HOME") "/.cargo/bin"))))
   (setq exec-path (append exec-path path))
   (mapc (lambda (p)
           (setenv "PATH" (concat (getenv "PATH") ":" p)))
         path))
 
-;; Fix magit, gpg auth issue under Sway DE.
-(when (getenv "SWAYSOCK")
-  (setenv "SSH_AUTH_SOCK" "/run/user/1000/keyring/ssh"))
+(setq package-enable-at-startup nil)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
-              `(,(expand-file-name "site-lisp/utils" user-emacs-directory))
               `(,(expand-file-name "site-lisp" user-emacs-directory))
-			  `(,(expand-file-name "site-lisp/lang" user-emacs-directory))))
+              `(,(expand-file-name "site-lisp/utils" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/core" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/completion" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/text" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/lang" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/ui" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/tools" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/keymap" user-emacs-directory))))
 
-(require 'init-bootstrap)
-(require 'init-vars)
-(require 'init-core)
-(require 'init-completion)
-(require 'init-formatting)
-(require 'init-codelinter)
-(require 'init-project)
-(require 'init-edit)
-(require 'init-dired)
-(require 'init-tools)
-(require 'init-theme)
-(require 'init-compile)
+;; Core settings.
+(require 'core/intercept-mode)
+(require 'core/core)
+(require 'core/project)
 
-;; Load languages modes.
-(require 'init-conf)
-(require 'init-dockermode)
-(require 'init-emacs-lisp)
-(require 'init-org)
-(require 'init-markdown)
-(require 'init-yaml)
-(require 'init-go)
-(require 'init-web)
-(require 'init-sh)
-(require 'init-text)
-(require 'init-elixir)
-(require 'init-treesit)
-(require 'init-shell)
+;; Completion.
+(progn
+  (straight-use-package 'marginalia)
+  (straight-use-package 'vertico)
+  (straight-use-package 'which-key)
+  (straight-use-package 'orderless)
+  (straight-use-package 'cape)
+  (straight-use-package 'yasnippet)
+  (straight-use-package 'corfu)
+  (straight-use-package 'corfu-terminal)
+  (straight-use-package 'consult)
+  (require 'completion/core)
+  (require 'completion/minibuffer)
+  (require 'completion/lsp))
 
-;; Utils
-(require 'my-windows)
+;; UI.
+(progn
+  (straight-use-package 'all-the-icons-completion)
+  (straight-use-package 'doom-modeline)
+  (straight-use-package 'doom-themes)
+  (require 'ui/icons)
+  (require 'ui/modeline)
+  (require 'ui/theme))
+
+(progn
+  (require 'keymap/vanilla))
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

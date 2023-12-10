@@ -1,15 +1,15 @@
-(defvar my-windows-close-buffers-whitelist
+(defvar ui/bury-window-buffers-whitelist
   '("*dashboard*" "*compilation*" "*embark export")
-  "Buffer patterns ignored by `my-close-virtual-windows'.")
+  "Buffer patterns ignored by `ui/bury-window-maybe-bury'.")
 
-(defun my-windows-but-this ()
+(defun ui/bury-window-but-this ()
   (let* ((current-window (selected-window))
          (other-windows (seq-filter (lambda (win)
                                       (not (eq win current-window)))
                                     (window-list))))
     other-windows))
 
-(defun my-close-virtual-windows ()
+(defun ui/bury-window-maybe-bury ()
   (interactive)
   (mapc (lambda (win)
           (let ((buf-name (downcase (buffer-name (window-buffer win)))))
@@ -18,16 +18,17 @@
                  (not (cl-remove-if-not
                        (lambda (str)
                          (string-prefix-p str buf-name))
-                       my-windows-close-buffers-whitelist))
+                       ui/bury-window-buffers-whitelist))
                  (delete-window win))))
-        (my-windows-but-this)))
+        (ui/bury-window-but-this)))
 
-(defun my-keyboard-quit ()
+;; TODO(idanko): add cookie
+(defun ui/bury-window-quit ()
   "Keyboard quit and force normal state."
   (interactive)
-  (my-close-virtual-windows)
+  (ui/bury-window-maybe-bury)
   (keyboard-quit))
 
-(global-set-key (kbd "C-g") 'my-keyboard-quit)
+;; (global-set-key (kbd "C-g") 'my-keyboard-quit)
 
-(provide 'my-windows)
+(provide 'ui/bury-window)
