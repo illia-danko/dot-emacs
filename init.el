@@ -90,8 +90,14 @@
 (progn
   (straight-use-package 'format-all)
   (straight-use-package 'ace-jump-mode)
+  (straight-use-package 'expand-region)
+  (straight-use-package 'multiple-cursors)
+  (straight-use-package 'hydra)
   (require 'edit/core)
-  (require 'edit/formatting))
+  (require 'edit/formatting)
+  (if (featurep 'evil)
+	  (require 'edit/evil)
+	(require 'edit/vanilla)))
 
 ;; Text.
 (progn
@@ -124,7 +130,8 @@
 
 (progn
   (require 'keymap/common)
-  (require 'keymap/vanilla))
-
+  (if (featurep 'evil)
+	  (require 'keymap/evil)
+	(require 'keymap/vanilla)))
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

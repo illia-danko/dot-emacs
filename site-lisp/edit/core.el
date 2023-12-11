@@ -12,6 +12,7 @@
 
   (require 'elec-pair))
 
+;; Eager loading.
 (require 'ace-jump-mode)
 
 (provide 'edit/core)

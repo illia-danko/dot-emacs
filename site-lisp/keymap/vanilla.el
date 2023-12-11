@@ -1,7 +1,8 @@
-(with-eval-after-load 'core/intercept-mode
-  ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
-  (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
-  (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region))
+(with-eval-after-load 'core/project
+  (define-key core/intercept-mode-map (kbd "C-x f") #'project-find-file)
+  (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
+  (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
+  (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers))
 
 (with-eval-after-load 'completion/core
   (global-set-key [remap next-matching-history-element]     #'consult-history)
@@ -19,14 +20,16 @@
   (global-set-key [remap switch-to-buffer-other-frame]      #'consult-buffer-other-frame)
   (global-set-key [remap yank-pop]                          #'consult-yank-pop))
 
-(with-eval-after-load 'core/project
-  (define-key core/intercept-mode-map (kbd "C-x f") #'project-find-file)
-  (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
-  (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
-  (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers))
-
 (with-eval-after-load 'edit/core
+  ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
+  (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
+  (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region)
   (global-set-key (kbd "M-t") #'ace-jump-mode))
+
+(with-eval-after-load 'edit/vanilla
+  (define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)
+  (define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
+  (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body))
 
 (with-eval-after-load 'tools/filesystem
   (global-set-key [remap dired] #'dired-jump))
