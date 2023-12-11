@@ -55,8 +55,8 @@
               `(,(expand-file-name "site-lisp/completion" user-emacs-directory))
               `(,(expand-file-name "site-lisp/text" user-emacs-directory))
               `(,(expand-file-name "site-lisp/lang" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/ui" user-emacs-directory))
               `(,(expand-file-name "site-lisp/tools" user-emacs-directory))
+              `(,(expand-file-name "site-lisp/ui" user-emacs-directory))
               `(,(expand-file-name "site-lisp/keymap" user-emacs-directory))))
 
 ;; Utils.
@@ -66,6 +66,7 @@
 ;; Core settings.
 (progn
   (straight-use-package 'perspective)
+  (require 'core/variable)
   (require 'core/intercept-mode)
   (require 'core/core)
   (require 'core/project))
@@ -103,17 +104,21 @@
 (progn
   (straight-use-package 'xclip)
   (straight-use-package 'dashboard)
+  (straight-use-package 'vterm)
   (require 'tools/core)
-  (require 'tools/dashboard))
+  (require 'tools/dashboard)
+  (require 'tools/vterm))
 
 ;; UI.
 (progn
   (straight-use-package 'all-the-icons-completion)
   (straight-use-package 'doom-modeline)
   (straight-use-package 'doom-themes)
+  (require 'ui/core)
   (require 'ui/icons)
   (require 'ui/modeline)
-  (require 'ui/theme))
+  (require 'ui/system-theme)
+  (require 'ui/font))
 
 (progn
   (require 'keymap/vanilla))
