@@ -1,4 +1,3 @@
-
 (unless (display-graphic-p)
   (with-eval-after-load 'xclip
     (xclip-mode 1))

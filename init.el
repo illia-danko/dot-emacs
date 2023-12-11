@@ -8,19 +8,19 @@
       byte-compile-verbose nil)
 
 (add-hook 'emacs-startup-hook
-		  (lambda ()
-			;; After startup, it is important you reset this to some reasonable
-			;; default. A large gc-cons-threshold will cause freezing and
-			;; stuttering during long-term interactive use."
+	  (lambda ()
+	    ;; After startup, it is important you reset this to some reasonable
+	    ;; default. A large gc-cons-threshold will cause freezing and
+	    ;; stuttering during long-term interactive use."
             (setq gc-cons-threshold 16777216
-				  gc-cons-percentage 0.1)))
+		  gc-cons-percentage 0.1)))
 
 ;; Adjust Emacs $PATH. To make $PATH works correctly on Emacs GUI it's needed to
 ;; set via both: `exec-path' and `setenv'.
 ;; TODO(idanko): check existence before add to $PATH.
 (let ((path `("/usr/local/go/bin"
               "/opt/homebrew/bin"
-			  "/usr/local/bin"
+	      "/usr/local/bin"
               ,(concat (getenv "HOME") "/go/bin")
               ,(concat (getenv "HOME") "/.cargo/bin"))))
   (setq exec-path (append exec-path path))
@@ -59,10 +59,16 @@
               `(,(expand-file-name "site-lisp/tools" user-emacs-directory))
               `(,(expand-file-name "site-lisp/keymap" user-emacs-directory))))
 
+;; Utils.
+(progn
+  (require 'utils/list))
+
 ;; Core settings.
-(require 'core/intercept-mode)
-(require 'core/core)
-(require 'core/project)
+(progn
+  (straight-use-package 'perspective)
+  (require 'core/intercept-mode)
+  (require 'core/core)
+  (require 'core/project))
 
 ;; Completion.
 (progn
@@ -78,6 +84,27 @@
   (require 'completion/core)
   (require 'completion/minibuffer)
   (require 'completion/lsp))
+
+;; Editing.
+(progn
+  (straight-use-package 'format-all)
+  (require 'edit/core)
+  (require 'edit/formatting))
+
+;; Text.
+(progn
+  (require 'text/org))
+
+;; Languages.
+(progn
+  (require 'lang/emacs-lisp))
+
+;; Tools.
+(progn
+  (straight-use-package 'xclip)
+  (straight-use-package 'dashboard)
+  (require 'tools/core)
+  (require 'tools/dashboard))
 
 ;; UI.
 (progn
