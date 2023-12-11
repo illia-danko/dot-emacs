@@ -49,19 +49,10 @@
 ;; Add files of the 'lisp' folder to the path.
 (setq load-path
       (append (delete-dups load-path)
-              `(,(expand-file-name "site-lisp" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/utils" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/core" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/completion" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/text" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/lang" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/tools" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/ui" user-emacs-directory))
-              `(,(expand-file-name "site-lisp/keymap" user-emacs-directory))))
+              `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
-;; Utils.
 (progn
-  (require 'utils/list))
+  (require 'api/list))
 
 ;; Core settings.
 (progn
@@ -86,6 +77,19 @@
   (require 'completion/minibuffer)
   (require 'completion/lsp))
 
+;; Tool.
+(progn
+  (straight-use-package 'xclip)
+  (straight-use-package 'dashboard)
+  (straight-use-package 'vterm)
+  (straight-use-package 'magit)
+  (straight-use-package 'git-link)
+  (require 'tool/core)
+  (require 'tool/dashboard)
+  (require 'tool/vterm)
+  (require 'tool/filesystem)
+  (require 'tool/version-control))
+
 ;; Editing.
 (progn
   (straight-use-package 'format-all)
@@ -107,16 +111,6 @@
 (progn
   (require 'lang/emacs-lisp))
 
-;; Tools.
-(progn
-  (straight-use-package 'xclip)
-  (straight-use-package 'dashboard)
-  (straight-use-package 'vterm)
-  (require 'tools/core)
-  (require 'tools/dashboard)
-  (require 'tools/vterm)
-  (require 'tools/filesystem))
-
 ;; UI.
 (progn
   (straight-use-package 'all-the-icons-completion)
@@ -128,6 +122,7 @@
   (require 'ui/system-theme)
   (require 'ui/font))
 
+;; Keymap.
 (progn
   (require 'keymap/common)
   (if (featurep 'evil)

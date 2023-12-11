@@ -1,4 +1,4 @@
 (progn
   (require 'vterm))
 
-(provide 'tools/vterm)
+(provide 'tool/vterm)

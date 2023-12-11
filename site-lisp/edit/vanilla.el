@@ -1,4 +1,3 @@
-
 (require 'expand-region)
 
 (progn

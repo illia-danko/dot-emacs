@@ -31,7 +31,22 @@
   (define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
   (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body))
 
-(with-eval-after-load 'tools/filesystem
+(with-eval-after-load 'tool/filesystem
   (global-set-key [remap dired] #'dired-jump))
+
+(with-eval-after-load 'tool/version-control
+  (global-set-key (kbd "C-x g" ) #'magit-status)
+  (global-set-key (kbd "C-c gg") #'magit-status)
+  (global-set-key (kbd "C-c gd") #'magit-diff-buffer-file)
+  (global-set-key (kbd "C-c gb") #'magit-log-buffer-file)
+  (global-set-key (kbd "C-c gL") #'magit-log-all)
+  (global-set-key (kbd "C-c ga") #'magit-blame-addition)
+  (global-set-key (kbd "C-c gr") #'magit-diff-range) ; show difference between branches
+  (global-set-key (kbd "C-c gf") #'magit-find-file) ; visit a file from any branch
+  (global-set-key (kbd "C-c gu") #'git-link)
+  (global-set-key (kbd "C-c gU") #'tool/browse-project-home-page))
+
+(with-eval-after-load 'text/org
+  (global-set-key (kbd "C-c gc") #'org/git-push-org-file))
 
 (provide 'keymap/vanilla)

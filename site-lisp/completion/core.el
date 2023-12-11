@@ -66,7 +66,7 @@ If is no region, calls `func' without any `args'."
   (defun completion/consult-ripgrep ()
     (interactive)
     (completion/apply-region 'consult-ripgrep
-			     (core/project-root)))
+							 (core/project-root)))
 
   (defun completion/consult-line ()
     (interactive)

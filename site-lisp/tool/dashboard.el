@@ -1,9 +1,9 @@
 (progn
   (with-eval-after-load 'dashboard
     (add-hook 'after-make-frame-functions
-	      (lambda (&optional frame)
-		(setq initial-buffer-choice (lambda nil
-					      (get-buffer "*dashboard*")))))
+			  (lambda (&optional frame)
+				(setq initial-buffer-choice (lambda nil
+											  (get-buffer "*dashboard*")))))
 
     (customize-set-variable 'dashboard-filter-agenda-entry 'dashboard-no-filter-agenda) ; show todo entries
     (customize-set-variable 'dashboard-items '((agenda . 16))) ; layout
@@ -13,4 +13,4 @@
 
   (require 'dashboard))
 
-(provide 'tools/dashboard)
+(provide 'tool/dashboard)

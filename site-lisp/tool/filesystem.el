@@ -1,5 +1,5 @@
 (progn
-  (defun tools/dired-system-open ()
+  (defun tool/dired-system-open ()
     (interactive)
     (let ((file (dired-get-filename nil t))
           (cmd (pcase system-type
@@ -15,6 +15,7 @@
 	(add-hook 'dired-mode-hook #'dired-omit-mode) ; do not show pattern's files
 	)
 
+  ;; Eager loading.
   (require 'dired))
 
-(provide 'tools/filesystem)
+(provide 'tool/filesystem)
