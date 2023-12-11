@@ -65,16 +65,16 @@ If is no region, calls `func' without any `args'."
 
   (defun completion/consult-ripgrep ()
     (interactive)
-	(completion/apply-region 'consult-ripgrep
-					         (core/project-root)))
+    (completion/apply-region 'consult-ripgrep
+			     (core/project-root)))
 
   (defun completion/consult-line ()
     (interactive)
-	(completion/apply-region 'consult-line))
+    (completion/apply-region 'consult-line))
 
   (defun completion/consult-ripgrep-org ()
-	(interactive)
-	(consult-ripgrep org-directory))
+    (interactive)
+    (consult-ripgrep org-directory))
 
   (with-eval-after-load 'consult
     (customize-set-variable 'xref-show-definitions-function 'consult-xref)
@@ -82,8 +82,7 @@ If is no region, calls `func' without any `args'."
     (customize-set-variable 'consult-ripgrep "rg \
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
---smart-case --no-heading --with-filename --line-number --search-zip")
-    (consult-customize consult--source-buffer :hidden t :default nil))
+--smart-case --no-heading --with-filename --line-number --search-zip"))
 
   (require 'consult))
 

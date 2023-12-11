@@ -1,7 +1,8 @@
-(progn
-  (with-eval-after-load 'perspective
-    (persp-mode 1))
 
-  (require 'perspective))
+(unless (display-graphic-p)
+  (with-eval-after-load 'xclip
+    (xclip-mode 1))
 
-(provide 'tools-core)
+  (require 'xclip))
+
+(provide 'tools/core)
