@@ -8,19 +8,19 @@
       byte-compile-verbose nil)
 
 (add-hook 'emacs-startup-hook
-	  (lambda ()
-	    ;; After startup, it is important you reset this to some reasonable
-	    ;; default. A large gc-cons-threshold will cause freezing and
-	    ;; stuttering during long-term interactive use."
+		  (lambda ()
+			;; After startup, it is important you reset this to some reasonable
+			;; default. A large gc-cons-threshold will cause freezing and
+			;; stuttering during long-term interactive use."
             (setq gc-cons-threshold 16777216
-		  gc-cons-percentage 0.1)))
+				  gc-cons-percentage 0.1)))
 
 ;; Adjust Emacs $PATH. To make $PATH works correctly on Emacs GUI it's needed to
 ;; set via both: `exec-path' and `setenv'.
 ;; TODO(idanko): check existence before add to $PATH.
 (let ((path `("/usr/local/go/bin"
               "/opt/homebrew/bin"
-	      "/usr/local/bin"
+			  "/usr/local/bin"
               ,(concat (getenv "HOME") "/go/bin")
               ,(concat (getenv "HOME") "/.cargo/bin"))))
   (setq exec-path (append exec-path path))
@@ -89,6 +89,7 @@
 ;; Editing.
 (progn
   (straight-use-package 'format-all)
+  (straight-use-package 'ace-jump-mode)
   (require 'edit/core)
   (require 'edit/formatting))
 
@@ -107,7 +108,8 @@
   (straight-use-package 'vterm)
   (require 'tools/core)
   (require 'tools/dashboard)
-  (require 'tools/vterm))
+  (require 'tools/vterm)
+  (require 'tools/filesystem))
 
 ;; UI.
 (progn
@@ -121,6 +123,8 @@
   (require 'ui/font))
 
 (progn
+  (require 'keymap/common)
   (require 'keymap/vanilla))
+
 
 (message "Load time %.06f" (float-time (time-since my-time-emacs-start)))

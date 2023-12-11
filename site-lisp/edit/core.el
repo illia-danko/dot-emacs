@@ -12,4 +12,6 @@
 
   (require 'elec-pair))
 
+(require 'ace-jump-mode)
+
 (provide 'edit/core)
