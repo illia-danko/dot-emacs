@@ -72,10 +72,6 @@ If is no region, calls `func' without any `args'."
     (interactive)
     (completion/apply-region 'consult-line))
 
-  (defun completion/consult-ripgrep-org ()
-    (interactive)
-    (consult-ripgrep org-directory))
-
   (with-eval-after-load 'consult
     (customize-set-variable 'xref-show-definitions-function 'consult-xref)
     (customize-set-variable 'xref-show-xrefs-function 'consult-xref)

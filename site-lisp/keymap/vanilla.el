@@ -18,7 +18,10 @@
   (global-set-key [remap org-agenda]                        #'consult-org-agenda)
   (global-set-key [remap switch-to-buffer-other-window]     #'consult-buffer-other-window)
   (global-set-key [remap switch-to-buffer-other-frame]      #'consult-buffer-other-frame)
-  (global-set-key [remap yank-pop]                          #'consult-yank-pop))
+  (global-set-key [remap yank-pop]                          #'consult-yank-pop)
+  (global-set-key (kbd "C-c SPC")                           #'consult-mark)
+  (global-set-key (kbd "C-c v")                             #'consult-imenu)
+  (global-set-key (kbd "C-c f")                             #'completion/consult-ripgrep))
 
 (with-eval-after-load 'edit/core
   ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
