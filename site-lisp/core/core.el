@@ -5,7 +5,7 @@
   (tool-bar-mode -1))
 
 ;; Disable menu bar.
-(unless (or (display-graphic-p) (eq 'system-type 'gnu/linux))
+(unless (display-graphic-p)
   (with-eval-after-load 'menu-bar
     (menu-bar-mode -1)))
 
