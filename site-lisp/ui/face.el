@@ -1,10 +1,10 @@
-(defun ui/current-theme ()
-  (car custom-enabled-themes))
+(require 'doom-themes)
 
 (when window-system
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
-(require 'doom-themes)
+(defun ui/current-theme ()
+  (car custom-enabled-themes))
 
 (defvar ui/theme-dark-variant 'doom-one)
 (defvar ui/theme-light-variant 'doom-one-light)
@@ -44,4 +44,4 @@
 (add-hook 'ui/after-load-theme-hook #'ui/adjust-faces)
 (add-hook 'after-make-frame-functions #'ui/adjust-faces)
 
-(provide 'ui/core)
+(provide 'ui/face)

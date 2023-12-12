@@ -1,8 +1,8 @@
 ;; Macos auto theme hook.
-(require 'ui/core)
+(require 'ui/face)
 (require 'filenotify)
 
-(unless (display-graphic-p)
+(unless (and (display-graphic-p) (eq system-type 'darwin))
   (defconst ui/theme-variant-filename "~/.config/appearance/background"
     "Current system `light' or `dark' theme. Tupically a theme variant set by a
   custom poll mechanism, for instance, iterm2 can provide auto-dark.py script
@@ -33,14 +33,15 @@
    '(change)
    #'ui/load-theme))
 
+;; Macos https://github.com/d12frosted/homebrew-emacs-plus integration.
 (when (and (display-graphic-p) (eq system-type 'darwin))
-    (defun ui/apply-theme-macos-gui (appearance)
-      "Load theme based on the system theme's variant."
-      (mapc #'disable-theme custom-enabled-themes)
-      (pcase appearance
-	    ('light (load-theme ui/theme-light-variant t))
-        ('dark (load-theme ui/theme-dark-variant t)))
-      (ui/adjust-faces))
+  (defun ui/apply-theme-macos-gui (appearance)
+    "Load theme based on the system theme's variant."
+    (mapc #'disable-theme custom-enabled-themes)
+    (pcase appearance
+	  ('light (load-theme ui/theme-light-variant t))
+      ('dark (load-theme ui/theme-dark-variant t)))
+    (ui/adjust-faces))
 
   (add-hook 'ns-system-appearance-change-functions #'ui/apply-theme-macos-gui))
 

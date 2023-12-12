@@ -116,7 +116,7 @@
   (straight-use-package 'all-the-icons-completion)
   (straight-use-package 'doom-modeline)
   (straight-use-package 'doom-themes)
-  (require 'ui/core)
+  (require 'ui/face)
   (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
