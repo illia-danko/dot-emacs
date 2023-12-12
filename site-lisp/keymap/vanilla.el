@@ -14,7 +14,7 @@
   (global-set-key [remap load-theme]                        #'consult-theme)
   (global-set-key [remap man]                               #'consult-man)
   (global-set-key [remap recentf-open-files]                #'consult-recent-file)
-  (global-set-key [remap switch-to-buffer]                  #'consult-buffer)
+  (global-set-key [remap switch-to-buffer]                  #'completion/consult-buffer)
   (global-set-key [remap org-agenda]                        #'consult-org-agenda)
   (global-set-key [remap switch-to-buffer-other-window]     #'consult-buffer-other-window)
   (global-set-key [remap switch-to-buffer-other-frame]      #'consult-buffer-other-frame)
@@ -22,6 +22,13 @@
   (global-set-key (kbd "C-c SPC")                           #'consult-mark)
   (global-set-key (kbd "C-c v")                             #'consult-imenu)
   (global-set-key (kbd "C-c f")                             #'completion/consult-ripgrep))
+
+(with-eval-after-load 'tool/core
+  (global-set-key (kbd "C-c b") #'recompile)
+  (global-set-key (kbd "C-c B") #'project-compile))
+
+(with-eval-after-load 'tool/filesystem
+  (global-set-key [remap dired] #'dired-jump))
 
 (with-eval-after-load 'edit/core
   ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
@@ -32,9 +39,6 @@
   (define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)
   (define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
   (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body))
-
-(with-eval-after-load 'tool/filesystem
-  (global-set-key [remap dired] #'dired-jump))
 
 (with-eval-after-load 'tool/version-control
   (global-set-key (kbd "C-x g" ) #'magit-status)

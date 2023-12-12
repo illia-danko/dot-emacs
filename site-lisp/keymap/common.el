@@ -1,3 +1,6 @@
+(with-eval-after-load 'emacs
+  (global-set-key [remap kill-buffer] #'kill-this-buffer))
+
 (with-eval-after-load 'completion/minibuffer
   (define-key vertico-map (kbd "M-r") #'vertico-exit-input))
 

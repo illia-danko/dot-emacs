@@ -4,4 +4,6 @@
 
   (require 'xclip))
 
+(require 'compile)
+
 (provide 'tool/core)

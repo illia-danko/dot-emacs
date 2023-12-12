@@ -88,7 +88,8 @@
   (require 'tool/dashboard)
   (require 'tool/vterm)
   (require 'tool/filesystem)
-  (require 'tool/version-control))
+  (require 'tool/version-control)
+  (require 'tool/autoclose-compile-window))
 
 ;; Editing.
 (progn

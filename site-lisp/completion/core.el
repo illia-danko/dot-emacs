@@ -72,6 +72,12 @@ If is no region, calls `func' without any `args'."
     (interactive)
     (completion/apply-region 'consult-line))
 
+  (defun completion/consult-buffer (&optional arg)
+    (interactive "p")
+	(if arg
+		(consult-project-buffer)
+	  (consult-buffer)))
+
   (with-eval-after-load 'consult
     (customize-set-variable 'xref-show-definitions-function 'consult-xref)
     (customize-set-variable 'xref-show-xrefs-function 'consult-xref)
