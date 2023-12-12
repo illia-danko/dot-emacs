@@ -14,20 +14,20 @@
     (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
     (setq standard-display-table display-table))
   (set-face-attribute 'vertical-border frame
-		      :background (face-background 'default))
+					  :background (face-background 'default))
 
   (when (featurep 'vterm)
     ;; Fix zsh-autosuggestions highlight color problem from One Themes.
     (if (eq (ui/current-theme) ui/theme-light-variant)
-	(mapc (lambda (face)
-		(set-face-attribute face frame :background "#a0a1a7"))
-	      [term-color-black vterm-color-black])))
+		(mapc (lambda (face)
+				(set-face-attribute face frame :background "#a0a1a7"))
+			  [term-color-black vterm-color-black])))
 
   ;; Fix discrepancy between match highlighting.
   (mapc (lambda (face-group)
           (let ((face (car face-group))
                 (face-ref (cdr face-group)))
-	    (set-face-attribute face frame
+			(set-face-attribute face frame
                                 :background (face-background face-ref frame)
                                 :foreground (face-foreground face-ref frame)
                                 :weight (face-attribute face-ref :weight frame))))
