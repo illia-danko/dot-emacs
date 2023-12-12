@@ -20,7 +20,7 @@
 
 ;; Set bookmark's configuration file.
 (with-eval-after-load 'bookmark
-  (customize-set-variable 'bookmark-default-file (expand-file-name "bookmark" core/emacs-config-directory)))
+  (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory)))
 
 ;; Do not store backup files.
 (with-eval-after-load 'files
