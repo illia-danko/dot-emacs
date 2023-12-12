@@ -26,19 +26,31 @@
 (with-eval-after-load 'files
   (customize-set-variable 'make-backup-files nil))
 
-;; Delete selection on yank.
-(with-eval-after-load 'delsel
-  (delete-selection-mode 1))
+;; Delete selection on yank (override selected text).
+(progn
+  (with-eval-after-load 'delsel
+	(delete-selection-mode 1))
+
+  (require 'delsel))
 
 ;; Restore last edit position of a file.
-(with-eval-after-load 'saveplace
-  (save-place-mode 1))
+(progn
+  (with-eval-after-load 'saveplace
+	(save-place-mode 1))
 
-(with-eval-after-load 'recentf
-  (recentf-mode 1))
+  (require 'saveplace))
+
+(progn
+  (with-eval-after-load 'recentf
+	(recentf-mode 1))
+
+  (require 'recentf))
 
 ;; Store minibuffer history.
-(with-eval-after-load 'savehist
-  (savehist-mode 1))
+(progn
+  (with-eval-after-load 'savehist
+	(savehist-mode 1))
+
+  (require 'savehist))
 
 (provide 'core/core)
