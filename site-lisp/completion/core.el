@@ -68,9 +68,13 @@ If is no region, calls `func' without any `args'."
     (completion/apply-region 'consult-ripgrep
 							 (core/project-root)))
 
-  (defun completion/consult-line ()
+  (defun completion/consult-line-multi ()
     (interactive)
-    (completion/apply-region 'consult-line))
+	(if mark-active
+        (let* ((content (buffer-substring-no-properties (mark) (point))))
+          (deactivate-mark)
+          (consult-line-multi content content))
+      (consult-line-multi nil)))
 
   (defun completion/consult-buffer (&optional arg)
     (interactive "p")
