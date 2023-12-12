@@ -12,6 +12,25 @@
 
   (require 'elec-pair))
 
+(progn
+  (with-eval-after-load 'anzu
+	(global-anzu-mode 1))
+
+  (require 'anzu))
+
+(progn
+  (defun edit/isearch-region (&rest _)
+    "If any region is active, set a isearch input to the selected pattern."
+    (interactive "P\np")
+    (if mark-active
+	    (let ((content (buffer-substring-no-properties (mark) (point))))
+		  (deactivate-mark)
+		  (isearch-yank-string content))))
+
+  (with-eval-after-load 'isearch
+	(advice-add 'isearch-forward :after #'edit/isearch-region)
+	(advice-add 'isearch-backward :after #'edit/isearch-region)))
+
 ;; Eager loading.
 (require 'ace-jump-mode)
 

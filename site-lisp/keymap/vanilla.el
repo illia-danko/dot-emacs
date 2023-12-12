@@ -23,8 +23,7 @@
 (with-eval-after-load 'edit/core
   ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
   (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
-  (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region)
-  (global-set-key (kbd "M-t") #'ace-jump-mode))
+  (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region))
 
 (with-eval-after-load 'edit/vanilla
   (define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)

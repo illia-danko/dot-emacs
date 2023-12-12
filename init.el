@@ -97,6 +97,7 @@
   (straight-use-package 'expand-region)
   (straight-use-package 'multiple-cursors)
   (straight-use-package 'hydra)
+  (straight-use-package 'anzu)
   (require 'edit/core)
   (require 'edit/formatting)
   (if (featurep 'evil)
