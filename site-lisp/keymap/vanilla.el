@@ -58,4 +58,7 @@
 (with-eval-after-load 'text/org
   (global-set-key (kbd "C-c gc") #'org/git-push-org-file))
 
+(with-eval-after-load 'ui/rgb-highlight
+  (global-set-key (kbd "C-c ^") #'rainbow-mode))
+
 (provide 'keymap/vanilla)

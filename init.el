@@ -118,11 +118,13 @@
   (straight-use-package 'all-the-icons-completion)
   (straight-use-package 'doom-modeline)
   (straight-use-package 'doom-themes)
+  (straight-use-package 'rainbow-mode)
   (require 'ui/face)
   (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
-  (require 'ui/font))
+  (require 'ui/font)
+  (require 'ui/rgb-highlight))
 
 ;; Keymap.
 (progn
