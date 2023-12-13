@@ -12,11 +12,6 @@
   ;; Karabiner-elments already remap opt to ctrl
   ;; (cusotomize-set-variable 'mac-option-modifier 'control)
   (customize-set-variable 'vc-follow-symlinks t) ; always follow a symlink when accessing a file
-
-  (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
-  (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
-  (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
-  (column-number-mode 1) ; show column number on modeline
   )
 
 (provide 'core/variable)

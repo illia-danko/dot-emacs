@@ -1,3 +1,10 @@
+(with-eval-after-load 'emacs
+  (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
+  (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
+  (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
+  (column-number-mode 1) ; show column number on modeline
+  )
+
 (defvar core/emacs-config-directory "~/.config/emacs")
 
 ;; Disable tool bar.
