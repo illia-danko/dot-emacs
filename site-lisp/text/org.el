@@ -53,6 +53,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (add-hook 'org-mode-hook #'outline-hide-other) ; fold the document on load
   )
 
+  ;; Preload babel. Make possible to evaluate src code block.
+  (org-babel-do-load-languages 'org-babel-load-languages
+							   '((shell . t))))
+
 (require 'org)
 
 (provide 'text/org)
