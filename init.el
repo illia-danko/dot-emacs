@@ -101,6 +101,7 @@
   (straight-use-package 'multiple-cursors)
   (straight-use-package 'hydra)
   (straight-use-package 'anzu)
+  (straight-use-package 'rainbow-delimiters)
   (require 'edit/core)
   (require 'edit/formatting)
   (if (featurep 'evil)
