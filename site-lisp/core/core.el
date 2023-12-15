@@ -60,4 +60,8 @@
 
   (require 'savehist))
 
+;; Eager loading.
+(require 'imenu)
+(require 'recentf)
+
 (provide 'core/core)

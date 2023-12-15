@@ -1,3 +1,7 @@
+(with-eval-after-load 'core/core
+  (global-set-key (kbd "C-c v") #'imenu)
+  (global-set-key (kbd "C-c r") #'recentf))
+
 (with-eval-after-load 'core/project
   (define-key core/intercept-mode-map (kbd "C-x f") #'project-find-file)
   (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
@@ -53,6 +57,7 @@
 (with-eval-after-load 'text/org
   (define-key org-mode-map (kbd "C-c gc") #'org/git-push-org-file)
   (define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
+  (global-set-key (kbd "C-c oa") #'org-agenda)
   (global-set-key (kbd "C-c ot") #'org/capture-todo)
   (global-set-key (kbd "C-c od") #'org/capture-diary)
   (global-set-key (kbd "C-c 4") #'org/toggle-fontifications)
