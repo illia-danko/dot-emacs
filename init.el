@@ -110,7 +110,8 @@
 ;; Text.
 (progn
   (straight-use-package 'org-bullets)
-  (require 'text/org))
+  (require 'text/org)
+  (require 'text/org-goodies))
 
 ;; Languages.
 (progn
