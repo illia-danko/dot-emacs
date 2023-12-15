@@ -56,7 +56,16 @@
   (global-set-key (kbd "C-c gU") #'tool/browse-project-home-page))
 
 (with-eval-after-load 'text/org
-  (global-set-key (kbd "C-c gc") #'org/git-push-org-file))
+  (define-key org-mode-map (kbd "C-c gc") #'org/git-push-org-file)
+  (define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
+  (global-set-key (kbd "C-c ot") #'org/capture-todo)
+  (global-set-key (kbd "C-c od") #'org/capture-diary)
+  (global-set-key (kbd "C-c 4") #'org/toggle-fontifications)
+
+  ;; Preload babel. Make possible to evaluate src code block.
+  (org-babel-do-load-languages 'org-babel-load-languages
+							   '((shell . t)))
+  )
 
 (with-eval-after-load 'ui/rgb-highlight
   (global-set-key (kbd "C-c ^") #'rainbow-mode))

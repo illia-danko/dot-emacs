@@ -107,6 +107,7 @@
 
 ;; Text.
 (progn
+  (straight-use-package 'org-bullets)
   (require 'text/org))
 
 ;; Languages.
