@@ -91,7 +91,8 @@
   (require 'tool/filesystem)
   (require 'tool/version-control)
   (require 'tool/autoclose-compile-window)
-  (require 'tool/diff))
+  (require 'tool/diff)
+  (require 'tool/spelling))
 
 ;; Editing.
 (progn

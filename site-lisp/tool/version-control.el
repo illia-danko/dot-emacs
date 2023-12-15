@@ -1,4 +1,5 @@
 (require 'core/core)
+(require 'tool/spelling)
 
 (defun tool/git-push-current-file (pattern)
   "Stage, commit and push to upstream a personal org note file."
@@ -31,5 +32,11 @@
 		(call-interactively 'git-link-homepage))))
 
   (require 'git-link))
+
+(progn
+  (with-eval-after-load 'git-commit
+	(add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell))
+
+  (require 'git-commit))
 
 (provide 'tool/version-control)
