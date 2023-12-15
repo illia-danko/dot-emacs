@@ -33,6 +33,9 @@
 (with-eval-after-load 'tool/filesystem
   (global-set-key [remap dired] #'dired-jump))
 
+(with-eval-after-load 'tool/diff
+  (global-set-key (kbd "C-c dw") #'tool/compare-two-open-windows))
+
 (with-eval-after-load 'edit/core
   ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
   (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
