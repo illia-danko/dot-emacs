@@ -12,3 +12,4 @@ tramp
 /eln-cache
 /tree-sitter
 /history
+*.elc
