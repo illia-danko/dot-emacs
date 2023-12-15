@@ -89,10 +89,10 @@
   (require 'tool/dashboard)
   (require 'tool/vterm)
   (require 'tool/filesystem)
+  (require 'tool/spelling)
   (require 'tool/version-control)
   (require 'tool/autoclose-compile-window)
-  (require 'tool/diff)
-  (require 'tool/spelling))
+  (require 'tool/diff))
 
 ;; Editing.
 (progn
