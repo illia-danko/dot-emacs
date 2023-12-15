@@ -69,6 +69,10 @@
   (global-set-key (kbd "C-c 4") #'org/toggle-fontifications)
   (global-set-key (kbd "C-c of") #'org/consult-ripgrep))
 
+(with-eval-after-load 'ui/font
+  (global-set-key (kbd "C-+") #'text-scale-increase)
+  (global-set-key (kbd "C-\)") #'text-scale-decrease))
+
 (with-eval-after-load 'ui/rgb-highlight
   (global-set-key (kbd "C-c ^") #'rainbow-mode))
 
