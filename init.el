@@ -1,4 +1,4 @@
-(defvar my-time-emacs-start (current-time)
+(defvar core/time-emacs-start (current-time)
   "Time Emacs has started.")
 
 (setq gc-cons-threshold 402653184
@@ -135,4 +135,4 @@
 	  (require 'keymap/evil)
 	(require 'keymap/vanilla)))
 
-(message "Load time %.06f" (float-time (time-since my-time-emacs-start)))
+(message "Load time %.06f" (float-time (time-since core/time-emacs-start)))
