@@ -3,17 +3,18 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        indent-for-tab-command
-        org-delete-char
-        org-self-insert-command
-        wdired--self-insert
-        ))
+		edit/backward-kill-word-or-region
+		indent-for-tab-command
+		org-delete-char
+		org-self-insert-command
+		wdired--self-insert
+		))
 
 (setq mc/cmds-to-run-once
       '(
-        eval-buffer
-        edit/multiple-cursors-keymap/mc/edit-lines-and-exit
-        edit/multiple-cursors-keymap/mc/mark-all-like-this-and-exit
-        edit/multiple-cursors-keymap/mc/mark-next-like-this
-        edit/multiple-cursors-keymap/mc/skip-to-next-like-this
-        ))
+		edit/multiple-cursors-keymap/mc/edit-lines-and-exit
+		edit/multiple-cursors-keymap/mc/mark-all-like-this-and-exit
+		edit/multiple-cursors-keymap/mc/mark-next-like-this
+		edit/multiple-cursors-keymap/mc/skip-to-next-like-this
+		eval-buffer
+		))
