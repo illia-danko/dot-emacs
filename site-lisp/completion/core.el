@@ -82,7 +82,24 @@ If is no region, calls `func' without any `args'."
     (customize-set-variable 'consult-ripgrep "rg \
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
---smart-case --no-heading --with-filename --line-number --search-zip"))
+--smart-case --no-heading --with-filename --line-number --search-zip")
+
+	(global-set-key [remap next-matching-history-element]     #'consult-history)
+	(global-set-key [remap previous-matching-history-element] #'consult-history) ; M-r in minibuffer-local-map
+	(global-set-key [remap apropos]                           #'consult-apropos)
+	(global-set-key [remap bookmark-jump]                     #'consult-bookmark)
+	(global-set-key [remap goto-line]                         #'consult-goto-line)
+	(global-set-key [remap locate]                            #'consult-locate)
+	(global-set-key [remap load-theme]                        #'consult-theme)
+	(global-set-key [remap man]                               #'consult-man)
+	(global-set-key [remap recentf-open-files]                #'consult-recent-file)
+	(global-set-key [remap switch-to-buffer]                  #'consult-project-buffer)
+	(global-set-key [remap org-agenda]                        #'consult-org-agenda)
+	(global-set-key [remap switch-to-buffer-other-window]     #'consult-buffer-other-window)
+	(global-set-key [remap switch-to-buffer-other-frame]      #'consult-buffer-other-frame)
+	(global-set-key [remap yank-pop]                          #'consult-yank-pop)
+	(global-set-key [remap switch-to-buffer]                  #'consult-buffer)
+	(global-set-key [remap imenu]                             #'consult-imenu))
 
   (require 'consult))
 
