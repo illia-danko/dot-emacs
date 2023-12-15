@@ -51,9 +51,6 @@
       (append (delete-dups load-path)
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
-(progn
-  (require 'api/list))
-
 ;; Core settings.
 (progn
   (straight-use-package 'perspective)
