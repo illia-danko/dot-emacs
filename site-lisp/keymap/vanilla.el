@@ -64,6 +64,7 @@
   (global-set-key (kbd "C-c ot") #'org/capture-todo)
   (global-set-key (kbd "C-c od") #'org/capture-diary)
   (global-set-key (kbd "C-c 4") #'org/toggle-fontifications)
+  (global-set-key (kbd "C-c of") #'org/consult-ripgrep)
 
   ;; Preload babel. Make possible to evaluate src code block.
   (org-babel-do-load-languages 'org-babel-load-languages

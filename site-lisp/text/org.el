@@ -30,6 +30,10 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   ;; Apply changes.
   (font-lock-fontify-buffer))
 
+(defun org/consult-ripgrep ()
+  (interactive)
+  (consult-ripgrep org-directory))
+
 (with-eval-after-load 'org
   (customize-set-variable 'org-directory "~/codeberg.org/eli87/org")
   (customize-set-variable 'org-default-notes-file (expand-file-name "todos.org" org-directory))
