@@ -122,12 +122,14 @@
   (straight-use-package 'doom-modeline)
   (straight-use-package 'doom-themes)
   (straight-use-package 'rainbow-mode)
+  (straight-use-package 'hl-todo)
   (require 'ui/face)
   (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
   (require 'ui/font)
-  (require 'ui/rgb-highlight))
+  (require 'ui/rgb-highlight)
+  (require 'ui/highlight-todos))
 
 ;; Keymap.
 (progn
