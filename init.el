@@ -73,6 +73,7 @@
   (straight-use-package 'corfu)
   (straight-use-package 'corfu-terminal)
   (straight-use-package 'consult)
+  (straight-use-package 'embark-consult)
   (require 'completion/core)
   (require 'completion/minibuffer)
   (require 'completion/lsp))

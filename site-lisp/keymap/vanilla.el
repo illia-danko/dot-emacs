@@ -24,7 +24,10 @@
   (global-set-key (kbd "C-c SPC")                           #'consult-mark)
   (global-set-key (kbd "C-c v")                             #'consult-imenu)
   (global-set-key (kbd "C-c f")                             #'completion/consult-ripgrep)
-  (global-set-key (kbd "C-c F")                             #'completion/consult-line-multi))
+  (global-set-key (kbd "C-c F")                             #'completion/consult-line-multi)
+
+  (define-key core/intercept-mode-map (kbd "C-.") #'embark-act)
+  (define-key core/intercept-mode-map (kbd "C-,") #'embark-dwim))
 
 (with-eval-after-load 'tool/core
   (global-set-key (kbd "C-c b") #'recompile)

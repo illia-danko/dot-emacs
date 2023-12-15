@@ -86,4 +86,10 @@ If is no region, calls `func' without any `args'."
 
   (require 'consult))
 
+(progn
+  (with-eval-after-load 'embark-consult
+	(add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+
+  (require 'embark-consult))
+
 (provide 'completion/core)
