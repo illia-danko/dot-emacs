@@ -113,6 +113,7 @@
 (progn
   (straight-use-package 'org-bullets)
   (straight-use-package 'markdown-mode)
+  (require 'text/text-mode)
   (require 'text/org)
   (require 'text/org-goodies)
   (require 'text/markdown)
@@ -121,6 +122,7 @@
 
 ;; Languages.
 (progn
+  (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go))
 
