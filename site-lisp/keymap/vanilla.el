@@ -69,6 +69,10 @@
   (define-key markdown-mode-map (kbd "<tab>") #'outline-toggle-children)
   (define-key markdown-mode-map (kbd "C-c 4") #'text/markdown-toggle-fontifications))
 
+(with-eval-after-load 'lang/emacs-lisp
+  (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
+  (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun))
+
 (with-eval-after-load 'ui/font
   (global-set-key (kbd "C-+") #'text-scale-increase)
   (global-set-key (kbd "C-\)") #'text-scale-decrease))
