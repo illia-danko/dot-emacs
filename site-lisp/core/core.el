@@ -7,6 +7,12 @@
 
 (defvar core/emacs-config-directory "~/.config/emacs")
 
+;; Load private-settings.el.
+(let ((private-settings (expand-file-name "private-settings.el" core/emacs-config-directory)))
+  (and private-settings
+       (file-exists-p private-settings)
+       (load private-settings)))
+
 ;; Disable tool bar.
 (with-eval-after-load 'tool-bar
   (tool-bar-mode -1))
