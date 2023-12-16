@@ -3,7 +3,14 @@
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
   (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
   (column-number-mode 1) ; show column number on modeline
-  )
+
+  (defun core/toggle-highlight-whitespaces ()
+	(interactive)
+	(let ((trailing-whitespace-p (not show-trailing-whitespace)))
+	  (setq-local show-trailing-whitespace
+				  trailing-whitespace-p)
+	  (message "Trailing whitespace mode %s"
+			   (if trailing-whitespace-p "enabled" "disabled")))))
 
 (defvar core/emacs-config-directory "~/.config/emacs")
 

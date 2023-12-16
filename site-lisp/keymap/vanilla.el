@@ -1,6 +1,8 @@
 (with-eval-after-load 'core/core
   (global-set-key (kbd "C-c v") #'imenu)
-  (global-set-key (kbd "C-c r") #'recentf))
+  (global-set-key (kbd "C-c r") #'recentf)
+  (global-set-key (kbd "C-c on") #'display-line-numbers-mode)
+  (global-set-key (kbd "C-c ow") #'core/toggle-highlight-whitespaces))
 
 (with-eval-after-load 'core/project
   (define-key core/intercept-mode-map (kbd "C-x f") #'project-find-file)
