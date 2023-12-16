@@ -55,13 +55,13 @@
   (global-set-key (kbd "C-c gU") #'tool/browse-project-home-page))
 
 (with-eval-after-load 'text/org
-  (define-key org-mode-map (kbd "C-c gc") #'org/git-push-org-file)
+  (define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
   (define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
+  (define-key org-mode-map (kbd "C-c 4") #'text/org-toggle-fontifications)
   (global-set-key (kbd "C-c oa") #'org-agenda)
-  (global-set-key (kbd "C-c ot") #'org/capture-todo)
-  (global-set-key (kbd "C-c od") #'org/capture-diary)
-  (global-set-key (kbd "C-c 4") #'org/toggle-fontifications)
-  (global-set-key (kbd "C-c of") #'org/consult-ripgrep))
+  (global-set-key (kbd "C-c ot") #'text/org-capture-todo)
+  (global-set-key (kbd "C-c od") #'text/org-capture-diary)
+  (global-set-key (kbd "C-c of") #'text/org-consult-ripgrep))
 
 (with-eval-after-load 'text/markdown
   (define-key markdown-mode-map (kbd "<tab>") #'outline-toggle-children)
