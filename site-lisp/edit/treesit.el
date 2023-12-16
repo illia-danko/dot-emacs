@@ -5,8 +5,7 @@
   (with-eval-after-load 'treesit
 	(defun edit/treesit-install-language-grammar ()
 	  (interactive)
-	  (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist)))
-	)
+	  (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))))
 
   (require 'treesit))
 

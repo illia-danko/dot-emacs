@@ -1,5 +1,7 @@
+(require 'api/list)
 (require 'edit/treesit)
 (require 'completion/lsp)
+(require 'edit/formatting)
 
 (progn
   (with-eval-after-load 'go-ts-mode
