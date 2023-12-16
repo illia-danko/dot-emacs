@@ -73,6 +73,11 @@
   (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
   (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun))
 
+(with-eval-after-load 'lang/elixir
+  (define-key elixir-ts-mode-map (kbd "C-c or") #'inf-elixir-project) ; alias to repl
+  (define-key elixir-ts-mode-map (kbd "C-c C-b") #'inf-elixir-send-buffer)
+  (define-key elixir-ts-mode-map (kbd "C-c C-c") #'lang/elixir-eval-line-or-region))
+
 (with-eval-after-load 'ui/font
   (global-set-key (kbd "C-+") #'text-scale-increase)
   (global-set-key (kbd "C-\)") #'text-scale-decrease))

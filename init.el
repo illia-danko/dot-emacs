@@ -122,9 +122,12 @@
 
 ;; Languages.
 (progn
+  (straight-use-package 'elixir-ts-mode)
+  (straight-use-package 'inf-elixir)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
-  (require 'lang/go))
+  (require 'lang/go)
+  (require 'lang/elixir))
 
 ;; UI.
 (progn
