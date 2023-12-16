@@ -109,8 +109,10 @@
 ;; Text.
 (progn
   (straight-use-package 'org-bullets)
+  (straight-use-package 'markdown-mode)
   (require 'text/org)
-  (require 'text/org-goodies))
+  (require 'text/org-goodies)
+  (require 'text/markdown))
 
 ;; Languages.
 (progn
