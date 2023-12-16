@@ -20,6 +20,10 @@
   (define-key core/intercept-mode-map (kbd "C-.") #'embark-act)
   (define-key core/intercept-mode-map (kbd "C-,") #'embark-dwim))
 
+(with-eval-after-load 'completion/lsp
+  (define-key eglot-mode-map (kbd "C-c cr") #'eglot-rename)
+  (define-key eglot-mode-map (kbd "C-c ci") #'eglot-find-implementation))
+
 (with-eval-after-load 'tool/core
   (global-set-key (kbd "C-c b") #'recompile)
   (global-set-key (kbd "C-c B") #'project-compile))
