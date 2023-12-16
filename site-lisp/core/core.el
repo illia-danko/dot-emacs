@@ -73,6 +73,10 @@
 
   (require 'savehist))
 
+(progn
+  (with-eval-after-load 'eldoc
+	(customize-set-variable 'eldoc-echo-area-use-multiline-p nil)))
+
 ;; Eager loading.
 (require 'imenu)
 (require 'recentf)
