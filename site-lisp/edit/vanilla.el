@@ -1,5 +1,3 @@
-(require 'expand-region)
-
 (progn
   (require 'hydra)
   (require 'multiple-cursors)

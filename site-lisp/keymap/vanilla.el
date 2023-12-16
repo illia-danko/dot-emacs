@@ -12,8 +12,6 @@
 
 (with-eval-after-load 'completion/core
   (global-set-key (kbd "C-x B") #'consult-project-buffer)
-  (global-set-key (kbd "C-c SPC") #'consult-mark)
-  (global-set-key (kbd "C-c v") #'consult-imenu)
   (global-set-key (kbd "C-c f") #'completion/consult-ripgrep)
   (global-set-key (kbd "C-c F") #'completion/consult-line-multi)
 
@@ -26,10 +24,8 @@
 
 (with-eval-after-load 'tool/core
   (global-set-key (kbd "C-c b") #'recompile)
-  (global-set-key (kbd "C-c B") #'project-compile))
-
-(with-eval-after-load 'tool/filesystem
-  (global-set-key [remap dired] #'dired-jump))
+  (global-set-key (kbd "C-c B") #'project-compile)
+  (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command))
 
 (with-eval-after-load 'tool/diff
   (global-set-key (kbd "C-c dw") #'tool/compare-two-open-windows))
@@ -39,13 +35,10 @@
   (global-set-key (kbd "C-c w") #'ispell-word))
 
 (with-eval-after-load 'edit/core
-  ;; As the tmux config uses C-SPS as a prefix key we need to rebind `set-mark-command'.
-  (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
-  (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region))
+  (define-key core/intercept-mode-map (kbd "C-t") #'er/expand-region)
+  (define-key core/intercept-mode-map (kbd "M-t") #'er/contract-region))
 
 (with-eval-after-load 'edit/vanilla
-  (define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)
-  (define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
   (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body))
 
 (with-eval-after-load 'tool/version-control
@@ -88,5 +81,8 @@
 
 (with-eval-after-load 'ui/rgb-highlight
   (global-set-key (kbd "C-c ^") #'rainbow-mode))
+
+(with-eval-after-load 'ui/zen
+  (global-set-key (kbd "C-c z") #'ui/zen-toggle))
 
 (provide 'keymap/vanilla)

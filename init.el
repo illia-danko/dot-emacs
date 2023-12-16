@@ -51,13 +51,17 @@
       (append (delete-dups load-path)
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
+;; Extensible and customizable VI Layer for Emacs.
+(defvar core/use-evil-p t)
+
 ;; Core settings.
 (progn
   (straight-use-package 'perspective)
   (require 'core/variable)
   (require 'core/intercept-mode)
   (require 'core/core)
-  (require 'core/project))
+  (require 'core/project)
+  (require 'core/scope))
 
 ;; Completion.
 (progn
@@ -102,12 +106,20 @@
   (straight-use-package 'hydra)
   (straight-use-package 'anzu)
   (straight-use-package 'rainbow-delimiters)
+  (straight-use-package 'evil)
+  (straight-use-package 'evil-collection)
+  (straight-use-package 'evil-anzu)
+  (straight-use-package 'evil-surround)
+  (straight-use-package 'evil-commentary)
+  (straight-use-package 'evil-terminal-cursor-changer)
+  (straight-use-package
+   '(navigate :type git :host codeberg :repo "eli87/evil-tmux-navigator"))
   (require 'edit/core)
   (require 'edit/formatting)
   (require 'edit/treesit)
-  (if (featurep 'evil)
+  (if core/use-evil-p
       (require 'edit/evil)
-    (require 'edit/vanilla)))
+	(require 'edit/vanilla)))
 
 ;; Text.
 (progn
@@ -136,18 +148,21 @@
   (straight-use-package 'doom-themes)
   (straight-use-package 'rainbow-mode)
   (straight-use-package 'hl-todo)
+  (straight-use-package 'hide-mode-line)
+  (straight-use-package 'olivetti)
   (require 'ui/face)
   (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
   (require 'ui/font)
   (require 'ui/rgb-highlight)
-  (require 'ui/highlight-todos))
+  (require 'ui/highlight-todos)
+  (require 'ui/zen))
 
 ;; Keymap.
 (progn
   (require 'keymap/common)
-  (if (featurep 'evil)
+  (if core/use-evil-p
       (require 'keymap/evil)
     (require 'keymap/vanilla)))
 

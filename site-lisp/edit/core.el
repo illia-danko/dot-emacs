@@ -34,5 +34,6 @@
 ;; Eager loading.
 (require 'ace-jump-mode)
 (require 'rainbow-delimiters)
+(require 'expand-region)
 
 (provide 'edit/core)
