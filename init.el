@@ -102,6 +102,7 @@
   (straight-use-package 'rainbow-delimiters)
   (require 'edit/core)
   (require 'edit/formatting)
+  (require 'edit/treesit)
   (if (featurep 'evil)
       (require 'edit/evil)
     (require 'edit/vanilla)))
@@ -116,7 +117,8 @@
 
 ;; Languages.
 (progn
-  (require 'lang/emacs-lisp))
+  (require 'lang/emacs-lisp)
+  (require 'lang/go))
 
 ;; UI.
 (progn
