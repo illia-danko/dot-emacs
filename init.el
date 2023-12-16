@@ -82,6 +82,7 @@
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
+  (straight-use-package 'elfeed)
   (require 'tool/core)
   (require 'tool/dashboard)
   (require 'tool/vterm)
@@ -89,7 +90,8 @@
   (require 'tool/spelling)
   (require 'tool/version-control)
   (require 'tool/autoclose-compile-window)
-  (require 'tool/diff))
+  (require 'tool/diff)
+  (require 'tool/feed))
 
 ;; Editing.
 (progn
