@@ -113,7 +113,9 @@
   (straight-use-package 'markdown-mode)
   (require 'text/org)
   (require 'text/org-goodies)
-  (require 'text/markdown))
+  (require 'text/markdown)
+  (require 'text/yaml)
+  )
 
 ;; Languages.
 (progn
