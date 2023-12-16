@@ -2,7 +2,7 @@
 (require 'edit/core)
 (require 'edit/formatting)
 
-(with-eval-after-load 'emacs
+(with-eval-after-load 'elisp-mode
   (setq format-all-default-formatters
 		(api/upsert-car-string format-all-default-formatters
 							   '("Emacs Lisp" emacs-lisp)))
