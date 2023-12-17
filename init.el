@@ -93,6 +93,7 @@
   (require 'tool/filesystem)
   (require 'tool/spelling)
   (require 'tool/version-control)
+  (and core/use-evil-p (require 'tool/version-control-evil))
   (require 'tool/autoclose-compile-window)
   (require 'tool/diff)
   (require 'tool/feed))
