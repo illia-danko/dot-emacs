@@ -1,6 +1,7 @@
 (require 'completion/lsp)
 (require 'edit/formatting)
 (require 'edit/treesit)
+(require 'api/variable)
 
 (progn
   (with-eval-after-load 'elixir-ts-mode
@@ -35,7 +36,7 @@
 		  (progn (inf-elixir-send-region) (deactivate-mark))
 		(inf-elixir-send-line)))
 
-	(customize-set-variable 'inf-elixir-switch-to-repl-on-send nil))
+	(api/customize-set-variable* 'inf-elixir-switch-to-repl-on-send nil))
 
   (require 'inf-elixir))
 

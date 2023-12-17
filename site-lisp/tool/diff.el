@@ -1,3 +1,5 @@
+(require 'api/variable)
+
 (progn
   (with-eval-after-load 'ediff
 	(defun tool/compare-two-open-windows ()
@@ -7,8 +9,9 @@
 			 (buffer-b (window-buffer (nth 2 windows))))
 		(ediff-buffers buffer-a buffer-b)))
 
-	(customize-set-variable 'ediff-split-window-function 'split-window-horizontally) ; split buffers horizontally
-	(customize-set-variable 'ediff-window-setup-function 'ediff-setup-windows-plain) ; use one frame for diff
+	(api/customize-set-variable*
+	 'ediff-split-window-function 'split-window-horizontally ; split buffers horizontally
+	 'ediff-window-setup-function 'ediff-setup-windows-plain) ; use one frame for diff
 	)
 
   (require 'ediff))

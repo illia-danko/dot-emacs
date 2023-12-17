@@ -1,5 +1,6 @@
 (require 'completion/core)
 (require 'tool/version-control)
+(require 'api/variable)
 
 (defun text/org-git-push-org-file ()
   (interactive)
@@ -34,19 +35,20 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (consult-ripgrep org-directory))
 
 (with-eval-after-load 'org
-  (customize-set-variable 'org-directory "~/codeberg.org/eli87/org")
-  (customize-set-variable 'org-default-notes-file (expand-file-name "todos.org" org-directory))
-  (customize-set-variable 'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory)))
-  (customize-set-variable 'org-capture-bookmark nil) ; do not keep bookmarks
-  (customize-set-variable 'org-capture-templates
-						  `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
-							("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?")))
-  (customize-set-variable 'org-reverse-note-order t)
-  (customize-set-variable 'org-fontify-done-headline t) ; distinct DONE entries
-  (customize-set-variable 'org-fontify-quote-and-verse-blocks t)
-  (customize-set-variable 'org-hide-emphasis-markers t)    ; close links, etc.
-  (customize-set-variable 'org-pretty-entities t)          ; show LaTeX-like symbols as UTF-8 characters
-  (customize-set-variable 'org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
+  (api/customize-set-variable*
+   'org-directory "~/codeberg.org/eli87/org"
+   'org-default-notes-file (expand-file-name "todos.org" org-directory)
+   'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
+   'org-capture-bookmark nil ; do not keep bookmarks
+   'org-capture-templates
+   `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
+	 ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?"))
+   'org-reverse-note-order t
+   'org-fontify-done-headline t ; distinct DONE entries
+   'org-fontify-quote-and-verse-blocks t
+   'org-hide-emphasis-markers t    ; close links, etc.
+   'org-pretty-entities t          ; show LaTeX-like symbols as UTF-8 characters
+   'org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
 
   (add-hook 'org-mode-hook #'outline-hide-other) ; fold the document on load
 

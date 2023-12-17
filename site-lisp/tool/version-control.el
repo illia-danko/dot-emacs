@@ -1,5 +1,6 @@
 (require 'core/core)
 (require 'tool/spelling)
+(require 'api/variable)
 
 (defun tool/git-push-current-file (pattern)
   "Stage, commit and push to upstream a personal org note file."
@@ -17,8 +18,8 @@
 
 (progn
   (with-eval-after-load 'magit
-	(customize-set-variable 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ; magit uses the whole frame space
-	(customize-set-variable 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
+	(api/customize-set-variable* 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
+								 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 	)
 
   ;; Eager loading.

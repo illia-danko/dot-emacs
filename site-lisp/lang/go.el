@@ -1,11 +1,12 @@
 (require 'api/list)
+(require 'api/variable)
 (require 'edit/treesit)
 (require 'completion/lsp)
 (require 'edit/formatting)
 
 (progn
   (with-eval-after-load 'go-ts-mode
-	(customize-set-variable 'go-ts-mode-indent-offset 4)
+	(api/customize-set-variable* 'go-ts-mode-indent-offset 4)
 	(add-to-list 'treesit-language-source-alist '(go "https://github.com/tree-sitter/tree-sitter-go"))
 	(add-to-list 'treesit-language-source-alist '(gomod "https://github.com/camdencheek/tree-sitter-go-mod"))
 	(add-hook 'go-ts-mode-hook #'eglot-ensure)

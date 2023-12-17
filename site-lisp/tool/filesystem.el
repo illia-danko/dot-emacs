@@ -1,3 +1,5 @@
+(require 'api/variable)
+
 (progn
   (defun tool/dired-system-open ()
     (interactive)
@@ -8,8 +10,9 @@
       (call-process cmd nil 0 nil file)))
 
   (with-eval-after-load 'dired
-	(customize-set-variable 'dired-dwim-target t) ; act as two panes midnight commander file manager.
-	(customize-set-variable 'dired-omit-files "^\\...+$") ; add hiden files (started with dot) to `dired-omit-mode'
+	(api/customize-set-variable*
+	 'dired-dwim-target t ; act as two panes midnight commander file manager.
+	 'dired-omit-files "^\\...+$") ; add hiden files (started with dot) to `dired-omit-mode'
 
 	(add-hook 'dired-mode-hook #'dired-hide-details-mode) ; do not show details (owners, access bits, etc.)
 	(add-hook 'dired-mode-hook #'dired-omit-mode) ; do not show pattern's files

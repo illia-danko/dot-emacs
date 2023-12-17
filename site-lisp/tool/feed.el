@@ -1,6 +1,8 @@
+(require 'api/variable)
+
 (progn
   (with-eval-after-load 'elfeed
-	(customize-set-variable 'elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
+	(api/customize-set-variable* 'elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
 
 	;; Autotagging.
 	(add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "youtube\\.com"

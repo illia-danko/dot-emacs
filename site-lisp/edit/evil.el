@@ -1,3 +1,4 @@
+(require 'api/variable)
 (require 'core/intercept-mode)
 
 (progn
@@ -8,9 +9,10 @@
       (and evil-mode (evil-force-normal-state))
       (keyboard-quit))
 
-	(customize-set-variable 'evil-undo-system 'undo-redo)
-	(customize-set-variable 'evil-echo-state nil) ; do not send state change messages to echo area
-	(customize-set-variable 'evil-symbol-word-search t) ; search by `word' pattern
+	(api/customize-set-variable*
+	 'evil-undo-system 'undo-redo
+	 'evil-echo-state nil ; do not send state change messages to echo area
+	 'evil-symbol-word-search t) ; search by `word' pattern
 
 	(evil-mode 1)
 
@@ -22,13 +24,12 @@
 	(defalias #'forward-evil-word #'forward-evil-symbol) ; treat underscore or hyper as a word sign based on the current major-mode
 	)
 
-  (customize-set-variable 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil.
+  (api/customize-set-variable* 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil.
   (require 'evil))
 
 (progn
   (with-eval-after-load'evil-collection
-	(evil-collection-init))
-
+   (evil-collection-init))
   (require 'evil-collection))
 
 (progn

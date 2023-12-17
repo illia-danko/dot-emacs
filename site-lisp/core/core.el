@@ -1,3 +1,5 @@
+(require 'api/variable)
+
 (with-eval-after-load 'emacs
   (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
   (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
@@ -35,16 +37,17 @@
 
 ;; Customize cursor.
 (with-eval-after-load 'frame
-  (customize-set-variable 'visible-cursor nil)
+  (api/customize-set-variable* 'visible-cursor nil)
   (blink-cursor-mode -1))
 
 ;; Set bookmark's configuration file.
 (with-eval-after-load 'bookmark
-  (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory)))
+  (api/customize-set-variable*
+   'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory)))
 
 ;; Do not store backup files.
 (with-eval-after-load 'files
-  (customize-set-variable 'make-backup-files nil))
+  (api/customize-set-variable* 'make-backup-files nil))
 
 ;; Delete selection on yank (override selected text).
 (progn
@@ -75,7 +78,7 @@
 
 (progn
   (with-eval-after-load 'eldoc
-	(customize-set-variable 'eldoc-echo-area-use-multiline-p nil)))
+	(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)))
 
 ;; Eager loading.
 (require 'imenu)

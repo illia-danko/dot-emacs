@@ -1,6 +1,8 @@
+(require 'api/variable)
+
 (progn
   (with-eval-after-load 'eglot
-    (customize-set-variable 'eglot-stay-out-of '(flymake)))
+    (api/customize-set-variable* 'eglot-stay-out-of '(flymake)))
 
   (require 'eglot))
 

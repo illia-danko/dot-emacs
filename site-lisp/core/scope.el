@@ -1,7 +1,10 @@
 ;; Each `emacsclient' instance uses individual buffers/settings scope.
+
+(require 'api/variable)
+
 (progn
   (with-eval-after-load 'perspective
-    (customize-set-variable 'persp-mode-prefix-key (kbd "C-x ~")) ; often not used, but it is required by the package settings.
+    (api/customize-set-variable* 'persp-mode-prefix-key (kbd "C-x ~")) ; often not used, but it is required by the package settings.
     (persp-mode 1)
 
     ;; Hook with `consult'.
@@ -12,4 +15,3 @@
   (require 'perspective))
 
 (provide 'core/scope)
-

@@ -1,3 +1,5 @@
+(require 'api/variable)
+
 (progn
   (with-eval-after-load 'which-key
     (which-key-mode 1))
@@ -6,9 +8,10 @@
 
 (progn
   (with-eval-after-load 'orderless
-    (customize-set-variable 'completion-styles '(orderless flex))
-    (customize-set-variable 'completion-category-defaults nil)
-    (customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion))))))
+    (api/customize-set-variable*
+	 'completion-styles '(orderless flex)
+     'completion-category-defaults nil
+     'completion-category-overrides '((file (styles . (partial-completion))))))
 
   (require 'orderless))
 
@@ -32,13 +35,14 @@
 
 (progn
   (with-eval-after-load 'corfu
-    (customize-set-variable 'corfu-auto t) ; automatically trigger popups
-    (customize-set-variable 'corfu-popupinfo-delay 0)
-    (customize-set-variable 'corfu-preview-current nil)
-    (customize-set-variable 'corfu-quit-at-boundary nil) ; never quit at completion boundary
-    (customize-set-variable 'corfu-quit-no-match t) ; quit, if there is no match
-    (customize-set-variable 'corfu-preselect 'prompt) ; preselect the prompt
-    (customize-set-variable 'corfu-on-exact-match nil) ; configure handling of exact matches
+    (api/customize-set-variable*
+	 'corfu-auto t ; automatically trigger popups
+	 'corfu-popupinfo-delay 0
+	 'corfu-preview-current nil
+	 'corfu-quit-at-boundary nil ; never quit at completion boundary
+	 'corfu-quit-no-match t ; quit, if there is no match
+	 'corfu-preselect 'prompt ; preselect the prompt
+	 'corfu-on-exact-match nil) ; configure handling of exact matches
 
     (global-corfu-mode 1)
     (corfu-popupinfo-mode 1) ; add doc string next to corfu completion popup
@@ -77,9 +81,10 @@ If is no region, calls `func' without any `args'."
       (consult-line-multi nil)))
 
   (with-eval-after-load 'consult
-    (customize-set-variable 'xref-show-definitions-function 'consult-xref)
-    (customize-set-variable 'xref-show-xrefs-function 'consult-xref)
-    (customize-set-variable 'consult-ripgrep "rg \
+    (api/customize-set-variable*
+	 'xref-show-definitions-function 'consult-xref
+     'xref-show-xrefs-function 'consult-xref
+     'consult-ripgrep "rg \
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
 --smart-case --no-heading --with-filename --line-number --search-zip")
