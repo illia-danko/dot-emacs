@@ -136,10 +136,13 @@
 (progn
   (straight-use-package 'elixir-ts-mode)
   (straight-use-package 'inf-elixir)
+  (straight-use-package 'lua-mode)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go)
-  (require 'lang/elixir))
+  (require 'lang/elixir)
+  (require 'lang/lua)
+  )
 
 ;; UI.
 (progn
