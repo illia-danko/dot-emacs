@@ -114,7 +114,7 @@
   (straight-use-package 'evil-commentary)
   (straight-use-package 'evil-terminal-cursor-changer)
   (straight-use-package
-   '(navigate :type git :host codeberg :repo "eli87/evil-tmux-navigator"))
+   '(navigate :type git :host codeberg :repo "eli87/evil-wezterm-navigator"))
   (require 'edit/core)
   (require 'edit/formatting)
   (require 'edit/treesit)
