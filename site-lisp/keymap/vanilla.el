@@ -5,7 +5,7 @@
   (global-set-key (kbd "C-c ow") #'core/toggle-highlight-whitespaces))
 
 (with-eval-after-load 'core/project
-  (define-key core/intercept-mode-map (kbd "C-x f") #'project-find-file)
+  (define-key core/intercept-mode-map (kbd "C-c f") #'project-find-file)
   (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
   (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
   (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers))

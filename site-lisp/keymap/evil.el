@@ -9,7 +9,7 @@
 
 (with-eval-after-load 'core/project
   (evil-define-key* '(normal) core/intercept-mode-map
-	(kbd "C-x f") #'project-find-file
+	(kbd "C-c f") #'project-find-file
 	(kbd "C-x p") #'project-switch-project
 	(kbd "C-x !") #'project-forget-zombie-projects
 	(kbd "C-x #") #'project-kill-buffers))
@@ -17,7 +17,6 @@
 (with-eval-after-load 'completion/core
   (evil-define-key* '(normal) core/intercept-mode-map
 	(kbd "C-x B") #'consult-project-buffer
-	(kbd "C-c v") #'consult-imenu
 	(kbd "SPC /") #'completion/consult-ripgrep
 	(kbd ", s") #'completion/consult-line-multi)
 
