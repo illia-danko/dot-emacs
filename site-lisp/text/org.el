@@ -1,3 +1,5 @@
+(require 'org)
+
 (require 'completion/core)
 (require 'tool/version-control)
 (require 'api/variable)
@@ -34,28 +36,26 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (interactive)
   (consult-ripgrep org-directory))
 
-(with-eval-after-load 'org
-  (api/customize-set-variable*
-   'org-directory "~/github.com/illia-danko/org"
-   'org-default-notes-file (expand-file-name "todos.org" org-directory)
-   'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
-   'org-capture-bookmark nil ; do not keep bookmarks
-   'org-capture-templates
-   `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
-	 ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?"))
-   'org-reverse-note-order t
-   'org-fontify-done-headline t ; distinct DONE entries
-   'org-fontify-quote-and-verse-blocks t
-   'org-hide-emphasis-markers t    ; close links, etc.
-   'org-pretty-entities t          ; show LaTeX-like symbols as UTF-8 characters
-   'org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
+(api/customize-set-variable*
+ 'org-directory "~/github.com/illia-danko/org"
+ 'org-default-notes-file (expand-file-name "todos.org" org-directory)
+ 'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
+ 'org-capture-bookmark nil ; do not keep bookmarks
+ 'org-capture-templates
+ `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
+   ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?"))
+ 'org-reverse-note-order t
+ 'org-fontify-done-headline t ; distinct DONE entries
+ 'org-fontify-quote-and-verse-blocks t
+ 'org-hide-emphasis-markers t    ; close links, etc.
+ 'org-pretty-entities t          ; show LaTeX-like symbols as UTF-8 characters
+ 'org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
 
-  (add-hook 'org-mode-hook #'outline-hide-other) ; fold the document on load
+(add-hook 'org-mode-hook #'outline-hide-other) ; fold the document on load
 
-  ;; Preload babel. Make possible to evaluate src code block.
-  (org-babel-do-load-languages 'org-babel-load-languages
-							   '((shell . t))))
+;; Preload babel. Make possible to evaluate src code block.
+(org-babel-do-load-languages 'org-babel-load-languages
+							 '((shell . t)))
 
-(require 'org)
 
 (provide 'text/org)

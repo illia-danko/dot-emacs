@@ -1,7 +1,13 @@
+(require 'magit)
+(require 'git-link)
+(require 'git-commit)
+(require 'git-gutter-fringe)
+
 (require 'core/core)
 (require 'tool/spelling)
 (require 'api/variable)
 
+;; magit.
 (defun tool/git-push-current-file (pattern)
   "Stage, commit and push to upstream a personal org note file."
   (interactive)
@@ -16,66 +22,52 @@
           (message "Pushed %s" relname))
       (message "%S not a part of %S" fullname pattern))))
 
-(progn
-  (with-eval-after-load 'magit
-	(api/customize-set-variable*
-	 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
-	 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
-	)
+(api/customize-set-variable*
+ 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
+ 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 
-  ;; Eager loading.
-  (require 'magit))
+;; git-link.
+(defun tool/browse-project-home-page ()
+  (interactive)
+  (let ((git-link-open-in-browser t))
+	(call-interactively 'git-link-homepage)))
 
-(progn
-  (with-eval-after-load 'git-link
-	(defun tool/browse-project-home-page ()
-      (interactive)
-      (let ((git-link-open-in-browser t))
-		(call-interactively 'git-link-homepage))))
+;; git-commit.
+(add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
 
-  (require 'git-link))
+;; git-gutter-fringe.
+(defun tool/vc-git-gutter-popup-hunk-jump (&optional diffinfo)
+  (interactive)
+  (git-gutter:popup-hunk diffinfo)
+  (switch-to-buffer-other-window git-gutter:popup-buffer))
 
-(progn
-  (with-eval-after-load 'git-commit
-	(add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell))
+(mapc (lambda (fringe-face)
+		(fringe-helper-define fringe-face nil
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"
+		  "....XXXX"))
+      [git-gutter-fr:added git-gutter-fr:deleted git-gutter-fr:modified])
 
-  (require 'git-commit))
+(api/customize-set-variable*
+ 'git-gutter:ask-p nil
+ 'git-gutter-fr:side 'right-fringe)
 
-(progn
-  (with-eval-after-load 'git-gutter-fringe
-	(defun tool/vc-git-gutter-popup-hunk-jump (&optional diffinfo)
-	  (interactive)
-	  (git-gutter:popup-hunk diffinfo)
-	  (switch-to-buffer-other-window git-gutter:popup-buffer))
+(global-git-gutter-mode 1)
 
-	(mapc (lambda (fringe-face)
-			(fringe-helper-define fringe-face nil
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"
-			  "....XXXX"))
-          [git-gutter-fr:added git-gutter-fr:deleted git-gutter-fr:modified])
-
-	(api/customize-set-variable*
-	 'git-gutter:ask-p nil
-	 'git-gutter-fr:side 'right-fringe)
-
-	(global-git-gutter-mode 1))
-
-  (require 'git-gutter-fringe))
 
 (provide 'tool/version-control)

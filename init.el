@@ -57,7 +57,6 @@
 ;; Core settings.
 (progn
   (straight-use-package 'perspective)
-  (require 'core/variable)
   (require 'core/intercept-mode)
   (require 'core/core)
   (require 'core/project)

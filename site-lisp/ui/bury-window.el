@@ -1,3 +1,4 @@
+;; TODO(idanko): align with project strucutre.
 (defvar ui/bury-window-buffers-whitelist
   '("*dashboard*" "*compilation*" "*embark export")
   "Buffer patterns ignored by `ui/bury-window-maybe-bury'.")

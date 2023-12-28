@@ -1,24 +1,23 @@
+(require 'dired)
 (require 'api/variable)
 
-(progn
-  (defun tool/dired-system-open ()
-    (interactive)
-    (let ((file (dired-get-filename nil t))
-          (cmd (pcase system-type
-                 ('darwin "open")
-                 (_ "xdg-open"))))
-      (call-process cmd nil 0 nil file)))
+;; dired.
+(defun tool/dired-system-open ()
+  (interactive)
+  (let ((file (dired-get-filename nil t))
+        (cmd (pcase system-type
+               ('darwin "open")
+               (_ "xdg-open"))))
+    (call-process cmd nil 0 nil file)))
 
-  (with-eval-after-load 'dired
-	(api/customize-set-variable*
-	 'dired-dwim-target t ; act as two panes midnight commander file manager.
-	 'dired-omit-files "^\\...+$") ; add hiden files (started with dot) to `dired-omit-mode'
+(with-eval-after-load 'dired
+  (api/customize-set-variable*
+   'dired-dwim-target t ; act as two panes midnight commander file manager.
+   'dired-omit-files "^\\...+$") ; add hiden files (started with dot) to `dired-omit-mode'
 
-	(add-hook 'dired-mode-hook #'dired-hide-details-mode) ; do not show details (owners, access bits, etc.)
-	(add-hook 'dired-mode-hook #'dired-omit-mode) ; do not show pattern's files
-	)
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode) ; do not show details (owners, access bits, etc.)
+  (add-hook 'dired-mode-hook #'dired-omit-mode) ; do not show pattern's files
+  )
 
-  ;; Eager loading.
-  (require 'dired))
 
 (provide 'tool/filesystem)

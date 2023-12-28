@@ -1,7 +1,6 @@
-(progn
-  (with-eval-after-load 'hl-todo
-	(global-hl-todo-mode 1))
+(require 'hl-todo)
 
-  (require 'hl-todo))
+;; hl-todo.
+(global-hl-todo-mode 1)
 
 (provide 'ui/highlight-todos)

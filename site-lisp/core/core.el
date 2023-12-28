@@ -1,18 +1,47 @@
+(require 'emacs)
+(require 'tool-bar)
+(require 'menu-bar)
+(require 'scroll-bar)
+(require 'frame)
+(require 'bookmark)
+(require 'files)
+(require 'delsel)
+(require 'saveplace)
+(require 'recentf)
+(require 'savehist)
+(require 'eldoc)
+(require 'api/variable)
+(require 'imenu)
 (require 'api/variable)
 
-(with-eval-after-load 'emacs
-  (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
-  (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
-  (put 'downcase-region 'disabled nil) ; don't confirm on downcase command
-  (column-number-mode 1) ; show column number on modeline
+;; Core.
+(api/customize-set-variable*
+ 'tab-width 4  ; number spaces per a tab
+ 'ring-bell-function 'ignore ; stop ring bell alarms
+ 'fill-column 100 ; 100 characters per a line
+ 'comment-fill-column 100
+ 'set-mark-command-repeat-pop t ; do not repeat C-u prefix on mark commands (i.e. C-u C-SPC)
+ 'warning-minimum-level :error ; do not show warnings
+ 'truncate-lines t ; do not wrap long lines
+ 'tab-always-indent 'complete
+ 'enable-local-variables :all ; run .dir-locals.el with no dialog
+ 'mac-command-modifier 'meta ; use command key as meta
+ ;; Karabiner-elments already remap opt to ctrl
+ ;; (cusotomize-set-variable 'mac-option-modifier 'control)
+ 'vc-follow-symlinks t) ; always follow a symlink when accessing a file
 
-  (defun core/toggle-highlight-whitespaces ()
-	(interactive)
-	(let ((trailing-whitespace-p (not show-trailing-whitespace)))
-	  (setq-local show-trailing-whitespace
-				  trailing-whitespace-p)
-	  (message "Trailing whitespace mode %s"
-			   (if trailing-whitespace-p "enabled" "disabled")))))
+(fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
+(put 'upcase-region 'disabled nil) ; don't confirm on upcase command
+(put 'downcase-region 'disabled nil) ; don't confirm on downcase command
+(column-number-mode 1) ; show column number on modeline
+
+(defun core/toggle-highlight-whitespaces ()
+  (interactive)
+  (let ((trailing-whitespace-p (not show-trailing-whitespace)))
+	(setq-local show-trailing-whitespace
+				trailing-whitespace-p)
+	(message "Trailing whitespace mode %s"
+			 (if trailing-whitespace-p "enabled" "disabled"))))
 
 (defvar core/emacs-config-directory "~/.config/emacs")
 
@@ -23,64 +52,39 @@
        (load private-settings)))
 
 ;; Disable tool bar.
-(with-eval-after-load 'tool-bar
-  (tool-bar-mode -1))
+(tool-bar-mode -1)
 
 ;; Disable menu bar.
-(with-eval-after-load 'menu-bar
-  (menu-bar-mode -1))
+(menu-bar-mode -1)
 
 ;; Disable scrool bar.
-(with-eval-after-load 'scroll-bar
-  (scroll-bar-mode -1))
+(scroll-bar-mode -1)
 
 ;; Customize cursor.
-(with-eval-after-load 'frame
-  (api/customize-set-variable* 'visible-cursor nil)
-  (blink-cursor-mode -1))
+(api/customize-set-variable* 'visible-cursor nil)
+(blink-cursor-mode -1)
 
 ;; Set bookmark's configuration file.
-(with-eval-after-load 'bookmark
-  (api/customize-set-variable*
-   'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory)))
+(api/customize-set-variable*
+ 'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory))
 
 ;; Do not store backup files.
-(with-eval-after-load 'files
-  (api/customize-set-variable* 'make-backup-files nil))
+(api/customize-set-variable* 'make-backup-files nil)
 
 ;; Delete selection on yank (override selected text).
-(progn
-  (with-eval-after-load 'delsel
-	(delete-selection-mode 1))
-
-  (require 'delsel))
+(delete-selection-mode 1)
 
 ;; Restore last edit position of a file.
-(progn
-  (with-eval-after-load 'saveplace
-	(save-place-mode 1))
+(save-place-mode 1)
 
-  (require 'saveplace))
+;; Keep track of recent open files.
+(recentf-mode 1)
 
-(progn
-  (with-eval-after-load 'recentf
-	(recentf-mode 1))
+;; Keep track of minibuffer history.
+(savehist-mode 1)
 
-  (require 'recentf))
+;; Echo area takes single line only.
+(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
 
-;; Store minibuffer history.
-(progn
-  (with-eval-after-load 'savehist
-	(savehist-mode 1))
-
-  (require 'savehist))
-
-(progn
-  (with-eval-after-load 'eldoc
-	(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)))
-
-;; Eager loading.
-(require 'imenu)
-(require 'recentf)
 
 (provide 'core/core)

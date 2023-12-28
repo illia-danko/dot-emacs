@@ -1,7 +1,6 @@
-(progn
-  (with-eval-after-load 'git-commit
-	(add-hook 'git-commit-setup-hook #'evil-insert-state))
+(require 'git-commit)
+(require 'tool/version-control)
 
-  (require 'git-commit))
+(add-hook 'git-commit-setup-hook #'evil-insert-state)
 
 (provide 'tool/version-control-evil)

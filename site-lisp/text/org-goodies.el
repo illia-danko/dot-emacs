@@ -1,8 +1,7 @@
+(require 'org-bullets)
 (require 'text/org)
 
-(progn
-  (with-eval-after-load 'org-bullets
-	(add-hook 'org-mode-hook #'org-bullets-mode))
-  (require 'org-bullets))
+;; org-bullets.
+(add-hook 'org-mode-hook #'org-bullets-mode)
 
 (provide 'text/org-goodies)

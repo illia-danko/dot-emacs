@@ -1,9 +1,9 @@
-(unless (display-graphic-p)
-  (with-eval-after-load 'xclip
-    (xclip-mode 1))
-
-  (require 'xclip))
-
+(require 'xclip)
 (require 'compile)
+
+;; xclip.
+(unless (display-graphic-p)
+  (xclip-mode 1))
+
 
 (provide 'tool/core)

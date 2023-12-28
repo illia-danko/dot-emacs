@@ -1,3 +1,4 @@
+(require 'emacs)
 (require 'doom-themes)
 
 (when window-system

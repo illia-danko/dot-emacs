@@ -1,17 +1,15 @@
+(require 'markdown-mode)
 (require 'api/variable)
 
-(progn
-  (with-eval-after-load 'markdown-mode
-	(defun text/markdown-toggle-fontifications (&optional arg)
-      "Toggle fontifications on/off."
-      (interactive (list (or current-prefix-arg 'toggle)))
-      (markdown-toggle-markup-hiding arg))
+(defun text/markdown-toggle-fontifications (&optional arg)
+  "Toggle fontifications on/off."
+  (interactive (list (or current-prefix-arg 'toggle)))
+  (markdown-toggle-markup-hiding arg))
 
-	(api/customize-set-variable* 'markdown-fontify-code-blocks-natively t ; highlight code block syntax
-								 'markdown-hide-markup t)                  ; hide urls
+(api/customize-set-variable* 'markdown-fontify-code-blocks-natively t ; highlight code block syntax
+							 'markdown-hide-markup t)                  ; hide urls
 
-	(add-hook 'markdown-mode-hook #'outline-hide-other))
+(add-hook 'markdown-mode-hook #'outline-hide-other)
 
-  (require 'markdown-mode))
 
 (provide 'text/markdown)

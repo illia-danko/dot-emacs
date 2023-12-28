@@ -1,57 +1,49 @@
+(require 'evil)
+(require 'evil-collection)
+(require 'evil-surround)
+(require 'evil-commentary)
+(require 'evil-terminal-cursor-changer)
+(require 'evil-anzu)
+(require 'navigate) ; evil-wezterm-navigator: (Ctrl-h|j|k|l) keymap
+
 (require 'api/variable)
 (require 'core/intercept-mode)
 
-(progn
-  (with-eval-after-load 'evil
-	(defun edit/evil-keyboard-quit ()
-      "Keyboard quit and force normal state."
-      (interactive)
-      (and evil-mode (evil-force-normal-state))
-      (keyboard-quit))
+;; evil.
+(defun edit/evil-keyboard-quit ()
+  "Keyboard quit and force normal state."
+  (interactive)
+  (and evil-mode (evil-force-normal-state))
+  (keyboard-quit))
 
-	(api/customize-set-variable*
-	 'evil-undo-system 'undo-redo
-	 'evil-echo-state nil ; do not send state change messages to echo area
-	 'evil-symbol-word-search t) ; search by `word' pattern
+(api/customize-set-variable*
+ 'evil-undo-system 'undo-redo
+ 'evil-echo-state nil ; do not send state change messages to echo area
+ 'evil-symbol-word-search t) ; search by `word' pattern
 
-	(evil-mode 1)
+(evil-mode 1)
 
-	(dolist (state '(normal visual insert))
-      (evil-make-intercept-map
-       (evil-get-auxiliary-keymap core/intercept-mode-map state t t)
-       state))
+(dolist (state '(normal visual insert))
+  (evil-make-intercept-map
+   (evil-get-auxiliary-keymap core/intercept-mode-map state t t)
+   state))
 
-	(defalias #'forward-evil-word #'forward-evil-symbol) ; treat underscore or hyper as a word sign based on the current major-mode
-	)
+(defalias #'forward-evil-word #'forward-evil-symbol) ; treat underscore or hyper as a word sign based on the current major-mode
 
-  (api/customize-set-variable* 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil.
-  (require 'evil))
+(api/customize-set-variable* 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil
 
-(progn
-  (with-eval-after-load'evil-collection
-   (evil-collection-init))
-  (require 'evil-collection))
+;; evil-collection.
+(evil-collection-init)
 
-(progn
-  (with-eval-after-load 'evil-surround
-	(global-evil-surround-mode 1))
+;; evil-surround.
+(global-evil-surround-mode 1)
 
-  (require 'evil-surround))
+;; evil-commentary.
+(evil-commentary-mode 1)
 
-(progn
-  (with-eval-after-load 'evil-commentary
-	(evil-commentary-mode 1))
+;; evil-terminal-cursor-changer.
+(unless (display-graphic-p)
+  (etcc-on))
 
-  (require 'evil-commentary))
-
-(progn
-  (with-eval-after-load 'evil-terminal-cursor-changer
-	(unless (display-graphic-p)
-	  (etcc-on)))
-
-  (require 'evil-terminal-cursor-changer))
-
-(require 'evil-anzu)
-(require 'navigate) ; evil-tmux-navigator
 
 (provide 'edit/evil)
