@@ -18,8 +18,9 @@
 
 (progn
   (with-eval-after-load 'magit
-	(api/customize-set-variable* 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
-								 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
+	(api/customize-set-variable*
+	 'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
+	 'magit-diff-refine-hunk 'all)  ; word-wise diff highlight
 	)
 
   ;; Eager loading.
