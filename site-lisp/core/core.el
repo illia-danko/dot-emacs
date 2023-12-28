@@ -27,9 +27,8 @@
   (tool-bar-mode -1))
 
 ;; Disable menu bar.
-(unless (display-graphic-p)
-  (with-eval-after-load 'menu-bar
-    (menu-bar-mode -1)))
+(with-eval-after-load 'menu-bar
+  (menu-bar-mode -1))
 
 ;; Disable scrool bar.
 (with-eval-after-load 'scroll-bar
