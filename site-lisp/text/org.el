@@ -36,7 +36,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 
 (with-eval-after-load 'org
   (api/customize-set-variable*
-   'org-directory "~/codeberg.org/eli87/org"
+   'org-directory "~/github.com/illia-danko/org"
    'org-default-notes-file (expand-file-name "todos.org" org-directory)
    'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
    'org-capture-bookmark nil ; do not keep bookmarks
