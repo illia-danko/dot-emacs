@@ -59,7 +59,12 @@
 	(kbd ", gr") #'magit-diff-range ; show difference between branches
 	(kbd ", gf") #'magit-find-file ; visit a file from any branch
 	(kbd ", gu") #'git-link
-	(kbd ", gU") #'tool/browse-project-home-page))
+	(kbd ", gU") #'tool/browse-project-home-page
+	(kbd "]c") #'git-gutter:next-hunk
+	(kbd "[c") #'git-gutter:previous-hunk
+	(kbd "SPC hu") #'git-gutter:revert-hunk
+	(kbd "SPC hp") #'tool/vc-git-gutter-popup-hunk-jump)
+  )
 
 (with-eval-after-load 'text/org
   (evil-define-key* '(normal) org-mode-map

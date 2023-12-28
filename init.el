@@ -87,6 +87,7 @@
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
   (straight-use-package 'elfeed)
+  (straight-use-package 'git-gutter-fringe)
   (require 'tool/core)
   (require 'tool/dashboard)
   (require 'tool/vterm)

@@ -51,7 +51,12 @@
   (global-set-key (kbd "C-c gr") #'magit-diff-range) ; show difference between branches
   (global-set-key (kbd "C-c gf") #'magit-find-file) ; visit a file from any branch
   (global-set-key (kbd "C-c gu") #'git-link)
-  (global-set-key (kbd "C-c gU") #'tool/browse-project-home-page))
+  (global-set-key (kbd "C-c gU") #'tool/browse-project-home-page)
+  (global-set-key (kbd "C-c n") #'git-gutter:next-hunk)
+  (global-set-key (kbd "C-c p") #'git-gutter:previous-hunk)
+  (global-set-key (kbd "C-c n") #'git-gutter:previous-hunk)
+  (global-set-key (kbd "C-c hu") #'git-gutter:revert-hunk)
+  (global-set-key (kbd "C-c hp") #'tool/vc-git-gutter-popup-hunk-jump))
 
 (with-eval-after-load 'text/org
   (define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
