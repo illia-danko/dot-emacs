@@ -42,6 +42,15 @@
 	(kbd "C-c s") #'tool/spelling-toggle-buffer
 	(kbd "C-c w") #'ispell-word))
 
+(with-eval-after-load 'tool/vterm-evil
+  (evil-define-key* '(normal) vterm-copy-mode-map
+	(kbd "i") #'tool/vterm-evil-exit-copy-mode
+	(kbd "I") #'tool/vterm-evil-exit-copy-mode
+	(kbd "a") #'tool/vterm-evil-exit-copy-mode
+	(kbd "A") #'tool/vterm-evil-exit-copy-mode
+	(kbd "o") #'tool/vterm-evil-exit-copy-mode
+	(kbd "O") #'tool/vterm-evil-exit-copy-mode))
+
 (with-eval-after-load 'edit/core
   (evil-define-key* '(normal) core/intercept-mode-map
 	(kbd "C-t") #'er/expand-region

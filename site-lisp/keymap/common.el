@@ -14,6 +14,10 @@
   (global-set-key [remap dired] #'dired-jump)
   (define-key dired-mode-map "O" #'tool/dired-system-open))
 
+(with-eval-after-load 'tool/vterm
+  (global-set-key (kbd "C-c t") #'tool/vterm-project)
+  (global-set-key (kbd "C-c T") #'vterm))
+
 (with-eval-after-load 'edit/core
   (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region)
   (global-set-key (kbd "C-c SPC") #'ace-jump-mode)
