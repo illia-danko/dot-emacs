@@ -40,29 +40,12 @@
   (kbd "C-x !") #'project-forget-zombie-projects
   (kbd "C-x #") #'project-kill-buffers)
 
-(evil-define-key* '(normal) core/intercept-mode-map
-  (kbd "C-x B") #'consult-project-buffer
-  (kbd "SPC /") #'completion/consult-ripgrep
-  (kbd ", s") #'completion/consult-line-multi)
-
-(evil-define-key* '(visual) core/intercept-mode-map
-  (kbd "SPC /") #'completion/consult-ripgrep
-  (kbd ", s") #'completion/consult-line-multi)
-
-(evil-define-key* nil core/intercept-mode-map
-  (kbd "C-.") #'embark-act
-  (kbd "C-,") #'embark-dwim)
-
 (evil-define-key* '(normal) eglot-mode-map
   (kbd "gr") #'eglot-rename
   (kbd "gi") #'eglot-find-implementation)
 
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "C-c dw") #'tool/compare-two-open-windows)
-
-(evil-define-key* '(normal) core/intercept-mode-map
-  (kbd "C-c s") #'tool/spelling-toggle-buffer
-  (kbd "C-c w") #'ispell-word)
 
 (evil-define-key* '(normal) vterm-copy-mode-map
   (kbd "i") #'tool/vterm-evil-exit-copy-mode

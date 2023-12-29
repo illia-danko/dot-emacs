@@ -5,6 +5,7 @@
 (require 'tool/core)
 (require 'tool/filesystem)
 (require 'tool/vterm)
+(require 'tool/spelling)
 (require 'edit/core)
 
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
@@ -26,16 +27,28 @@
 (global-set-key [remap switch-to-buffer]                  #'consult-buffer)
 (global-set-key [remap imenu]                             #'consult-imenu)
 
+(define-key core/intercept-mode-map (kbd "C-x B") #'consult-project-buffer)
+(define-key core/intercept-mode-map (kbd "C-c s") #'completion/consult-ripgrep)
+(define-key core/intercept-mode-map (kbd "C-c S") #'completion/consult-line-multi)
+
+(define-key core/intercept-mode-map (kbd "C-.") #'embark-act)
+(define-key core/intercept-mode-map (kbd "C-,") #'embark-dwim)
+
+
 (define-key vertico-map (kbd "M-r") #'vertico-exit-input)
 
-(global-set-key (kbd "C-c b") #'recompile)
-(global-set-key (kbd "C-c B") #'project-compile)
+(define-key core/intercept-mode-map (kbd "C-c b") #'recompile)
+(define-key core/intercept-mode-map (kbd "C-c B") #'project-compile)
 
 (global-set-key [remap dired] #'dired-jump)
 (define-key dired-mode-map "O" #'tool/dired-system-open)
 
 (global-set-key (kbd "C-c e") #'tool/vterm-project)
 (global-set-key (kbd "C-c E") #'vterm)
+
+(define-key core/intercept-mode-map (kbd "C-c os") #'tool/spelling-toggle-buffer)
+(define-key core/intercept-mode-map (kbd "C-c w") #'ispell-word)
+
 
 (define-key core/intercept-mode-map (kbd "C-w") #'edit/backward-kill-word-or-region)
 (global-set-key (kbd "C-c SPC") #'ace-jump-mode)

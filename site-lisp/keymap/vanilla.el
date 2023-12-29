@@ -25,13 +25,6 @@
 (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
 (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers)
 
-(global-set-key (kbd "C-x B") #'consult-project-buffer)
-(global-set-key (kbd "C-c f") #'completion/consult-ripgrep)
-(global-set-key (kbd "C-c F") #'completion/consult-line-multi)
-
-(define-key core/intercept-mode-map (kbd "C-.") #'embark-act)
-(define-key core/intercept-mode-map (kbd "C-,") #'embark-dwim)
-
 (define-key eglot-mode-map (kbd "C-c cr") #'eglot-rename)
 (define-key eglot-mode-map (kbd "C-c ci") #'eglot-find-implementation)
 
@@ -40,9 +33,6 @@
 (define-key core/intercept-mode-map (kbd "C-q") #'set-mark-command)
 
 (global-set-key (kbd "C-c dw") #'tool/compare-two-open-windows)
-
-(global-set-key (kbd "C-c s") #'tool/spelling-toggle-buffer)
-(global-set-key (kbd "C-c w") #'ispell-word)
 
 (global-set-key (kbd "C-x g" ) #'magit-status)
 (global-set-key (kbd "C-c gg") #'magit-status)
