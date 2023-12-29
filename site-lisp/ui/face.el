@@ -1,16 +1,23 @@
 (require 'emacs)
 (require 'doom-themes)
 
-(when window-system
-  (add-to-list 'default-frame-alist '(fullscreen . maximized)))
+(defvar ui/theme-dark-variant 'doom-one)
+(defvar ui/theme-light-variant 'doom-one-light)
 
 (defun ui/current-theme ()
   (car custom-enabled-themes))
 
-(defvar ui/theme-dark-variant 'doom-one)
-(defvar ui/theme-light-variant 'doom-one-light)
+(defun ui/load-font-faces (&optional frame)
+  (mapc (lambda (face)
+          (set-face-attribute face frame
+							  :weight 'bold
+							  :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono NFM")
+							  :height (or (and (eq system-type 'darwin) 135) 110)))
+        [default variable-pitch fixed-pitch fixed-pitch-serif]))
 
-(defun ui/adjust-faces (&optional frame)
+(defun ui/load-custom-faces (&optional frame)
+  (interactive)
+
   (let ((display-table (or standard-display-table (make-display-table))))
     (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
     (setq standard-display-table display-table))
@@ -23,6 +30,9 @@
 		(mapc (lambda (face)
 				(set-face-attribute face frame :background "#a0a1a7"))
 			  [term-color-black vterm-color-black])))
+
+  ;; Load core fonts.
+  (ui/load-font-faces frame)
 
   ;; Fix discrepancy between match highlighting.
   (mapc (lambda (face-group)
@@ -42,7 +52,10 @@
   "Run `after-load-theme-hook'."
   (run-hooks 'ui/after-load-theme-hook))
 
-(add-hook 'ui/after-load-theme-hook #'ui/adjust-faces)
-(add-hook 'after-make-frame-functions #'ui/adjust-faces)
+(add-hook 'ui/after-load-theme-hook #'ui/load-custom-faces)
+(add-hook 'after-make-frame-functions #'ui/load-custom-faces)
+
+;; Open window maximized.
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (provide 'ui/face)

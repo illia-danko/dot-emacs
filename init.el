@@ -159,7 +159,6 @@
   (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
-  (require 'ui/font)
   (require 'ui/rgb-highlight)
   (require 'ui/highlight-todos)
   (require 'ui/zen))

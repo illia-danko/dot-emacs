@@ -46,6 +46,16 @@
   (corfu-terminal-mode 1))
 
 ;; consult.
+(defun completion/apply-region (func &rest args)
+  "Apply the given `func' to its `args' and the marked region.
+If is no region, calls `func' without any `args'."
+  (if mark-active
+      (let* ((content (buffer-substring-no-properties (mark) (point)))
+			 (args (append args `(,content))))
+        (deactivate-mark)
+        (apply 'funcall func args))
+    (funcall func)))
+
 (defun completion/consult-ripgrep ()
   (interactive)
   (completion/apply-region 'consult-ripgrep

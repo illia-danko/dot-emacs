@@ -26,7 +26,7 @@
       (load-theme theme t)))
 
   (ui/load-theme)
-  (ui/adjust-faces)
+  (ui/load-custom-faces)
 
   (file-notify-add-watch
    ui/theme-variant-filename
@@ -41,7 +41,7 @@
     (pcase appearance
 	  ('light (load-theme ui/theme-light-variant t))
       ('dark (load-theme ui/theme-dark-variant t)))
-    (ui/adjust-faces))
+    (ui/load-custom-faces))
 
   (add-hook 'ns-system-appearance-change-functions #'ui/apply-theme-macos-gui))
 

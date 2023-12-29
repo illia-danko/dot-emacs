@@ -1,5 +1,6 @@
+(api/customize-set-variable* 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil
+
 (require 'evil)
-(require 'evil-collection)
 (require 'evil-surround)
 (require 'evil-commentary)
 (require 'evil-terminal-cursor-changer)
@@ -30,9 +31,8 @@
 
 (defalias #'forward-evil-word #'forward-evil-symbol) ; treat underscore or hyper as a word sign based on the current major-mode
 
-(api/customize-set-variable* 'evil-want-keybinding nil) ; required by `evil-collection' to set before evil
-
 ;; evil-collection.
+(require 'evil-collection)
 (evil-collection-init)
 
 ;; evil-surround.

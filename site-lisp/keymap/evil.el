@@ -13,7 +13,6 @@
 (require 'text/markdown)
 (require 'lang/emacs-lisp)
 (require 'lang/elixir)
-(require 'ui/font)
 (require 'ui/rgb-highlight)
 (require 'ui/zen)
 
