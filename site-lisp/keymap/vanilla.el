@@ -20,7 +20,7 @@
 (global-set-key (kbd "C-c on") #'display-line-numbers-mode)
 (global-set-key (kbd "C-c ow") #'core/toggle-highlight-whitespaces)
 
-(define-key core/intercept-mode-map (kbd "C-c f") #'project-find-file)
+(define-key core/intercept-mode-map (kbd "C-c t") #'project-find-file)
 (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
 (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
 (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers)

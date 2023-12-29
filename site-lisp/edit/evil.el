@@ -7,7 +7,7 @@
 (require 'evil-anzu)
 (require 'navigate) ; evil-wezterm-navigator: (Ctrl-h|j|k|l) keymap
 
-(require 'api/variable)
+(require 'api/macro)
 (require 'core/intercept-mode)
 
 ;; evil.

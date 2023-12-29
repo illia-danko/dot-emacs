@@ -1,6 +1,6 @@
 (require 'marginalia)
 (require 'vertico)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; marginalia.
 (api/customize-set-variable* 'marginalia-align 'right)

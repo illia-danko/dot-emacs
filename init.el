@@ -80,13 +80,14 @@
 
 ;; Tool.
 (progn
-  (straight-use-package 'xclip)
+  (straight-use-package 'xclip) ; clipboard manager
   (straight-use-package 'dashboard)
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
-  (straight-use-package 'elfeed)
-  (straight-use-package 'git-gutter-fringe)
+  (straight-use-package 'elfeed) ; rss/atom feed.
+  (straight-use-package 'git-gutter-fringe) ; track and navigate to git changes inside a buffer
+  (straight-use-package 'rg) ; search and bulk replace
   (require 'tool/core)
   (require 'tool/dashboard)
   (require 'tool/vterm)
@@ -97,7 +98,9 @@
   (require 'tool/autoclose-compile-window)
   (require 'tool/diff)
   (require 'tool/feed)
-  (require 'tool/gpg))
+  (require 'tool/gpg)
+  (require 'tool/rg)
+  )
 
 ;; Editing.
 (progn

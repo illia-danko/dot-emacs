@@ -2,7 +2,7 @@
 
 (require 'completion/core)
 (require 'tool/version-control)
-(require 'api/variable)
+(require 'api/macro)
 
 (defun text/org-git-push-org-file ()
   (interactive)

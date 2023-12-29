@@ -7,7 +7,7 @@
 (require 'consult)
 (require 'embark-consult)
 
-(require 'api/variable)
+(require 'api/macro)
 
 ;; which-key-mode.
 (which-key-mode 1)

@@ -4,7 +4,7 @@
 (require 'completion/lsp)
 (require 'edit/formatting)
 (require 'edit/treesit)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; elixir-ts-mode.
 (advice-add 'edit/treesit-install-language-grammar :after (lambda (&rest args)

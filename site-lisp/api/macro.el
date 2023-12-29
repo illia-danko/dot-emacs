@@ -6,4 +6,4 @@
 	   ,@vars
 	   )))
 
-(provide 'api/variable)
+(provide 'api/macro)

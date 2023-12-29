@@ -1,5 +1,5 @@
 (require 'format-all)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; Vars.
 (defvar edit/formatting-prettier-config-path (concat

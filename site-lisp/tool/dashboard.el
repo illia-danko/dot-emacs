@@ -1,5 +1,5 @@
 (require 'dashboard)
-(require 'api/variable)
+(require 'api/macro)
 
 (api/customize-set-variable*
  'initial-buffer-choice #'(lambda () (get-buffer-create "*dashboard*"))

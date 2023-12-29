@@ -10,9 +10,8 @@
 (require 'recentf)
 (require 'savehist)
 (require 'eldoc)
-(require 'api/variable)
 (require 'imenu)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; Core.
 (api/customize-set-variable*

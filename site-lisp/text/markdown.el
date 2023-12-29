@@ -1,5 +1,5 @@
 (require 'markdown-mode)
-(require 'api/variable)
+(require 'api/macro)
 
 (defun text/markdown-toggle-fontifications (&optional arg)
   "Toggle fontifications on/off."

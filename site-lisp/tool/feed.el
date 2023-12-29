@@ -1,5 +1,5 @@
 (require 'elfeed)
-(require 'api/variable)
+(require 'api/macro)
 
 (api/customize-set-variable* 'elfeed-search-filter "@6-months-ago +unread") ; keep last 6 mounth.
 

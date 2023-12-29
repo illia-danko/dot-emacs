@@ -1,5 +1,5 @@
 (require 'dired)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; dired.
 (defun tool/dired-system-open ()

@@ -16,7 +16,7 @@
 (require 'ui/rgb-highlight)
 (require 'ui/zen)
 
-;; Core
+;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
 (define-key evil-normal-state-map   (kbd "C-g") #'edit/evil-keyboard-quit)
 (define-key evil-motion-state-map   (kbd "C-g") #'edit/evil-keyboard-quit)
@@ -35,7 +35,7 @@
   (kbd "SPC ow") #'core/toggle-highlight-whitespaces)
 
 (evil-define-key* '(normal) core/intercept-mode-map
-  (kbd "C-c f") #'project-find-file
+  (kbd "C-c t") #'project-find-file
   (kbd "C-x p") #'project-switch-project
   (kbd "C-x !") #'project-forget-zombie-projects
   (kbd "C-x #") #'project-kill-buffers)

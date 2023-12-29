@@ -5,7 +5,7 @@
 
 (require 'core/core)
 (require 'tool/spelling)
-(require 'api/variable)
+(require 'api/macro)
 
 ;; magit.
 (defun tool/git-push-current-file (pattern)

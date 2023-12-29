@@ -1,6 +1,6 @@
 (require 'go-ts-mode)
 (require 'api/list)
-(require 'api/variable)
+(require 'api/macro)
 (require 'edit/treesit)
 (require 'completion/lsp)
 (require 'edit/formatting)

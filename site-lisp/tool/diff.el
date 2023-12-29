@@ -1,5 +1,5 @@
 (require 'ediff)
-(require 'api/variable)
+(require 'api/macro)
 
 (defun tool/compare-two-open-windows ()
   (interactive)
