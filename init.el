@@ -74,6 +74,9 @@
   (straight-use-package 'corfu-terminal)
   (straight-use-package 'consult)
   (straight-use-package 'embark-consult)
+  ;; NOTE: Even though `eglot' is a part of emacs 29. It doesn't work with typescript. Loading the
+  ;; working version.
+  (straight-use-package 'eglot)
   (require 'completion/core)
   (require 'completion/minibuffer)
   (require 'completion/lsp))
@@ -147,6 +150,7 @@
   (require 'lang/go)
   (require 'lang/elixir)
   (require 'lang/lua)
+  (require 'lang/web) ; web development kit
   )
 
 ;; UI.
