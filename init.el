@@ -93,10 +93,11 @@
   (straight-use-package 'git-gutter-fringe) ; track and navigate to git changes inside a buffer
   (straight-use-package 'rg) ; search and bulk replace
   (straight-use-package 'restclient) ; rest client to perform json rest queries
+  (straight-use-package 'nerd-icons-dired)
   (require 'tool/core)
   (require 'tool/dashboard)
   (require 'tool/vterm)
-  (require 'tool/filesystem)
+  (require 'tool/dired)
   (require 'tool/spelling)
   (require 'tool/version-control)
   (and core/use-evil-p (require 'tool/version-control-evil))

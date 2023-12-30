@@ -4,7 +4,7 @@
 (require 'completion/core)
 (require 'completion/minibuffer)
 (require 'tool/core)
-(require 'tool/filesystem)
+(require 'tool/dired)
 (require 'tool/vterm)
 (require 'tool/spelling)
 (require 'edit/core)
