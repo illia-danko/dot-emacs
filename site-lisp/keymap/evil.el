@@ -41,7 +41,7 @@
   (kbd "C-x #") #'project-kill-buffers)
 
 (evil-define-key* '(normal) eglot-mode-map
-  (kbd "gr") #'eglot-rename
+  (kbd "gn") #'eglot-rename
   (kbd "gi") #'eglot-find-implementation)
 
 (evil-define-key* '(normal) core/intercept-mode-map
