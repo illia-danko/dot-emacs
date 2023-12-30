@@ -128,8 +128,7 @@
   (require 'edit/formatting)
   (require 'edit/treesit)
   (if core/use-evil-p
-      (require 'edit/evil)
-	(require 'edit/vanilla)))
+      (require 'edit/evil)))
 
 ;; Text.
 (progn
@@ -176,7 +175,6 @@
 (progn
   (require 'keymap/common)
   (if core/use-evil-p
-      (require 'keymap/evil)
-    (require 'keymap/vanilla)))
+      (require 'keymap/evil)))
 
 (message "Load time %.06f" (float-time (time-since core/time-emacs-start)))
