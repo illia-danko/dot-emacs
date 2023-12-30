@@ -1,4 +1,6 @@
 (require 'typescript-ts-mode)
+(require 'js)
+
 (require 'api/macro)
 (require 'edit/treesit)
 (require 'completion/lsp)
@@ -24,6 +26,7 @@
 (add-to-list 'treesit-load-name-override-list '(js "libtree-sitter-js" "tree_sitter_javascript"))
 (add-to-list 'treesit-language-source-alist '(js "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+(api/customize-set-variable* 'js-indent-level 2)
 (add-hook 'js-ts-mode-hook #'eglot-ensure)
 (add-hook 'js-ts-mode-hook #'format-all-mode)
 

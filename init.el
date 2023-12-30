@@ -148,12 +148,14 @@
   (straight-use-package 'elixir-ts-mode)
   (straight-use-package 'inf-elixir)
   (straight-use-package 'lua-mode)
+  (straight-use-package 'nix-mode)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go)
   (require 'lang/elixir)
   (require 'lang/lua)
   (require 'lang/web) ; web development kit
+  (require 'lang/nix)
   )
 
 ;; UI.
