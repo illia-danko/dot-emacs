@@ -10,4 +10,7 @@
 (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :before "2 weeks ago"
 													 :remove 'unread))
 
+;; Set buffer's text width to match the content.
+(advice-add 'elfeed-show-entry :after #'(lambda (&rest _) (setq-local fill-column 120)))
+
 (provide 'tool/feed)
