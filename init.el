@@ -64,6 +64,7 @@
 
 ;; Completion.
 (progn
+  (straight-use-package 'nerd-icons-completion)
   (straight-use-package 'marginalia)
   (straight-use-package 'vertico)
   (straight-use-package 'which-key)
@@ -156,7 +157,6 @@
 
 ;; UI.
 (progn
-  (straight-use-package 'all-the-icons-completion)
   (straight-use-package 'doom-modeline)
   (straight-use-package 'doom-themes)
   (straight-use-package 'rainbow-mode)
@@ -164,7 +164,6 @@
   (straight-use-package 'hide-mode-line)
   (straight-use-package 'olivetti)
   (require 'ui/face)
-  (require 'ui/icons)
   (require 'ui/modeline)
   (require 'ui/system-theme)
   (require 'ui/rgb-highlight)
