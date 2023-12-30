@@ -91,6 +91,7 @@
   (straight-use-package 'elfeed) ; rss/atom feed.
   (straight-use-package 'git-gutter-fringe) ; track and navigate to git changes inside a buffer
   (straight-use-package 'rg) ; search and bulk replace
+  (straight-use-package 'restclient) ; rest client to perform json rest queries
   (require 'tool/core)
   (require 'tool/dashboard)
   (require 'tool/vterm)
@@ -103,6 +104,7 @@
   (require 'tool/feed)
   (require 'tool/gpg)
   (require 'tool/rg)
+  (require 'tool/restclient)
   )
 
 ;; Editing.
