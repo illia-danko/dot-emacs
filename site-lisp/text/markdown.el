@@ -9,7 +9,7 @@
 (api/customize-set-variable* 'markdown-fontify-code-blocks-natively t ; highlight code block syntax
 							 'markdown-hide-markup t)                  ; hide urls
 
-(add-hook 'markdown-mode-hook #'outline-hide-other)
+(add-hook 'markdown-mode-hook #'outline-hide-body)
 
 
 (provide 'text/markdown)
