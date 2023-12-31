@@ -136,6 +136,7 @@
 (progn
   (straight-use-package 'org-bullets)
   (straight-use-package 'markdown-mode)
+  (straight-use-package 'dockerfile-mode)
   (require 'text/text-mode)
   (require 'text/org)
   (require 'text/org-goodies)
@@ -156,6 +157,7 @@
   (require 'lang/lua)
   (require 'lang/web) ; web development kit
   (require 'lang/nix)
+  (require 'lang/c)
   )
 
 ;; UI.
