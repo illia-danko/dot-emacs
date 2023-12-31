@@ -142,6 +142,7 @@
   (require 'text/org-goodies)
   (require 'text/markdown)
   (require 'text/yaml)
+  (require 'text/cmake)
   )
 
 ;; Languages.
