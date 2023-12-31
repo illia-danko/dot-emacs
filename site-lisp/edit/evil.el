@@ -5,7 +5,7 @@
 (require 'evil-commentary)
 (require 'evil-terminal-cursor-changer)
 (require 'evil-anzu)
-(require 'navigate) ; evil-wezterm-navigator: (Ctrl-h|j|k|l) keymap
+(require 'navigate) ; evil-tmux-navigator: (Ctrl-h|j|k|l) keymap
 
 (require 'api/macro)
 (require 'core/intercept-mode)
