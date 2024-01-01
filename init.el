@@ -137,12 +137,14 @@
   (straight-use-package 'org-bullets)
   (straight-use-package 'markdown-mode)
   (straight-use-package 'dockerfile-mode)
+  (straight-use-package 'org-roam)
   (require 'text/text-mode)
   (require 'text/org)
   (require 'text/org-goodies)
   (require 'text/markdown)
   (require 'text/yaml)
   (require 'text/cmake)
+  (require 'text/org-roam)
   )
 
 ;; Languages.

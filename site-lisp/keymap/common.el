@@ -8,6 +8,8 @@
 (require 'tool/vterm)
 (require 'tool/spelling)
 (require 'edit/core)
+(require 'text/org)
+(require 'text/org-roam)
 
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
 
@@ -89,13 +91,6 @@
 (define-key core/intercept-mode-map (kbd "C-q") #'er/expand-region)
 (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body)
 
-(define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
-(define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
-(define-key org-mode-map (kbd "C-c 4") #'text/org-toggle-fontifications)
-(global-set-key (kbd "C-c oa") #'org-agenda)
-(global-set-key (kbd "C-c ot") #'text/org-capture-todo)
-(global-set-key (kbd "C-c od") #'text/org-capture-diary)
-(global-set-key (kbd "C-c of") #'text/org-consult-ripgrep)
 
 (define-key markdown-mode-map (kbd "<tab>") #'outline-toggle-children)
 (define-key markdown-mode-map (kbd "C-c 4") #'text/markdown-toggle-fontifications)
@@ -109,11 +104,25 @@
 
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\)") #'text-scale-decrease)
-
-
 (global-set-key (kbd "C-c ^") #'rainbow-mode)
-
 (global-set-key (kbd "C-c z") #'ui/zen-toggle)
+
+;; Org.
+(define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
+(define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
+(define-key org-mode-map (kbd "C-c 4") #'text/org-toggle-fontifications)
+(define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)
+(define-key core/intercept-mode-map (kbd "C-c ot") #'text/org-capture-todo)
+(define-key core/intercept-mode-map (kbd "C-c od") #'text/org-capture-diary)
+(define-key core/intercept-mode-map (kbd "C-c os") #'text/org-consult-ripgrep)
+
+;; Org Roam.
+(define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-buffer-toggle)
+(define-key core/intercept-mode-map (kbd "C-c of") #'org-roam-node-find)
+(define-key core/intercept-mode-map (kbd "C-c og") #'org-roam-graph)
+(define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-node-insert)
+(define-key core/intercept-mode-map (kbd "C-c oc") #'org-roam-capture)
+(define-key core/intercept-mode-map (kbd "C-c ot") #'org-roam-dailies-capture-today)
 
 
 (provide 'keymap/common)
