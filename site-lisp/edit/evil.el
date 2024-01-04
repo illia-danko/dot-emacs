@@ -20,7 +20,9 @@
 (api/customize-set-variable*
  'evil-undo-system 'undo-redo
  'evil-echo-state nil ; do not send state change messages to echo area
- 'evil-symbol-word-search t) ; search by `word' pattern
+ 'evil-symbol-word-search t ; search by `word' pattern
+ 'evil-want-C-i-jump nil
+ )
 
 (evil-mode 1)
 
