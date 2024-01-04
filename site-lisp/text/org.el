@@ -51,7 +51,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
  'org-pretty-entities t          ; show LaTeX-like symbols as UTF-8 characters
  'org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)) ; filter out org-agenda DONE entries
 
-(add-hook 'org-mode-hook #'outline-hide-other) ; fold the document on load
+(add-hook 'org-mode-hook #'outline-hide-body) ; fold the document on load
 
 ;; Preload babel. Make possible to evaluate src code block.
 (org-babel-do-load-languages 'org-babel-load-languages
