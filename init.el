@@ -145,6 +145,7 @@
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/org-roam)
+  (require 'text/conf)
   )
 
 ;; Languages.
