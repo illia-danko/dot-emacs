@@ -82,8 +82,8 @@
 ;; Keep track of minibuffer history.
 (savehist-mode 1)
 
-;; Echo area takes single line only.
-(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
+;; Disable echo area documentation.
+(global-eldoc-mode -1)
 
 
 (provide 'core/core)
