@@ -129,8 +129,7 @@
   (require 'edit/core)
   (require 'edit/formatting)
   (require 'edit/treesit)
-  (if core/use-evil-p
-      (require 'edit/evil)))
+  (and core/use-evil-p (require 'edit/evil)))
 
 ;; Text.
 (progn
@@ -140,13 +139,13 @@
   (straight-use-package 'org-roam)
   (require 'text/text-mode)
   (require 'text/org)
+  (and core/use-evil-p (require 'text/org-evil))
   (require 'text/org-goodies)
   (require 'text/markdown)
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/org-roam)
-  (require 'text/conf)
-  )
+  (require 'text/conf))
 
 ;; Languages.
 (progn
