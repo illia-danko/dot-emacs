@@ -127,7 +127,6 @@
   (straight-use-package
    '(navigate :type git :host github :repo "illia-danko/evil-tmux-navigator"))
   (require 'edit/core)
-  (require 'edit/formatting)
   (require 'edit/treesit)
   (and core/use-evil-p (require 'edit/evil)))
 
