@@ -91,8 +91,7 @@
 (define-key core/intercept-mode-map (kbd "C-q") #'er/expand-region)
 (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body)
 
-
-(define-key markdown-mode-map (kbd "<tab>") #'outline-toggle-children)
+(define-key markdown-mode-map (kbd "<C-tab>") #'outline-toggle-children)
 (define-key markdown-mode-map (kbd "C-c 4") #'text/markdown-toggle-fontifications)
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
@@ -109,12 +108,11 @@
 
 ;; Org.
 (define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
-(define-key org-mode-map (kbd "<C-tab>") #'org-fold-show-all)
+(define-key org-mode-map (kbd "<C-tab>") #'org-cycle)
 (define-key org-mode-map (kbd "C-c 4") #'text/org-toggle-fontifications)
 (define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)
 (define-key core/intercept-mode-map (kbd "C-c ot") #'text/org-capture-todo)
 (define-key core/intercept-mode-map (kbd "C-c od") #'text/org-capture-diary)
-(define-key core/intercept-mode-map (kbd "C-c os") #'text/org-consult-ripgrep)
 
 ;; Org Roam.
 (define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-buffer-toggle)
@@ -122,7 +120,8 @@
 (define-key core/intercept-mode-map (kbd "C-c og") #'org-roam-graph)
 (define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-node-insert)
 (define-key core/intercept-mode-map (kbd "C-c oc") #'org-roam-capture)
-(define-key core/intercept-mode-map (kbd "C-c ot") #'org-roam-dailies-capture-today)
+(define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-dailies-capture-today)
+(define-key core/intercept-mode-map (kbd "C-c os") #'text/org-roam-consult-ripgrep)
 
 
 (provide 'keymap/common)
