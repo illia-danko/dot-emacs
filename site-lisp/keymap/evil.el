@@ -1,6 +1,7 @@
 (require 'edit/evil)
 (require 'core/intercept-mode)
 (require 'tool/vterm-evil)
+(require 'text/org-evil)
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
@@ -17,5 +18,8 @@
   (kbd "A") #'tool/vterm-evil-exit-copy-mode
   (kbd "o") #'tool/vterm-evil-exit-copy-mode
   (kbd "O") #'tool/vterm-evil-exit-copy-mode)
+
+(evil-define-key* '(normal) org-mode-map
+  (kbd "RET") #'org-open-at-point)
 
 (provide 'keymap/evil)

@@ -120,7 +120,7 @@
 (define-key core/intercept-mode-map (kbd "C-c og") #'org-roam-graph)
 (define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-node-insert)
 (define-key core/intercept-mode-map (kbd "C-c oc") #'org-roam-capture)
-(define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-dailies-capture-today)
+(define-key core/intercept-mode-map (kbd "C-c oC") #'org-roam-dailies-capture-today)
 (define-key core/intercept-mode-map (kbd "C-c os") #'text/org-roam-consult-ripgrep)
 
 

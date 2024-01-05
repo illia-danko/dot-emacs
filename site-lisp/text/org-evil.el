@@ -1,4 +1,5 @@
 (require 'git-commit)
+(require 'text/org)
 (require 'tool/version-control)
 (require 'edit/evil)
 
