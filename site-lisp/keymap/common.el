@@ -123,5 +123,8 @@
 (define-key core/intercept-mode-map (kbd "C-c oC") #'org-roam-dailies-capture-today)
 (define-key core/intercept-mode-map (kbd "C-c os") #'text/org-roam-consult-ripgrep)
 
+;; org-download.
+(define-key org-mode-map (kbd "C-c i") #'org-download-clipboard)
+
 
 (provide 'keymap/common)

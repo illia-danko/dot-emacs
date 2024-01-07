@@ -136,6 +136,7 @@
   (straight-use-package 'markdown-mode)
   (straight-use-package 'dockerfile-mode)
   (straight-use-package 'org-roam)
+  (straight-use-package 'org-download)
   (require 'text/text-mode)
   (require 'text/org)
   (and core/use-evil-p (require 'text/org-evil))
