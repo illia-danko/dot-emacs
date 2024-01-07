@@ -13,6 +13,6 @@
  'org-download-annotate-function #'(lambda (&rest _) "") ; do not annotate
  'org-download-heading-lvl nil)
 
-(gdd-hook 'dired-mode-hook 'org-download-enable)
+(add-hook 'dired-mode-hook 'org-download-enable)
 
 (provide 'text/org-goodies)
