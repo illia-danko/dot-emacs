@@ -85,7 +85,6 @@
 ;; Tool.
 (progn
   (straight-use-package 'xclip) ; clipboard manager
-  (straight-use-package 'dashboard)
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
@@ -95,7 +94,6 @@
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
   (require 'tool/core)
-  (require 'tool/dashboard)
   (require 'tool/vterm)
   (require 'tool/dired)
   (require 'tool/spelling)

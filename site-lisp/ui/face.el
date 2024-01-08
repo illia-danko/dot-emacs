@@ -8,34 +8,20 @@
   (car custom-enabled-themes))
 
 (defun ui/load-font-faces (&optional frame)
-  (when (display-graphic-p)
-	(mapc (lambda (face)
-			(set-face-attribute face frame
-								:weight 'bold
-								:family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
-								:height (or (and (eq system-type 'darwin) 135) 110)))
-          [default variable-pitch fixed-pitch fixed-pitch-serif])))
+  (mapc (lambda (face)
+		  (set-face-attribute face frame
+							  :weight 'bold
+							  :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
+							  :height (or (and (eq system-type 'darwin) 135) 110)))
+        [default variable-pitch fixed-pitch fixed-pitch-serif]))
 
 (defun ui/load-custom-faces (&optional frame)
   (interactive)
 
-  (let ((display-table (or standard-display-table (make-display-table))))
-    (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
-    (setq standard-display-table display-table))
-  (set-face-attribute 'vertical-border frame
-					  :background (face-background 'default))
-
-  (when (featurep 'vterm)
-    ;; Fix zsh-autosuggestions highlight color problem from One Themes.
-    (if (eq (ui/current-theme) ui/theme-light-variant)
-		(mapc (lambda (face)
-				(set-face-attribute face frame :background "#a0a1a7"))
-			  [term-color-black vterm-color-black])))
-
   ;; Load core fonts.
   (ui/load-font-faces frame)
 
-  ;; Fix discrepancy between match highlighting.
+  ;; Fix highlighting discrepancy.
   (mapc (lambda (face-group)
           (let ((face (car face-group))
                 (face-ref (cdr face-group)))
