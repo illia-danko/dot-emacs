@@ -27,6 +27,7 @@
       (load-theme theme t)))
 
   (ui/load-theme)
+  (ui/load-custom-faces)
 
   (file-notify-add-watch
    ui/theme-variant-filename
