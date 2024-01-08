@@ -17,16 +17,16 @@
        (insert-file-contents filename)
        (buffer-string))))
 
-  (defun ui/load-theme (&rest args)
+  (defun ui/load-theme (&rest _)
     "Load `light' or `dark' theme variant."
+    (mapc #'disable-theme custom-enabled-themes)
+
     (let ((theme (pcase (ui/load-theme-variant ui/theme-variant-filename)
                    ("light" ui/theme-light-variant)
                    (_ ui/theme-dark-variant))))
-      (mapc #'disable-theme custom-enabled-themes)
       (load-theme theme t)))
 
   (ui/load-theme)
-  (ui/load-custom-faces)
 
   (file-notify-add-watch
    ui/theme-variant-filename

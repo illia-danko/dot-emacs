@@ -57,10 +57,6 @@
 (define-key core/intercept-mode-map (kbd "C-c gf") #'magit-find-file) ; visit a file from any branch
 (define-key core/intercept-mode-map (kbd "C-c gu") #'git-link)
 (define-key core/intercept-mode-map (kbd "C-c gU") #'tool/browse-project-home-page)
-(define-key core/intercept-mode-map (kbd "C-c n") #'git-gutter:next-hunk)
-(define-key core/intercept-mode-map (kbd "C-c p") #'git-gutter:previous-hunk)
-(define-key core/intercept-mode-map (kbd "C-c hu") #'git-gutter:revert-hunk)
-(define-key core/intercept-mode-map (kbd "C-c hp") #'tool/vc-git-gutter-popup-hunk-jump)
 
 (define-key core/intercept-mode-map (kbd "C-x B") #'consult-project-buffer)
 (define-key core/intercept-mode-map (kbd "C-c s") #'completion/consult-ripgrep)

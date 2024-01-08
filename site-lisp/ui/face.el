@@ -40,7 +40,7 @@
   (run-hooks 'ui/after-load-theme-hook))
 
 (add-hook 'ui/after-load-theme-hook #'ui/load-custom-faces)
-(add-hook 'after-make-frame-functions #'ui/load-custom-faces)
+(add-hook 'after-make-frame-functions #'ui/load-theme)
 
 ;; Open window maximized.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
