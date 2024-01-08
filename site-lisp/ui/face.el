@@ -1,8 +1,8 @@
 (require 'emacs)
-(require 'doom-themes)
+(require 'zerodark-theme)
 
-(defvar ui/theme-dark-variant 'doom-one)
-(defvar ui/theme-light-variant 'doom-one-light)
+(defvar ui/theme-dark-variant 'zerodark)
+(defvar ui/theme-light-variant 'zerodark)
 
 (defun ui/current-theme ()
   (car custom-enabled-themes))

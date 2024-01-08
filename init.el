@@ -165,12 +165,12 @@
 
 ;; UI.
 (progn
-  (straight-use-package 'doom-modeline)
-  (straight-use-package 'doom-themes)
+  (straight-use-package 'zerodark-theme)
   (straight-use-package 'rainbow-mode)
   (straight-use-package 'hl-todo)
   (straight-use-package 'hide-mode-line)
   (straight-use-package 'olivetti)
+  (straight-use-package 'flycheck)
   (require 'ui/face)
   (require 'ui/modeline)
   (require 'ui/system-theme)
