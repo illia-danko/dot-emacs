@@ -15,9 +15,17 @@
       (kill-region (mark) (point))
     (backward-kill-word arg)))
 
-;; elec-pair.
-(add-to-list 'electric-pair-pairs '(?` . ?`)) ;; add backtick symbol (`)
-(electric-pair-mode 1)
+;; electric-pair.
+(defun edit/electric-pair-additional-symbols ()
+  (unless (or (eq major-mode 'emacs-lisp-mode)
+			  (eq major-mode 'lisp-interaction-mode))
+	;; Add backtick symbol (`).
+	(setq-local electric-pair-pairs (cons '(?` . ?`) electric-pair-pairs)))
+
+  (unless (eq major-mode 'org-mode)
+	(electric-pair-local-mode 1)))
+
+(add-hook 'after-change-major-mode-hook #'edit/electric-pair-additional-symbols)
 
 ;; anzu.
 (global-anzu-mode 1)
