@@ -163,8 +163,8 @@
 
 ;; UI.
 (progn
-  (straight-use-package 'zerodark-theme)
   (straight-use-package 'doom-themes)
+  (straight-use-package 'doom-modeline)
   (straight-use-package 'rainbow-mode)
   (straight-use-package 'hl-todo)
   (straight-use-package 'hide-mode-line)

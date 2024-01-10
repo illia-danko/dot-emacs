@@ -1,5 +1,9 @@
-(require 'zerodark-theme)
+(require 'doom-modeline)
+(require 'api/macro)
 
-(zerodark-setup-modeline-format)
+(api/customize-set-variable* 'doom-modeline-height 28
+							 'doom-modeline-bar-width 4
+							 'doom-modeline-icon nil)
+(doom-modeline-mode 1)
 
 (provide 'ui/modeline)
