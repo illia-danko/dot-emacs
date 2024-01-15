@@ -135,6 +135,7 @@
   (straight-use-package 'dockerfile-mode)
   (straight-use-package 'org-roam)
   (straight-use-package 'org-download)
+  (straight-use-package 'protobuf-mode)
   (require 'text/text-mode)
   (require 'text/org)
   (and core/use-evil-p (require 'text/org-evil))
@@ -143,7 +144,9 @@
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/org-roam)
-  (require 'text/conf))
+  (require 'text/conf)
+  (require 'text/protobuf)
+  )
 
 ;; Languages.
 (progn
