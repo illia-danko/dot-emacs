@@ -27,7 +27,9 @@
  'mac-command-modifier 'meta ; use command key as meta
  ;; Karabiner-elments already remap opt to ctrl
  ;; (cusotomize-set-variable 'mac-option-modifier 'control)
- 'vc-follow-symlinks t) ; always follow a symlink when accessing a file
+ 'vc-follow-symlinks t ; always follow a symlink when accessing a file
+ 'auth-source-save-behavior nil ; do not ask to save passwords file using tramp
+ )
 
 (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
 (put 'upcase-region 'disabled nil) ; don't confirm on upcase command
