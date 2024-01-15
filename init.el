@@ -151,6 +151,7 @@
   (straight-use-package 'inf-elixir)
   (straight-use-package 'lua-mode)
   (straight-use-package 'nix-mode)
+  (straight-use-package 'vcl-mode)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go)
@@ -159,6 +160,7 @@
   (require 'lang/web) ; web development kit
   (require 'lang/nix)
   (require 'lang/c)
+  (require 'lang/vcl)
   )
 
 ;; UI.
