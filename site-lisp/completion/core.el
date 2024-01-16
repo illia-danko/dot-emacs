@@ -8,7 +8,6 @@
 (require 'embark-consult)
 
 (require 'api/macro)
-
 ;; which-key-mode.
 (which-key-mode 1)
 
@@ -76,6 +75,9 @@ If is no region, calls `func' without any `args'."
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
 --smart-case --no-heading --with-filename --line-number --search-zip")
+
+;; Allow display line numbers in preview.
+(add-to-list 'consult-preview-allowed-hooks 'global-display-line-numbers-mode-check-buffers)
 
 (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
 
