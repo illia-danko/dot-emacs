@@ -45,6 +45,8 @@
         [(completions-common-part . orderless-match-face-0)
          (completions-first-difference . orderless-match-face-1)]))
 
+(add-hook 'after-make-frame-functions #'ui/load-custom-faces)
+
 (defvar ui/after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
 
