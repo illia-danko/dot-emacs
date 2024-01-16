@@ -20,8 +20,6 @@
 
 (defun ui/load-custom-faces (&optional frame)
   (interactive)
-  ;; Load core fonts.
-  (ui/load-font-faces frame)
 
   (let ((display-table (or standard-display-table (make-display-table))))
     (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
