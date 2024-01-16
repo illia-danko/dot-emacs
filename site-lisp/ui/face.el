@@ -8,13 +8,15 @@
   (car custom-enabled-themes))
 
 (defun ui/load-font-faces (&optional frame)
-  (and (display-graphic-p)
-	   (mapc (lambda (face)
-			   (set-face-attribute face frame
-								   :weight 'bold
-								   :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
-								   :height (or (and (eq system-type 'darwin) 135) 110)))
-			 [default variable-pitch fixed-pitch fixed-pitch-serif])))
+  (interactive)
+
+  (when (display-graphic-p)
+	(mapc (lambda (face)
+			(set-face-attribute face frame
+								:weight 'bold
+								:family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
+								:height (or (and (eq system-type 'darwin) 135) 110)))
+		  [default variable-pitch fixed-pitch fixed-pitch-serif])))
 
 (defun ui/load-custom-faces (&optional frame)
   (interactive)
@@ -53,7 +55,6 @@
   (run-hooks 'ui/after-load-theme-hook))
 
 (add-hook 'ui/after-load-theme-hook #'ui/load-custom-faces)
-(add-hook 'after-make-frame-functions #'ui/load-theme)
 
 ;; Open window maximized.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

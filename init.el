@@ -175,6 +175,7 @@
   (straight-use-package 'hide-mode-line)
   (straight-use-package 'olivetti)
   (straight-use-package 'flycheck)
+  (straight-use-package 'auto-dark)
   (require 'ui/face)
   (require 'ui/modeline)
   (require 'ui/system-theme)
