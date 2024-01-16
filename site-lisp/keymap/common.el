@@ -40,7 +40,7 @@
 (global-set-key [remap switch-to-buffer]                  #'consult-buffer)
 (global-set-key [remap imenu]                             #'consult-imenu)
 
-(define-key core/intercept-mode-map (kbd "C-c C-f") #'project-find-file)
+(define-key core/intercept-mode-map (kbd "C-x F") #'project-find-file) ; mnemonic for [C-x C-f]
 (define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
 (define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
 (define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers)
