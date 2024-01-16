@@ -19,7 +19,7 @@
 (add-hook 'dired-mode-hook #'dired-hide-details-mode) ; do not show details (owners, access bits, etc.)
 (add-hook 'dired-mode-hook #'dired-omit-mode) ; do not show pattern's files
 (add-hook 'dired-mode-hook #'nerd-icons-dired-mode)
-(add-hook 'dired-mode-hook #'(lambda () (display-line-numbers-mode -1))) ; disable `display-line-numbers-mode'
+(add-hook 'dired-mode-hook #'(lambda () (display-line-numbers-mode -1)))
 
 
 (provide 'tool/dired)
