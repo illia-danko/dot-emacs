@@ -11,12 +11,13 @@
   (interactive)
 
   (when (display-graphic-p)
-	(mapc (lambda (face)
-			(set-face-attribute face frame
-								:weight 'bold
-								:family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
-								:height (or (and (eq system-type 'darwin) 135) 110)))
-		  [default variable-pitch fixed-pitch fixed-pitch-serif])))
+	(let ((frame (or frame (selected-frame))))
+	  (mapc (lambda (face)
+			  (set-face-attribute face frame
+								  :weight 'bold
+								  :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
+								  :height (or (and (eq system-type 'darwin) 135) 110)))
+			[default variable-pitch fixed-pitch fixed-pitch-serif]))))
 
 (defun ui/load-custom-faces (&optional frame)
   (interactive)
