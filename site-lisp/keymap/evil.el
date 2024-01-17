@@ -2,6 +2,7 @@
 (require 'core/intercept-mode)
 (require 'tool/vterm-evil)
 (require 'text/org-evil)
+(require 'tool/dired)
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
@@ -18,6 +19,9 @@
   (kbd "A") #'tool/vterm-evil-exit-copy-mode
   (kbd "o") #'tool/vterm-evil-exit-copy-mode
   (kbd "O") #'tool/vterm-evil-exit-copy-mode)
+
+(evil-define-key* '(normal) dired-mode-map
+  (kbd "O") #'tool/dired-system-open)
 
 (evil-define-key* '(normal) org-mode-map
   (kbd "RET") #'org-open-at-point)
