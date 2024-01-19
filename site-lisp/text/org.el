@@ -14,6 +14,7 @@
 
 (defun text/org-capture-todo () (interactive) (org-capture nil "t"))
 (defun text/org-capture-diary () (interactive) (org-capture nil "d"))
+(defun text/org-capture-slipbox () (interactive) (org-capture nil "b"))
 
 (defun text/org-toggle-fontifications ()
   "Toggle fontifications on/off.
@@ -42,8 +43,9 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
  'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
  'org-capture-bookmark nil ; do not keep bookmarks
  'org-capture-templates
- `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?\nEntered on %U")
-   ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?"))
+ `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?")
+   ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?")
+   ("b" "slip[b]ox" entry  (file ,(expand-file-name "inbox.org" org-directory)) "* %?\n"))
  'org-reverse-note-order t
  'org-fontify-done-headline t ; distinct DONE entries
  'org-fontify-quote-and-verse-blocks t
