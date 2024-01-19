@@ -4,6 +4,7 @@
 (require 'completion/core)
 (require 'completion/minibuffer)
 (require 'tool/core)
+(require 'tool/version-control)
 (require 'tool/dired)
 (require 'tool/vterm)
 (require 'tool/spelling)
@@ -15,13 +16,12 @@
 
 (global-set-key (kbd "C-c v") #'imenu)
 (global-set-key (kbd "C-c r") #'recentf)
-(global-set-key (kbd "C-c on") #'display-line-numbers-mode)
-(global-set-key (kbd "C-c ow") #'core/toggle-highlight-whitespaces)
+
+(global-set-key (kbd "C-c dn") #'display-line-numbers-mode)
+(global-set-key (kbd "C-c dw") #'core/toggle-display-whitespaces)
 
 (define-key eglot-mode-map (kbd "C-c cr") #'eglot-rename)
 (define-key eglot-mode-map (kbd "C-c ci") #'eglot-find-implementation)
-
-(global-set-key (kbd "C-c dw") #'tool/compare-two-open-windows)
 
 (global-set-key [remap next-matching-history-element]     #'consult-history)
 (global-set-key [remap previous-matching-history-element] #'consult-history) ; M-r in minibuffer-local-map
@@ -40,14 +40,16 @@
 (global-set-key [remap switch-to-buffer]                  #'consult-buffer)
 (global-set-key [remap imenu]                             #'consult-imenu)
 
-(define-key core/intercept-mode-map (kbd "C-x F") #'project-find-file) ; mnemonic for [C-x C-f]
-(define-key core/intercept-mode-map (kbd "C-x p") #'project-switch-project)
-(define-key core/intercept-mode-map (kbd "C-x !") #'project-forget-zombie-projects)
-(define-key core/intercept-mode-map (kbd "C-x #") #'project-kill-buffers)
-(define-key core/intercept-mode-map (kbd "C-c b") #'recompile)
-(define-key core/intercept-mode-map (kbd "C-c B") #'project-compile)
+(define-key core/intercept-mode-map (kbd "C-x pz") #'project-forget-zombie-projects)
 
-(define-key core/intercept-mode-map (kbd "C-x g" ) #'magit-status)
+;; Uses in conjunction with `project-switch-commands'.
+(define-key project-prefix-map "t" #'vterm)
+(define-key project-prefix-map "g" #'tool/magit-status)
+(define-key project-prefix-map "R" #'rg)
+(define-key project-prefix-map "S" #'project-find-regexp)
+
+(define-key core/intercept-mode-map (kbd "C-c cc") #'recompile)
+
 (define-key core/intercept-mode-map (kbd "C-c gg") #'magit-status)
 (define-key core/intercept-mode-map (kbd "C-c gd") #'magit-diff-buffer-file)
 (define-key core/intercept-mode-map (kbd "C-c gb") #'magit-log-buffer-file)
@@ -57,6 +59,7 @@
 (define-key core/intercept-mode-map (kbd "C-c gf") #'magit-find-file) ; visit a file from any branch
 (define-key core/intercept-mode-map (kbd "C-c gu") #'git-link)
 (define-key core/intercept-mode-map (kbd "C-c gU") #'tool/browse-project-home-page)
+(define-key core/intercept-mode-map (kbd "C-c gw") #'tool/compare-two-open-windows)
 
 (define-key core/intercept-mode-map (kbd "C-x B") #'consult-project-buffer)
 (define-key core/intercept-mode-map (kbd "C-c s") #'completion/consult-ripgrep)
@@ -68,13 +71,12 @@
 (define-key vertico-map (kbd "M-r") #'vertico-exit-input)
 
 (define-key core/intercept-mode-map (kbd "C-c b") #'recompile)
-(define-key core/intercept-mode-map (kbd "C-c B") #'project-compile)
 
 (global-set-key [remap dired] #'dired-jump)
 (define-key dired-mode-map "O" #'tool/dired-system-open)
 
-(global-set-key (kbd "C-c e") #'tool/vterm-project)
-(global-set-key (kbd "C-c E") #'vterm)
+(global-set-key (kbd "C-c t") #'tool/vterm-project)
+(global-set-key (kbd "C-c T") #'vterm)
 
 (define-key core/intercept-mode-map (kbd "C-c !") #'tool/spelling-toggle-buffer)
 (define-key core/intercept-mode-map (kbd "C-M-S-i") #'ispell-word)
@@ -93,9 +95,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
 (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun)
 
-(define-key elixir-ts-mode-map (kbd "C-c or") #'inf-elixir-project) ; alias to repl
-(define-key elixir-ts-mode-map (kbd "C-c C-b") #'inf-elixir-send-buffer)
-(define-key elixir-ts-mode-map (kbd "C-c C-c") #'lang/elixir-eval-line-or-region)
+(define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
 
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\)") #'text-scale-decrease)
@@ -109,6 +109,7 @@
 (define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)
 (define-key core/intercept-mode-map (kbd "C-c ot") #'text/org-capture-todo)
 (define-key core/intercept-mode-map (kbd "C-c od") #'text/org-capture-diary)
+(define-key core/intercept-mode-map (kbd "C-c ob") #'text/org-capture-slipbox)
 
 ;; Org Roam.
 (define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-buffer-toggle)
@@ -121,6 +122,5 @@
 
 ;; org-download.
 (define-key org-mode-map (kbd "C-c i") #'org-download-clipboard)
-
 
 (provide 'keymap/common)

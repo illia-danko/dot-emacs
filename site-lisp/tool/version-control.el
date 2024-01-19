@@ -4,6 +4,7 @@
 (require 'git-gutter-fringe)
 
 (require 'core/core)
+(require 'core/project)
 (require 'tool/spelling)
 (require 'api/macro)
 
@@ -21,6 +22,11 @@
           (call-process "git" nil nil nil "push")
           (message "Pushed %s" relname))
       (message "%S not a part of %S" fullname pattern))))
+
+(defun tool/magit-status ()
+  (interactive)
+  (let ((default-directory (core/project-root)))
+	(magit-status)))
 
 (api/customize-set-variable*
  'magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1 ; magit uses the whole frame space
