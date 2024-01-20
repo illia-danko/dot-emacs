@@ -3,7 +3,6 @@
 (require 'vertico)
 (require 'api/macro)
 
-
 ;; marginalia.
 (api/customize-set-variable* 'marginalia-align 'right)
 (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup)
@@ -16,6 +15,5 @@
  'vertico-resize nil)
 
 (vertico-mode 1)
-
 
 (provide 'completion/minibuffer)

@@ -49,11 +49,11 @@
   "Apply the given `func' to its `args' and the marked region.
 If is no region, calls `func' without any `args'."
   (if mark-active
-      (let* ((content (buffer-substring-no-properties (mark) (point)))
+	  (let* ((content (buffer-substring-no-properties (mark) (point)))
 			 (args (append args `(,content))))
-        (deactivate-mark)
-        (apply 'funcall func args))
-    (funcall func)))
+		(deactivate-mark)
+		(apply 'funcall func args))
+	(funcall func)))
 
 (defun completion/consult-ripgrep ()
   (interactive)
@@ -63,7 +63,7 @@ If is no region, calls `func' without any `args'."
 (defun completion/consult-line-multi ()
   (interactive)
   (if mark-active
-      (let* ((content (buffer-substring-no-properties (mark) (point))))
+	  (let* ((content (buffer-substring-no-properties (mark) (point))))
 		(deactivate-mark)
 		(consult-line-multi content content))
 	(consult-line-multi nil)))
