@@ -7,7 +7,7 @@
 (defun ui/current-theme ()
   (car custom-enabled-themes))
 
-(defun ui/load-font-faces (&optional frame)
+(defun ui/customize-font (&optional frame)
   (interactive)
 
   (when (display-graphic-p)
@@ -16,11 +16,13 @@
 			  (set-face-attribute face frame
 								  :weight 'bold
 								  :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
-								  :height (or (and (eq system-type 'darwin) 135) 110)))
+								  :height (or (and (eq system-type 'darwin) 135) 105)))
 			[default variable-pitch fixed-pitch fixed-pitch-serif]))))
 
-(defun ui/load-custom-faces (&optional frame)
+(defun ui/customaize-theme (&optional frame)
   (interactive)
+
+  (ui/customize-font frame)
 
   (let ((display-table (or standard-display-table (make-display-table))))
     (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
@@ -46,7 +48,7 @@
         [(completions-common-part . orderless-match-face-0)
          (completions-first-difference . orderless-match-face-1)]))
 
-(add-hook 'after-make-frame-functions #'ui/load-custom-faces)
+(add-hook 'after-make-frame-functions #'ui/customaize-theme)
 
 (defvar ui/after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
@@ -55,7 +57,7 @@
   "Run `after-load-theme-hook'."
   (run-hooks 'ui/after-load-theme-hook))
 
-(add-hook 'ui/after-load-theme-hook #'ui/load-custom-faces)
+(add-hook 'ui/after-load-theme-hook #'ui/customaize-theme)
 
 ;; Open window maximized.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
