@@ -1,8 +1,7 @@
 (require 'emacs)
-(require 'doom-themes)
 
-(defvar ui/theme-dark-variant 'doom-one)
-(defvar ui/theme-light-variant 'doom-one-light)
+(defvar ui/theme-dark-variant 'modus-vivendi)
+(defvar ui/theme-light-variant 'modus-operandi)
 
 (defun ui/current-theme ()
   (car custom-enabled-themes))
@@ -14,7 +13,7 @@
 	(let ((frame (or frame (selected-frame))))
 	  (mapc (lambda (face)
 			  (set-face-attribute face frame
-								  :weight 'bold
+								  ;; :weight 'bold
 								  :family (or (and (eq system-type 'darwin) "JetBrainsMono Nerd Font") "JetBrainsMono Nerd Font Mono")
 								  :height (or (and (eq system-type 'darwin) 135) 105)))
 			[default variable-pitch fixed-pitch fixed-pitch-serif]))))

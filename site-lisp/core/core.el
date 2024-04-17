@@ -85,7 +85,7 @@
 (savehist-mode 1)
 
 ;; Disable echo area documentation.
-(global-eldoc-mode -1)
+(global-eldoc-mode 1)
 
 ;; Enable line numbers.
 (global-display-line-numbers-mode 1)

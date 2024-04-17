@@ -52,7 +52,7 @@
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
 ;; Extensible and customizable VI Layer for Emacs.
-(defvar core/use-evil-p t)
+(defvar core/use-evil-p nil)
 
 ;; Core settings.
 (progn
@@ -77,7 +77,6 @@
   (straight-use-package 'embark-consult)
   ;; NOTE: Even though `eglot' is a part of emacs 29. It doesn't work with typescript. Loading the
   ;; working version.
-  (straight-use-package 'eglot)
   (require 'completion/core)
   (require 'completion/minibuffer)
   (require 'completion/lsp))
@@ -150,7 +149,6 @@
 
 ;; Languages.
 (progn
-  (straight-use-package 'elixir-ts-mode)
   (straight-use-package 'inf-elixir)
   (straight-use-package 'lua-mode)
   (straight-use-package 'nix-mode)
@@ -168,8 +166,6 @@
 
 ;; UI.
 (progn
-  (straight-use-package 'doom-themes)
-  (straight-use-package 'doom-modeline)
   (straight-use-package 'rainbow-mode)
   (straight-use-package 'hl-todo)
   (straight-use-package 'hide-mode-line)
