@@ -48,8 +48,6 @@
 (define-key project-prefix-map "R" #'rg)
 (define-key project-prefix-map "S" #'project-find-regexp)
 
-(define-key core/intercept-mode-map (kbd "C-c cc") #'recompile)
-
 (define-key core/intercept-mode-map (kbd "C-c gg") #'magit-status)
 (define-key core/intercept-mode-map (kbd "C-c gd") #'magit-diff-buffer-file)
 (define-key core/intercept-mode-map (kbd "C-c gb") #'magit-log-buffer-file)
@@ -71,6 +69,7 @@
 (define-key vertico-map (kbd "M-r") #'vertico-exit-input)
 
 (define-key core/intercept-mode-map (kbd "C-c b") #'recompile)
+(define-key core/intercept-mode-map (kbd "C-c B") #'project-compile)
 
 (global-set-key [remap dired] #'dired-jump)
 (define-key dired-mode-map "O" #'tool/dired-system-open)
