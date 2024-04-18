@@ -47,6 +47,7 @@
 (define-key project-prefix-map "g" #'tool/magit-status)
 (define-key project-prefix-map "R" #'rg)
 (define-key project-prefix-map "S" #'project-find-regexp)
+(define-key project-prefix-map "B" #'project-compile)
 
 (define-key core/intercept-mode-map (kbd "C-c gg") #'magit-status)
 (define-key core/intercept-mode-map (kbd "C-c gd") #'magit-diff-buffer-file)
