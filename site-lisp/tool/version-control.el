@@ -40,5 +40,6 @@
 
 ;; git-commit.
 (add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
+(add-hook 'git-commit-setup-hook #'(lambda () (display-line-numbers-mode -1)))
 
 (provide 'tool/version-control)
