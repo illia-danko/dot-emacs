@@ -90,6 +90,7 @@
   (straight-use-package 'rg) ; search and bulk replace
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
+  (straight-use-package 'dashboard)
   (require 'tool/core)
   (require 'tool/vterm)
   (require 'tool/dired)
@@ -102,6 +103,7 @@
   (require 'tool/gpg)
   (require 'tool/rg)
   (require 'tool/restclient)
+  (require 'tool/dashboard)
   )
 
 ;; Editing.
