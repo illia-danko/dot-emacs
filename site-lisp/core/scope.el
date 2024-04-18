@@ -9,6 +9,6 @@
 ;; Hook with `consult'.
 (with-eval-after-load 'consult
   (consult-customize consult--source-buffer :hidden t :default nil)
-  (add-to-list 'consult-buffer-sources persp-consult-source))
+  (setq consult-buffer-sources `(persp-consult-source)))
 
 (provide 'core/scope)
