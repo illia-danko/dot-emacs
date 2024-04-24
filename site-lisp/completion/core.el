@@ -71,6 +71,7 @@ If is no region, calls `func' without any `args'."
 (api/customize-set-variable*
  'xref-show-definitions-function 'consult-xref
  'xref-show-xrefs-function 'consult-xref
+ 'consult-preview-key "C-\\"
  'consult-ripgrep "rg \
 --hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
 --null --line-buffered --color=never --max-columns=1000 --path-separator / \
