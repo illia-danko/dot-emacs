@@ -83,8 +83,8 @@
 
 (global-set-key (kbd "C-w") #'edit/backward-kill-word-or-region)
 (global-set-key (kbd "C-c SPC") #'ace-jump-mode)
-(global-set-key [remap query-replace] #'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] #'anzu-query-replace-regexp)
+(global-set-key (kbd "M-'") #'anzu-query-replace)
+(global-set-key (kbd "M-\"") #'anzu-query-replace-regexp)
 
 (define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)
 (define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
