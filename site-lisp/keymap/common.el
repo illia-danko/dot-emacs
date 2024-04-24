@@ -17,8 +17,8 @@
 (global-set-key (kbd "C-c v") #'imenu)
 (global-set-key (kbd "C-c r") #'recentf)
 
-(global-set-key (kbd "C-c dn") #'display-line-numbers-mode)
-(global-set-key (kbd "C-c dw") #'core/toggle-display-whitespaces)
+(global-set-key (kbd "C-c wl") #'display-line-numbers-mode)
+(global-set-key (kbd "C-c ww") #'core/toggle-display-whitespaces)
 
 (define-key eglot-mode-map (kbd "C-c cr") #'eglot-rename)
 (define-key eglot-mode-map (kbd "C-c ci") #'eglot-find-implementation)
@@ -86,7 +86,8 @@
 (global-set-key [remap query-replace] #'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] #'anzu-query-replace-regexp)
 
-(define-key core/intercept-mode-map (kbd "C-q") #'er/expand-region)
+(define-key core/intercept-mode-map (kbd "C-o") #'er/expand-region)
+(define-key core/intercept-mode-map (kbd "M-o") #'er/contract-region)
 (global-set-key (kbd "C-c m") #'edit/multiple-cursors-keymap/body)
 
 (define-key markdown-mode-map (kbd "<C-tab>") #'outline-toggle-children)
@@ -95,7 +96,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
 (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun)
 
-(define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
+;; (define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
 
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\)") #'text-scale-decrease)

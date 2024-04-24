@@ -1,7 +1,8 @@
 (require 'emacs)
+(require 'doom-themes)
 
-(defvar ui/theme-dark-variant 'modus-vivendi)
-(defvar ui/theme-light-variant 'modus-operandi)
+(defvar ui/theme-dark-variant 'doom-one)
+(defvar ui/theme-light-variant 'doom-one-light)
 
 (defun ui/current-theme ()
   (car custom-enabled-themes))
