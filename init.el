@@ -172,6 +172,8 @@
   (straight-use-package 'olivetti)
   (straight-use-package 'flycheck)
   (straight-use-package 'auto-dark)
+  (straight-use-package 'doom-themes)
+  (straight-use-package 'doom-modeline)
   (require 'ui/face)
   (require 'ui/modeline)
   (require 'ui/system-theme)
