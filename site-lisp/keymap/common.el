@@ -96,7 +96,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'eval-defun)
 (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun)
 
-;; (define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
+(define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
 
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\)") #'text-scale-decrease)
