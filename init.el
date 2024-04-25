@@ -81,6 +81,8 @@
 
 ;; Tool.
 (progn
+  (straight-use-package
+   '(ttymux :type git :host github :repo "illia-danko/ttymux.el"))
   (straight-use-package 'xclip) ; clipboard manager
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
