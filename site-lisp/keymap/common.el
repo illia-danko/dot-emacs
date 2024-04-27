@@ -81,6 +81,7 @@
 (define-key core/intercept-mode-map (kbd "C-c !") #'tool/spelling-toggle-buffer)
 (define-key core/intercept-mode-map (kbd "C-M-S-i") #'ispell-word)
 
+(global-set-key (kbd "M-j") #'join-line)
 (global-set-key (kbd "C-w") #'edit/backward-kill-word-or-region)
 (global-set-key (kbd "C-c SPC") #'ace-jump-mode)
 (global-set-key (kbd "M-'") #'anzu-query-replace)
