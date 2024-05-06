@@ -11,6 +11,7 @@
 (require 'edit/core)
 (require 'text/org)
 (require 'text/org-roam)
+(require 'lang/elixir)
 
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
 
@@ -100,6 +101,7 @@
 (define-key lisp-interaction-mode-map (kbd "C-c C-b") #'eval-buffer)
 
 (define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
+(define-key elixir-ts-mode-map (kbd "C-c cP") #'lang/inf-elixir-phoenix-server)
 
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\)") #'text-scale-decrease)

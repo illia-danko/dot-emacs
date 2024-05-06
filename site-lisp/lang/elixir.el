@@ -36,5 +36,9 @@
 
 (api/customize-set-variable* 'inf-elixir-switch-to-repl-on-send nil)
 
+(defun lang/inf-elixir-phoenix-server ()
+  (interactive)
+  (let ((inf-elixir-project-command "iex -S mix phx.server"))
+	(inf-elixir-project)))
 
 (provide 'lang/elixir)
