@@ -1,7 +1,6 @@
 (require 'magit)
 (require 'git-link)
-(require 'git-commit)
-(require 'git-gutter-fringe)
+(require'git-commit)
 
 (require 'core/core)
 (require 'core/project)
@@ -13,15 +12,15 @@
   "Stage, commit and push to upstream a personal org note file."
   (interactive)
   (let* ((fullname (buffer-file-name))
-         (relname (file-name-nondirectory fullname))
-         (current-project (core/project-root)))
-    (if (string-prefix-p (expand-file-name pattern) fullname)
-        (progn
-          (call-process "git" nil nil nil "add" fullname)
-          (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
-          (call-process "git" nil nil nil "push")
-          (message "Pushed %s" relname))
-      (message "%S not a part of %S" fullname pattern))))
+		 (relname (file-name-nondirectory fullname))
+		 (current-project (core/project-root)))
+	(if (string-prefix-p (expand-file-name pattern) fullname)
+		(progn
+		  (call-process "git" nil nil nil "add" fullname)
+		  (call-process "git" nil nil nil "commit" "-m" (format "Update %s" relname))
+		  (call-process "git" nil nil nil "push")
+		  (message "Pushed %s" relname))
+	  (message "%S not a part of %S" fullname pattern))))
 
 (defun tool/magit-status ()
   (interactive)

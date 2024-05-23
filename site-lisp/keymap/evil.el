@@ -3,6 +3,7 @@
 (require 'tool/vterm-evil)
 (require 'text/org-evil)
 (require 'tool/dired)
+(require 'tool/gutter)
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
@@ -25,5 +26,11 @@
 
 (evil-define-key* '(normal) org-mode-map
   (kbd "RET") #'org-open-at-point)
+
+(evil-define-key* '(normal) global-map
+  (kbd "]c") #'git-gutter:next-hunk
+  (kbd "[c") #'git-gutter:previous-hunk
+  (kbd "SPC hu") #'git-gutter:revert-hunk
+  (kbd "SPC hp") #'tool/git-gutter-popup-hunk-jump)
 
 (provide 'keymap/evil)
