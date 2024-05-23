@@ -93,6 +93,7 @@
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
   (straight-use-package 'dashboard)
+  (straight-use-package 'dumb-jump)
   (require 'tool/core)
   (require 'tool/vterm)
   (require 'tool/dired)
@@ -106,6 +107,7 @@
   (require 'tool/rg)
   (require 'tool/restclient)
   (require 'tool/dashboard)
+  (require 'tool/dumb-jump)
   )
 
 ;; Editing.
@@ -155,6 +157,7 @@
   (straight-use-package 'lua-mode)
   (straight-use-package 'nix-mode)
   (straight-use-package 'vcl-mode)
+  (straight-use-package 'go-mode)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go)
