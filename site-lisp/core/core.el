@@ -85,6 +85,7 @@
 (savehist-mode 1)
 
 ;; Disable echo area documentation.
+(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
 (global-eldoc-mode 1)
 
 ;; Enable line numbers.
