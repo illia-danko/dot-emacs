@@ -52,7 +52,7 @@
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
 ;; Extensible and customizable VI Layer for Emacs.
-(defvar core/use-evil-p nil)
+(defvar core/use-evil-p t)
 
 ;; Core settings.
 (progn
