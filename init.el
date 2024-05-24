@@ -75,8 +75,10 @@
   (straight-use-package 'corfu-terminal)
   (straight-use-package 'consult)
   (straight-use-package 'embark-consult)
+  (straight-use-package 'dumb-jump)
   (require 'completion/core)
   (require 'completion/minibuffer)
+  (require 'completion/dumb-jump)
   (require 'completion/lsp))
 
 ;; Tool.
@@ -93,7 +95,6 @@
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
   (straight-use-package 'dashboard)
-  (straight-use-package 'dumb-jump)
   (require 'tool/core)
   (require 'tool/vterm)
   (require 'tool/dired)
@@ -107,7 +108,6 @@
   (require 'tool/rg)
   (require 'tool/restclient)
   (require 'tool/dashboard)
-  (require 'tool/dumb-jump)
   (require 'tool/gutter)
   )
 
