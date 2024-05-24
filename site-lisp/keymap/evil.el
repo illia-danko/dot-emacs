@@ -1,9 +1,11 @@
 (require 'edit/evil)
 (require 'core/intercept-mode)
+(require 'core/project)
 (require 'tool/vterm-evil)
 (require 'text/org-evil)
 (require 'tool/dired)
 (require 'tool/gutter)
+(require 'completion/lsp)
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
@@ -32,5 +34,12 @@
   (kbd "[c") #'git-gutter:previous-hunk
   (kbd "SPC hu") #'git-gutter:revert-hunk
   (kbd "SPC hp") #'tool/git-gutter-popup-hunk-jump)
+
+(evil-define-key* '(normal) global-map
+  (kbd "gi") #'eglot-find-implementation
+  (kbd "gn") #'eglot-rename)
+
+(evil-define-key* '(normal) core/intercept-mode-map
+  (kbd "C-t") #'project-find-file)
 
 (provide 'keymap/evil)
