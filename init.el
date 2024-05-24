@@ -155,6 +155,7 @@
 ;; Languages.
 (progn
   (straight-use-package 'inf-elixir)
+  (straight-use-package 'elixir-ts-mode)
   (straight-use-package 'lua-mode)
   (straight-use-package 'nix-mode)
   (straight-use-package 'vcl-mode)

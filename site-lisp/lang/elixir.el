@@ -7,24 +7,22 @@
 
 (add-to-list 'treesit-language-source-alist '(elixir "https://github.com/elixir-lang/tree-sitter-elixir"))
 (add-to-list 'treesit-language-source-alist '(heex "https://github.com/phoenixframework/tree-sitter-heex"))
-(add-to-list 'major-mode-remap-alist '(elixir-mode . elixir-ts-mode))
-(add-to-list 'major-mode-remap-alist '(heex-mode . heex-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-mode))
-(add-to-list 'auto-mode-alist '("\\.exs?\\'" . elixir-mode))
+
+;; elixir-ts-mode.
+(advice-add 'edit/treesit-install-language-grammar :after (lambda (&rest args)
+															(elixir-ts-install-grammar)))
 
 ;; Use `elixir-ls' over the default `language_server.sh'.
-(cl-pushnew '((elixir-mode heex-mode) . ("elixir-ls"))
+(cl-pushnew '((elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
 			eglot-server-programs
 			:test #'equal)
 
-(add-hook 'elixir-ts-mode-hook (lambda ()
-								 (eglot-ensure)
-								 (add-hook 'before-save-hook #'eglot-format)))
+(defun tool/elixir-mode-setup ()
+  (eglot-ensure)
+  (format-all-mode))
 
-(add-hook 'heex-ts-mode-hook (lambda ()
-							   (eglot-ensure)
-							   (add-hook 'before-save-hook #'eglot-format)))
-
+(add-hook 'elixir-ts-mode-hook #'tool/elixir-mode-setup)
+(add-hook 'heex-ts-mode-hook #'tool/elixir-mode-setup)
 
 ;; inf-elixir.
 
