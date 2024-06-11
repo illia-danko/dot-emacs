@@ -11,4 +11,4 @@
   (consult-customize consult--source-buffer :hidden t :default nil)
   (setq consult-buffer-sources `(persp-consult-source)))
 
-(provide 'core/scope)
+(provide 'core/perspective)

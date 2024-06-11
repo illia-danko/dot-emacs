@@ -6,8 +6,6 @@
  'auto-dark-dark-theme ui/theme-dark-variant
  'auto-dark-light-theme ui/theme-light-variant)
 
-(if (display-graphic-p)
-	(auto-dark-mode 1))
-
+(auto-dark-mode 1)
 
 (provide 'ui/system-theme)

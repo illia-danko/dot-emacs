@@ -60,7 +60,7 @@
   (require 'core/intercept-mode)
   (require 'core/core)
   (require 'core/project)
-  (require 'core/scope))
+  (require 'core/perspective))
 
 ;; Completion.
 (progn
@@ -94,7 +94,6 @@
   (straight-use-package 'rg) ; search and bulk replace
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
-  (straight-use-package 'dashboard)
   (require 'tool/core)
   (require 'tool/vterm)
   (require 'tool/dired)
@@ -107,7 +106,6 @@
   (require 'tool/gpg)
   (require 'tool/rg)
   (require 'tool/restclient)
-  (require 'tool/dashboard)
   (require 'tool/gutter)
   )
 
@@ -181,12 +179,14 @@
   (straight-use-package 'auto-dark)
   (straight-use-package 'doom-themes)
   (straight-use-package 'doom-modeline)
+  (straight-use-package 'dashboard)
   (require 'ui/face)
   (require 'ui/modeline)
   (require 'ui/system-theme)
   (require 'ui/rgb-highlight)
   (require 'ui/highlight-todos)
-  (require 'ui/zen))
+  (require 'ui/zen)
+  (require 'ui/dashboard))
 
 ;; Keymap.
 (progn
