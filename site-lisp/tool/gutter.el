@@ -7,10 +7,10 @@
 
 (api/customize-set-variable*
  'left-margin-width 1; add space for a git-gutter sign
- 'git-gutter:added-sign ""
+ 'git-gutter:added-sign ""
  'git-gutter:ask-p nil
- 'git-gutter:deleted-sign ""
- 'git-gutter:modified-sign "")
+ 'git-gutter:deleted-sign ""
+ 'git-gutter:modified-sign "")
 
 (global-git-gutter-mode 1)
 
