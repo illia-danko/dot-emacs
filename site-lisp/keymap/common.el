@@ -123,7 +123,7 @@
 (define-key core/intercept-mode-map (kbd "C-c ob") #'text/org-capture-slipbox)
 
 ;; Org Roam.
-(define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-buffer-toggle)
+(define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-backlinks-and-links)
 (define-key core/intercept-mode-map (kbd "C-c of") #'org-roam-node-find)
 (define-key core/intercept-mode-map (kbd "C-c og") #'org-roam-graph)
 (define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-node-insert)

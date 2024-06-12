@@ -14,6 +14,8 @@
 (add-to-list 'org-link-frame-setup '(file . find-file))
 (org-roam-db-autosync-mode 1)
 
+(defalias 'org-roam-backlinks-and-links 'org-roam-buffer-toggle)
+
 (defun text/org-roam-consult-ripgrep ()
   (interactive)
   (consult-ripgrep org-roam-directory))
