@@ -40,6 +40,7 @@
   (kbd "gn") #'eglot-rename)
 
 (evil-define-key* '(normal) core/intercept-mode-map
-  (kbd "C-t") #'project-find-file)
+  (kbd "C-t") #'project-find-file
+  (kbd ",b") #'switch-to-buffer)
 
 (provide 'keymap/evil)
