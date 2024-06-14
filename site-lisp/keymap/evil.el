@@ -2,7 +2,7 @@
 (require 'core/intercept-mode)
 (require 'core/project)
 (require 'tool/vterm-evil)
-(require 'text/org-evil)
+(require 'extras/org-evil)
 (require 'tool/dired)
 (require 'tool/gutter)
 (require 'completion/lsp)

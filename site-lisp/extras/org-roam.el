@@ -16,8 +16,8 @@
 
 (defalias 'org-roam-backlinks-and-links 'org-roam-buffer-toggle)
 
-(defun text/org-roam-consult-ripgrep ()
+(defun extras/org-roam-consult-ripgrep ()
   (interactive)
   (consult-ripgrep org-roam-directory))
 
-(provide 'text/org-roam)
+(provide 'extras/org-roam)

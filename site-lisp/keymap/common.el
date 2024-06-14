@@ -10,8 +10,6 @@
 (require 'tool/spelling)
 (require 'tool/gutter)
 (require 'edit/core)
-(require 'text/org)
-(require 'text/org-roam)
 (require 'lang/elixir)
 
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
@@ -114,24 +112,6 @@
 (global-set-key (kbd "C-c z") #'ui/zen-toggle)
 
 ;; Org.
-(define-key org-mode-map (kbd "C-c gc") #'text/org-git-push-org-file)
 (define-key org-mode-map (kbd "<C-tab>") #'org-cycle)
-(define-key org-mode-map (kbd "C-c 4") #'text/org-toggle-fontifications)
-(define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)
-(define-key core/intercept-mode-map (kbd "C-c ot") #'text/org-capture-todo)
-(define-key core/intercept-mode-map (kbd "C-c od") #'text/org-capture-diary)
-(define-key core/intercept-mode-map (kbd "C-c ob") #'text/org-capture-slipbox)
-
-;; Org Roam.
-(define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-backlinks-and-links)
-(define-key core/intercept-mode-map (kbd "C-c of") #'org-roam-node-find)
-(define-key core/intercept-mode-map (kbd "C-c og") #'org-roam-graph)
-(define-key core/intercept-mode-map (kbd "C-c oi") #'org-roam-node-insert)
-(define-key core/intercept-mode-map (kbd "C-c oc") #'org-roam-capture)
-(define-key core/intercept-mode-map (kbd "C-c oC") #'org-roam-dailies-capture-today)
-(define-key core/intercept-mode-map (kbd "C-c os") #'text/org-roam-consult-ripgrep)
-
-;; org-download.
-(define-key org-mode-map (kbd "C-c i") #'org-download-clipboard)
 
 (provide 'keymap/common)

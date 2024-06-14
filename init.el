@@ -52,7 +52,8 @@
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
 ;; Extensible and customizable VI Layer for Emacs.
-(defvar core/use-evil-p t)
+(defconst core/use-evil-p t)
+(defconst core/use-no-extras (getenv "EMACS_NO_EXTRAS"))
 
 ;; Core settings.
 (progn
@@ -132,20 +133,13 @@
 
 ;; Text.
 (progn
-  (straight-use-package 'org-bullets)
   (straight-use-package 'markdown-mode)
   (straight-use-package 'dockerfile-mode)
-  (straight-use-package 'org-roam)
-  (straight-use-package 'org-download)
   (straight-use-package 'protobuf-mode)
   (require 'text/text-mode)
-  (require 'text/org)
-  (and core/use-evil-p (require 'text/org-evil))
-  (require 'text/org-goodies)
   (require 'text/markdown)
   (require 'text/yaml)
   (require 'text/cmake)
-  (require 'text/org-roam)
   (require 'text/conf)
   (require 'text/protobuf)
   )
@@ -167,6 +161,17 @@
   (require 'lang/nix)
   (require 'lang/c)
   (require 'lang/vcl)
+  )
+
+;; Extras.
+(unless core/use-no-extras
+  (straight-use-package 'org-bullets)
+  (straight-use-package 'org-roam)
+  (straight-use-package 'org-download)
+  (require 'extras/org)
+  (and core/use-evil-p (require 'extras/org-evil))
+  (require 'extras/org-goodies)
+  (require 'extras/org-roam)
   )
 
 ;; UI.
@@ -193,5 +198,9 @@
   (require 'keymap/common)
   (if core/use-evil-p
       (require 'keymap/evil)))
+
+(unless core/use-no-extras
+  (require 'keymap/extras)
+  )
 
 (message "Load time %.06f" (float-time (time-since core/time-emacs-start)))

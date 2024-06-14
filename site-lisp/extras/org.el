@@ -4,19 +4,19 @@
 (require 'tool/version-control)
 (require 'api/macro)
 
-(defun text/org-git-push-org-file ()
+(defun extras/org-git-push-org-file ()
   (interactive)
   (tool/git-push-current-file org-directory))
 
-(defun text/org-consult-ripgrep ()
+(defun extras/org-consult-ripgrep ()
   (interactive)
   (consult-ripgrep org-directory))
 
-(defun text/org-capture-todo () (interactive) (org-capture nil "t"))
-(defun text/org-capture-diary () (interactive) (org-capture nil "d"))
-(defun text/org-capture-slipbox () (interactive) (org-capture nil "b"))
+(defun extras/org-capture-todo () (interactive) (org-capture nil "t"))
+(defun extras/org-capture-diary () (interactive) (org-capture nil "d"))
+(defun extras/org-capture-slipbox () (interactive) (org-capture nil "b"))
 
-(defun text/org-toggle-fontifications ()
+(defun extras/org-toggle-fontifications ()
   "Toggle fontifications on/off.
 The solution taken from
 https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/init.el#L3037-L3069"
@@ -33,7 +33,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   ;; Apply changes.
   (font-lock-fontify-buffer))
 
-(defun text/org-consult-ripgrep ()
+(defun extras/org-consult-ripgrep ()
   (interactive)
   (consult-ripgrep org-directory))
 
@@ -62,4 +62,4 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 							 '((shell . t)))
 
 
-(provide 'text/org)
+(provide 'extras/org)

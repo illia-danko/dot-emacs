@@ -1,5 +1,5 @@
 (require 'org-bullets)
-(require 'text/org)
+(require 'extras/org)
 (require 'org-download)
 (require 'api/macro)
 
@@ -15,4 +15,4 @@
 
 (add-hook 'dired-mode-hook 'org-download-enable)
 
-(provide 'text/org-goodies)
+(provide 'extras/org-goodies)
