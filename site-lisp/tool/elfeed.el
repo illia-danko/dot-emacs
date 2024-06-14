@@ -13,4 +13,4 @@
 ;; Set buffer's text width to match the content.
 (advice-add 'elfeed-show-entry :after #'(lambda (&rest _) (setq-local fill-column 120)))
 
-(provide 'tool/feed)
+(provide 'extras/elfeed)

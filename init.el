@@ -90,7 +90,6 @@
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
-  (straight-use-package 'elfeed) ; rss/atom feed.
   (straight-use-package 'git-gutter) ; track and navigate to git changes inside a buffer
   (straight-use-package 'rg) ; search and bulk replace
   (straight-use-package 'restclient) ; rest client to perform json rest queries
@@ -103,7 +102,6 @@
   (and core/use-evil-p (require 'tool/version-control-evil))
   (require 'tool/autoclose-compile-window)
   (require 'tool/diff)
-  (require 'tool/feed)
   (require 'tool/gpg)
   (require 'tool/rg)
   (require 'tool/restclient)
@@ -186,11 +184,13 @@
   (straight-use-package 'org-roam)
   (straight-use-package 'org-download)
   (straight-use-package 'auto-dark)
+  (straight-use-package 'elfeed) ; rss/atom feed.
   (require 'extras/org)
   (and core/use-evil-p (require 'extras/org-evil))
   (require 'extras/org-goodies)
   (require 'extras/org-roam)
   (require 'extras/system-theme)
+  (require 'extras/elfeed)
   )
 
 ;; Keymap.
