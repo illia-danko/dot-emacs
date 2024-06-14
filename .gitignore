@@ -16,3 +16,4 @@ tramp
 *.elc
 /org-roam.db
 .org-id-locations
+server
