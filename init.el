@@ -163,17 +163,6 @@
   (require 'lang/vcl)
   )
 
-;; Extras.
-(unless core/use-no-extras
-  (straight-use-package 'org-bullets)
-  (straight-use-package 'org-roam)
-  (straight-use-package 'org-download)
-  (require 'extras/org)
-  (and core/use-evil-p (require 'extras/org-evil))
-  (require 'extras/org-goodies)
-  (require 'extras/org-roam)
-  )
-
 ;; UI.
 (progn
   (straight-use-package 'rainbow-mode)
@@ -181,17 +170,28 @@
   (straight-use-package 'hide-mode-line)
   (straight-use-package 'olivetti)
   (straight-use-package 'flycheck)
-  (straight-use-package 'auto-dark)
   (straight-use-package 'doom-themes)
   (straight-use-package 'doom-modeline)
   (straight-use-package 'dashboard)
   (require 'ui/face)
   (require 'ui/modeline)
-  (require 'ui/system-theme)
   (require 'ui/rgb-highlight)
   (require 'ui/highlight-todos)
   (require 'ui/zen)
   (require 'ui/dashboard))
+
+;; Extras.
+(unless core/use-no-extras
+  (straight-use-package 'org-bullets)
+  (straight-use-package 'org-roam)
+  (straight-use-package 'org-download)
+  (straight-use-package 'auto-dark)
+  (require 'extras/org)
+  (and core/use-evil-p (require 'extras/org-evil))
+  (require 'extras/org-goodies)
+  (require 'extras/org-roam)
+  (require 'extras/system-theme)
+  )
 
 ;; Keymap.
 (progn

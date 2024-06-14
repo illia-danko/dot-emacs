@@ -8,4 +8,4 @@
 
 (auto-dark-mode 1)
 
-(provide 'ui/system-theme)
+(provide 'extras/system-theme)
