@@ -21,4 +21,4 @@
 ;; org-download.
 (define-key org-mode-map (kbd "C-c i") #'org-download-clipboard)
 
-(provide 'keymap/extras)
+(provide 'keymap/common-extras)

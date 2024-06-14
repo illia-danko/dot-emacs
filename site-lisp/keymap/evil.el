@@ -2,7 +2,6 @@
 (require 'core/intercept-mode)
 (require 'core/project)
 (require 'tool/vterm-evil)
-(require 'extras/org-evil)
 (require 'tool/dired)
 (require 'tool/gutter)
 (require 'completion/lsp)
@@ -25,9 +24,6 @@
 
 (evil-define-key* '(normal) dired-mode-map
   (kbd "O") #'tool/dired-system-open)
-
-(evil-define-key* '(normal) org-mode-map
-  (kbd "RET") #'org-open-at-point)
 
 (evil-define-key* '(normal) global-map
   (kbd "]c") #'git-gutter:next-hunk

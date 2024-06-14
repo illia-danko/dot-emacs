@@ -196,11 +196,13 @@
 ;; Keymap.
 (progn
   (require 'keymap/common)
-  (if core/use-evil-p
-      (require 'keymap/evil)))
+  (when core/use-evil-p
+    (require 'keymap/evil)
+
+	(unless core/use-no-extras
+	  (require 'keymap/evil-extras))))
 
 (unless core/use-no-extras
-  (require 'keymap/extras)
-  )
+  (require 'keymap/common-extras))
 
 (message "Load time %.06f" (float-time (time-since core/time-emacs-start)))
