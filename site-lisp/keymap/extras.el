@@ -1,6 +1,7 @@
 (require 'extras/org)
 (require 'extras/org-roam)
 
+(define-key org-mode-map (kbd "<C-tab>") #'org-cycle)
 (define-key org-mode-map (kbd "C-c 4") #'extras/org-toggle-fontifications)
 (define-key org-mode-map (kbd "C-c gc") #'extras/org-git-push-org-file)
 (define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)

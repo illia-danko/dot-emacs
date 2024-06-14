@@ -111,7 +111,4 @@
 (global-set-key (kbd "C-c ^") #'rainbow-mode)
 (global-set-key (kbd "C-c z") #'ui/zen-toggle)
 
-;; Org.
-(define-key org-mode-map (kbd "<C-tab>") #'org-cycle)
-
 (provide 'keymap/common)
