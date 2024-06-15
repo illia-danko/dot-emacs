@@ -13,34 +13,37 @@
 
 (defun ui/customaize-theme (&optional frame)
   (interactive)
+  (let ((frame (or frame (selected-frame))))
+	(ui/customize-theme-frame frame)))
 
+(defun ui/customize-theme-frame (frame)
   (let ((display-table (or standard-display-table (make-display-table))))
-    (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
-    (setq standard-display-table display-table))
+	(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
+	(setq standard-display-table display-table))
+
   (set-face-attribute 'vertical-border frame
 					  :background (face-background 'default))
 
   (when (featurep 'vterm)
-    ;; Fix zsh-autosuggestions highlight color problem from One Themes.
-    (if (eq (ui/current-theme) ui/theme-light-variant)
+	;; Fix zsh-autosuggestions highlight color problem from One Themes.
+	(if (eq (ui/current-theme) ui/theme-light-variant)
 		(mapc (lambda (face)
-				(set-face-attribute face nil :background "#a0a1a7"))
-			  [term-color-black vterm-color-black])))
+				(set-face-attribute face frame :foreground "#a0a1a7"))
+			  [term-color-bright-black vterm-color-bright-black])))
 
   ;; Fix highlighting discrepancy.
   (mapc (lambda (face-group)
 		  (let ((face (car face-group))
-                (face-ref (cdr face-group)))
+				(face-ref (cdr face-group)))
 			(set-face-attribute face frame
-                                :background (face-background face-ref frame)
-                                :foreground (face-foreground face-ref frame)
-                                :weight (face-attribute face-ref :weight frame))))
-        [(completions-common-part . orderless-match-face-0)
-         (completions-first-difference . orderless-match-face-1)]))
-
+								:background (face-background face-ref frame)
+								:foreground (face-foreground face-ref frame)
+								:weight (face-attribute face-ref :weight frame))))
+		[(completions-common-part . orderless-match-face-0)
+		 (completions-first-difference . orderless-match-face-1)]))
 
 (defun ui/customize-theme-wrap (&optional frame)
-  (run-with-timer 1 nil #'ui/customaize-theme frame))
+  (run-with-timer 5 nil #'ui/customaize-theme frame))
 
 (add-hook 'after-make-frame-functions #'ui/customize-theme-wrap)
 
