@@ -41,7 +41,7 @@
 (global-set-key [remap imenu]                             #'consult-imenu)
 
 (define-key project-prefix-map "z" #'project-forget-zombie-projects)
-(define-key project-prefix-map "f" #'project-forget-project)
+(define-key project-prefix-map "x" #'project-forget-project)
 
 ;; Uses in conjunction with `project-switch-commands'.
 (define-key project-prefix-map "t" #'vterm)
