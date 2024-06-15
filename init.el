@@ -139,8 +139,7 @@
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/conf)
-  (require 'text/protobuf)
-  )
+  (require 'text/protobuf))
 
 ;; Languages.
 (progn
@@ -158,8 +157,7 @@
   (require 'lang/web) ; web development kit
   (require 'lang/nix)
   (require 'lang/c)
-  (require 'lang/vcl)
-  )
+  (require 'lang/vcl))
 
 ;; UI.
 (progn
@@ -190,8 +188,7 @@
   (require 'extras/org-roam)
   (require 'extras/system-theme)
   (require 'extras/elfeed)
-  (require 'extras/dashboard)
-  )
+  (require 'extras/dashboard))
 
 ;; Keymap.
 (progn
