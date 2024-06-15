@@ -12,4 +12,4 @@
 
 (dashboard-setup-startup-hook)
 
-(provide 'ui/dashboard)
+(provide 'extras/dashboard)

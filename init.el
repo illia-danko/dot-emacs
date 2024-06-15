@@ -170,13 +170,11 @@
   (straight-use-package 'flycheck)
   (straight-use-package 'doom-themes)
   (straight-use-package 'doom-modeline)
-  (straight-use-package 'dashboard)
   (require 'ui/face)
   (require 'ui/modeline)
   (require 'ui/rgb-highlight)
   (require 'ui/highlight-todos)
-  (require 'ui/zen)
-  (require 'ui/dashboard))
+  (require 'ui/zen))
 
 ;; Extras.
 (unless core/use-no-extras
@@ -185,12 +183,14 @@
   (straight-use-package 'org-download)
   (straight-use-package 'auto-dark)
   (straight-use-package 'elfeed) ; rss/atom feed.
+  (straight-use-package 'dashboard)
   (require 'extras/org)
   (and core/use-evil-p (require 'extras/org-evil))
   (require 'extras/org-goodies)
   (require 'extras/org-roam)
   (require 'extras/system-theme)
   (require 'extras/elfeed)
+  (require 'extras/dashboard)
   )
 
 ;; Keymap.
