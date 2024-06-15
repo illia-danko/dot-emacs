@@ -56,4 +56,7 @@
 
 (add-hook 'ui/after-load-theme-hook #'ui/customaize-theme)
 
+(when core/use-no-extras
+  (load-theme ui/theme-light-variant t))
+
 (provide 'ui/face)
