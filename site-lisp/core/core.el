@@ -29,6 +29,7 @@
  ;; (cusotomize-set-variable 'mac-option-modifier 'control)
  'vc-follow-symlinks t ; always follow a symlink when accessing a file
  'auth-source-save-behavior nil ; do not ask to save passwords file using tramp
+ 'inhibit-startup-message t ; do not show Emacs startup log message
  )
 
 (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
