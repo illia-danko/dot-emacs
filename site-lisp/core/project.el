@@ -24,7 +24,7 @@
         (throw 'found marker)))))
 
 (defun core/project-find-root (path)
-  "Search up the PATH for `project-root-markers'."
+  "Search up the PATH for `core/project-root-markers'."
   (when-let ((root (locate-dominating-file path #'core/project-root-p)))
     (cons 'transient (expand-file-name root))))
 
