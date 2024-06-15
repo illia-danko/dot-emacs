@@ -6,7 +6,7 @@
 (add-to-list 'project-switch-commands '(rg "RipGrep"))
 (add-to-list 'project-switch-commands '(project-compile "Build"))
 
-;;;;;;;;;; Extends core/project-root ;;;;;;;;;;;;;
+;;;;;;;; Extends project-root to find extra project root patterns  ;;;;;;;;;
 ;;
 ;; A credit to https://andreyor.st/posts/2022-07-16-project-el-enhancements
 
@@ -30,7 +30,7 @@
 
 (add-to-list 'project-find-functions #'core/project-find-root)
 
-;;;;;;;;;;;;;;;;;;;; end ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun core/project-root ()
   (or (ignore-errors (project-root (project-current)))
