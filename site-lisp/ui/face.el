@@ -29,7 +29,7 @@
 	(if (eq (ui/current-theme) ui/theme-light-variant)
 		(mapc (lambda (face)
 				(set-face-attribute face frame :foreground "#a0a1a7"))
-			  [term-color-bright-black vterm-color-bright-black])))
+			  [term-color-black vterm-color-black term-color-bright-black vterm-color-bright-black])))
 
   ;; Fix highlighting discrepancy.
   (mapc (lambda (face-group)
