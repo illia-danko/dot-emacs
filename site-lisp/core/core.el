@@ -92,7 +92,4 @@
 ;; Enable line numbers.
 (global-display-line-numbers-mode 1)
 
-;; Disable left and right fringe.
-(fringe-mode '(0 . 0))
-
 (provide 'core/core)
