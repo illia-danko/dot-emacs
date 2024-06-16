@@ -1,15 +1,16 @@
-(require 'emacs)
-(require 'doom-themes)
+(require 'spacemacs-theme)
+(require 'orderless)
+(require 'completion)
 
-(defvar ui/theme-dark-variant 'doom-one)
-(defvar ui/theme-light-variant 'doom-one-light)
+(defvar ui/theme-dark-variant 'spacemacs-dark)
+(defvar ui/theme-light-variant 'spacemacs-light)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font Bold 10"))
 
-(defun ui/current-theme ()
-  (car custom-enabled-themes))
+(defun ui/current-theme () (car custom-enabled-themes))
+(defun ui/reload-theme () (load-theme (ui/current-theme) t))
 
 (defun ui/customaize-theme (&optional frame)
   (interactive)
@@ -17,20 +18,6 @@
 	(ui/customize-theme-frame frame)))
 
 (defun ui/customize-theme-frame (frame)
-  (let ((display-table (or standard-display-table (make-display-table))))
-	(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
-	(setq standard-display-table display-table))
-
-  (set-face-attribute 'vertical-border frame
-					  :background (face-background 'default))
-
-  (when (featurep 'vterm)
-	;; Fix zsh-autosuggestions highlight color problem from One Themes.
-	(if (eq (ui/current-theme) ui/theme-light-variant)
-		(mapc (lambda (face)
-				(set-face-attribute face frame :foreground "#a0a1a7"))
-			  [term-color-black vterm-color-black term-color-bright-black vterm-color-bright-black])))
-
   ;; Fix highlighting discrepancy.
   (mapc (lambda (face-group)
 		  (let ((face (car face-group))
@@ -42,19 +29,11 @@
 		[(completions-common-part . orderless-match-face-0)
 		 (completions-first-difference . orderless-match-face-1)]))
 
-(defun ui/customize-theme-wrap (&optional frame)
-  (run-with-timer 5 nil #'ui/customaize-theme frame))
+(defun ui/make-frame-hook ()
+  (ui/reload-theme) ; fix corrupted colors scheme when frame is created
+  (ui/customize-theme-frame nil))
 
-(add-hook 'after-make-frame-functions #'ui/customize-theme-wrap)
-
-(defvar ui/after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
-
-(defadvice load-theme (after ui/run-after-load-theme-hook activate)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'ui/after-load-theme-hook))
-
-(add-hook 'ui/after-load-theme-hook #'ui/customaize-theme)
+(add-hook 'server-after-make-frame-hook #'ui/make-frame-hook)
 
 (when core/use-no-extras
   (load-theme ui/theme-light-variant t))
