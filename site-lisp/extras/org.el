@@ -38,14 +38,14 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
   (consult-ripgrep org-directory))
 
 (api/customize-set-variable*
- 'org-directory "~/github.com/illia-danko/org"
- 'org-default-notes-file (expand-file-name "todos.org" org-directory)
- 'org-agenda-files (list org-default-notes-file (expand-file-name "diary.org" org-directory))
+ 'org-directory "~/github.com/illia-danko/slipbox"
+ 'org-default-notes-file (expand-file-name "fleeting_notes.org" org-directory)
+ 'org-agenda-files (list org-default-notes-file)
  'org-capture-bookmark nil ; do not keep bookmarks
  'org-capture-templates
- `(("t" "[t]odo item" entry (file org-default-notes-file) "* TODO %?")
-   ("d" "[d]iary entry" entry (file ,(expand-file-name "diary.org" org-directory)) "* %U %?")
-   ("b" "slip[b]ox" entry  (file ,(expand-file-name "inbox.org" org-directory)) "* %?\n"))
+ `(("d" "[d]iary entry" entry (file org-default-notes-file) "* %U %?")
+   ("t" "[t]odo item" entry (file org-default-notes-file) "* %U\n** TODO %?"))
+ 'org-fontify-whole-heading-line t
  'org-reverse-note-order t
  'org-fontify-done-headline t ; distinct DONE entries
  'org-fontify-quote-and-verse-blocks t
@@ -55,7 +55,11 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
  'org-startup-indented t
  )
 
-(add-hook 'org-mode-hook #'outline-hide-body) ; fold the document on load
+(defun extras/org-mode-hook ()
+  (outline-hide-body)  ; fold the document on load
+  )
+
+(add-hook 'org-mode-hook #'extras/org-mode-hook)
 
 ;; Preload babel. Make possible to evaluate src code block.
 (org-babel-do-load-languages 'org-babel-load-languages

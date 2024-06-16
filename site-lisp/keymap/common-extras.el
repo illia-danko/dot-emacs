@@ -7,7 +7,6 @@
 (define-key core/intercept-mode-map (kbd "C-c oa") #'org-agenda)
 (define-key core/intercept-mode-map (kbd "C-c ot") #'extras/org-capture-todo)
 (define-key core/intercept-mode-map (kbd "C-c od") #'extras/org-capture-diary)
-(define-key core/intercept-mode-map (kbd "C-c ob") #'extras/org-capture-slipbox)
 
 ;; Org Roam.
 (define-key core/intercept-mode-map (kbd "C-c ol") #'org-roam-backlinks-and-links)

@@ -5,7 +5,7 @@
 
 ;; org-roam.
 (api/customize-set-variable*
- 'org-roam-directory (file-truename "~/github.com/illia-danko/org-roam")
+ 'org-roam-directory (file-truename "~/github.com/illia-danko/slipbox")
  'org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag))
  'org-roam-capture-templates '(("d" "default" plain "%?" :target
 								(file+head "${slug}.org" "#+title: ${title}\n\n")
