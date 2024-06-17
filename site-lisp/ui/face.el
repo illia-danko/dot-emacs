@@ -9,9 +9,6 @@
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font Bold 10"))
 
-(defun ui/current-theme () (car custom-enabled-themes))
-(defun ui/reload-theme () (load-theme (ui/current-theme) t))
-
 (defun ui/customaize-theme (&optional frame)
   (interactive)
   (let ((frame (or frame (selected-frame))))
@@ -29,11 +26,14 @@
 		[(completions-common-part . orderless-match-face-0)
 		 (completions-first-difference . orderless-match-face-1)]))
 
-(defun ui/make-frame-hook ()
-  (ui/reload-theme) ; fix corrupted colors scheme when frame is created
-  (ui/customize-theme-frame nil))
+(advice-add 'load-theme :around #'(lambda (orig-fun &rest args)
+									(mapc #'disable-theme custom-enabled-themes)
+									(apply orig-fun args)
+									(ui/customize-theme-frame nil)))
 
-(add-hook 'server-after-make-frame-hook #'ui/make-frame-hook)
+(defun ui/current-theme () (car custom-enabled-themes))
+(defun ui/reload-theme () (load-theme (ui/current-theme) t)) ; fix corrupted colors scheme when frame is created
+(add-hook 'server-after-make-frame-hook #'ui/reload-theme)
 
 (when core/use-no-extras
   (load-theme ui/theme-light-variant t))
