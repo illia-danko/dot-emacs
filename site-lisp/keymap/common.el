@@ -10,6 +10,7 @@
 (require 'tool/spelling)
 (require 'tool/gutter)
 (require 'edit/core)
+(require 'edit/buffers)
 (require 'lang/elixir)
 
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
@@ -103,6 +104,8 @@
 (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'eval-defun)
 (define-key emacs-lisp-mode-map (kbd "C-c C-b") #'eval-buffer)
 (define-key lisp-interaction-mode-map (kbd "C-c C-b") #'eval-buffer)
+
+(global-set-key (kbd "C-c es") #'edit/switch-to-scratch-buffer)
 
 (define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
 (define-key elixir-ts-mode-map (kbd "C-c cP") #'lang/inf-elixir-phoenix-server)
