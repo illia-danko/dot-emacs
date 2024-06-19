@@ -5,6 +5,9 @@
 (defvar ui/theme-dark-variant 'spacemacs-dark)
 (defvar ui/theme-light-variant 'spacemacs-light)
 
+(when core/use-no-extras
+  (load-theme ui/theme-light-variant t))
+
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font Bold 10"))
@@ -34,8 +37,5 @@
 (defun ui/current-theme () (car custom-enabled-themes))
 (defun ui/reload-theme () (load-theme (ui/current-theme) t)) ; fix corrupted colors scheme when frame is created
 (add-hook 'server-after-make-frame-hook #'ui/reload-theme)
-
-(when core/use-no-extras
-  (load-theme ui/theme-light-variant t))
 
 (provide 'ui/face)
