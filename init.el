@@ -102,7 +102,6 @@
   (and core/use-evil-p (require 'tool/version-control-evil))
   (require 'tool/autoclose-compile-window)
   (require 'tool/diff)
-  (require 'tool/gpg)
   (require 'tool/rg)
   (require 'tool/restclient)
   (require 'tool/gutter)
