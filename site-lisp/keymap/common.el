@@ -106,6 +106,7 @@
 (define-key lisp-interaction-mode-map (kbd "C-c C-b") #'eval-buffer)
 
 (global-set-key (kbd "C-c es") #'edit/switch-to-scratch-buffer)
+(global-set-key (kbd "C-c em") #'edit/switch-to-messages-buffer)
 
 (define-key elixir-ts-mode-map (kbd "C-c cp") #'inf-elixir-project) ; alias to repl
 (define-key elixir-ts-mode-map (kbd "C-c cP") #'lang/inf-elixir-phoenix-server)
