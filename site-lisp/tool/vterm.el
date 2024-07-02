@@ -3,6 +3,7 @@
 (require 'api/macro)
 
 (defun tool/vterm-project (&optional args)
+  "Run vterm under the project root folder."
   (interactive)
   (let ((default-directory (core/project-root)))
 	(vterm)))

@@ -45,7 +45,7 @@
 (define-key project-prefix-map "x" #'project-forget-project)
 
 ;; Uses in conjunction with `project-switch-commands'.
-(define-key project-prefix-map "t" #'vterm)
+(define-key project-prefix-map "t" #'tool/vterm-project)
 (define-key project-prefix-map "g" #'tool/magit-status)
 (define-key project-prefix-map "R" #'rg)
 (define-key project-prefix-map "S" #'project-find-regexp)
