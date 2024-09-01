@@ -158,6 +158,10 @@
   (require 'lang/c)
   (require 'lang/vcl))
 
+;; Tools.
+(progn
+  (require 'tool/bury-window))
+
 ;; UI.
 (progn
   (straight-use-package 'rainbow-mode)
