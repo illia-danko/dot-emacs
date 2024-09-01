@@ -11,11 +11,8 @@
 (require 'core/intercept-mode)
 
 ;; evil.
-(defun edit/evil-keyboard-quit ()
-  "Keyboard quit and force normal state."
-  (interactive)
-  (and evil-mode (evil-force-normal-state))
-  (keyboard-quit))
+(advice-add 'keyboard-quit :before #'(lambda ()
+									   (and evil-mode (evil-force-normal-state))))
 
 (api/customize-set-variable*
  'evil-undo-system 'undo-redo
