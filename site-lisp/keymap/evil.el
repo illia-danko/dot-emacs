@@ -1,8 +1,7 @@
+;;;  evil.el --- Keybinding for vim mode  -*- lexical-binding:t; -*-
+
 (require 'edit/evil)
 (require 'core/intercept-mode)
-(require 'core/project)
-(require 'tool/vterm-evil)
-(require 'tool/dired)
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
@@ -15,6 +14,7 @@
   (kbd "o") #'tool/vterm-evil-exit-copy-mode
   (kbd "O") #'tool/vterm-evil-exit-copy-mode)
 
+(require 'tool/dired)
 (evil-define-key* '(normal) dired-mode-map
   (kbd "O") #'tool/dired-system-open)
 
@@ -43,8 +43,16 @@
   (kbd "gi") #'eglot-find-implementation
   (kbd "gn") #'eglot-rename)
 
+(require 'core/project)
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "C-t") #'project-find-file
   (kbd ", b") #'switch-to-buffer)
 
+(require 'tool/vterm-evil)
+(evil-define-key* '(normal) global-map
+  (kbd ", tt") #'tool/vterm-project
+  (kbd ", tT") #'vterm)
+
 (provide 'keymap/evil)
+
+;;; evil.el ends here
