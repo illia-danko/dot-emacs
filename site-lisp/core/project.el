@@ -3,7 +3,7 @@
 ;; Uses in conjunction with `project-prefix-map' mapping.
 (add-to-list 'project-switch-commands '(tool/vterm-project "VTerm"))
 (add-to-list 'project-switch-commands '(tool/magit-status "Magit Status"))
-(add-to-list 'project-switch-commands '(rg "RipGrep"))
+(add-to-list 'project-switch-commands '(tool/rg-project "RipGrep"))
 (add-to-list 'project-switch-commands '(project-compile "Build"))
 
 ;;;;;;;; Extends project-root to find extra project root patterns  ;;;;;;;;;
