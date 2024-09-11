@@ -122,7 +122,7 @@
   (straight-use-package 'evil-commentary)
   (straight-use-package 'evil-terminal-cursor-changer)
   (straight-use-package
-   '(navigate :type git :host github :repo "illia-danko/evil-tmux-navigator"))
+   '(navigate :type git :host github :repo "illia-danko/evil-wezterm-navigator"))
   (require 'edit/core)
   (require 'edit/treesit)
   (and core/use-evil-p (require 'edit/evil)))
