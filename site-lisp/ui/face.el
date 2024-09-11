@@ -1,9 +1,9 @@
-(require 'spacemacs-theme)
+(require 'doom-themes)
 (require 'orderless)
 (require 'completion)
 
-(defvar ui/theme-dark-variant 'spacemacs-dark)
-(defvar ui/theme-light-variant 'spacemacs-light)
+(defvar ui/theme-dark-variant 'doom-one)
+(defvar ui/theme-light-variant 'doom-one-light)
 
 (when core/use-no-extras
   (load-theme ui/theme-light-variant t))
