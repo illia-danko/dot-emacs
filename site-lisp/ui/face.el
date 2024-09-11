@@ -19,6 +19,13 @@
 
 (defun ui/customize-theme-frame (frame)
   ;; Fix highlighting discrepancy.
+  (let ((display-table (or standard-display-table (make-display-table))))
+	(set-display-table-slot display-table 'vertical-border (make-glyph-code ?│)) ; U+2502
+	(setq standard-display-table display-table))
+
+  (set-face-attribute 'vertical-border frame
+					  :background (face-background 'default))
+
   (mapc (lambda (face-group)
 		  (let ((face (car face-group))
 				(face-ref (cdr face-group)))
