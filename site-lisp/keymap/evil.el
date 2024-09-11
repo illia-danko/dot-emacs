@@ -22,8 +22,8 @@
 (evil-define-key* '(normal) global-map
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
-  (kbd "SPC hu") #'git-gutter:revert-hunk
-  (kbd "SPC hp") #'tool/git-gutter-popup-hunk-jump)
+  (kbd "g hu") #'git-gutter:revert-hunk
+  (kbd "g hp") #'tool/git-gutter-popup-hunk-jump)
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
@@ -45,6 +45,6 @@
 
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "C-t") #'project-find-file
-  (kbd ",b") #'switch-to-buffer)
+  (kbd ", b") #'switch-to-buffer)
 
 (provide 'keymap/evil)
