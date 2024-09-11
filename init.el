@@ -52,7 +52,7 @@
               `(,(expand-file-name "site-lisp" user-emacs-directory))))
 
 ;; Extensible and customizable VI Layer for Emacs.
-(defconst core/use-evil-p nil)
+(defconst core/use-evil-p t)
 (defconst core/use-no-extras (getenv "EMACS_NO_EXTRAS"))
 
 ;; Core settings.
