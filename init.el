@@ -9,15 +9,14 @@
 
 (add-hook 'emacs-startup-hook
 		  #'(lambda ()
-			  ;; After startup, it is important you reset this to some reasonable
-			  ;; default. A large gc-cons-threshold will cause freezing and
-			  ;; stuttering during long-term interactive use."
+			  ;; After startup, it is important you reset this to some reasonable default. A large
+			  ;; gc-cons-threshold will cause freezing and stuttering during long-term interactive
+			  ;; use."
 			  (setq gc-cons-threshold 16777216
 					gc-cons-percentage 0.1)))
 
-;; Adjust Emacs $PATH. To make $PATH works correctly on Emacs GUI it's needed to
-;; set via both: `exec-path' and `setenv'.
-;; TODO(idanko): check existence before add to $PATH.
+;; Adjust Emacs $PATH. To make $PATH works correctly on Emacs GUI it's needed to set via both:
+;; `exec-path' and `setenv'.
 (let ((path `("/usr/local/go/bin"
               "/opt/homebrew/bin"
 			  "/usr/local/bin"

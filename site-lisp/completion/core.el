@@ -72,10 +72,10 @@ If is no region, calls `func' without any `args'."
  'xref-show-definitions-function 'consult-xref
  'xref-show-xrefs-function 'consult-xref
  'consult-preview-key nil
- 'consult-ripgrep "rg \
---hidden -g !{.git,.svn,.hg,CVS,.bzr,vendor,node_modules,dist,venv,elm-stuff,.clj-kondo,.lsp,.cpcache} \
---null --line-buffered --color=never --max-columns=1000 --path-separator / \
---smart-case --no-heading --with-filename --line-number --search-zip")
+ 'consult-ripgrep (concat "rg "
+						  (getenv "RG_OPTS_FILTER")
+						  " --null --line-buffered --color=never --max-columns=1000 --path-separator"
+						  " --smart-case --no-heading --with-filename --line-number --search-zip"))
 
 ;; Allow display line numbers in preview.
 (add-to-list 'consult-preview-allowed-hooks 'global-display-line-numbers-mode-check-buffers)

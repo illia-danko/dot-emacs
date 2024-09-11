@@ -1,4 +1,11 @@
 (require 'project)
+(require 'vc)
+(require 'api/macro)
+
+(api/customize-set-variable*
+ 'vc-directory-exclusion-list (string-split (getenv "SEARCH_EXCLUDED_DIRS") ",") ; `project-find-file` excluded directories
+ )
+
 
 ;; Uses in conjunction with `project-prefix-map' mapping.
 (add-to-list 'project-switch-commands '(tool/vterm-project "VTerm"))
