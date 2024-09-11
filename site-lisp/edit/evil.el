@@ -3,7 +3,6 @@
 (require 'evil)
 (require 'evil-surround)
 (require 'evil-commentary)
-(require 'evil-terminal-cursor-changer)
 (require 'evil-anzu)
 (require 'navigate) ; evil-tmux-navigator: (Ctrl-h|j|k|l) keymap
 
@@ -38,10 +37,5 @@
 
 ;; evil-commentary.
 (evil-commentary-mode 1)
-
-;; evil-terminal-cursor-changer.
-(unless (display-graphic-p)
-  (etcc-on))
-
 
 (provide 'edit/evil)

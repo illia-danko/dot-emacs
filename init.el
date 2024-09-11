@@ -120,7 +120,6 @@
   (straight-use-package 'evil-anzu)
   (straight-use-package 'evil-surround)
   (straight-use-package 'evil-commentary)
-  (straight-use-package 'evil-terminal-cursor-changer)
   (straight-use-package
    '(navigate :type git :host github :repo "illia-danko/evil-wezterm-navigator"))
   (require 'edit/core)
