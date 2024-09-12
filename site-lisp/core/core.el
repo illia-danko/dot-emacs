@@ -89,4 +89,7 @@
 (api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
 (global-eldoc-mode 1)
 
+(api/customize-set-variable*
+ 'display-line-numbers-type 'relative)
+
 (provide 'core/core)
