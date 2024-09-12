@@ -1,4 +1,5 @@
 (require 'nix-mode)
+(require 'completion/lsp)
 (require 'edit/formatting)
 (require 'api/macro)
 
