@@ -53,6 +53,10 @@
   (kbd ", tt") #'tool/vterm-project
   (kbd ", tT") #'vterm)
 
+(require 'tool/spelling)
+(evil-define-key* '(normal) global-map
+  (kbd ", ss") #'tool/spelling-toggle-buffer)
+
 (provide 'keymap/evil)
 
 ;;; evil.el ends here

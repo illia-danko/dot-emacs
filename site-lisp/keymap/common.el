@@ -7,7 +7,6 @@
 (require 'tool/version-control)
 (require 'tool/dired)
 (require 'tool/vterm)
-(require 'tool/spelling)
 (require 'tool/gutter)
 (require 'edit/core)
 (require 'edit/buffers)
@@ -84,6 +83,7 @@
 (global-set-key (kbd "C-c t") #'tool/vterm-project)
 (global-set-key (kbd "C-c T") #'vterm)
 
+(require 'tool/spelling)
 (define-key core/intercept-mode-map (kbd "C-c !") #'tool/spelling-toggle-buffer)
 (define-key core/intercept-mode-map (kbd "C-M-S-i") #'ispell-word)
 
