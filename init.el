@@ -114,7 +114,6 @@
   (straight-use-package 'anzu)
   (straight-use-package 'rainbow-delimiters)
   (straight-use-package 'evil)
-  (straight-use-package 'evil-terminal-cursor-changer)
   (straight-use-package 'evil-collection)
   (straight-use-package 'evil-anzu)
   (straight-use-package 'evil-surround)

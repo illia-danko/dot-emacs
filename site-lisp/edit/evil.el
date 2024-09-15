@@ -38,9 +38,8 @@
 ;; evil-commentary.
 (evil-commentary-mode 1)
 
-;; evil-terminal-cursor-changer.
-(require 'evil-terminal-cursor-changer)
-(unless (display-graphic-p)
-  (etcc-on))
+;; evil-terminal-cursor-changer substitution.
+(add-hook 'evil-insert-state-entry-hook (lambda () (send-string-to-terminal "\033[5 q")))
+(add-hook 'evil-insert-state-exit-hook  (lambda () (send-string-to-terminal "\033[2 q")))
 
 (provide 'edit/evil)
