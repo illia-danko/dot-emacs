@@ -5,6 +5,13 @@
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
+(evil-define-key* '(normal) global-map
+  (kbd "g hk") #'describe-key
+  (kbd "g hv") #'describe-variable
+  (kbd "g hm") #'describe-mode
+  (kbd "g hM") #'describe-minor-mode
+  (kbd "g hf") #'describe-function
+  (kbd "g he") #'describe-face)
 
 (evil-define-key* '(normal) vterm-copy-mode-map
   (kbd "i") #'tool/vterm-evil-exit-copy-mode
@@ -22,8 +29,8 @@
 (evil-define-key* '(normal) global-map
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
-  (kbd "g hu") #'git-gutter:revert-hunk
-  (kbd "g hp") #'tool/git-gutter-popup-hunk-jump)
+  (kbd ", gr") #'git-gutter:revert-hunk
+  (kbd ", gs") #'tool/git-gutter-popup-hunk-jump)
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
@@ -32,7 +39,7 @@
   (kbd ", gb") #'magit-log-buffer-file
   (kbd ", gL") #'magit-log-all
   (kbd ", ga") #'magit-blame-addition
-  (kbd ", gr") #'magit-diff-range
+  (kbd ", gp") #'magit-diff-range
   (kbd ", gf") #'magit-find-file
   (kbd ", gu") #'git-link
   (kbd ", gU") #'tool/browse-project-home-page
