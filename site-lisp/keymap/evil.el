@@ -47,14 +47,14 @@
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
   (kbd ", gr") #'git-gutter:revert-hunk
-  (kbd ", gs") #'tool/git-gutter-popup-hunk-jump)
+  (kbd ", gD") #'tool/git-gutter-popup-hunk-jump)
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
   (kbd ", gg") #'magit-status
   (kbd ", gd") #'magit-diff-buffer-file
-  (kbd ", gb") #'magit-log-buffer-file
-  (kbd ", gL") #'magit-log-all
+  (kbd ", gL") #'magit-log-buffer-file
+  (kbd ", gl") #'magit-log-all
   (kbd ", ga") #'magit-blame-addition
   (kbd ", gp") #'magit-diff-range
   (kbd ", gf") #'magit-find-file
