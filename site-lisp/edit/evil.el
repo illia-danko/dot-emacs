@@ -38,13 +38,9 @@
 ;; evil-commentary.
 (evil-commentary-mode 1)
 
-;; evil-terminal-cursor-changer.
-(require 'evil-terminal-cursor-changer)
-(unless (display-graphic-p)
-  ;; NOTE(idanko): somethimes a glitch happens, the cursor has not changed on a new buffer. To prevent
-  ;; this situation, it overrides standard etcc functionality with extra term hooks.
-  (add-hook 'evil-insert-state-entry-hook (lambda () (send-string-to-terminal "\033[5 q")))
-  (add-hook 'evil-insert-state-exit-hook  (lambda () (send-string-to-terminal "\033[2 q")))
-  (etcc-on))
+;; evil-terminal-cursor-changer alternative.
+(add-hook 'evil-insert-state-entry-hook (lambda () (send-string-to-terminal "\033[5 q")))
+(add-hook 'evil-insert-state-exit-hook  (lambda () (send-string-to-terminal "\033[2 q")))
+(add-hook 'evil-normal-state-entry-hook  (lambda () (send-string-to-terminal "\033[2 q")))
 
 (provide 'edit/evil)
