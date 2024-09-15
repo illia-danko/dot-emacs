@@ -44,9 +44,11 @@
   (kbd "gn") #'eglot-rename)
 
 (require 'core/project)
+(require 'consult)
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "C-t") #'project-find-file
-  (kbd ", b") #'switch-to-buffer)
+  (kbd ", b") #'switch-to-buffer
+  (kbd ", B") #'consult-project-buffer)
 
 (require 'tool/vterm-evil)
 (evil-define-key* '(normal) global-map
@@ -56,6 +58,15 @@
 (require 'tool/spelling)
 (evil-define-key* '(normal) global-map
   (kbd ", ss") #'tool/spelling-toggle-buffer)
+
+(require 'core/project)
+(evil-define-key* '(normal) global-map
+  (kbd ", db") #'kill-this-buffer
+  (kbd ", dp") #'(lambda () (interactive) (project-kill-buffers t)))
+
+(require 'imenu)
+(evil-define-key* '(normal) global-map
+  (kbd ", v") #'imenu)
 
 (provide 'keymap/evil)
 
