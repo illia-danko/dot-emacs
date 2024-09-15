@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# contributor : Illia Danko <illia@danko.ws>
-# name: link template
-# key: [[
-# --
-[[][$0]]

@@ -1,17 +1,25 @@
-(require 'which-key)
-(require 'orderless)
-(require 'cape)
-(require 'yasnippet)
-(require 'corfu)
-(require 'corfu-terminal)
-(require 'consult)
-(require 'embark-consult)
-
 (require 'api/macro)
+
 ;; which-key-mode.
+(require 'which-key)
 (which-key-mode 1)
 
-;; cape.
+(require 'tempel)
+(require 'tempel-collection)
+(api/customize-set-variable*
+ 'tempel-trigger-prefix "<")
+
+(defun completion/snippets-setup-capf ()
+  (setq-local completion-at-point-functions
+			  (cons #'tempel-complete completion-at-point-functions)))
+
+(add-hook 'conf-mode-hook 'completion/snippets-setup-capf)
+(add-hook 'prog-mode-hook 'completion/snippets-setup-capf)
+(add-hook 'text-mode-hook 'completion/snippets-setup-capf)
+
+;; cape & orderless.
+(require 'cape)
+(require 'orderless)
 (api/customize-set-variable*
  'completion-styles '(orderless flex)
  'completion-category-defaults nil
@@ -20,21 +28,16 @@
 (add-to-list 'completion-at-point-functions #'cape-dabbrev) ; current buffer symbols completion
 (add-to-list 'completion-at-point-functions #'cape-file) ; path completion
 
-(defun completion/snippets-setup-capf ()
-  ;; tampel-complete must be a first item in completion-at-point-functions.
-  (add-to-ordered-list 'completion-at-point-functions (cape-company-to-capf #'company-yasnippet) 0))
-
-;; yasnippet.
-(yas-global-mode 1)
-
 ;; corfu.
+(require 'corfu)
+(require 'corfu-terminal)
 (api/customize-set-variable*
  'corfu-auto t ; automatically trigger popups
  'corfu-popupinfo-delay 0
  'corfu-preview-current nil
  'corfu-quit-at-boundary nil ; never quit at completion boundary
  'corfu-quit-no-match t ; quit, if there is no match
- 'corfu-preselect 'prompt ; preselect the prompt
+ 'corfu-preselect 'directory ; preselect a first candidate, except directory
  'corfu-on-exact-match nil) ; configure handling of exact matches
 
 (global-corfu-mode 1)
@@ -45,6 +48,7 @@
   (corfu-terminal-mode 1))
 
 ;; consult.
+(require 'consult)
 (defun completion/apply-region (func &rest args)
   "Apply the given `func' to its `args' and the marked region.
 If is no region, calls `func' without any `args'."
@@ -80,6 +84,7 @@ If is no region, calls `func' without any `args'."
 ;; Allow display line numbers in preview.
 (add-to-list 'consult-preview-allowed-hooks 'global-display-line-numbers-mode-check-buffers)
 
+(require 'embark-consult)
 (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
 
 (provide 'completion/core)

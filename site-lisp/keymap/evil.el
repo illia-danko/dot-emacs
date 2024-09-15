@@ -5,6 +5,7 @@
 
 ;; Core.
 (global-set-key [remap evil-copy-from-above] #'yank)
+
 (evil-define-key* '(normal) global-map
   (kbd "g hk") #'describe-key
   (kbd "g hv") #'describe-variable
@@ -13,6 +14,22 @@
   (kbd "g hf") #'describe-function
   (kbd "g he") #'describe-face)
 
+(evil-define-key* '(insert) global-map
+  (kbd "C-e") #'complete-symbol)
+
+(require 'corfu)
+(evil-define-key* '(insert) corfu-map
+  (kbd "C-e") #'corfu-complete)
+
+(require 'tempel)
+(evil-define-key* '(insert) tempel-map
+  (kbd "C-f") #'tempel-next
+  (kbd "C-b") #'tempel-previous
+  (kbd "C-q") #'tempel-abort)
+
+;; Rest.
+
+(require 'tool/vterm-evil)
 (evil-define-key* '(normal) vterm-copy-mode-map
   (kbd "i") #'tool/vterm-evil-exit-copy-mode
   (kbd "I") #'tool/vterm-evil-exit-copy-mode
