@@ -38,4 +38,9 @@
 ;; evil-commentary.
 (evil-commentary-mode 1)
 
+;; evil-terminal-cursor-changer.
+(require 'evil-terminal-cursor-changer)
+(unless (display-graphic-p)
+  (etcc-on))
+
 (provide 'edit/evil)
