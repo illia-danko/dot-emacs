@@ -4,7 +4,7 @@
 (require 'evil-surround)
 (require 'evil-commentary)
 (require 'evil-anzu)
-(require 'navigate) ; evil-tmux-navigator: (Ctrl-h|j|k|l) keymap
+(require 'etm) ; evil-terminal-multiplexer: (Ctrl-h|j|k|l) keymap
 
 (require 'api/macro)
 (require 'core/intercept-mode)

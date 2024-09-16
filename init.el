@@ -120,7 +120,7 @@
   (straight-use-package 'evil-surround)
   (straight-use-package 'evil-commentary)
   (straight-use-package
-   '(navigate :type git :host github :repo "illia-danko/evil-wezterm-navigator"))
+   '(etm :type git :host github :repo "illia-danko/evil-terminal-multiplexer"))
   (require 'edit/core)
   (require 'edit/treesit)
   (and core/use-evil-p (require 'edit/evil)))
