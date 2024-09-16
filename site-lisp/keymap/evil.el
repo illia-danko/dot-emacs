@@ -104,6 +104,10 @@
 (evil-define-key* '(normal) global-map
   (kbd ", v") #'imenu)
 
+(require 'ui/zen)
+(evil-define-key* '(normal) global-map
+  (kbd ", wz") #'ui/zen-toggle)
+
 (provide 'keymap/evil)
 
 ;;; evil.el ends here
