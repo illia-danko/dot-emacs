@@ -14,6 +14,18 @@
   (kbd "g hf") #'describe-function
   (kbd "g he") #'describe-face)
 
+(require 'recentf)
+(evil-define-key* '(normal) global-map
+  (kbd ", r") #'recentf)
+
+(require 'edit/buffers)
+(evil-define-key* '(normal) global-map
+  (kbd "g mm") #'bookmark-jump
+  (kbd "g ma") #'bookmark-set
+  (kbd "g ms") #'edit/switch-to-scratch-buffer
+  (kbd "g me") #'edit/switch-to-messages-buffer
+  (kbd "g md") #'bookmark-delete)
+
 (evil-define-key* '(insert) global-map
   (kbd "C-e") #'complete-symbol)
 
@@ -63,7 +75,7 @@
   (kbd ", gw") #'tool/compare-two-open-windows)
 
 (require 'completion/lsp)
-(evil-define-key* '(normal) global-map
+(evil-define-key* '(normal) eglot-mode-map
   (kbd "gi") #'eglot-find-implementation
   (kbd "gn") #'eglot-rename)
 
