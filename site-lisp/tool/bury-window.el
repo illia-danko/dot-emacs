@@ -1,12 +1,9 @@
 ;;;  bury-window.el --- Close predefined a buffers when keyboard-quit command (C-g) is trigger  -*- lexical-binding:t; -*-
-(require 'eldoc)
-(require 'help)
-
 (defvar tools/bury-window-buffer-list
-  '("*eldoc" "*Help*")
+  '("*eldoc" "*help*" "*embark")
   "Buffer patterns ignored by `tools/bury-window-maybe-bury'.")
 
-(defun tools/bury-window-but-this ()
+(defun tools/bury-other-window-list ()
   "Return window list excluding the current active one."
   (let* ((current-window (selected-window))
          (other-windows (seq-filter (lambda (win)
@@ -16,17 +13,18 @@
 
 ;;;###autoload
 (defun tools/bury-window-maybe-bury ()
-  "Close active windows satisfying `tools/bury-window-buffer-list'."
+  "Close active windows satisfying any of `tools/bury-window-buffer-list' prefix patterns"
   (interactive)
   (mapc (lambda (win)
-          (let ((buf-name (buffer-name (window-buffer win))))
-            (and (string-match-p "^\\*.*\\*$" buf-name) ; leading and trailing asterisk match
-                 (cl-remove-if
+          (let* ((wbuf (window-buffer win))
+				 (buf-name (buffer-name wbuf))
+				 (buf (downcase buf-name)))
+			(and (cl-remove-if-not
 				  (lambda (str)
-					(string-prefix-p str buf-name))
+					(string-prefix-p str buf))
 				  tools/bury-window-buffer-list)
-                 (delete-window win))))
-        (tools/bury-window-but-this)))
+				 (delete-window win))))
+		(tools/bury-other-window-list)))
 
 (advice-add 'keyboard-quit :before #'tools/bury-window-maybe-bury)
 
