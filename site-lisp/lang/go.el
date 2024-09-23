@@ -19,11 +19,11 @@
 	  (api/upsert-car-string format-all-default-formatters
 							 '("Go" golines)))
 
-(defun lang/go-setup-hook ()
+(defun lang/go-mode-hook ()
   (setq-local fill-column 120)
   (eglot-ensure)
   (format-all-mode 1))
 
-(add-hook 'go-mode-hook #'lang/go-setup-hook)
+(add-hook 'go-mode-hook #'lang/go-mode-hook)
 
 (provide 'lang/go)
