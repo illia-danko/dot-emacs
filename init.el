@@ -135,7 +135,7 @@
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/conf)
-  (require 'text/protobuf))
+  )
 
 ;; Languages.
 (progn
@@ -145,6 +145,7 @@
   (straight-use-package 'nix-mode)
   (straight-use-package 'vcl-mode)
   (straight-use-package 'go-mode)
+  (straight-use-package 'terraform-mode)
   (require 'lang/prog-mode)
   (require 'lang/emacs-lisp)
   (require 'lang/go)
@@ -153,7 +154,9 @@
   (require 'lang/web) ; web development kit
   (require 'lang/nix)
   (require 'lang/c)
-  (require 'lang/vcl))
+  (require 'lang/vcl)
+  (require 'lang/terraform)
+  )
 
 ;; Tools.
 (progn
