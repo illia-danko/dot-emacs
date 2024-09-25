@@ -38,11 +38,4 @@
 ;; evil-commentary.
 (evil-commentary-mode 1)
 
-;; evil-terminal-cursor-changer alternative.
-(add-hook 'evil-insert-state-entry-hook (lambda () (send-string-to-terminal "\033[5 q")))
-(add-hook 'evil-insert-state-exit-hook  (lambda () (send-string-to-terminal "\033[2 q")))
-;; XXX(idanko): fix special case for magit when the cursor has not changed backed to normal after
-;; magit commit.
-(add-hook 'magit-status-headers-hook  (lambda () (send-string-to-terminal "\033[2 q")))
-
 (provide 'edit/evil)
