@@ -60,7 +60,8 @@
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
   (kbd ", dh") #'git-gutter:revert-hunk ; [d]elete [h]unk.
-  (kbd ", gD") #'tool/git-gutter-popup-hunk-jump)
+  (kbd ", gh") #'tool/git-gutter-popup-hunk-jump
+  )
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
