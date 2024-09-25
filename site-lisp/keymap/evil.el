@@ -12,7 +12,8 @@
   (kbd "g hm") #'describe-mode
   (kbd "g hM") #'describe-minor-mode
   (kbd "g hf") #'describe-function
-  (kbd "g he") #'describe-face)
+  (kbd "g he") #'describe-face
+  (kbd ", d#") #'server-force-delete)
 
 (require 'recentf)
 (evil-define-key* '(normal) global-map
