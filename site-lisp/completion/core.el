@@ -32,7 +32,6 @@
 (require 'corfu)
 (require 'corfu-terminal)
 (api/customize-set-variable*
- 'corfu-auto t ; automatically trigger popups
  'corfu-popupinfo-delay 0
  'corfu-preview-current nil
  'corfu-quit-at-boundary nil ; never quit at completion boundary
