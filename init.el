@@ -88,7 +88,7 @@
   (straight-use-package 'vterm)
   (straight-use-package 'magit)
   (straight-use-package 'git-link)
-  (straight-use-package 'git-gutter) ; track and navigate to git changes inside a buffer
+  (straight-use-package 'git-gutter-fringe) ; track and navigate to git changes inside a buffer
   (straight-use-package 'rg) ; search and bulk replace
   (straight-use-package 'restclient) ; rest client to perform json rest queries
   (straight-use-package 'nerd-icons-dired)
