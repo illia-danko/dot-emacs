@@ -58,12 +58,13 @@
 (evil-define-key* '(normal) global-map
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
-  (kbd ", gr") #'git-gutter:revert-hunk
+  (kbd ", dh") #'git-gutter:revert-hunk ; [d]elete [h]unk.
   (kbd ", gD") #'tool/git-gutter-popup-hunk-jump)
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
   (kbd ", gg") #'magit-status
+  (kbd ", gs") #'magit-status
   (kbd ", gd") #'magit-diff-buffer-file
   (kbd ", gL") #'magit-log-buffer-file
   (kbd ", gl") #'magit-log-all
@@ -107,6 +108,10 @@
 (require 'ui/zen)
 (evil-define-key* '(normal) global-map
   (kbd ", wz") #'ui/zen-toggle)
+
+(require 'ace-jump-mode)
+(evil-define-key* '(normal) global-map
+  (kbd "M-t") #'ace-jump-mode)
 
 (provide 'keymap/evil)
 
