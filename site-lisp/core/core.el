@@ -1,19 +1,7 @@
-(require 'emacs)
-(require 'tool-bar)
-(require 'menu-bar)
-(require 'scroll-bar)
-(require 'frame)
-(require 'bookmark)
-(require 'files)
-(require 'delsel)
-(require 'saveplace)
-(require 'recentf)
-(require 'savehist)
-(require 'eldoc)
-(require 'imenu)
 (require 'api/macro)
 
 ;; Core.
+(require 'emacs)
 (api/customize-set-variable*
  'tab-width 4  ; number spaces per a tab
  'ring-bell-function 'ignore ; stop ring bell alarms
@@ -54,41 +42,55 @@
        (load private-settings)))
 
 ;; Disable tool bar.
+(require 'tool-bar)
 (tool-bar-mode -1)
 
 ;; Disable menu bar.
+(require 'menu-bar)
 (menu-bar-mode -1)
 
 ;; Disable scrool bar.
+(require 'scroll-bar)
 (scroll-bar-mode -1)
 
 ;; Customize cursor.
+(require 'frame)
 (api/customize-set-variable* 'visible-cursor nil)
 (blink-cursor-mode -1)
 
 ;; Set bookmark's configuration file.
+(require 'bookmark)
 (api/customize-set-variable*
  'bookmark-default-file (expand-file-name "bookmarks" core/emacs-config-directory))
 
 ;; Do not store backup files.
+(require 'files)
 (api/customize-set-variable* 'make-backup-files nil)
 
 ;; Delete selection on yank (override selected text).
+(require 'delsel)
 (delete-selection-mode 1)
 
 ;; Restore last edit position of a file.
+(require 'saveplace)
 (save-place-mode 1)
 
 ;; Keep track of recent open files.
+(require 'recentf)
 (recentf-mode 1)
 
 ;; Keep track of minibuffer history.
+(require 'savehist)
 (savehist-mode 1)
 
-;; Disable echo area documentation.
-(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
-(global-eldoc-mode 1)
+;; Disable echo area.
+(defun core/minibuffer-setup-hook ()
+  (setq-local inhibit-message t))
+(global-eldoc-mode -1)
 
+(add-hook 'minibuffer-setup-hook #'core/minibuffer-setup-hook)
+
+(require 'display-line-numbers)
 (api/customize-set-variable*
  'display-line-numbers-type 'relative)
 
