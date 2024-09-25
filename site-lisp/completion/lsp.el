@@ -3,7 +3,7 @@
 (require 'flymake)
 (require 'api/macro)
 
-(api/customize-set-variable* 'eglot-stay-out-of '(flymake eldoc))
+(api/customize-set-variable* 'eglot-stay-out-of '(flymake))
 
 ;; Override `eglot--message' to disable minibuffer messages.
 (defun eglot--message (format &rest args))

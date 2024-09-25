@@ -83,12 +83,8 @@
 (require 'savehist)
 (savehist-mode 1)
 
-;; Disable echo area.
-(defun core/minibuffer-setup-hook ()
-  (setq-local inhibit-message t))
-(global-eldoc-mode -1)
-
-(add-hook 'minibuffer-setup-hook #'core/minibuffer-setup-hook)
+(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
+(global-eldoc-mode 1)
 
 (require 'display-line-numbers)
 (api/customize-set-variable*
