@@ -23,7 +23,7 @@
 (require 'edit/buffers)
 (require 'dashboard)
 (evil-define-key* '(normal) global-map
-  (kbd "g mh") #'dashboard-open
+  (kbd "g md") #'dashboard-open
   (kbd "g ma") #'bookmark-jump
   (kbd "g mn") #'bookmark-set
   (kbd "g ms") #'edit/switch-to-scratch-buffer
