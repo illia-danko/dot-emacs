@@ -11,6 +11,12 @@
  )
 
 (dashboard-setup-startup-hook)
-(add-hook 'server-after-make-frame-hook #'dashboard-refresh-buffer)
+
+(defun extras/dashboard-refresh-buffer (&rest _)
+  (interactive)
+  (let ((dashboard-force-refresh t))
+	(dashboard-insert-startupify-lists)))
+
+(add-hook 'server-after-make-frame-hook #'extras/dashboard-refresh-buffer)
 
 (provide 'extras/dashboard)
