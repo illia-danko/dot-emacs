@@ -71,7 +71,7 @@
   (kbd ", gg") #'magit-status
   (kbd ", gs") #'magit-status
   (kbd ", gd") #'magit-diff-buffer-file
-  (kbd ", gL") #'magit-log-buffer-file
+  (kbd ", gb") #'magit-log-buffer-file
   (kbd ", gl") #'magit-log-all
   (kbd ", ga") #'magit-blame-addition
   (kbd ", gp") #'magit-diff-range
