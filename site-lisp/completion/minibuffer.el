@@ -32,4 +32,7 @@
 (vertico-posframe-mode 1)
 (vertico-multiform-mode 1)
 
+;; HACK(idanko): posframe loose the border. Refresh it.
+(add-hook 'magit-post-refresh-hook #'posframe-delete-all)
+
 (provide 'completion/minibuffer)
