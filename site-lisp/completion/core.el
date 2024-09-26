@@ -86,4 +86,8 @@ If is no region, calls `func' without any `args'."
 (require 'embark-consult)
 (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
 
+(require 'eldoc)
+(api/customize-set-variable* 'eldoc-echo-area-use-multiline-p nil)
+(global-eldoc-mode 1)
+
 (provide 'completion/core)
