@@ -30,6 +30,8 @@
 
 ;; evil-collection.
 (require 'evil-collection)
+(api/customize-set-variable* 'evil-collection-mode-list
+							 (remove 'vterm evil-collection-mode-list))
 (evil-collection-init)
 
 ;; evil-surround.

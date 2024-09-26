@@ -52,7 +52,13 @@
   (kbd "a") #'tool/vterm-evil-exit-copy-mode
   (kbd "A") #'tool/vterm-evil-exit-copy-mode
   (kbd "o") #'tool/vterm-evil-exit-copy-mode
-  (kbd "O") #'tool/vterm-evil-exit-copy-mode)
+  (kbd "O") #'tool/vterm-evil-exit-copy-mode
+  (kbd "<escape>") #'switch-to-prev-buffer
+  (kbd "C-g") #'switch-to-prev-buffer)
+
+(evil-define-key* '(emacs) vterm-mode-map
+  (kbd "<escape>") #'tool/vterm-evil-copy-mode-normal-mode
+  (kbd "C-g") #'tool/vterm-evil-copy-mode-normal-mode)
 
 (require 'tool/dired)
 (evil-define-key* '(normal) dired-mode-map
