@@ -94,6 +94,7 @@
 (require 'core/project)
 (require 'consult)
 (evil-define-key* '(normal) core/intercept-mode-map
+  (kbd "C-q") #'project-switch-project
   (kbd "C-t") #'project-find-file
   (kbd ", b") #'switch-to-buffer
   (kbd ", B") #'consult-project-buffer)
