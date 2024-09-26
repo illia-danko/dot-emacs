@@ -67,6 +67,7 @@
   (straight-use-package 'nerd-icons-completion)
   (straight-use-package 'marginalia)
   (straight-use-package 'vertico)
+  (straight-use-package 'vertico-posframe)
   (straight-use-package 'which-key)
   (straight-use-package 'orderless)
   (straight-use-package 'tempel)
