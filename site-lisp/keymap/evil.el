@@ -19,13 +19,16 @@
 (evil-define-key* '(normal) global-map
   (kbd ", r") #'recentf)
 
+;; Bookmarks and shortcuts.
 (require 'edit/buffers)
+(require 'dashboard)
 (evil-define-key* '(normal) global-map
-  (kbd "g mm") #'bookmark-jump
-  (kbd "g ma") #'bookmark-set
+  (kbd "g mh") #'dashboard-open
+  (kbd "g ma") #'bookmark-jump
+  (kbd "g mn") #'bookmark-set
   (kbd "g ms") #'edit/switch-to-scratch-buffer
-  (kbd "g me") #'edit/switch-to-messages-buffer
-  (kbd "g md") #'bookmark-delete)
+  (kbd "g mm") #'edit/switch-to-messages-buffer
+  (kbd "g mr") #'bookmark-delete)
 
 (evil-define-key* '(insert) global-map
   (kbd "C-e") #'complete-symbol)
