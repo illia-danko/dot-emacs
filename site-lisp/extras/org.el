@@ -12,9 +12,7 @@
   (interactive)
   (consult-ripgrep org-directory))
 
-(defun extras/org-capture-todo () (interactive) (org-capture nil "t"))
-(defun extras/org-capture-diary () (interactive) (org-capture nil "d"))
-(defun extras/org-capture-slipbox () (interactive) (org-capture nil "b"))
+(defun extras/org-capture-slipbox () (interactive) (org-capture nil "x"))
 
 (defun extras/org-toggle-fontifications ()
   "Toggle fontifications on/off.
@@ -43,8 +41,7 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
  'org-agenda-files (list org-default-notes-file)
  'org-capture-bookmark nil ; do not keep bookmarks
  'org-capture-templates
- `(("d" "[d]iary entry" entry (file org-default-notes-file) "* %U %?")
-   ("t" "[t]odo item" entry (file org-default-notes-file) "* %U\n** TODO %?"))
+ `(("x" "[s]lipbox entry" entry (file org-default-notes-file) "* %?\n"))
  'org-fontify-whole-heading-line t
  'org-reverse-note-order t
  'org-fontify-done-headline t ; distinct DONE entries
