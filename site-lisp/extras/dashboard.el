@@ -2,7 +2,7 @@
 (require 'api/macro)
 
 (api/customize-set-variable*
- 'initial-buffer-choice #'(lambda () (get-buffer-create "*dashboard*"))
+ 'initial-buffer-choice #'(lambda () (get-buffer-create dashboard-buffer-name))
  'dashboard-filter-agenda-entry 'dashboard-no-filter-agenda ; show todo entries
  'dashboard-items '((agenda . 16)) ; layout
  'dashboard-projects-backend 'project-el ; use project-el as project backend
@@ -11,5 +11,6 @@
  )
 
 (dashboard-setup-startup-hook)
+(add-hook 'server-after-make-frame-hook #'dashboard-refresh-buffer)
 
 (provide 'extras/dashboard)
