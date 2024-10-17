@@ -25,5 +25,8 @@
   (format-all-mode 1))
 
 (add-hook 'go-mode-hook #'lang/go-mode-hook)
+(add-hook 'go-dot-mod-mode-hook #'hl-line-mode)
+(add-hook 'go-dot-mod-mode-hook #'display-line-numbers-mode)
+
 
 (provide 'lang/go)
