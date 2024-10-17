@@ -91,6 +91,7 @@
   (kbd "gi") #'eglot-find-implementation
   (kbd "gn") #'eglot-rename)
 
+(require 'completion/core)
 (require 'core/project)
 (require 'consult)
 (evil-define-key* '(normal) core/intercept-mode-map
@@ -99,6 +100,10 @@
   (kbd ", b") #'switch-to-buffer
   (kbd ", B") #'consult-project-buffer)
 
+(evil-define-key* '(normal visual) core/intercept-mode-map
+  (kbd ", ss") #'completion/consult-ripgrep
+  (kbd ", sS") #'completion/consult-line-multi)
+
 (require 'tool/vterm-evil)
 (evil-define-key* '(normal) global-map
   (kbd ", tt") #'tool/vterm-project
@@ -106,7 +111,7 @@
 
 (require 'tool/spelling)
 (evil-define-key* '(normal) global-map
-  (kbd ", ss") #'tool/spelling-toggle-buffer)
+  (kbd ", se") #'tool/spelling-toggle-buffer)
 
 (require 'core/project)
 (evil-define-key* '(normal) global-map
