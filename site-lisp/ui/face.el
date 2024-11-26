@@ -1,7 +1,7 @@
-(require 'doom-themes)
+(require 'catppuccin-theme)
 
-(defvar ui/theme-dark-variant 'doom-one)
-(defvar ui/theme-light-variant 'doom-one-light)
+(defvar ui/theme-dark-variant 'catppuccin)
+(defvar ui/theme-light-variant 'catppuccin)
 
 (when core/use-no-extras
   (load-theme ui/theme-light-variant t))
