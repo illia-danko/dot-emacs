@@ -131,11 +131,13 @@
   (straight-use-package 'markdown-mode)
   (straight-use-package 'dockerfile-mode)
   (straight-use-package 'protobuf-mode)
+  (straight-use-package 'po-mode)
   (require 'text/text-mode)
   (require 'text/markdown)
   (require 'text/yaml)
   (require 'text/cmake)
   (require 'text/conf)
+  (require 'text/po-mode)
   )
 
 ;; Languages.
