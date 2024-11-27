@@ -7,12 +7,6 @@
 (global-set-key [remap evil-copy-from-above] #'yank)
 
 (evil-define-key* '(normal) global-map
-  (kbd "g hk") #'describe-key
-  (kbd "g hv") #'describe-variable
-  (kbd "g hm") #'describe-mode
-  (kbd "g hM") #'describe-minor-mode
-  (kbd "g hf") #'describe-function
-  (kbd "g he") #'describe-face
   (kbd ", d#") #'server-force-delete)
 
 (require 'recentf)
@@ -68,9 +62,8 @@
 (evil-define-key* '(normal) global-map
   (kbd "]c") #'git-gutter:next-hunk
   (kbd "[c") #'git-gutter:previous-hunk
-  (kbd ", dh") #'git-gutter:revert-hunk ; [d]elete [h]unk.
-  (kbd ", gh") #'tool/git-gutter-popup-hunk-jump
-  )
+  (kbd "ghu") #'git-gutter:revert-hunk
+  (kbd "ghp") #'tool/git-gutter-popup-hunk-jump)
 
 (require 'tool/version-control)
 (evil-define-key* '(normal) global-map
