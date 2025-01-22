@@ -12,6 +12,9 @@
 (require 'edit/buffers)
 (require 'lang/elixir)
 
+;; Rebind it, since C-SPC is occupied by TMUX prefix.
+(global-set-key (kbd "C-z") #'set-mark-command)
+
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
 
 (global-set-key (kbd "C-c v") #'imenu)
