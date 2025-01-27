@@ -40,4 +40,14 @@
 ;; evil-commentary.
 (evil-commentary-mode 1)
 
+;; `evil-terminal-cursor-changer` alternative.
+(unless (display-graphic-p)
+  (defun terminal-cursor-shape-bar () (ignore-errors (send-string-to-terminal "\033[5 q")))
+  (defun terminal-cursor-shape-box () (ignore-errors (send-string-to-terminal "\033[2 q")))
+
+  (add-hook 'evil-insert-state-entry-hook #'terminal-cursor-shape-bar)
+  (add-hook 'evil-insert-state-exit-hook #'terminal-cursor-shape-box)
+  (add-hook 'magit-status-headers-hook #'terminal-cursor-shape-box)
+  (add-hook 'kill-emacs-hook #'terminal-cursor-shape-box))
+
 (provide 'edit/evil)
