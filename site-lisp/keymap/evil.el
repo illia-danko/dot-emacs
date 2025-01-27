@@ -4,8 +4,6 @@
 (require 'core/intercept-mode)
 
 ;; Core.
-(global-set-key [remap evil-copy-from-above] #'yank)
-
 (evil-define-key* '(normal) global-map
   (kbd ", d#") #'server-force-delete)
 
@@ -24,12 +22,17 @@
   (kbd "g mm") #'edit/switch-to-messages-buffer
   (kbd "g mr") #'bookmark-delete)
 
+;; Completion.
 (evil-define-key* '(insert) global-map
-  (kbd "C-e") #'complete-symbol)
+  (kbd "C-t") #'complete-symbol)
 
 (require 'corfu)
 (evil-define-key* '(insert) corfu-map
-  (kbd "C-e") #'corfu-complete)
+  (kbd "C-t") #'corfu-complete)
+
+;; Optional: Make C-y work in insert and visual states too
+(evil-define-key* '(visual replace insert normal) global-map
+  (kbd "C-y") #'consult-yank-pop)
 
 (require 'tempel)
 (evil-define-key* '(insert) tempel-map
@@ -38,7 +41,6 @@
   (kbd "C-q") #'tempel-abort)
 
 ;; Rest.
-
 (require 'tool/vterm-evil)
 (evil-define-key* '(normal) vterm-copy-mode-map
   (kbd "i") #'tool/vterm-evil-exit-copy-mode
