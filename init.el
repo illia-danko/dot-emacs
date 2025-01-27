@@ -124,9 +124,10 @@
    '(etm :type git :host github :repo "illia-danko/evil-terminal-multiplexer"))
   (require 'edit/core)
   (require 'edit/treesit)
+  (require 'edit/expand-region)
   (and core/use-evil-p (require 'edit/evil)))
 
-;; Text.
+;; Text Modes.
 (progn
   (straight-use-package 'markdown-mode)
   (straight-use-package 'dockerfile-mode)

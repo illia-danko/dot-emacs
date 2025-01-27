@@ -123,6 +123,17 @@
 (evil-define-key* '(normal) global-map
   (kbd "M-t") #'ace-jump-mode)
 
+(require 'hydra)
+(require 'expand-region)
+(defhydra edit/expand-region (:color blue)
+  "Expand Region"
+  ("r" er/expand-region "expand-region" :exit nil)
+  ("R" er/contract-region "contract-region" :exit nil)
+  ("q" nil "cancel"))
+
+(evil-define-key* '(normal) global-map
+  (kbd "g e") #'edit/expand-region/body)
+
 (provide 'keymap/evil)
 
 ;;; evil.el ends here
