@@ -19,6 +19,8 @@
  'auth-source-save-behavior nil ; do not ask to save passwords file using tramp
  'inhibit-startup-message t ; do not show Emacs startup log message
  'create-lockfiles nil ; privent creation files with hashes, e.g. #file#
+ 'backup-directory-alist `((".*" . ,temporary-file-directory))
+ 'auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
  )
 
 (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
