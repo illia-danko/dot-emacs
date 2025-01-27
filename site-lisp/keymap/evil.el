@@ -134,6 +134,10 @@
 (evil-define-key* '(normal) global-map
   (kbd "g e") #'edit/expand-region/body)
 
+(require 'rainbow-mode)
+(evil-define-key* '(normal) global-map
+  (kbd ", wr") #'rainbow-mode)
+
 (provide 'keymap/evil)
 
 ;;; evil.el ends here

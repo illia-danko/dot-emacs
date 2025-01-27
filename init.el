@@ -178,7 +178,6 @@
   (straight-use-package 'doom-modeline)
   (require 'ui/face)
   (require 'ui/modeline)
-  (require 'ui/color-highlight)
   (require 'ui/highlight-todos)
   (require 'ui/zen))
 
