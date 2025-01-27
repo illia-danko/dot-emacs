@@ -159,6 +159,7 @@
   (require 'lang/c)
   (require 'lang/vcl)
   (require 'lang/terraform)
+  (require 'lang/sql)
   )
 
 ;; Tools.
