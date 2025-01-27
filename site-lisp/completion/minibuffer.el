@@ -26,11 +26,13 @@
 							   (t posframe))
  ;; Add margin to posframe buffer.
  'vertico-posframe-parameters '((left-fringe . 8)
-								(right-fringe . 8)))
+								(right-fringe . 8))
+ 'vertico-buffer-display-action '(display-buffer-use-least-recent-window))
 
 (vertico-mode 1)
 (vertico-posframe-mode 1)
 (vertico-multiform-mode 1)
+(vertico-buffer-mode 1)
 
 ;; HACK(idanko): posframe loose the border. Refresh it.
 (add-hook 'magit-post-refresh-hook #'posframe-delete-all)
