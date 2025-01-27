@@ -141,7 +141,7 @@
   (require 'text/po-mode)
   )
 
-;; Languages.
+;; Languages Modes.
 (progn
   (straight-use-package 'inf-elixir)
   (straight-use-package 'elixir-ts-mode)
