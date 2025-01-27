@@ -1,6 +1,6 @@
 ;;;  bury-window.el --- Close predefined a buffers when keyboard-quit command (C-g) is trigger  -*- lexical-binding:t; -*-
 (defvar tools/bury-window-buffer-list
-  '("*eldoc" "*help*" "*embark")
+  '("*eldoc" "*help*" "*embark" "magit-revision")
   "Buffer patterns ignored by `tools/bury-window-maybe-bury'.")
 
 (defun tools/bury-other-window-list ()
