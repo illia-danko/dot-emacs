@@ -30,9 +30,12 @@
 (evil-define-key* '(insert) corfu-map
   (kbd "C-t") #'corfu-complete)
 
-;; Optional: Make C-y work in insert and visual states too
 (evil-define-key* '(visual replace insert normal) global-map
   (kbd "C-y") #'consult-yank-pop)
+
+;; Disable unused commands.
+(define-key evil-insert-state-map (kbd "C-e") nil)
+(define-key evil-insert-state-map (kbd "C-a") nil)
 
 (require 'tempel)
 (evil-define-key* '(insert) tempel-map
