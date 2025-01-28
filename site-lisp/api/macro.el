@@ -6,4 +6,10 @@
 	   ,@vars
 	   )))
 
+(defmacro defun-iteractive(name body)
+  `(defun ,name (&optional arg)
+     (interactive)
+	 (progn
+	   ,body)))
+
 (provide 'api/macro)

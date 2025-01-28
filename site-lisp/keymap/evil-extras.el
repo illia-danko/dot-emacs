@@ -1,5 +1,6 @@
 (require 'extras/org)
 (require 'extras/org-evil)
+(require 'api/macro)
 
 (evil-define-key* '(normal) org-mode-map
   (kbd "RET") #'org-open-at-point
@@ -14,6 +15,6 @@
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "g ka") #'org-agenda
   (kbd "g kx") #'extras/org-capture-slipbox
-  (kbd "g kv") #'(lambda () (interactive) (find-file org-default-notes-file)))
+  (kbd "g kv")  (defun-iteractive org-default-nodes (find-file org-default-notes-file)))
 
 (provide 'keymap/evil-extras)
