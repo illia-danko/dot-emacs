@@ -97,8 +97,8 @@
 (evil-define-key* '(normal) core/intercept-mode-map
   (kbd "C-q") #'project-switch-project
   (kbd "C-t") #'project-find-file
-  (kbd ", b") #'switch-to-buffer
-  (kbd ", B") #'consult-project-buffer)
+  (kbd ", B") #'consult-buffer
+  (kbd ", b") #'consult-project-buffer)
 
 (evil-define-key* '(normal visual) core/intercept-mode-map
   (kbd ", ss") #'completion/consult-ripgrep

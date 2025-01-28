@@ -78,7 +78,10 @@ If is no region, calls `func' without any `args'."
  'consult-ripgrep (concat "rg "
 						  (getenv "RG_OPTS_FILTER")
 						  " --null --line-buffered --color=never --max-columns=1000 --path-separator"
-						  " --smart-case --no-heading --with-filename --line-number --search-zip"))
+						  " --smart-case --no-heading --with-filename --line-number --search-zip")
+ 'consult-buffer-sources '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-file-register)
+ 'consult-project-buffer-sources '(consult--source-project-buffer)
+ )
 
 (add-to-list 'consult-preview-allowed-hooks 'display-line-numbers-mode)
 

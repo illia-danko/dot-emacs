@@ -37,10 +37,10 @@
 (global-set-key [remap recentf-open-files]                #'consult-recent-file)
 (global-set-key [remap switch-to-buffer]                  #'consult-project-buffer)
 (global-set-key [remap org-agenda]                        #'consult-org-agenda)
-(global-set-key [remap switch-to-buffer-other-window]     #'consult-buffer-other-window)
-(global-set-key [remap switch-to-buffer-other-frame]      #'consult-buffer-other-frame)
+(global-set-key [remap switch-to-buffer-other-window]     #'consult-project-buffer-other-window)
+(global-set-key [remap switch-to-buffer-other-frame]      #'consult-project-buffer-other-frame)
 (global-set-key [remap yank-pop]                          #'consult-yank-pop)
-(global-set-key [remap switch-to-buffer]                  #'consult-buffer)
+(global-set-key [remap switch-to-buffer]                  #'consult-project-buffer)
 (global-set-key [remap imenu]                             #'consult-imenu)
 
 (define-key project-prefix-map "z" #'project-forget-zombie-projects)
