@@ -8,10 +8,6 @@
   (interactive)
   (tool/git-push-current-file org-directory))
 
-(defun extras/org-consult-ripgrep ()
-  (interactive)
-  (consult-ripgrep org-directory))
-
 (defun extras/org-capture-slipbox () (interactive) (org-capture nil "x"))
 
 (defun extras/org-toggle-fontifications ()
@@ -61,6 +57,5 @@ https://github.com/zaeph/.emacs.d/blob/4548c34d1965f4732d5df1f56134dc36b58f6577/
 ;; Preload babel. Make possible to evaluate src code block.
 (org-babel-do-load-languages 'org-babel-load-languages
 							 '((shell . t)))
-
 
 (provide 'extras/org)
