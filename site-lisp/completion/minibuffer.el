@@ -27,9 +27,8 @@
  ;; Add margin to posframe buffer.
  'vertico-posframe-parameters '((left-fringe . 8)
 								(right-fringe . 8))
- 'vertico-buffer-display-action '(display-buffer-in-direction
-								  (direction . left)
-								  (window-width . 0.5)))
+ 'vertico-buffer-display-action '(display-buffer-full-frame)
+ )
 
 (vertico-mode 1)
 (vertico-posframe-mode 1)
