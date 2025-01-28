@@ -74,14 +74,13 @@ If is no region, calls `func' without any `args'."
 (api/customize-set-variable*
  'xref-show-definitions-function 'consult-xref
  'xref-show-xrefs-function 'consult-xref
- 'consult-preview-key nil
+ 'consult-preview-key '(:debounce 0.4 any)
  'consult-ripgrep (concat "rg "
 						  (getenv "RG_OPTS_FILTER")
 						  " --null --line-buffered --color=never --max-columns=1000 --path-separator"
 						  " --smart-case --no-heading --with-filename --line-number --search-zip"))
 
-;; Allow display line numbers in preview.
-(add-to-list 'consult-preview-allowed-hooks 'global-display-line-numbers-mode-check-buffers)
+(add-to-list 'consult-preview-allowed-hooks 'display-line-numbers-mode)
 
 (require 'embark-consult)
 (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
