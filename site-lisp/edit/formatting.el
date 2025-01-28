@@ -11,5 +11,7 @@
 (api/customize-set-variable* 'format-all-show-errors 'never)
 (add-hook 'format-all-mode-hook #'format-all-ensure-formatter)
 
+;; Shell.
+(add-hook 'sh-mode-hook #'format-all-mode)
 
 (provide 'edit/formatting)
