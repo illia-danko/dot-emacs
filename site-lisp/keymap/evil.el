@@ -2,6 +2,7 @@
 
 (require 'edit/evil)
 (require 'core/intercept-mode)
+(require 'api/macro)
 
 ;; Core.
 (evil-define-key* '(normal) global-map
@@ -15,12 +16,12 @@
 (require 'edit/buffers)
 (require 'dashboard)
 (evil-define-key* '(normal) global-map
-  (kbd "g md") #'dashboard-open
-  (kbd "g ma") #'bookmark-jump
-  (kbd "g mn") #'bookmark-set
+  (kbd "g mo") #'dashboard-open
+  (kbd "g mb") #'bookmark-jump
+  (kbd "g ma") #'bookmark-set
   (kbd "g ms") #'edit/switch-to-scratch-buffer
   (kbd "g mm") #'edit/switch-to-messages-buffer
-  (kbd "g mr") #'bookmark-delete)
+  (kbd "g md") #'bookmark-delete)
 
 ;; Completion.
 (evil-define-key* '(insert) global-map
@@ -61,7 +62,8 @@
 
 (require 'tool/dired)
 (evil-define-key* '(normal) dired-mode-map
-  (kbd "O") #'tool/dired-system-open)
+  (kbd "O") #'dired-omit-mode
+  (kbd "o") #'tool/dired-system-open)
 
 (require 'tool/gutter)
 (evil-define-key* '(normal) global-map
@@ -112,9 +114,10 @@
   (kbd ", se") #'tool/spelling-toggle-buffer)
 
 (require 'core/project)
+
 (evil-define-key* '(normal) global-map
   (kbd ", db") #'kill-this-buffer
-  (kbd ", dp") #'(lambda () (interactive) (project-kill-buffers t)))
+  (kbd ", dp") (defun-iteractive core/project-kill-buffers (project-kill-buffers t)))
 
 (require 'imenu)
 (evil-define-key* '(normal) global-map
