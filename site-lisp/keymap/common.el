@@ -119,4 +119,7 @@
 (global-set-key (kbd "C-c ^") #'rainbow-mode)
 (global-set-key (kbd "C-c z") #'ui/zen-toggle)
 
+;; Text scale.
+(global-set-key (kbd "C-=") #'global-text-scale-adjust)
+
 (provide 'keymap/common)

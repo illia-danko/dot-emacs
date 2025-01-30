@@ -21,6 +21,7 @@
  'create-lockfiles nil ; privent creation files with hashes, e.g. #file#
  'backup-directory-alist `((".*" . ,temporary-file-directory))
  'auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+ 'text-scale-mode-step 1.1
  )
 
 (fset 'yes-or-no-p 'y-or-n-p) ; type y/n instead of yes/no
